@@ -122,7 +122,9 @@ num.polygons <- function(p) {
 
 map.text <- function(database, regions = ".", exact = FALSE, labels,
     cex = 0.75, add = FALSE, move = FALSE, ...) {
-  if(!add) map(database, regions, ...)
+  if(!add) map(database, regions, exact=exact, ...)
+## AD: this is a bug! We should add ",exact=exact"
+## or change the man page
   # get polygons
   cc = match.call(expand.dots=TRUE)
   cc[[1]] = as.name("map")
