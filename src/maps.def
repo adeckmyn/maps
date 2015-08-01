@@ -1,0 +1,6 @@
+EXPORTS
+ _i686.get_pc_thunk.bx
+ _i686.get_pc_thunk.cx
+ _i686.get_pc_thunk.bx
+ _i686.get_pc_thunk.bx
+ _i686.get_pc_thunk.cx

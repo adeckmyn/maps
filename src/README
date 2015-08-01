@@ -1,0 +1,26 @@
+Notes on creating new map databases.
+
+1) See the references:
+Richard A. Becker, and Allan R. Wilks,
+"Maps in S",
+emph{AT\&T Bell Laboratories Statistics Research Report [93.2], 1993.}
+
+Richard A. Becker, and Allan R. Wilks,
+"Constructing a Geographical Database",
+\emph{AT\&T Bell Laboratories Statistics Research Report [95.2], 1995.}
+
+2) After the .line .gon and .n ascii files have been created or modified,
+rerun ./getstats.sh to generate the appropriate .linestats and .gonstats
+files.
+
+3) Edit the Makefiles to add the appropriate names to the lists of
+.G, .L and .N files
+
+4) Create the ../data/<mapname>.r file consisting of the assignment
+'<mapname>MapEnv <- "R_MAP_DATA_DIR"'.  This sets the name of the
+environment variable, created at load time (see ../R/zzz.R), that
+specifies the location of the binary data files for this collection
+of maps. [The mapdata package uses a different environment variable.]
+
+Ray Brownrigg
+21 March 2009
