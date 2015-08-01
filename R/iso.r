@@ -5,3 +5,12 @@ iso3166 <- function(x){
   ISOlist$name[match(x,ISOlist$code)]
 }
 
+### for the inverse:
+
+iso3166inv <- function(x){
+  ISOlist <- get("ISOlist")
+  nam <- as.vector(lapply(strsplit(x,":"),function(nn) nn[1]))
+  ISOlist$code[match(nam,ISOlist$name)]
+}
+
+ 
