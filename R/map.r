@@ -98,9 +98,12 @@ function(database = "world", regions = ".", exact = FALSE,
 	 parameters = NULL, orientation = NULL, fill = FALSE,
 	 col = 1, plot = TRUE, add = FALSE, namesonly = FALSE, 
          xlim = NULL, ylim = NULL, wrap = FALSE,
-         resolution = if (plot) 1 else 0, type = "l", bg = par("bg"),
+         resolution = if (plot & !fill) 1 else 0, type = "l", bg = par("bg"),
          mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, ...)
 {
+  # AD: resolution is now 0 by default if fill=T
+  # so you get less artefacts in polygons because of the thinning
+
   # parameter checks
   if (resolution>0 && !plot) 
     stop("must have plot=TRUE if resolution is given")
