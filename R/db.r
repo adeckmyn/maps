@@ -97,6 +97,18 @@ function(database = "world", patterns, exact = FALSE)
     i = match(patterns, nam)
     if(any(is.na(i))) i = NULL
   } else {
+## AD FIX: this is a bug for UK vs Ukrain, Autralia vs Australian territories...
+## we fix it ad hoc for now
+## for UK, there is in fact no exact fit to "^uk$", but this is nice & general
+    if (database=="world") {
+      exceptions <- c("uk","australia")
+      ukau <- which(tolower(patterns) %in% exceptions)
+      if (length(ukau)>0) {
+        ukbase <- patterns[ukau]
+        patterns[ukau] <- paste(ukbase,":",sep="")
+        patterns <- c(paste(ukbase,"$",sep=""),patterns)
+      }
+    }
     regexp <- paste("(^", patterns, ")", sep = "", collapse = "|")
     i <- grep(regexp, nam, ignore.case = TRUE)
   }

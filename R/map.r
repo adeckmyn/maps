@@ -45,6 +45,9 @@ map.poly <- function(database, regions = ".", exact = FALSE,
         i = match(regions, the.map$names)
         if (any(is.na(i))) i = NULL
       } else {
+## AD TODO: solve the problem for UK vs Ukrain...
+## but here you have a simple set of named polygons, not a map database
+## so we just leave it for now.
       regexp <- paste("(^", regions, ")", sep = "", collapse = "|")
         i <- grep(regexp, the.map$names, ignore.case = TRUE)
       }
@@ -101,7 +104,7 @@ function(database = "world", regions = ".", exact = FALSE,
          resolution = if (plot & !fill) 1 else 0, type = "l", bg = par("bg"),
          mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, ...)
 {
-  # AD: resolution is now 0 by default if fill=T
+  # AD: resolution is now 0 by default if fill==TRUE
   # so you get less artefacts in polygons because of the thinning
 
   # parameter checks
