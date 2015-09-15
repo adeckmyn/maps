@@ -1,4 +1,4 @@
 import("graphics")
 importFrom("utils", "read.delim")
-export(world.legacy,iso3166,area.map, identify.map, map, map.axes, map.cities, map.scale, map.text, map.where, map.wrap, match.map, smooth.map, .map.range)
+export(world.legacy,ISOexpand,ISOalpha,area.map, identify.map, map, map.axes, map.cities, map.scale, map.text, map.where, map.wrap, match.map, smooth.map, .map.range)
 S3method(identify, map)
