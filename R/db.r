@@ -102,11 +102,11 @@ function(database = "world", patterns, exact = FALSE)
 ## for UK, there is in fact no exact fit to "^uk$", but this is nice & general
     if (database=="world") {
       exceptions <- c("uk","australia")
-      ukau <- which(tolower(patterns) %in% exceptions)
-      if (length(ukau)>0) {
-        ukbase <- patterns[ukau]
-        patterns[ukau] <- paste(ukbase,":",sep="")
-        patterns <- c(paste(ukbase,"$",sep=""),patterns)
+      iexp <- which(tolower(patterns) %in% exceptions)
+      if (length(iexp)>0) {
+        ibase <- patterns[iexp]
+        patterns[iexp] <- paste(ibase,":",sep="")
+        patterns <- c(paste(ibase,"$",sep=""),patterns)
       }
     }
     regexp <- paste("(^", patterns, ")", sep = "", collapse = "|")
