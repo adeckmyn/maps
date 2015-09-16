@@ -101,6 +101,8 @@ function(database = "world", patterns, exact = FALSE)
 ## we fix it ad hoc for now
 ## for UK, there is in fact no exact fit to "^uk$", but this is nice & general
     if (database=="world") {
+      obsoletes <- c("USSR","Yugoslavia","Zaire","Czechoslovakia")  # any more?
+      if (any(obsoletes %in% patterns)) warning("Regions appear to be for legacy data base.\nConsider updating country list or use legacy_world as database.")
       exceptions <- c("uk","australia")
       iexp <- which(tolower(patterns) %in% exceptions)
       if (length(iexp)>0) {
