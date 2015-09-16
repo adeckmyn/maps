@@ -1,4 +1,6 @@
 ### translate ISO 3166-1 alpha-2 codes to country names
+iso.exceptions <- c("China:Hong Kong","China:Macao","Norway:Svalbard",
+                    "Norway:Jan Mayen","Finland:Aland")
 
 iso.expand <- function(a){
   iso3166 <- get("iso3166")
@@ -23,35 +25,29 @@ sov.expand <- function(sov){
 
 ### the inverse:
 
-## BUG: "China:Hong Kong" will return "CN" etc
 ## I don't really like this ad hoc solution, but here it goes:
-## solution: first do a match for complete names, than on the remaining basenames
+## solution: do a match for name:names, then on the basenames
 ## another solution may be to return CN(?![:Hong|:Macao])
 ## not exactly beautiful, but it would work if we use grep(...,perl=TRUE)
-## However, then we still need to check for the exceptions.
-iso.alpha <- function(x,a=2){
+iso.alpha <- function(x,n=2){
+  lx <- tolower(x)
+  lmap <- tolower(iso3166$mapname)
+
   iso3166 <- get("iso3166")
-  nam <- as.vector(lapply(strsplit(x,":"),function(nn) nn[1]))
-  sel <- match(nam,iso3166$mapname)
+  nam1 <- vapply(strsplit(lx,":"),function(nn) nn[1],FUN.VALUE="str")
+  sel1 <- match(nam1,lmap)
 
-  exceptions <- c("China:Hong Kong","China:Macao","Norway:Svalbard",
-                  "Norway:Jan Mayen","Finland:Aland")
-  regexp <- paste("(^", exceptions, ")", sep = "", collapse = "|")
-  exp <- grep(regexp, x, ignore.case = TRUE)
-  if (length(exp)>0) {
-    s2 <- vapply(x,function(x) paste(strsplit(x,":")[[1]][1:2],collapse=":"),
+#  regexp <- paste("(^", iso.exceptions, ")", sep = "", collapse = "|")
+#  exp <- grep(regexp, x, ignore.case = TRUE)
+#  if (length(exp)>0) {
+    nam2 <- vapply(strsplit(lx,":"),function(x) paste(x[1:2],collapse=":"),
                  FUN.VALUE="str")
-    sel2 <- match(s2,iso3166$mapname)
-    sel[!is.na(sel2)] <- sel2[!is.na(sel2)]
-  }
+    sel2 <- match(nam2,lmap)
+    sel <- ifelse(is.na(sel2),sel1,sel2)
+#  }
   
-  if (a==2) iso3166$a2[sel]
-  else if (a==3) iso3166$a3[sel]
-  else stop("a must be 2 or 3.")
+  if (n==2) iso3166$a2[sel]
+  else if (n==3) iso3166$a3[sel]
+  else stop("n must be 2 or 3.")
 }
-
-## Current exceptions:
-# ISOexceptions <- c("China:Hong Kong","China:Macao","Finland:Aland Islands")
-# MAYBE: "Norway:Svalbard","Denmark:Faroe Islands", 
-
 

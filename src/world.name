@@ -1,26 +1,26 @@
 Aruba	1
 Afghanistan	2
-Angola:1	3
-Angola:1	4
+Angola	3
+Angola:Cabinda	4
 Anguilla	5
 Albania	6
-Aland Islands:1	7
-Aland Islands:2	8
-Aland Islands:3	9
+Finland:Aland Islands:Foglo	7
+Finland:Aland Islands:Eckero	8
+Finland:Aland Islands:Fasta Aland	9
 Andorra	10
 United Arab Emirates:Abu al Abyad	11
-United Arab Emirates:2	12
+United Arab Emirates:Sir Baniyas	12
 United Arab Emirates:Marawwah	13
-United Arab Emirates:4	14
+United Arab Emirates:Al Aryan	14
 United Arab Emirates	15
 United Arab Emirates:6	16
 Argentina:Isla de los Estados	17
 Argentina:Tierra del Fuego	18
 Argentina:Isla Trinidad	19
 Argentina	20
-Armenia:1	21
+Armenia:Artsvashen	21
 Armenia	22
-Armenia:3	23
+Armenia:Enclave border	23
 American Samoa:Tutuila	24
 Antarctica:1	25
 Antarctica:2	26
@@ -179,10 +179,10 @@ Australia:Prince of Wales Island	178
 Australia:Moa Island	179
 Australia:Mulgrave Island	180
 Austria	181
-Azerbaijan:1	182
-Azerbaijan:2	183
+Azerbaijan:Nakhchivan	182
+Azerbaijan:Yukhari Askipari	183
 Azerbaijan	184
-Azerbaijan:4	185
+Azerbaijan:Enclave border	185
 Burundi	186
 Belgium	187
 Benin	188
@@ -238,8 +238,8 @@ Brazil:Ilha Janaucu	237
 Brazil:Ilha de Maraca	238
 Brazil	239
 Barbados	240
-Brunei Darussalam:East	241
-Brunei Darussalam	242
+Brunei:East	241
+Brunei	242
 Bhutan	243
 Botswana	244
 Central African Republic	245
@@ -440,37 +440,37 @@ China:10	439
 China:Zhoushan Dao	440
 China:Chongming Dao	441
 China	442
-Cote d'Ivoire:1	443
-Cote d'Ivoire	444
+Ivory Coast:Aby Penninsula	443
+Ivory Coast	444
 Cameroon	445
 Democratic Republic of the Congo	446
 Republic of Congo	447
-Cook Islands	448
+Cook Islands:Rarotonga	448
 Colombia:1	449
 Colombia	450
-Comoros:1	451
-Comoros:2	452
-Comoros:3	453
-Cape Verde:1	454
-Cape Verde:2	455
-Cape Verde:3	456
-Cape Verde:4	457
-Cape Verde:5	458
-Cape Verde:6	459
-Cape Verde:7	460
-Cape Verde:8	461
+Comoros:Moheli	451
+Comoros:Anjouan	452
+Comoros:Grande Comore	453
+Cape Verde:Fogo	454
+Cape Verde:Maio	455
+Cape Verde:Sao Tiago	456
+Cape Verde:Boa Vista	457
+Cape Verde:Sao Nicolau	458
+Cape Verde:Sal	459
+Cape Verde:Sao Vincente	460
+Cape Verde:Santo Antao	461
 Costa Rica	462
-Cuba:1	463
-Cuba:2	464
-Cuba:3	465
-Cuba:4	466
-Cuba:5	467
-Cuba:6	468
-Cuba:7	469
+Cuba:Isla de la Juventura	463
+Cuba:Cayo Sabinal	464
+Cuba:Cayo Guajaba	465
+Cuba:Cayo Romano	466
+Cuba:Cayo Coco	467
+Cuba:Caya Fragosa	468
+Cuba	469
 Curacao	470
-Cayman Islands:1	471
-Cayman Islands:2	472
-Cayman Islands:3	473
+Cayman Islands:Grand Cayman	471
+Cayman Islands:Little Cayman	472
+Cayman Islands:Cayman Brac	473
 Cyprus:Northern Cyprus	474
 Cyprus	475
 Czech Republic	476
@@ -503,7 +503,7 @@ Ecuador:Isla Santa Cruz	502
 Ecuador:Isla Fernandina	503
 Ecuador:Isla San Salvador	504
 Ecuador:Isla Isabela	505
-Ecuador:8	506
+Ecuador:Pampanal	506
 Ecuador	507
 Egypt	508
 Eritrea:Dehalak Deset	509
@@ -552,7 +552,7 @@ Fiji:16	551
 Fiji:17	552
 Fiji:Vanua Levu	553
 Fiji:Rotuma	554
-Falkland Islands:2	555
+Falkland Islands:1	555
 Falkland Islands:2	556
 Falkland Islands:Weddell Island	557
 Falkland Islands:West Falkland	558
@@ -680,7 +680,7 @@ Guyana	679
 China:Hong Kong:1	680
 China:Hong Kong:2	681
 China:Hong Kong	682
-Heard I. and McDonald Islands	683
+Heard Island	683
 Honduras	684
 Honduras:Isle de Roatan	685
 Honduras:Isla de Guanaja	686
@@ -852,7 +852,7 @@ India	851
 Cocos (Keeling) Islands:South Island	852
 Cocos (Keeling) Islands:West Island	853
 Christmas Island	854
-British Indian Ocean Territory	855
+Chagos Archipelago:Diego Garcia	855
 Ireland:Achill Island	856
 Ireland	857
 Iran:Jazireh-ye Qeshm	858
@@ -862,9 +862,9 @@ Iceland	861
 Israel	862
 Italy:Isola di Pantelleria	863
 Italy:Sicily	864
-Italy:14	865
-Italy:4	866
-Italy:5	867
+Italy:Sant'Antonio	865
+Italy:Forio	866
+Italy:Asinara	867
 Italy:Sardinia	868
 Italy:Isola d'Elba	869
 Italy	870
@@ -1099,16 +1099,16 @@ Norway:Kvaloya	1098
 Norway:Soroya	1099
 Norway	1100
 Norway:Mageroya	1101
-Svalbard:Jan Mayen	1102
-Svalbard:Byornoya	1103
-Svalbard:Edgeoya	1104
-Svalbard:Svenskoya	1105
-Svalbard:104	1106
-Svalbard:Kongsoya	1107
-Svalbard:Spitsbergen	1108
-Svalbard:Kvitoya	1109
-Svalbard:31	1110
-Svalbard:Nordaustlandet	1111
+Norway:Jan Mayen	1102
+Norway:Svalbard:Byornoya	1103
+Norway:Svalbard:Edgeoya	1104
+Norway:Svalbard:Svenskoya	1105
+Norway:Svalbard:104	1106
+Norway:Svalbard:Kongsoya	1107
+Norway:Svalbard:Spitsbergen	1108
+Norway:Svalbard:Kvitoya	1109
+Norway:Svalbard:31	1110
+Norway:Svalbard:Nordaustlandet	1111
 Nepal	1112
 Nauru	1113
 New Zealand:1	1114
@@ -1363,7 +1363,7 @@ Senegal	1362
 Singapore	1363
 South Sandwich Islands:Montagu Island	1364
 South Georgia	1365
-Saint Helena:3	1366
+Saint Helena	1366
 Ascension Island	1367
 Solomon Islands:Vanikoro	1368
 Solomon Islands:Rennel	1369
@@ -1403,9 +1403,9 @@ Slovenia	1402
 Sweden:Oland	1403
 Sweden:Gotland	1404
 Sweden:Faro	1405
-Sweden:13	1406
-Sweden:22	1407
-Sweden:6	1408
+Sweden:Orno	1406
+Sweden:Varmdo	1407
+Sweden	1408
 Swaziland	1409
 Sint Maarten	1410
 Seychelles:Mahe Island	1411
@@ -1607,20 +1607,20 @@ Uzbekistan:2	1606
 Uzbekistan	1607
 Uzbekistan:4	1608
 Vatican	1609
-Saint Vincent and the Grenadines:Canouan	1610
-Saint Vincent and the Grenadines:Bequia	1611
-Saint Vincent and the Grenadines:Saint Vincent	1612
+Grenadines:Canouan	1610
+Grenadines:Bequia	1611
+Saint Vincent	1612
 Venezuela:1	1613
 Venezuela:2	1614
 Venezuela:Isla La Tortuga	1615
 Venezuela:Isla de Margarita	1616
 Venezuela	1617
-British Virgin Islands:Tortola	1618
-British Virgin Islands:2	1619
-British Virgin Islands:Anegada	1620
-US Virgin Islands:Saint Croix	1621
-US Virgin Islands:Saint John	1622
-US Virgin Islands:Saint Thomas	1623
+Virgin Islands, British:Tortola	1618
+Virgin Islands, British:2	1619
+Virgin Islands, British:Anegada	1620
+Virgin Islands, US:Saint Croix	1621
+Virgin Islands, US:Saint John	1622
+Virgin Islands, US:Saint Thomas	1623
 Vietnam:Con Son	1624
 Vietnam:Dao Phu Quoc	1625
 Vietnam:3	1626
