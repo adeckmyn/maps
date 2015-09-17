@@ -4,6 +4,7 @@
       "Many country borders and names have been updated.\n",
       "Type '?world' for more information.")
 }
+
 .onLoad <- function(lib, pkg) {
   if (Sys.getenv("R_MAP_DATA_DIR") == "")
     Sys.setenv("R_MAP_DATA_DIR" = paste(lib, pkg, "mapdata/", sep="/"))
