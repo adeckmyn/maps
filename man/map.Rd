@@ -8,7 +8,7 @@
 map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
   interior = TRUE, projection = "", parameters = NULL, orientation = NULL,
   fill = FALSE, col = 1, plot = TRUE, add = FALSE, namesonly = FALSE,
-  xlim = NULL, ylim = NULL, wrap = FALSE, resolution = if(plot) 1 else 0,
+  xlim = NULL, ylim = NULL, wrap = FALSE, resolution = if(plot & !fill) 1 else 0,
   type = "l", bg = par("bg"), mar = c(4.1, 4.1, par("mar")[3], 0.1),
   myborder = 0.01, ...)
 }

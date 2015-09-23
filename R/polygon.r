@@ -137,7 +137,7 @@ map.text <- function(database, regions = ".", exact = FALSE, labels,
     labels = gsub(".*,", "", m$names)
   }
   if(num.polygons(m) != length(labels))
-    stop("map object must have polygons (fill=TRUE)")
+    stop("map object must have polygons (fill=TRUE) and equal number of labels")
   x = apply.polygon(m, centroid.polygon)
   # convert m into a matrix
   x <- t(array(unlist(x), c(2, length(x))))

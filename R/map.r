@@ -46,10 +46,11 @@ map.poly <- function(database, regions = ".", exact = FALSE,
         if (any(is.na(i))) i = NULL
       } else {
 ## AD TODO: solve the problem for UK vs Ukrain...
-## but here you have a simple set of named polygons, not a map database
-## so we just leave it for now.
+## But here you have a simple set of named polygons, not a map database.
+## If it comes from anything but "world", we could break something else.
+## We just leave it for now.
       regexp <- paste("(^", regions, ")", sep = "", collapse = "|")
-        i <- grep(regexp, the.map$names, ignore.case = TRUE)
+        i <- grep(regexp, the.map$names, ignore.case = TRUE, perl=TRUE)
       }
       if (length(i) == 0) stop("no recognized region names")
       nam <- the.map$names[i]
