@@ -1,6 +1,6 @@
 \name{iso3166}
-\docType{data}
 \alias{iso3166}
+\docType{data}
 \title{
   ISO 3166 country codes (2 or 3 letters) and sovereignty.
 }

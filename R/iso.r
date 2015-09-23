@@ -1,8 +1,8 @@
 ### translate ISO 3166-1 alpha-2 codes to country names
 ### default result is a character vector of same length, which may contain regular expressions
 iso.expand <- function(a,regex=TRUE){
-  AA <- toupper(a)
   iso3166 <- get("iso3166")
+  AA <- toupper(a)
   if (all(nchar(a)==2)) codes <- iso3166$a2
   else if (all(nchar(a)==3)) codes <- iso3166$a3
   else stop("All codes must be equal length, 2 or 3 characters.")
@@ -15,6 +15,7 @@ iso.expand <- function(a,regex=TRUE){
 
 ### list all countries that fall under sovereignty of 'sov'
 sov.expand <- function(sov,regex=TRUE){
+  iso3166 <- get("iso3166")
   sov <- tolower(sov)
   sel <- tolower(iso3166$sovereignty)
   nn <- lapply(sov,function(x) iso3166$mapname[which(sel == x)])
