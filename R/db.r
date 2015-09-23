@@ -103,7 +103,7 @@ function(database = "world", patterns, exact = FALSE)
     if(any(is.na(i))) i = NULL
   } else {
 ## QUICK FIX: there is a problem now for UK vs Ukrain, Australia vs Australian territories...
-## we fix it ad hoc for now by (^uk) => (uk$) | (^uk:) 
+## we fix it ad hoc for now by (^uk) => (uk$) | (^uk:)
 ## for UK, there is in fact no exact fit to "^uk$", but this is nice & general
     if (database=="world") {
       if (any(world.obsoletes %in% patterns)) warning("Regions appear to be for legacy data base.\nConsider updating country list or use legacy_world as database.")
@@ -196,7 +196,7 @@ match.map <- function(database, regions, exact = FALSE, warn = TRUE) {
     ord.regions = order(regions)
     regions = regions[ord.regions]
     Sys.setlocale(category = "LC_COLLATE", locale = lcc)
-    
+
     result = .C("map_match", PACKAGE="maps",
       as.integer(length(nam)), as.character(nam),
       as.integer(length(regions)), as.character(regions),
@@ -227,7 +227,7 @@ match.map.slow <- function(nam, regions, warn = FALSE) {
       r = index.bin[[region.hash]][r]
       result[r] <- i
     } else if(warn) warning(paste(pattern, "is not in the map"))
-  }  
+  }
   result
 }
 match.map.grep <- function(nam, regions, warn = FALSE) {
@@ -239,6 +239,6 @@ match.map.grep <- function(nam, regions, warn = FALSE) {
     if(length(r) > 0) {
       result[r] <- i
     } else if(warn) warning(paste(pattern, "is not in the map"))
-  }  
+  }
   result
 }

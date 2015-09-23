@@ -44,12 +44,14 @@ iso.alpha <- function(x,n=2){
   fli <- do.call(rbind,nam1)
   sel <- fli[match(seq_along(x),fli[,2]),1]
 
-## part 2: 
+## part 2:
 ## try for partial fit. if it gives a single result, use it.
   if (any(is.na(sel))) {
     sel2 <- which(is.na(sel))
     nam2 <- unlist(lapply(x[sel2],
-                    function(nn) {regx <- paste("(^",nn,")",sep="") ; ttt <- grep(regx, iso3166$mapname, perl=TRUE, ignore.case=TRUE); if (length(ttt)==1) ttt else NA}))
+              function(nn) {regx <- paste("(^",nn,")",sep="") ; 
+                            ttt <- grep(regx, iso3166$mapname, perl=TRUE, ignore.case=TRUE);
+                            if (length(ttt)==1) ttt else NA}))
     sel[sel2] <- nam2
   } 
 
