@@ -16,6 +16,15 @@ This map is based on latitudes [0, 360), which then has the Pacific
 Ocean in the centre of the map.
 
 }
+\section{NOTE}{
+The same effect can in fact be obtained by using a projection:
+
+map("world",projection="rectangular",parameter=0,orientation=c(90,0,180),
+             wrap=TRUE)
+
+This method is in fact to be preferred, as it will also render correctly with FILL=TRUE. Currently, the wrapping code does not work well with world2.
+
+}
 \format{
 The data file is merely a character string which
 specifies the name of an environment variable which contains the

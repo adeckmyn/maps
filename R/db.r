@@ -98,15 +98,26 @@ function(database = "world", patterns, exact = FALSE)
   fname <- paste(sep = "", mapbase, ".N")
   cnames <- read.delim(fname, as.is = TRUE, header = FALSE)
   nam <- as.character(cnames[[1]])
+### AD: exact=TRUE fails if there is any non-fitting name
+###     is that optimal behaviour? Maybe it's 1 typo in 20 names.
   if(exact) {
-    i = match(patterns, nam)
-    if(any(is.na(i))) i = NULL
+    i <- match(patterns, nam)
+    if (any(is.na(i))) {
+      if (!missing(patterns)) {
+        pmiss <- patterns[is.na(i)]
+        if (length(i)>0) warning(paste("Some patterns could not be exactly matched:\n",pmiss))
+      }
+      i <- NULL
+    }
   } else {
-## QUICK FIX: there is a problem now for UK vs Ukrain, Australia vs Australian territories...
-## we fix it ad hoc for now by (^uk) => (uk$) | (^uk:)
+## QUICK FIX: there is a problem now for UK vs Ukrain...
+## we fix it ad hoc for now by (^uk) => (^uk$) | (^uk:)
+## uk(?!r) would be simpler, but this can be extended should there ever be another case.
 ## for UK, there is in fact no exact fit to "^uk$", but this is nice & general
     if (database=="world") {
-      if (any(world.obsoletes %in% patterns)) warning("Regions appear to be for legacy data base.\nConsider updating country list or use legacy_world as database.")
+      if (any(world.obsoletes %in% patterns)) warning(
+                        "Regions appear to be for legacy data base.\n
+                         Consider updating country list or use legacy_world as database.")
       iexp <- which(tolower(patterns) %in% world.exceptions)
       if (length(iexp)>0) {
         ibase <- patterns[iexp]
