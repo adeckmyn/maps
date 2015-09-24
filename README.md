@@ -14,9 +14,7 @@ This may have several implications for code that calls map().
   * Because of this segmentation by ISO code (and, often parallel, by admin-0 level), some countries now have much less islands. For instance, map(region="France") now only shows metropolitan France and one or two remote islands. To add all overseas territories and departments, you can use region=sov.expand("France"),  which creates a list of all countries under French sovereignty. 
   * The new 'world' database has a higher resolution than before and looks much smoother. In fact, for some applications it may now suffice rather than needing to import worldHires.
 
-- map() now has default resolution=0 if fill==TRUE. This eliminates little errors in the polygons that resulted from thinning the boundaries in two different directions. 
-
-- Most functions now use perl-style regular expressions internally, rather than the default style. This gives more flexibility 
+- Most functions now use perl-style regular expressions internally, rather than the default style. This gives more flexibility.
 
 ##ADDITIONS
 
@@ -26,10 +24,10 @@ This may have several implications for code that calls map().
   
 ##FIXES
 - map.text(...,exact=TRUE) now behaves as documented. Previously, the "exact=TRUE" was not passed to the map drawing if add=FALSE. To get the old (non-documented) behaviour (plot map with exact=FALSE, write text for exact=TRUE) you should now use 2 commands: 
-  * > map(...,exact=F)
-  * > map.text(...,exact=T,add=T)
+  * > map(...,exact=FALSE)
+  * > map.text(...,exact=TRUE,add=TRUE)
 
-- match.map now works correctly for regions containing ":". This was broken due to locale-dependent behaviour of order().
+- match.map now works correctly for regions containing ":". This was potentially broken due to locale-dependent behaviour of order().
 
 ##FALL BACK TO LEGACY WORLD DATABASE
 There are a few mechanisms to use the old 'world' database rather than the updated one, should that be necessary:
@@ -50,4 +48,5 @@ Please inform the maintainer of any problem that requires a fallback to the lega
 - The naming convention is largely maintained, but some choices are different. The changes mean that e.g. /region="France"/ now covers only metropolitan France, whithout (most of) the overseas departments and territories
 - Some inconsistencies in the naming procedure remain. For instance, while most countries are named by their full name, "UK" and "USA" are shortened in the same way as in the old data base. For UK, this even required a hack in the mapping code to avoid adding Ukrain to the map.
 - I'd like to find a way to get Antarctica show up a bit nicer, but whithout adding imaginary points that would be ruined in a projection or when changing the central meridian.
-
+- The wrapping routine does not work well with 'world2' (basically because it expects a jump to involve a sign change in longitude). It also causes artefacts because it merely inserts NA whenever a cross-meridian segment is detected. Ideally, one should interpolate to the border (if known...). For polygons, it gets even harder. I assume better code already exists.
+- The iso3166 table may have to be adapted for the Natural Earth 1:10 database, some extra rows have already been inserted.

@@ -22,7 +22,9 @@ The same effect can in fact be obtained by using a projection:
 map("world",projection="rectangular",parameter=0,orientation=c(90,0,180),
              wrap=TRUE)
 
-This method is in fact to be preferred, as it will also render correctly with FILL=TRUE. Currently, the wrapping code does not work well with world2.
+By changing the third component of 'orientation', the longitude shift can also be set to any other value besides 180 or 0 (but then fill=TRUE will usually give artefacts at the borders). You may even need to set 'resolution=0' if the wrapping algorithm fails because of the thinning.
+
+This method is in fact to be preferred, as it will also render correctly with fill=TRUE. Currently, the wrapping code does not work well with world2.
 
 }
 \format{

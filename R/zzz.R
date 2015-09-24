@@ -1,8 +1,10 @@
 .onAttach <- function(lib,pkg) {
-  packageStartupMessage(
-      "ATTENTION: maps v3.0 has a COMPLETELY NEW WORLD DATABASE!\n",
-      "Many country borders and names have been updated.\n",
-      "Type '?world' for more information.")
+  packageStartupMessage("\n",
+      " ############################################################\n",
+      " # ATTENTION: maps v3.0 has an UPDATED WORLD database.      #\n",
+      " # Many country borders and names have changed since 1990.  #\n",
+      " # Type '?world' or 'news(package=\"maps\")'. See README_v3.  #\n",
+      " ############################################################\n")
 }
 
 .onLoad <- function(lib, pkg) {
