@@ -73,4 +73,4 @@ legacy: legacy_world.line Lmake Gmake
 
 clean:
 	$(RM) $(OBJS) Gmake Lmake world2.* $(PKGNAME).s[lo] $(PKGNAME).dylib *.exe maps.dll symbols.rds
-	$(RM) -r ../inst ../libs
+	$(RM) -r ../inst/mapdata ../libs
