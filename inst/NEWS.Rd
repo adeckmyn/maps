@@ -14,7 +14,11 @@
     }
     \item SMALL CHANGES & FIXES
     \itemize{
-      \item Internally now uses perl-style regular expressions. Useful for 'negative' regular expressions. E.g. \code{"Norway(?!:Svalbard)"} will plot Norway and all islands except Svalbard. 
+      \item Internally now uses perl-style regular expressions. Useful for 'negative' regular expressions: 
+      \itemize{
+         \item \code{"Norway(?!:Svalbard)"} will plot Norway and all islands except Svalbard.
+         \item \code{map(reg="(?!Belgium)",fill=TRUE,xlim=c(-10,20),ylim=c(40,60))}
+      }
       \item map.text(...,exact=TRUE) now behaves as documented. To get the old (non-documented) behaviour (plot map with exact=FALSE, write text for exact=TRUE) you could now use 2 commands: 
       \itemize{
         \item \code{map(...,exact=FALSE)}
