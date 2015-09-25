@@ -10,7 +10,7 @@
     \item ADDITIONS:
     \itemize{
       \item data set \code{iso3166} containing ISO-3166 country codes.
-      \item New functions \code{iso.expand}, \code{sov.expand} and \code{iso.alpha} that use this table for converting country names to ISO codes or back. Also expansion by sovereignty. Could be used e.g. for country labels.
+      \item New functions \code{iso.expand()}, \code{sov.expand()} and \code{iso.alpha()} that use this table for converting country names to ISO codes or back. Also expansion by sovereignty. Could be used e.g. for country labels.
     }
     \item SMALL CHANGES & FIXES
     \itemize{

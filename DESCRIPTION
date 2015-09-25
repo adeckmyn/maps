@@ -1,11 +1,10 @@
 Package: maps
 Title: Draw Geographical Maps
-Version: 2.99-1007
-Date: 2015-09-23
+Version: 2.99-1008
+Date: 2015-09-25
 Author: Original S code by Richard A. Becker and Allan R. Wilks.
-	R version by Ray Brownrigg <Ray.Brownrigg@ecs.vuw.ac.nz>.
-        Enhancements by Thomas P Minka <tpminka@media.mit.edu>
-        New world database added by Alex Deckmyn <alex.deckmyn@meteo.be>
+	R version by Ray Brownrigg.
+        Enhancements by Thomas P Minka and Alex Deckmyn.
 Description: Display of maps.  Projection code and larger maps are in
              separate packages (mapproj and mapdata).
 Depends: R (>= 2.14.0)
