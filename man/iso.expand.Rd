@@ -35,6 +35,9 @@ that excludes some parts.
   \code{iso.expand} returns vector of country names. When used as input for \code{map} it will plot all the countries as identified either by their sovereignty or by ISO codes. If \code{regex=FALSE} the length of the vector may be shorter or longer than the input. If \code{regex=TRUE}, the results are concatenated in regular expressions. This format is less readable, but can be used as input e.g. for \code{match.map}.
 \code{iso.alpha} always returns a vector of the same length as the input,  containing the 2- or 3-letter codes.
 }
+\section{NOTE}{
+These functions use regular expressions and the results will often not work well with \code{map(...,exact=TRUE)}.
+}
 \seealso{
 \code{\link{match.map}},\code{\link{map.text}},\code{\link{iso3166}}
 }

@@ -42,6 +42,10 @@ Note that the worldHires database from the mapdata package has identical map nam
 Please inform the maintainer of any problem that requires a fallback to the legacy database!
 
 
+## HIGH RESOLUTION MAP
+
+Natural Earth also supports a high-resolution (1:10m) world map. Rather than replacing 'worldHires' (in the mapdata package), this data set is available from the package mapdataNE (not yet on CRAN but already available from http://github.com/adeckmyn/mapdataNE).
+
 ##TO DO/DISCUSS:
 
 - Many islands remain nameless.
