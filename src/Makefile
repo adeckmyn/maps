@@ -61,6 +61,7 @@ world2.line: world.line
 # temporarily, we include the old (1990) world map 
 legacy: legacy_world.line Lmake Gmake
 	@$(ECHO) "Creating legacy world databases"
+	@$(MKDIR) -p ../inst/mapdata
 	$(AWK) -f convert.awk < legacy_world.line > legacy_world2.line
 	./Lmake 0 s b legacy_world.line legacy_world.linestats ../inst/mapdata/legacy_world.L
 	./Lmake 0 s b legacy_world2.line legacy_world.linestats ../inst/mapdata/legacy_world2.L
