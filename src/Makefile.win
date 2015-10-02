@@ -14,9 +14,12 @@ OBJS = mapget.o		\
 	smooth.o	\
 	thin.o
 
-GDATA = county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G state.carto.G
-LDATA = county.L state.L usa.L nz.L world.L world2.L italy.L france.L state.vbm.L state.carto.L
-NDATA = county.N state.N usa.N nz.N world.N world2.N italy.N france.N state.vbm.N state.carto.N
+GDATA = county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G \
+        state.carto.G legacy_world.G legacy_world2.G
+LDATA = county.L state.L usa.L nz.L world.L world2.L italy.L france.L state.vbm.L \
+        state.carto.L legacy_world.L legacy_world2.L
+NDATA = county.N state.N usa.N nz.N world.N world2.N italy.N france.N state.vbm.N \
+        state.carto.N legacy_world.N legacy_world2.N
 
 .line.L:
 	@$(MKDIR) -p ../inst/mapdata
@@ -58,14 +61,21 @@ $(DLLNAME).dll: $(OBJS)
 ../libs$(R_ARCH):
 	$(MKDIR) -p $@
 
-world2.line: world.line
+world2.line: world.line legacy_world.line
 	@$(ECHO) "Converting world to world2"
 	$(AWK) -f convert.awk < world.line > world2.line
 	@$(CP) world.linestats world2.linestats
 	@$(CP) world.gon world2.gon
 	@$(CP) world.gonstats world2.gonstats
 	@$(CP) world.name world2.name
+	@$(ECHO) "Creating legacy world2 database"
+	$(AWK) -f legacy_convert.awk < legacy_world.line > legacy_world2.line
+	@$(CP) legacy_world.linestats legacy_world2.linestats
+	@$(CP) legacy_world.gon legacy_world2.gon
+	@$(CP) legacy_world.gonstats legacy_world2.gonstats
+	@$(CP) legacy_world.name legacy_world2.name
 
 clean:
 	$(RM) $(DLLNAME).dll *.a $(OBJS) *.rc Gmake.exe Lmake.exe ../libs$(R_ARCH)/$(DLLNAME).dll world2.*
-	$(RM) -r ../libs$(R_ARCH) ../inst
+	$(RM) -r ../libs$(R_ARCH) ../inst/mapdata
+	$(RM) legacy_world2.*
