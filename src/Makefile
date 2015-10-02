@@ -11,9 +11,13 @@ OBJS = mapget.o		\
 	smooth.o	\
 	thin.o
 
-GDATA = county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G state.carto.G
-LDATA = county.L state.L usa.L nz.L world.L world2.L italy.L france.L state.vbm.L state.carto.L
-NDATA = county.N state.N usa.N nz.N world.N world2.N italy.N france.N state.vbm.N state.carto.N
+GDATA = county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G \
+        state.carto.G legacy_world.G legacy_world2.G
+LDATA = county.L state.L usa.L nz.L world.L world2.L italy.L france.L state.vbm.L \
+        state.carto.L legacy_world.L legacy_world2.L
+NDATA = county.N state.N usa.N nz.N world.N world2.N italy.N france.N state.vbm.N \
+        state.carto.N legacy_world.N legacy_world2.N
+
 
 .line.L:
 	@$(MKDIR) -p ../inst/mapdata
@@ -28,7 +32,7 @@ NDATA = county.N state.N usa.N nz.N world.N world2.N italy.N france.N state.vbm.
 
 .PHONY: all gdata ldata ndata
 
-all: gdata ndata $(PKGNAME)$(SHLIB_EXT) legacy
+all: gdata ndata $(PKGNAME)$(SHLIB_EXT)
 
 state.carto.L: state.carto.line state.carto.linestats Lmake
 	@$(MKDIR) -p ../inst/mapdata
@@ -50,28 +54,22 @@ ndata: world2.line
 $(PKGNAME)$(SHLIB_EXT): $(OBJS)
 	$(R_HOME)/bin/R CMD SHLIB -o $(PKGNAME)$(SHLIB_EXT) $(OBJS)
 
-world2.line: world.line
+world2.line: world.line legacy_world.line
 	@$(ECHO) "Converting world to world2"
 	$(AWK) -f convert.awk < world.line > world2.line
 	@$(CP) world.linestats world2.linestats
 	@$(CP) world.gon world2.gon
 	@$(CP) world.gonstats world2.gonstats
 	@$(CP) world.name world2.name
-
-# temporarily, we include the old (1990) world map 
-legacy: legacy_world.line Lmake Gmake
-	@$(ECHO) "Creating legacy world databases"
-	@$(MKDIR) -p ../inst/mapdata
-	$(AWK) -f convert.awk < legacy_world.line > legacy_world2.line
-	./Lmake 0 s b legacy_world.line legacy_world.linestats ../inst/mapdata/legacy_world.L
-	./Lmake 0 s b legacy_world2.line legacy_world.linestats ../inst/mapdata/legacy_world2.L
-	./Gmake b legacy_world.gon legacy_world.gonstats ../inst/mapdata/legacy_world.G ../inst/mapdata/legacy_world.L
-	./Gmake b legacy_world.gon legacy_world.gonstats ../inst/mapdata/legacy_world2.G ../inst/mapdata/legacy_world2.L
-	@$(CP) legacy_world.name ../inst/mapdata/legacy_world.N
-	@$(CP) legacy_world.name ../inst/mapdata/legacy_world2.N
-	$(RM)  legacy_world2.line 
+	@$(ECHO) "Creating legacy world2 database"
+	$(AWK) -f legacy_convert.awk < legacy_world.line > legacy_world2.line
+	@$(CP) legacy_world.linestats legacy_world2.linestats
+	@$(CP) legacy_world.gon legacy_world2.gon
+	@$(CP) legacy_world.gonstats legacy_world2.gonstats
+	@$(CP) legacy_world.name legacy_world2.name
 
 
 clean:
 	$(RM) $(OBJS) Gmake Lmake world2.* $(PKGNAME).s[lo] $(PKGNAME).dylib *.exe maps.dll symbols.rds
 	$(RM) -r ../inst/mapdata ../libs
+	$(RM) legacy_world2.*
