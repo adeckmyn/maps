@@ -23,7 +23,7 @@ During a transition period (\code{maps} version 3.0) it is possible to switch to
 }
 \source{
 The CIA World Data Bank II is currently (2015) still available from 
-\url{http://www.evl.uic.edu/pape/data/WDB/}.
+\url{https://www.evl.uic.edu/pape/data/WDB/}.
 }
 \seealso{
 \code{\link{map}},\code{\link{world.legacy}},\code{\link{world}}

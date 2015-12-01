@@ -25,7 +25,7 @@ During a transition period (\code{maps} version 3.0) it is possible to switch to
 The Natural Earth data set is available from \url{http://www.naturalearthdata.com}.
 
 The legacy CIA World Data Bank II is currently (mid-2003) available from 
-\url{http://www.evl.uic.edu/pape/data/WDB/}.
+\url{https://www.evl.uic.edu/pape/data/WDB/}.
 }
 \seealso{
 \code{\link{map}},\code{\link{world.legacy}},\code{\link{legacy_world}}
