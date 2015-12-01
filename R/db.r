@@ -170,6 +170,8 @@ match.map <- function(database, regions, exact = FALSE, warn = TRUE) {
     ip[p] = 1:length(p)
     ip
   }
+  regions = tolower(regions)
+
   if(is.character(database)) {
     dbname <- paste(database, "MapEnv", sep = "")
     # data(list = dbname)
@@ -177,22 +179,23 @@ match.map <- function(database, regions, exact = FALSE, warn = TRUE) {
     fname <- paste(sep = "", mapbase, ".N")
     x <- read.delim(fname, header = FALSE)
     nam <- as.character(x[[1]])
+
+# this is a quick-and-dirty fix for "uk" matching "ukrain"
+# it must also trigger the use of match.map.grep
+# We replace "uk" by "uk but not followed a letter"
+# So Ukrain doesn't fit "uk" anymore, but "uk:scotland" is OK
+    if (database=="world") {
+      iexp <- which(regions %in% world.exceptions)
+      if (length(iexp)>0) {
+        ibase <- regions[iexp]
+        regions[iexp] <- paste(ibase,"(?![[:alpha:]])",sep="")
+      }
+    }
   }
   else {
     nam <- database$names
   }
   nam = tolower(nam)
-  regions = tolower(regions)
-# this is the quick-and-dirty fix:
-# it must also trigger the use of match.map.grep
-#  nam[nam=="uk"] <- "uk[^r]"
-  if (database=="world") {
-      iexp <- which(tolower(patterns) %in% world.exceptions)
-      if (length(iexp)>0) {
-        ibase <- patterns[iexp]
-        patterns[iexp] <- paste(ibase,"(?![:alpha:])",sep="")
-      }
-  }
 
   if(!exact && any(is.regexp(regions))) {
     match.map.grep(nam, regions, warn)
@@ -202,13 +205,13 @@ match.map <- function(database, regions, exact = FALSE, warn = TRUE) {
     #so we temporarily move to ASCII style ordering
     lcc <- Sys.getlocale("LC_COLLATE")
     Sys.setlocale(category = "LC_COLLATE", locale = "C")
-    ord.nam = order(nam)
-    nam = nam[ord.nam]
-    ord.regions = order(regions)
-    regions = regions[ord.regions]
+    ord.nam <- order(nam)
+    nam <- nam[ord.nam]
+    ord.regions <- order(regions)
+    regions <- regions[ord.regions]
     Sys.setlocale(category = "LC_COLLATE", locale = lcc)
 
-    result = .C("map_match", PACKAGE="maps",
+    result <- .C("map_match", PACKAGE="maps",
       as.integer(length(nam)), as.character(nam),
       as.integer(length(regions)), as.character(regions),
       result = integer(length(nam)), as.integer(exact))[["result"]]
