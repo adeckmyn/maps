@@ -1,5 +1,12 @@
 \name{NEWS}
 \title{News for package 'maps'}
+\section{Changes in maps version 3.0.1 (2015-11-30)}{
+  \itemize{
+    \item Fix match.map() for world map
+    \item Add some more island names to the world database
+  }
+}
+
 \section{Changes in maps version 3.0.0 (2015-09-24)}{
   \itemize{
     \item MAJOR:
