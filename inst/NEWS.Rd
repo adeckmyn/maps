@@ -4,6 +4,7 @@
   \itemize{
     \item Fix match.map() for world map
     \item Add some more island names to the world database
+    \item Updated a few web references in man pages.
   }
 }
 
