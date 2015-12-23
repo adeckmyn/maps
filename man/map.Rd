@@ -168,7 +168,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     scalar or vector of length 2 specifying the porportion of the plot
     to add to the defined or computed limits as borders.
   }
-  \item{...}{Extra arguments passed to \code{polygon} or \code{lines}.}
+  \item{...}{Extra arguments passed to \code{polygon} or \code{lines}. Of particular interest may be the options \code{border, lty} that control the color and line type of the polygon borders.}
 }
 \details{
 The simplest form of use of this function is:

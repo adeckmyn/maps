@@ -1,5 +1,13 @@
 \name{NEWS}
 \title{News for package 'maps'}
+\section{Changes in maps version 3.0.2 (2015-12-??)}{
+  \itemize{
+    \item World database rebuilt using mapMaker. Some corrections to polylines.
+    \item Minor changes to man pages.
+  }
+}
+
+
 \section{Changes in maps version 3.0.1 (2015-11-30)}{
   \itemize{
     \item Fix match.map() for world map
