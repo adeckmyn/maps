@@ -21,12 +21,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     three USA databases (\code{\link{usa}}, \code{\link{state}},
     \code{\link{county}}), and more (see the package index).  The
     location of the map databases may be overridden by setting the
-    \code{R_MAP_DATA_DIR} environment variable. Note that the
-    \code{\link{world}} (and \code{\link[mapdata]{worldHires}}) databases
-    are derived from a very old 1908's CIA database for which updates
-    have not been made freely available.  In particular the individual
-    Russian states are still defined collectively as "USSR".
-    See \code{\link{world}} for further details.
+    \code{R_MAP_DATA_DIR} environment variable.
   }
   \item{regions}{
     character vector that names the polygons to draw.
@@ -37,7 +32,10 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     as in \code{michigan:north} and \code{michigan:south}.
     Each element of \code{regions} is matched
     against the polygon names in the database and, according to
-    \code{exact}, a subset is selected for drawing.
+    \code{exact}, a subset is selected for drawing. The regions may also be 
+    defined using (perl) regular expressions. This makes it possible to use 
+    'negative' expressions like \code{"Norway(?!:Svalbard)"}, which means Norway
+    and all islands except Svalbard.
     The default selects all polygons in the database.
   }
   \item{exact}{

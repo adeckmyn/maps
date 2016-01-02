@@ -1,8 +1,9 @@
 \name{NEWS}
 \title{News for package 'maps'}
-\section{Changes in maps version 3.0.2 (2015-12-??)}{
+\section{Changes in maps version 3.0.2 (2016-01-??)}{
   \itemize{
     \item World database rebuilt using mapMaker. Some corrections to polylines.
+    \item Added the lakes on country boundaries as new polygons. That way, the dissappear when plotting with map(..., fill=TRUE) and map(..., interior=FALSE).
     \item Minor changes to man pages.
   }
 }
