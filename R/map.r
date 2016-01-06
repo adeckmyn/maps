@@ -143,6 +143,9 @@ function(database = "world", regions = ".", exact = FALSE,
       else warning("projection failed for some data")
     coord$names <- nam
   }
+  # AD: we do wrapping first: slightly better than when run after the thinning
+  #     also now the output data is also wrapped if plot=FALSE
+  if (wrap) coord <- map.wrap(coord)
   # do the plotting, if requested
   if (plot) {
     # for new plots, set up the coordinate system;
@@ -179,15 +182,16 @@ function(database = "world", regions = ".", exact = FALSE,
       }
       on.exit(par(opar))
     }
-    # thinning only works if you have polylines from a database
-    if (is.character(database) && resolution != 0 && type != "n") {
-      pin <- par("pin")
-      usr <- par("usr")
-      resolution <- resolution * min(diff(usr)[-2]/pin/100)
-      coord[c("x", "y")] <- mapthin(coord, resolution)
-    }
     if (type != "n") {
-      if (wrap) coord = map.wrap(coord)
+      # thinning only works correctly if you have polylines from a database
+      # AD: checking for is.character() is not enough: you should check for as.polygon==FALSE
+      # but that would be slow for worldHires...
+      if (is.character(database) && resolution != 0) {
+        pin <- par("pin")
+        usr <- par("usr")
+        resolution <- resolution * min(diff(usr)[-2]/pin/100)
+        coord[c("x", "y")] <- mapthin(coord, resolution)
+      }
       if (fill) polygon(coord, col = col, ...)
       else lines(coord, col = col, type = type, ...)
     }
