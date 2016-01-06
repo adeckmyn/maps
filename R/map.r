@@ -105,10 +105,6 @@ function(database = "world", regions = ".", exact = FALSE,
          resolution = if (plot) 1 else 0, type = "l", bg = par("bg"),
          mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, ...)
 {
-  # AD: resolution is should be 0 by default if fill==TRUE
-  # so you get less artefacts in polygons because of the thinning
-  # BUT: that's rather extreme with worldHires, so we leave it to the user
-
   # parameter checks
   if (resolution>0 && !plot) 
     stop("must have plot=TRUE if resolution is given")
@@ -185,8 +181,8 @@ function(database = "world", regions = ".", exact = FALSE,
     if (type != "n") {
       # thinning only works correctly if you have polylines from a database
       # AD: checking for is.character() is not enough: you should check for as.polygon==FALSE
-      # but that would be slow for worldHires...
-      if (is.character(database) && resolution != 0) {
+      # but that will be slow for worldHires...
+      if (!as.polygon && resolution != 0) {
         pin <- par("pin")
         usr <- par("usr")
         resolution <- resolution * min(diff(usr)[-2]/pin/100)
