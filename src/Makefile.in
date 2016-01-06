@@ -6,6 +6,7 @@ CP = cp
 ECHO = echo
 RM = rm -f
 MKDIR = mkdir
+AWK = @AWK@
 
 OBJS = mapget.o		\
 	smooth.o	\

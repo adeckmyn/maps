@@ -1,6 +1,7 @@
 #-*- Makefile -*-
 
 include $(R_HOME)/etc$(R_ARCH)/Makeconf
+AWK = gawk
 
 .SUFFIXES: .G .L .N .gon .line .name
 
