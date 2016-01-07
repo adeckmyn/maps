@@ -1,19 +1,30 @@
 # transform a SpatialPolygons[DataFrame] into a list of polygons for map()
-SpatialPolygons2map <- function(database, a2code=NULL, namefield="name"){
+# somewhat geared towards Natural Earth data (which has 'name' and 'iso_a2' columns)
+SpatialPolygons2map <- function(database, a2code=NULL, namefield=NULL){
 #  if (is.character(database)) database <- readShapePoly(database)
   if(!inherits(database,"SpatialPolygons")) stop("database must be a SpatialPolygons[DataFrame] object.")
 
   if (inherits(database,"SpatialPolygonsDataFrame")) {
     if (!is.null(a2code)) {
-        a2col <- which(tolower(names(database)) == "iso_a2")
-        if (length(a2col) == 1) {
-          a2 <- database@data[[a2col]]
-          database <- database[a2 %in% a2code, ]
-        } else warning("No column iso_a2 found.")
+      a2col <- which(tolower(names(database)) == "iso_a2")
+      if (length(a2col) == 1) {
+        a2 <- database@data[[a2col]]
+        database <- database[a2 %in% a2code, ]
+      } else warning("No column iso_a2 found.")
     }
+    if (is.null(namefield)) {
+# we use as default:
+      namefield <- "name"
+# but we don't enforce this
+      lforce <- FALSE
+    } else lforce <- TRUE
     namcol <- which(tolower(names(database)) == tolower(namefield))
     if (length(namcol) == 1) region.names <- as.character(database@data[[namcol]])
-    else stop(paste0("database does not contain the field '",namefield,"'."))
+    else {
+      if (lforce) stop(paste0("database does not contain the field '",namefield,"'."))
+#      warning(paste0("database does not contain the field '",namefield,"'."))
+      region.names <- unlist(lapply(database@polygons, function(x) x@ID))
+    }
   } else {
     region.names <- unlist(lapply(database@polygons, function(x) x@ID))
   }
