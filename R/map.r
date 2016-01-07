@@ -105,9 +105,9 @@ function(database = "world", regions = ".", exact = FALSE,
          resolution = if (plot) 1 else 0, type = "l", bg = par("bg"),
          mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, ...)
 {
-  # AD: resolution is should be 0 by default if fill==TRUE
+  # AD: resolution should be 0 by default if fill==TRUE
   # so you get less artefacts in polygons because of the thinning
-  # BUT: that's rather extreme with worldHires, so we leave it to the user
+  # BUT: that's rather slow with worldHires, so we leave it to the user.
 
   # parameter checks
   if (resolution>0 && !plot) 

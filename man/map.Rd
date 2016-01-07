@@ -35,7 +35,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     \code{exact}, a subset is selected for drawing. The regions may also be 
     defined using (perl) regular expressions. This makes it possible to use 
     'negative' expressions like \code{"Norway(?!:Svalbard)"}, which means Norway
-    and all islands except Svalbard.
+    and all islands except Svalbard. All entries are case insensitive.
     The default selects all polygons in the database.
   }
   \item{exact}{
