@@ -34,7 +34,8 @@ map.poly <- function(database, regions = ".", exact = FALSE,
 		     interior = TRUE, fill = FALSE, as.polygon = FALSE) {
   if (!is.character(database)) {
     if (!as.polygon) stop("map objects require as.polygon=TRUE")
-    the.map <- database
+    if (inherits(database,"SpatialPolygons")) the.map <- SpatialPolygons2map(database)
+    else the.map <- database
     if (identical(regions,".")) {
       # speed up the common case
       nam = the.map$names
@@ -105,10 +106,6 @@ function(database = "world", regions = ".", exact = FALSE,
          resolution = if (plot) 1 else 0, type = "l", bg = par("bg"),
          mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, ...)
 {
-  # AD: resolution should be 0 by default if fill==TRUE
-  # so you get less artefacts in polygons because of the thinning
-  # BUT: that's rather slow with worldHires, so we leave it to the user.
-
   # parameter checks
   if (resolution>0 && !plot) 
     stop("must have plot=TRUE if resolution is given")
@@ -143,6 +140,9 @@ function(database = "world", regions = ".", exact = FALSE,
       else warning("projection failed for some data")
     coord$names <- nam
   }
+  # AD: we do wrapping first: slightly better than when run after the thinning
+  #     also now the output data is also wrapped if plot=FALSE
+  if (wrap) coord <- map.wrap(coord)
   # do the plotting, if requested
   if (plot) {
     # for new plots, set up the coordinate system;
@@ -179,15 +179,14 @@ function(database = "world", regions = ".", exact = FALSE,
       }
       on.exit(par(opar))
     }
-    # thinning only works if you have polylines from a database
-    if (is.character(database) && resolution != 0 && type != "n") {
-      pin <- par("pin")
-      usr <- par("usr")
-      resolution <- resolution * min(diff(usr)[-2]/pin/100)
-      coord[c("x", "y")] <- mapthin(coord, resolution)
-    }
     if (type != "n") {
-      if (wrap) coord = map.wrap(coord)
+      # thinning only works correctly if you have polylines from a database
+      if (!as.polygon && resolution != 0) {
+        pin <- par("pin")
+        usr <- par("usr")
+        resolution <- resolution * min(diff(usr)[-2]/pin/100)
+        coord[c("x", "y")] <- mapthin(coord, resolution)
+      }
       if (fill) polygon(coord, col = col, ...)
       else lines(coord, col = col, type = type, ...)
     }

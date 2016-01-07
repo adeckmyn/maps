@@ -14,9 +14,9 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
 }
 \arguments{
   \item{database}{
-    character string naming a geographical database, or a list of
+    character string naming a geographical database, a list of
     \code{x}, \code{y}, and \code{names} obtained from a previous call to
-    \code{map}.
+    \code{map} or a spatial object of class \code{SpatialPolygonsDataFrame}.
     The string choices include a \code{\link{world}} map,
     three USA databases (\code{\link{usa}}, \code{\link{state}},
     \code{\link{county}}), and more (see the package index).  The
@@ -148,6 +148,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     roughly speaking, successive points on the polyline that are
     within \code{resolution} device pixels of one another are collapsed
     to a single point (see the Reference for further details).
+    Thinning is not performed if \code{plot = FALSE} or when polygons are drawn (\code{fill = TRUE} or \code{database} is a list of polygons).
   }
   \item{type}{
     character string that controls drawing of the map.

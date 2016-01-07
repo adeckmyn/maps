@@ -154,14 +154,17 @@ function (x, y, relwidth = 0.15, metric = TRUE, ratio = TRUE, ...)
   invisible(scale)
 }
 
-map.wrap <- function(p) {
+map.wrap0 <- function(p) {
   # insert NAs to break lines that wrap around the globe.
   # does not work properly with polygons.
   # p is list of x and y vectors
-  dx = abs(diff(p$x))
-  dax = abs(diff(abs(p$x)))
-  j = which(dx/dax > 50)
-  j = c(j, length(p$x))
+  # AD: this criterion is rather shaky, I think
+  # e.g. a line between -0.5 and 0.50001 will be split, whatever the units...
+  dx <- abs(diff(p$x))
+  dax <- abs(diff(abs(p$x)))
+  j <- which(dx/dax > 50)
+  j <- c(j, length(p$x))
+
   start = 1
   x = c()
   y = c()
@@ -178,3 +181,23 @@ map.wrap <- function(p) {
 ## It is not NA. Maybe the length(x)>0 check came later...
   list(x = x[2:length(x)], y = y[2:length(y)])
 }
+
+map.wrap <- function(p, xc=0) {
+  # insert NAs to break lines that wrap around the globe.
+  # does not work properly with polygons.
+  # p is list of x and y vectors
+  # xc is the central value of the longitude co-ordinate: usually 0, but world2 has [0,360], so 180
+  xr <- abs(diff(range(p$x, na.rm=TRUE)))
+  dx <- abs(diff(p$x - xc))
+  dax <- abs(diff(abs(p$x - xc)))
+  j <- which(dx/dax > 50 & dx > (xr * 0.8) )
+  if (length(j)==0) return(p)
+  j <- c(j, length(p$x))
+  ind <- seq_along(p$x)
+
+  index <- c(ind[1:j[1]],  
+             unlist(lapply(1:(length(j)-1), function(k) c(NA, ind[(j[k]+1):j[(k + 1)]]) )) )
+
+  list(x = p$x[index], y = p$y[index])
+}
+
