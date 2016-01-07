@@ -34,7 +34,9 @@ map.poly <- function(database, regions = ".", exact = FALSE,
 		     interior = TRUE, fill = FALSE, as.polygon = FALSE) {
   if (!is.character(database)) {
     if (!as.polygon) stop("map objects require as.polygon=TRUE")
-    the.map <- database
+# Coming soon:
+    if (inherits(database,"SpatialPolygonsDataFrame")) the.map <- map.read.sp(database)
+    else the.map <- database
     if (identical(regions,".")) {
       # speed up the common case
       nam = the.map$names
