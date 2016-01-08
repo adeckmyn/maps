@@ -1,6 +1,18 @@
 \name{NEWS}
 \title{News for package 'maps'}
-\section{Changes in maps version 3.0.2 (2016-01-??)}{
+\section{Changes in maps version 3.0.3 (2016-01-08)}{
+  \itemize{
+    \item Support for SpatialPolygons and SpatialPolygonsDataFrame objects as map database. New function \code{SpatialPolygons2map()}.
+    \item 'world2' (the pacific centered map) now has clean polygons at the boundaries, so there are no more lines crossing the map when e.g. fill=TRUE.
+    \item map() now ignores thinning (\code{resolution>0}) when drawing polygons in stead of polylines. This was already the case for list-based maps, but not for e.g. \code{fill=TRUE}.
+    \item Improved \code{map.wrap()} for wrapping around the globe. The new version fixes some bugs, is a bit faster and also adds an option for maps not centered around 0. Useful for wrapping 'world2'. To use this feature, set e.g. \code{wrap=180}: a numerical value in stead of a boolean.
+    \item \code{wrap=TRUE} is no longer ignored when \code{plot=FALSE}. Wrapping is now called before thinning, which should give slightly better results.
+    \item Technical: removed $(AWK) macro from Makefile.
+  }
+}
+
+
+\section{Changes in maps version 3.0.2 (2016-01-04)}{
   \itemize{
     \item World database rebuilt using mapMaker. Some corrections to polylines.
     \item Added the lakes on country boundaries as new polygons. That way, the dissappear when plotting with map(..., fill=TRUE) and map(..., interior=FALSE).

@@ -21,6 +21,8 @@ This may have several implications for code that calls map().
 - A data frame iso3166 has been added which, for every country on the new world map, lists the official name, the ISO3166 2- and 3-letter codes, and also the sovereignty. Type '?iso3166' for details.
 
 - A set of simple functions use this iso3166 table for creating a list of countries to map. So you can use the 2- or 3-letter ISO code (e.g. as country labels on a map), but also create a list based on the sovereignty. Type '?iso.expand' for details.
+
+- 'map()' now accepts spatial objects of classes SpatialPolygons and SpatialPolygonsDataFrame as map databases.
   
 ##FIXES
 - map.text(...,exact=TRUE) now behaves as documented. Previously, the "exact=TRUE" was not passed to the map drawing if add=FALSE. To get the old (non-documented) behaviour (plot map with exact=FALSE, write text for exact=TRUE) you should now use 2 commands: 
@@ -28,6 +30,8 @@ This may have several implications for code that calls map().
   * > map.text(...,exact=TRUE,add=TRUE)
 
 - match.map now works correctly for regions containing ":". This was potentially broken due to locale-dependent behaviour of order().
+
+- map(..., fill=TRUE) now ignores thinning completely, resulting in consistent polygons but a bit slower. 
 
 ##FALL BACK TO LEGACY WORLD DATABASE
 There are a few mechanisms to use the old 'world' database rather than the updated one, should that be necessary:
