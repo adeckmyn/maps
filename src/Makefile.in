@@ -13,11 +13,11 @@ OBJS = mapget.o		\
 	thin.o
 
 GDATA = county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G \
-        state.carto.G legacy_world.G legacy_world2.G
+        state.carto.G legacy_world.G legacy_world2.G lakes.G
 LDATA = county.L state.L usa.L nz.L world.L world2.L italy.L france.L state.vbm.L \
-        state.carto.L legacy_world.L legacy_world2.L
+        state.carto.L legacy_world.L legacy_world2.L lakes.L
 NDATA = county.N state.N usa.N nz.N world.N world2.N italy.N france.N state.vbm.N \
-        state.carto.N legacy_world.N legacy_world2.N
+        state.carto.N legacy_world.N legacy_world2.N lakes.N
 
 
 .line.L:
