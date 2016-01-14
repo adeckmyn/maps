@@ -1,5 +1,7 @@
 .*swp
 MD5
+# created by autoconf:
+configure
 # History files
 .Rhistory
 .Rapp.history
