@@ -8,6 +8,7 @@ This version 3 of the maps package. The main change with respect to v2 is a new 
 - The 'world' data base has been replaced by a much more recent data base, imported from the Natural Earth data project (the 1:50m world map, version 2.0, the latest version available in 2015)
 This may have several implications for code that calls map().
   * Country names have changed. This is inevitable, since e.g. post-1990 Europe is dramatically different. As a consequence, any call to map() that involves the argument "region=...", may be affected. For instance, map('world','USSR') is now obsolete, while map('world','Russia') works fine.
+  * As of version 3.1, the 'world' database no longer contains lakes and lake islands. These are now in a separate database called 'lakes'.
   * The new data base contains less small islands, but the choice may be a bit different.
   * Some remote islands that are officially part of other countries may cause an unexpected change in the scale of a map. This is not a new phenomenon (map('world','france') had this in the old set), but some new cases may occur now. As explained below, this will now occur *less often*. 
   * The naming of all polygons is as close as possible to the old world map. However, some inconsistencies have been remedied, e.g. on whether an island is called by its own name or as part of the country it belongs to. The choice is now mainly dependent on whether the entity has a seperate ISO code. The naming scheme unfortunately does not permit to represent all the intricacies. The data set iso3166 (see further) is added to provide more details.
@@ -28,6 +29,8 @@ This may have several implications for code that calls map().
   * > map.text(...,exact=TRUE,add=TRUE)
 
 - match.map now works correctly for regions containing ":". This was potentially broken due to locale-dependent behaviour of order().
+- as of v3.1, map(...,fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow.
+- 'world2' now has clean boundaries when 'fill=TRUE'.
 
 ##FALL BACK TO LEGACY WORLD DATABASE
 There are a few mechanisms to use the old 'world' database rather than the updated one, should that be necessary:
@@ -51,6 +54,5 @@ Natural Earth also supports a high-resolution (1:10m) world map. Rather than rep
 - Many islands remain nameless.
 - The naming convention is largely maintained, but some choices are different. The changes mean that e.g. /region="France"/ now covers only metropolitan France, whithout (most of) the overseas departments and territories
 - Some inconsistencies in the naming procedure remain. For instance, while most countries are named by their full name, "UK" and "USA" are shortened in the same way as in the old data base. For UK, this even required a hack in the mapping code to avoid adding Ukrain to the map.
-- I'd like to find a way to get Antarctica show up a bit nicer, but whithout adding imaginary points that would be ruined in a projection or when changing the central meridian.
-- The wrapping routine does not work well with 'world2' (basically because it expects a jump to involve a sign change in longitude). It also causes artefacts because it merely inserts NA whenever a cross-meridian segment is detected. Ideally, one should interpolate to the border (if known...). For polygons, it gets even harder. I assume better code already exists.
+- I'd like to find a way to get Antarctica show up a bit nicer, but whithout adding imaginary points that would be ruined in a projection or when changing the central meridian. For 'world2' such an extra closure libne has now been added.
 - The iso3166 table may have to be adapted for the Natural Earth 1:10 database, some extra rows have already been inserted.
