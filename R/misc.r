@@ -182,12 +182,18 @@ map.wrap0 <- function(p) {
   list(x = x[2:length(x)], y = y[2:length(y)])
 }
 
-map.wrap <- function(p, xc=0) {
+map.wrap <- function(p, xlim=NULL) {
   # insert NAs to break lines that wrap around the globe.
   # does not work properly with polygons.
   # p is list of x and y vectors
   # xc is the central value of the longitude co-ordinate: usually 0, but world2 has [0,360], so 180
-  xr <- abs(diff(range(p$x, na.rm=TRUE)))
+  if (is.null(xlim)) {
+    xc <- 0
+    xr <- diff(range(p$x, na.rm=TRUE))
+  } else {
+    xc <- mean(xlim)
+    xr <- diff(xlim)
+  }
   dx <- abs(diff(p$x - xc))
   dax <- abs(diff(abs(p$x - xc)))
   j <- which(dx/dax > 50 & dx > (xr * 0.8) )

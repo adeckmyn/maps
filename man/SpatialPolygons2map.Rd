@@ -15,8 +15,8 @@
   \item{namefield}{The name of a data column in \code{database} to be used for naming the polygons. }
 }
 \value{
-A list with three components: \code{x, y, names}. The polygons are separated by NA. The options \code{a2code} and \code{namefield} are only taken into account if \code{database} is class \code{SpatialPolygonsDataFrame}.
-}
+A list with four components: \code{x, y, names, range}. The polygons are separated by NA.}
+\details{ The options \code{a2code} and \code{namefield} are only taken into account if \code{database} is class \code{SpatialPolygonsDataFrame}.  }
 \seealso{
 \code{\link{map}}
 }

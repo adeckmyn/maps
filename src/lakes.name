@@ -5,9 +5,9 @@ Aral Sea	4
 Lake Albert	5
 Lake Tanganyika	6
 Great Lakes:Superior, Huron, Michigan	7
-Lake Erie	8
-Lake Erie:2	9
-Lake Erie:3	10
+Great Lakes:Erie	8
+Great Lakes:Erie:2	9
+Great Lakes:Erie:3	10
 Lake Chad	11
 Lake Malawi	12
 Lake Malawi:2	13
@@ -24,11 +24,11 @@ Lake Winnipeg:2	23
 Lake Winnipeg:3	24
 Great Slave Lake	25
 Great Slave Lake:2	26
-Lake Ontario	27
-Lake Ontario:2	28
-Lake Ontario:3	29
-Lake Ontario:4	30
-Lake Ontario:5	31
+Great Lakes:Ontario	27
+Great Lakes:Ontario:2	28
+Great Lakes:Ontario:3	29
+Great Lakes:Ontario:4	30
+Great Lakes:Ontario:5	31
 Great Bear Lake	32
 Lake St. Clair	33
 Vanern	34
@@ -42,28 +42,28 @@ Lake Onega	41
 Lake Onega:2	42
 Great Salt Lake	43
 Great Salt Lake:2	44
-Lake Michigan:2	45
-Lake Michigan:3	46
-Lake Michigan:4	47
-Lake Michigan:5	48
-Lake Superior:2	49
-Lake Superior:3	50
-Lake Superior:4	51
-Lake Superior:5	52
-Lake Superior:6	53
-Lake Superior:7	54
-Lake Superior:8	55
-Lake Superior:9	56
-Lake Superior:10	57
-Lake Huron:2	58
-Lake Huron:3	59
-Lake Huron:4	60
-Lake Huron:5	61
-Lake Huron:6	62
-Lake Huron:7	63
-Lake Huron:Manitoulin Island	64
-Lake Huron:9	65
-Lake Huron:10	66
+Great Lakes:Michigan:2	45
+Great Lakes:Michigan:3	46
+Great Lakes:Michigan:4	47
+Great Lakes:Michigan:5	48
+Great Lakes:Superior:2	49
+Great Lakes:Superior:3	50
+Great Lakes:Superior:4	51
+Great Lakes:Superior:5	52
+Great Lakes:Superior:6	53
+Great Lakes:Superior:7	54
+Great Lakes:Superior:8	55
+Great Lakes:Superior:9	56
+Great Lakes:Superior:10	57
+Great Lakes:Huron:2	58
+Great Lakes:Huron:3	59
+Great Lakes:Huron:4	60
+Great Lakes:Huron:5	61
+Great Lakes:Huron:6	62
+Great Lakes:Huron:7	63
+Great Lakes:Huron:Manitoulin Island	64
+Great Lakes:Huron:9	65
+Great Lakes:Huron:10	66
 ?	67
 Wollaston Lake	68
 Lake Manitoba	69
