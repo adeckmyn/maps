@@ -18,7 +18,7 @@ This environment variable (\code{R_MAP_DATA_DIR_WORLD}) is set at package load t
 already exist}.  Hence setting the environment variable before loading
 the package can override the default location of the binary datasets.
 
-During a transition period (\code{maps} version 3.0) it is possible to switch to the old legacy map using the function \code{world.legacy(TRUE)} or by setting the setting the environment variable R_MAP_DATA_LEGACY=TRUE prior to loading the package.
+During a transition period (\code{maps} version 3.0--1) it is possible to switch to the old legacy map using the function \code{world.legacy(TRUE)} or by setting the setting the environment variable R_MAP_DATA_LEGACY=TRUE prior to loading the package.
 
 }
 \source{

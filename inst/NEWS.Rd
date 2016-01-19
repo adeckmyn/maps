@@ -7,9 +7,13 @@
     \item Support for 'SpatialPolygons' and 'SpatialPolygonsDataFrame' objects as map database. New function \code{SpatialPolygons2map()}.
     \item 'world2' (the pacific centered map) now has clean cut polygons at the boundaries, so there are no more lines crossing the map when e.g. fill=TRUE.
     \item map() now ignores thinning (\code{resolution>0}) when drawing polygons in stead of polylines. This was already the case for list-based maps, but not for \code{fill=TRUE}.
-    \item Improved \code{map.wrap()} for wrapping around the globe. The new version fixes some bugs, is a bit faster and also adds an option for maps not centered around 0.
     \item \code{wrap=TRUE} is no longer ignored when \code{plot=FALSE}. Also, wrapping is now called before thinning, which should give slightly better results.
-    \item Technical: removed $(AWK) macro from Makefile and added simple configuration script.
+    \item Technical:
+      \itemize{
+        \item removed $(AWK) macro from Makefile and added simple configuration script.
+        \item maps:::subgroup rewritten to be much faster. Very noticable when selecting a large subset of polygons from a polygon database (not file-based).
+        \item Improved \code{map.wrap()} for wrapping around the globe. The new version fixes some bugs, is a bit faster and also adds an option for maps not centered around 0.
+      }
   }
 }
 

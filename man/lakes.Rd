@@ -24,19 +24,12 @@ the package can override the default location of the binary datasets.
 }
 \examples{
 map('world')
-map('lakes', add=TRUE, fill=TRUE, col='white', boundary=1)
+map('lakes', add=TRUE, fill=TRUE, col='white', boundary='black')
 }
+\source{
+The data in this data base is derived from the public domain GIS project Natural Earth, the file "ne_50m_lakes". The Natural Earth data set is available from \url{http://www.naturalearthdata.com}.}
 \references{
-Richard A. Becker, and Allan R. Wilks,
-"Maps in S",
-\emph{AT\&T Bell Laboratories Statistics Research Report [93.2], 1993.}
-
-Richard A. Becker, and Allan R. Wilks,
-"Constructing a Geographical Database",
-\emph{AT\&T Bell Laboratories Statistics Research Report [95.2], 1995.}
-
 \emph{Natural Earth project}
 \url{http://www.naturalearthdata.com}
-
 }
 \keyword{datasets}

@@ -24,3 +24,16 @@ of maps. [The mapdata package uses a different environment variable.]
 
 Ray Brownrigg
 21 March 2009
+
+NOTES ADDED:
+
+5) Packages like 'maptools' have functionality to read e.g. shapefile data into SpatialPolygon objects. The new function SpatialPolygons2map() can be used as a first step to load such map data from various sources into the maps package. However, the output is similar to that of map(..., fill=TRUE). It does not include polyline information.
+
+6) There is an R package that can ease thet transition from polygon based data to polylines;
+https://githib.com:adeckmyn/mapMaker
+This package was used to convert the current world and lakes databases from polygons to polylines. Some manual work remains to be done, depending on how clean and consistent the original data is.
+
+Alex Deckmyn
+19 Januari 2015
+
+
