@@ -154,35 +154,9 @@ function (x, y, relwidth = 0.15, metric = TRUE, ratio = TRUE, ...)
   invisible(scale)
 }
 
-map.wrap0 <- function(p) {
-  # insert NAs to break lines that wrap around the globe.
-  # does not work properly with polygons.
-  # p is list of x and y vectors
-  # AD: this criterion is rather shaky, I think
-  # e.g. a line between -0.5 and 0.50001 will be split, whatever the units...
-  dx <- abs(diff(p$x))
-  dax <- abs(diff(abs(p$x)))
-  j <- which(dx/dax > 50)
-  j <- c(j, length(p$x))
-
-  start = 1
-  x = c()
-  y = c()
-  for(i in j) {
-  if(length(x) > 0) {
-    x = c(x, NA)
-    y = c(y, NA)
-  }
-  x = c(x, p$x[start:i])
-  y = c(y, p$y[start:i])
-  start = i + 1
-  }
-## AD: this appears to be BUG. Why take out the first point?
-## It is not NA. Maybe the length(x)>0 check came later...
-  list(x = x[2:length(x)], y = y[2:length(y)])
-}
-
 map.wrap <- function(p, xlim=NULL) {
+  # new version Alex Deckmyn
+  # faster, a bit more robust (check data range), bugs fixed, xlim option added
   # insert NAs to break lines that wrap around the globe.
   # does not work properly with polygons.
   # p is list of x and y vectors

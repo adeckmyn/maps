@@ -96,8 +96,6 @@ function(database = "world", patterns, exact = FALSE)
   fname <- paste(sep = "", mapbase, ".N")
   cnames <- read.delim(fname, as.is = TRUE, header = FALSE)
   nam <- as.character(cnames[[1]])
-### AD: exact=TRUE fails if there is any non-fitting name
-###     is that optimal behaviour? Maybe it's 1 typo in 20 names.
   if(exact) {
     i <- match(patterns, nam)
     if (any(is.na(i))) {

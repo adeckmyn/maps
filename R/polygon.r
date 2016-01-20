@@ -145,6 +145,7 @@ map.text <- function(database, regions = ".", exact = FALSE, labels,
   # convert m into a matrix
   x <- t(array(unlist(x), c(2, length(x))))
   if(move) {
+# AD: this option should probably be removed, as the code is not available
     # require(mining)
     move.collisions2 <- get("move.collisions2")	# to prevent check NOTE
     w = strwidth(labels, units = "inches", cex = cex)
