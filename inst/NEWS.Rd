@@ -11,7 +11,7 @@
     \item Technical:
       \itemize{
         \item removed $(AWK) macro from Makefile and added simple configuration script.
-        \item maps:::subgroup rewritten to be much faster. Very noticable when selecting a large subset of polygons from a polygon database (not file-based).
+        \item maps:::subgroup adapted to be much faster. Very noticable when selecting a large subset of polygons from a polygon database (not file-based).
         \item Improved \code{map.wrap()} for wrapping around the globe. The new version fixes some bugs, is a bit faster and also adds an option for maps not centered around 0.
       }
   }

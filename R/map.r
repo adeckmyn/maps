@@ -4,39 +4,25 @@
 
 # returns the jth contiguous section of non-NA values in vector x
 # should consecutive NA's count as one?
-subgroup0 <- function(x, i) {
+subgroup <- function(x, i) {
   n <- length(x)
-  breaks <- (1:n)[is.na(x)]
+  breaks <- which(is.na(x))
   if (length(breaks) == 0) {
-    starts <- 1; ends <- n
+    starts <- 1
+    ends <- n
   } else {
     starts <- c(1, breaks + 1)
     ends <- c(breaks - 1, n)
   }
 # AD: the following is very inefficient
-  result <- numeric(0)
-  for(j in i) {
-    p <- x[starts[j]:ends[j]]
-    if (length(result) == 0) result <- p
-    else result <- c(result, NA, p)
-  }
-  result
+#  result <- numeric(0)
+#  for(j in i) {
+#    p <- x[starts[j]:ends[j]]
+#    if (length(result) == 0) result <- p
+#    else result <- c(result, NA, p)
+#  }
+  unlist(lapply(i,function(j) c(NA,x[starts[j]:ends[j]])))[-1]
 }
-
-subgroup <- function(x, i) {
-# new, (much) faster code by Alex Deckmyn
-  n <- length(x)
-  breaks <- which(is.na(x))
-  if (length(breaks) == 0) {
-    starts <- 1; ends <- n
-  } else {
-    starts <- c(1, breaks + 1)
-    ends <- c(breaks - 1, n)
-  }
-  result <- lapply(i,function(j) c(NA,x[starts[j]:ends[j]]))
-  unlist(result)[-1]
-}
-
 
 sub.polygon <- function(p, i) {
   lapply(p[c("x", "y")], function(x) subgroup(x, i))
