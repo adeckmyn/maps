@@ -14,10 +14,13 @@ SpatialPolygons2map <- function(database, a2code=NULL, namefield="name"){
       } else warning("No column iso_a2 found.")
     }
     if (!is.null(namefield)) {
-      namcol <- which(tolower(names(database)) == tolower(namefield))
-      if (length(namcol) == 1) region.names <- as.character(database@data[[namcol]])
-      else {
-        warning(paste0("database does not contain the field '",namefield,"'."))
+      namcol <- lapply(namefield, function(x) which(tolower(names(database)) == tolower(x)))
+      if (any(lapply(namcol, length) != 1)) {
+        zz <- which(lapply(namcol, length) != 1)
+        warning(paste0("database does not (uniquely) contain the field '",namefield[zz],"'."))
+      } else {
+        zz <- as.data.frame(lapply(database@data[unlist(namcol)], as.character), stringsAsFactors=FALSE)
+        region.names <- vapply(1:dim(zz)[1], function(x) paste(zz[x,],collapse=":"),FUN.VALUE="a")
       }
     }
   }
