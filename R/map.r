@@ -14,19 +14,31 @@ subgroup <- function(x, i) {
     starts <- c(1, breaks + 1)
     ends <- c(breaks - 1, n)
   }
-# AD: the following is very inefficient
-#  result <- numeric(0)
-#  for(j in i) {
-#    p <- x[starts[j]:ends[j]]
-#    if (length(result) == 0) result <- p
-#    else result <- c(result, NA, p)
-#  }
-  unlist(lapply(i,function(j) c(NA,x[starts[j]:ends[j]])))[-1]
+## AD: EXTRA: allow negative values in i reverse direction
+  pl <- function(j) if(j>0) x[starts[j]:ends[j]] else x[ends[abs(j)]:starts[abs(j)]]
+  unlist(lapply(i,function(j) c(NA,pl(j))))[-1]
 }
 
 sub.polygon <- function(p, i) {
   lapply(p[c("x", "y")], function(x) subgroup(x, i))
 }
+
+# FUTURE:
+#sub.gondata <- function(p, i) {
+#  x <- p$gondata
+#  n <- length(x)
+#  breaks <- which(is.na(x))
+#  if (length(breaks) == 0) {
+#    starts <- 1
+#    ends <- n
+#  } else {
+#    starts <- c(1, breaks + 1)
+#    ends <- c(breaks - 1, n)
+#  }
+#  lengths <- starts - ends + 1
+#  i2 <- unlist(lapply(i,function(j) c(NA,x[starts[j]:ends[j]])))[-1]
+#  xy <- sub.polygon(p, i2)
+#}
 
 # returns a sub-map of the named map corresponding to the given regions
 # regions is a vector of regular expressions to match to the names in the map
