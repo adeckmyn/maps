@@ -1,7 +1,6 @@
 # transform a SpatialPolygons[DataFrame] into a list of polygons for map()
 # somewhat geared towards Natural Earth data (which has 'name' and 'iso_a2' columns)
 SpatialPolygons2map <- function(database, a2code=NULL, namefield="name"){
-#  if (is.character(database)) database <- readShapePoly(database)
   if(!inherits(database,"SpatialPolygons")) stop("database must be a SpatialPolygons[DataFrame] object.")
 
   region.names <- NULL
@@ -11,7 +10,7 @@ SpatialPolygons2map <- function(database, a2code=NULL, namefield="name"){
       if (length(a2col) == 1) {
         a2 <- database@data[[a2col]]
         database <- database[a2 %in% a2code, ]
-      } else warning("No column iso_a2 found.")
+      } else warning("No column iso_a2 found. a2code subselection skipped.")
     }
     if (!is.null(namefield)) {
       namcol <- lapply(namefield, function(x) which(tolower(names(database)) == tolower(x)))
@@ -32,7 +31,7 @@ SpatialPolygons2map <- function(database, a2code=NULL, namefield="name"){
   ngon <- vapply(1:nregions,
                  FUN=function(i) length(database@polygons[[i]]@Polygons),
                  FUN.VALUE=1)
-
+  # if a region contains several polygons, an index is added to the name: "region:n"
   gon.names <- unlist(lapply(1:dim(database)[1], function(i) {
              if (ngon[i]==1) region.names[i]
              else paste(region.names[i],1:ngon[i],sep=":")}))
@@ -41,13 +40,13 @@ SpatialPolygons2map <- function(database, a2code=NULL, namefield="name"){
   allpoly <- lapply(database@polygons,
                     function(x) lapply(x@Polygons, function(y) y@coords))
 ## allpoly is a list of lists of Nx2 matrices (not data frames)
-## first flatten the list, then add NA to every row, then rbind and remove last NA
+## first flatten the list, then add NA to every row, then rbind and remove one NA
 #  p1 <- do.call(c, allpoly)
 #  p2 <- lapply(p1, function(x) rbind(c(NA,NA),x))
-#  p3 <- do.call(rbind,p2)
+#  p3 <- do.call(rbind,p2)[-1,]
   result <- do.call(rbind, lapply(do.call(c,allpoly),
-                                  function(x) rbind(c(NA,NA),x)))
-  list(x = result[-1,1], y = result[-1,2], names = gon.names,
+                                  function(x) rbind(c(NA,NA),x)))[-1,]
+  list(x = result[,1], y = result[,2], names = gon.names,
        range = c(range(result[,1], na.rm = TRUE),range(result[,2], na.rm = TRUE)))
 }
 
