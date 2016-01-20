@@ -8,7 +8,7 @@
   Returns the region names containing given locations.
 }
 \usage{
-map.where(database = "world", x, y)
+map.where(database = "world", x, y, ...)
 }
 \arguments{
   \item{database}{character string naming a geographical database, or a list of
@@ -16,6 +16,7 @@ map.where(database = "world", x, y)
     See the documentation for \link{map} for more details.}
   \item{x}{vector of longitudes.}
   \item{y}{vector of latitudes.}
+  \item{...}{Options for \code{SpatialPolygons2map}, only used if \code{database} is of type \code{SpatialPolygonsDataFrame}}.
 }
 \value{
   A list of character strings, naming the map region that each

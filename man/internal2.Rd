@@ -23,7 +23,8 @@ insert(x, i, v)
 match.map.slow(nam, regions, warn = FALSE)
 match.map.grep(nam, regions, warn = FALSE)
 map.poly(database, regions = ".", exact = FALSE, xlim = NULL, ylim = NULL,
-         boundary = TRUE, interior = TRUE, fill = FALSE, as.polygon = FALSE)
+         boundary = TRUE, interior = TRUE, fill = FALSE, as.polygon = FALSE,
+         sp.namefield="name")
 map.wrap(p, xlim=NULL)
 subgroup(x, i)
 gp.smooth(x, z, xo, lambda, r)
