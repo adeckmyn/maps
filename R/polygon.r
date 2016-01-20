@@ -1,4 +1,4 @@
-map.where <- function(database = "world", x, y)
+map.where <- function(database = "world", x, y, ...)
 {
   if(missing(y)) {
     if(is.matrix(x)) { y <- x[, 2]; x <- x[, 1] }
@@ -21,6 +21,9 @@ map.where <- function(database = "world", x, y)
     names(nam)[gon]
   }
   else {
+    if (inherits(database,"SpatialPolygons")) {
+      database <- SpatialPolygons2map(database, ...)
+    }
     if(num.polygons(database) != length(database$names))
       stop("map object must have polygons (fill=TRUE)")
     n = length(database$x)
