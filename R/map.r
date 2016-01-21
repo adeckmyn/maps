@@ -48,9 +48,12 @@ map.poly <- function(database, regions = ".", exact = FALSE,
 		     interior = TRUE, fill = FALSE, as.polygon = FALSE, sp.namefield="name") {
   if (!is.character(database)) {
     if (!as.polygon) stop("map objects require as.polygon=TRUE")
-    if (inherits(database,"SpatialPolygons")) the.map <- SpatialPolygons2map(database, 
+    if (inherits(database,"Spatial")){
+      if (inherits(database,"SpatialPolygons")) the.map <- SpatialPolygons2map(database, 
                                                                namefield=sp.namefield)
-    else the.map <- database
+      else if (inherits(database,"SpatialLines")) the.map <- SpatialLines2map(database, 
+                                                             namefield=sp.namefield)
+    } else the.map <- database
     if (identical(regions,".")) {
       # speed up the common case
       nam = the.map$names

@@ -16,7 +16,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
   \item{database}{
     character string naming a geographical database, a list of
     \code{x}, \code{y}, and \code{names} obtained from a previous call to
-    \code{map} or a spatial object of class \code{SpatialPolygonsDataFrame}.
+    \code{map} or a spatial object of class \code{SpatialPolygons} or \code{SpatialLines}.
     The string choices include a \code{\link{world}} map,
     three USA databases (\code{\link{usa}}, \code{\link{state}},
     \code{\link{county}}), and more (see the package index).  The

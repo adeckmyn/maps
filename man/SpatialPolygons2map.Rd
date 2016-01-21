@@ -1,5 +1,6 @@
 \name{SpatialPolygons2map}
 \alias{SpatialPolygons2map}
+\alias{SpatialLines2map}
 \title{
   Read SpatialPolygons[DataFrame] objects
 }
@@ -8,9 +9,10 @@
   }
 \usage{
 	SpatialPolygons2map(database, a2code=NULL, namefield="name")
+	SpatialLines2map(database, namefield=NULL)
 }
 \arguments{
-  \item{database}{A \code{SpatialPolygons} object.}
+  \item{database}{A \code{SpatialPolygons} or \code{SpatialLines} object.}
   \item{a2code}{A vector of ISO country codes to be selected from the databse. Default is to select all countries.}
   \item{namefield}{The name of a data column in \code{database} to be used for naming the polygons. If it is a vector of names, these are all used and separated by a colon ':'. Not case sensitive. So if the database contains columns that only differ by case, you get a warning and namefield is not used at all.}
 }
