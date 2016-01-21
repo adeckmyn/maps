@@ -27,8 +27,11 @@ The Natural Earth data set is available from \url{http://www.naturalearthdata.co
 The legacy CIA World Data Bank II is currently (mid-2003) available from 
 \url{https://www.evl.uic.edu/pape/data/WDB/}.
 }
+\details{
+As of version 3.1, the \code{world} database no longer contains any lakes. These have been moved to a separate database called \code{lakes}.
+}
 \seealso{
-\code{\link{map}},\code{\link{world.legacy}},\code{\link{legacy_world}}
+\code{\link{map}},\code{\link{world.legacy}},\code{\link{legacy_world}},\code{\link{lakes}}
 }
 \examples{
 map('world', fill = TRUE, col = 1:10)

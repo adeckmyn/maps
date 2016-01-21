@@ -2,12 +2,13 @@
 \title{News for package 'maps'}
 \section{Changes in maps version 3.1.0 (2016-01-19)}{
   \itemize{
-    \item 'world' database changed to version without lakes punched out at the borders. The previous version still had various issues, so this is much cleaner. Now 'interior=FALSE' actually works on whole the world map.
+    \item 'world' database changed to version without lakes punched out at the borders. The previous version still had various issues, so this is much cleaner. Now 'interior=FALSE' actually works on the whole world map.``
     \item Major lakes are now available from a separate database 'lakes'.
-    \item Support for 'SpatialPolygons' and 'SpatialPolygonsDataFrame' objects as map database. New function \code{SpatialPolygons2map()}.
-    \item 'world2' (the pacific centered map) now has clean cut polygons at the boundaries, so there are no more lines crossing the map when e.g. fill=TRUE.
+    \item Support for 'SpatialPolygons' and 'SpatialLines' class objects as map database. New functions \code{SpatialPolygons2map()} and \code{SpatialLines2map()}.
+    \item 'world2' (the pacific centered map) now has clean cut polygons at the boundaries, so there are no more artefacts when e.g. \code{fill=TRUE}.
     \item map() now ignores thinning (\code{resolution>0}) when drawing polygons in stead of polylines. This was already the case for list-based maps, but not for \code{fill=TRUE}.
     \item \code{wrap=TRUE} is no longer ignored when \code{plot=FALSE}. Also, wrapping is now called before thinning, which should give slightly better results.
+    \item Maps with polygons (\code{fill=TRUE}) are no longer thinned, because this assymetric thinning caused artefacts. 
     \item Technical:
       \itemize{
         \item removed $(AWK) macro from Makefile and added simple configuration script.
