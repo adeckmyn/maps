@@ -19,17 +19,20 @@ This may have several implications for code that calls map().
 
 ##ADDITIONS
 
+- v3.1 includes support for 'SpatialPolygons' and 'SpatialLines' classes. Such objects can either be passed to map() directly or first be converted to a map-type list with the new functions 'SpatialPolygons2map()' and 'SpatialLines2map'.
+
+- A new databse 'lakes' has been added. The standard 'world' map no longer contains any lakes.
+
 - A data frame iso3166 has been added which, for every country on the new world map, lists the official name, the ISO3166 2- and 3-letter codes, and also the sovereignty. Type '?iso3166' for details.
 
 - A set of simple functions use this iso3166 table for creating a list of countries to map. So you can use the 2- or 3-letter ISO code (e.g. as country labels on a map), but also create a list based on the sovereignty. Type '?iso.expand' for details.
   
 ##FIXES
+- as of v3.1, map(...,fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow.
 - map.text(...,exact=TRUE) now behaves as documented. Previously, the "exact=TRUE" was not passed to the map drawing if add=FALSE. To get the old (non-documented) behaviour (plot map with exact=FALSE, write text for exact=TRUE) you should now use 2 commands: 
   * > map(...,exact=FALSE)
   * > map.text(...,exact=TRUE,add=TRUE)
-
 - match.map now works correctly for regions containing ":". This was potentially broken due to locale-dependent behaviour of order().
-- as of v3.1, map(...,fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow.
 - 'world2' now has clean boundaries when 'fill=TRUE'.
 
 ##FALL BACK TO LEGACY WORLD DATABASE
@@ -45,9 +48,12 @@ Note that the worldHires database from the mapdata package has identical map nam
 Please inform the maintainer of any problem that requires a fallback to the legacy database!
 
 
-## HIGH RESOLUTION MAP
+## HIGH RESOLUTION AND OTHER MAPS
 
 Natural Earth also supports a high-resolution (1:10m) world map. Rather than replacing 'worldHires' (in the mapdata package), this data set is available from the package mapdataNE (not yet on CRAN but already available from http://github.com/adeckmyn/mapdataNE).
+
+Even maps in e.g. shapefile format can now easily be imported for use in 'map()'. For instance the package 'maptools' offers the function 'readShapePoly()', which reads a shapefile into a 'SpatialPolygonsDataFrame' that can be used as a map database (as of version 3.1).
+
 
 ##TO DO/DISCUSS:
 
