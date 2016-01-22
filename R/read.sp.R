@@ -1,26 +1,16 @@
 # transform a SpatialPolygons[DataFrame] into a list of polygons for map()
-# somewhat geared towards Natural Earth data (which has 'name' and 'iso_a2' columns)
-SpatialPolygons2map <- function(database, a2code=NULL, namefield="name"){
+SpatialPolygons2map <- function(database, namefield=NULL){
   if(!inherits(database,"SpatialPolygons")) stop("database must be a SpatialPolygons[DataFrame] object.")
 
   region.names <- NULL
-  if (inherits(database,"SpatialPolygonsDataFrame")) {
-    if (!is.null(a2code)) {
-      a2col <- which(tolower(names(database)) == "iso_a2")
-      if (length(a2col) == 1) {
-        a2 <- database@data[[a2col]]
-        database <- database[a2 %in% a2code, ]
-      } else warning("No column iso_a2 found. a2code subselection skipped.")
-    }
-    if (!is.null(namefield)) {
-      namcol <- lapply(namefield, function(x) which(tolower(names(database)) == tolower(x)))
-      if (any(lapply(namcol, length) != 1)) {
-        zz <- which(lapply(namcol, length) != 1)
-        warning(paste0("database does not (uniquely) contain the field '",namefield[zz],"'."))
-      } else {
-        zz <- as.data.frame(lapply(database@data[unlist(namcol)], as.character), stringsAsFactors=FALSE)
-        region.names <- vapply(1:dim(zz)[1], function(x) paste(zz[x,],collapse=":"),FUN.VALUE="a")
-      }
+  if (inherits(database,"SpatialPolygonsDataFrame") & !is.null(namefield) ) {
+    namcol <- lapply(namefield, function(x) which(tolower(names(database)) == tolower(x)))
+    if (any(lapply(namcol, length) != 1)) {
+      zz <- which(lapply(namcol, length) != 1)
+      warning(paste0("database does not (uniquely) contain the field '",namefield[zz],"'."))
+    } else {
+      zz <- as.data.frame(lapply(database@data[unlist(namcol)], as.character), stringsAsFactors=FALSE)
+      region.names <- vapply(1:dim(zz)[1], function(x) paste(zz[x,],collapse=":"),FUN.VALUE="a")
     }
   }
   if (is.null(region.names)) region.names <- unlist(lapply(database@polygons, function(x) x@ID))
@@ -51,21 +41,18 @@ SpatialPolygons2map <- function(database, a2code=NULL, namefield="name"){
 }
 
 # transform a SpatialLines[DataFrame] into a list of polylines for map()
-# somewhat geared towards Natural Earth data (which usually has 'name' and 'iso_a2' columns
 SpatialLines2map <- function(database, namefield=NULL){
   if(!inherits(database,"SpatialLines")) stop("database must be a SpatialLines[DataFrame] object.")
 
   line.names <- NULL
-  if (inherits(database,"SpatialLinesDataFrame")) {
-    if (!is.null(namefield)) {
-      namcol <- lapply(namefield, function(x) which(tolower(names(database)) == tolower(x)))
-      if (any(lapply(namcol, length) != 1)) {
-        zz <- which(lapply(namcol, length) != 1)
-        warning(paste0("database does not (uniquely) contain the field '",namefield[zz],"'."))
-      } else {
-        zz <- as.data.frame(lapply(database@data[unlist(namcol)], as.character), stringsAsFactors=FALSE)
-        line.names <- vapply(1:dim(zz)[1], function(x) paste(zz[x,],collapse=":"),FUN.VALUE="a")
-      }
+  if (inherits(database,"SpatialLinesDataFrame") & !is.null(namefield) ) {
+    namcol <- lapply(namefield, function(x) which(tolower(names(database)) == tolower(x)))
+    if (any(lapply(namcol, length) != 1)) {
+      zz <- which(lapply(namcol, length) != 1)
+      warning(paste0("database does not (uniquely) contain the field '",namefield[zz],"'."))
+    } else {
+      zz <- as.data.frame(lapply(database@data[unlist(namcol)], as.character), stringsAsFactors=FALSE)
+      line.names <- vapply(1:dim(zz)[1], function(x) paste(zz[x,],collapse=":"),FUN.VALUE="a")
     }
   }
   if (is.null(line.names)) line.names <- unlist(lapply(database@lines, function(x) x@ID))
