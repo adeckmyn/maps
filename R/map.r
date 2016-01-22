@@ -45,14 +45,14 @@ sub.polygon <- function(p, i) {
 # regions outside of xlim, ylim may be omitted
 map.poly <- function(database, regions = ".", exact = FALSE,
                      xlim = NULL, ylim = NULL, boundary = TRUE,
-		     interior = TRUE, fill = FALSE, as.polygon = FALSE, sp.namefield="name") {
+		     interior = TRUE, fill = FALSE, as.polygon = FALSE, namefield="name") {
   if (!is.character(database)) {
     if (!as.polygon) stop("map objects require as.polygon=TRUE")
     if (inherits(database,"Spatial")){
       if (inherits(database,"SpatialPolygons")) the.map <- SpatialPolygons2map(database, 
-                                                               namefield=sp.namefield)
+                                                               namefield=namefield)
       else if (inherits(database,"SpatialLines")) the.map <- SpatialLines2map(database, 
-                                                             namefield=sp.namefield)
+                                                             namefield=namefield)
     } else the.map <- database
     if (identical(regions,".")) {
       # speed up the common case
@@ -122,7 +122,7 @@ function(database = "world", regions = ".", exact = FALSE,
 	 col = 1, plot = TRUE, add = FALSE, namesonly = FALSE, 
          xlim = NULL, ylim = NULL, wrap = FALSE,
          resolution = if (plot) 1 else 0, type = "l", bg = par("bg"),
-         mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, sp.namefield="name", ...)
+         mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, namefield="name", ...)
 {
   # parameter checks
   if (resolution>0 && !plot) 
@@ -140,7 +140,7 @@ function(database = "world", regions = ".", exact = FALSE,
   if (is.character(database)) as.polygon = fill
   else as.polygon = TRUE
   coord <- map.poly(database, regions, exact, xlim, ylim, 
-                    boundary, interior, fill, as.polygon, sp.namefield)
+                    boundary, interior, fill, as.polygon, namefield=namefield)
   if (is.na(coord$x[1])) stop("first coordinate is NA.  bad map data?")
   if (plot) {
     .map.range(coord$range)

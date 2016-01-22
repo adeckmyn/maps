@@ -10,7 +10,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
   fill = FALSE, col = 1, plot = TRUE, add = FALSE, namesonly = FALSE,
   xlim = NULL, ylim = NULL, wrap = FALSE, resolution = if (plot) 1 else 0,
   type = "l", bg = par("bg"), mar = c(4.1, 4.1, par("mar")[3], 0.1),
-  myborder = 0.01, sp.namefield="name", ...)
+  myborder = 0.01, namefield="name", ...)
 }
 \arguments{
   \item{database}{
@@ -167,7 +167,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     scalar or vector of length 2 specifying the porportion of the plot
     to add to the defined or computed limits as borders.
   }
-  \item{sp.namefield}{
+  \item{namefield}{
     A vector of column names to be used as region name if \code{database} is a \code{SpatialPolygonsDataFrame}. Ignored in all other cases.
   }
   \item{...}{Extra arguments passed to \code{polygon} or \code{lines}. Of particular interest may be the options \code{border} and\code{lty} that control the color and line type of the polygon borders.}
