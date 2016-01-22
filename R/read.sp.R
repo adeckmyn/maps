@@ -45,11 +45,7 @@ SpatialLines2map <- function(database, namefield=NULL){
   if(!inherits(database,"SpatialLines")) stop("database must be a SpatialLines[DataFrame] object.")
 
   line.names <- NULL
-<<<<<<< HEAD
   if (inherits(database,"SpatialLinesDataFrame") & !is.null(namefield) ) {
-=======
-  if (inherits(database,"SpatialLinesDataFrame") & !is.null(namefield)) ) {
->>>>>>> 5b4883e4e6259dd37b1d8db0b2753d5e0f7a0ab2
     namcol <- lapply(namefield, function(x) which(tolower(names(database)) == tolower(x)))
     if (any(lapply(namcol, length) != 1)) {
       zz <- which(lapply(namcol, length) != 1)
