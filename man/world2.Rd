@@ -7,24 +7,19 @@ Pacific Centric Low resolution World Map
 }
 \usage{data(world2MapEnv)}
 \description{
-
-This world database comes from a thinned cleaned-up version of the CIA
-World Data Bank II data and contains approximately 30,000 points
-representing the world coastlines and national boundaries.  The full
-database of nearly 2 million points is found in the mapdata package.
-This map is based on latitudes [0, 360), which then has the Pacific
+This is an alternative version of the \code{world} database 
+based on latitudes [0, 360), which then has the Pacific
 Ocean in the centre of the map.
-
 }
 \section{NOTE}{
-The same effect can in fact be obtained by using a projection:
+Almost the same effect can in fact be obtained by using a projection:
 
 map("world",projection="rectangular",parameter=0,orientation=c(90,0,180),
              wrap=TRUE)
 
 By changing the third component of 'orientation', the longitude shift can also be set to any other value besides 180 or 0 (but then fill=TRUE will usually give artefacts at the borders). You may even need to set 'resolution=0' if the wrapping algorithm fails because of the thinning.
 
-This method is in fact to be preferred, as it will also render correctly with fill=TRUE. Currently, the wrapping code does not work well with world2.
+This projected version will not work so well with \code{fill=TRUE}, though. There may be jagged edges at the boundaries.
 
 }
 \format{
@@ -36,17 +31,14 @@ maps package) is set at package load time \emph{if it does not
 already exist}.  Hence setting the environment variable before loading
 the package can override the default location of the binary datasets.
 
-It is also (during a transition phase) possible to switch to the old legacy world map using the function \code{world.legacy()}.
+During a transition period (\code{maps} version 3.0--1) it is possible to switch to the old legacy map using the function \code{world.legacy(TRUE)} or by setting the setting the environment variable R_MAP_DATA_LEGACY=TRUE prior to loading the package.
 
 }
 \source{
 The Natural Earth data set is available from \url{http://www.naturalearthdata.com}.
-
-The legacy CIA World Data Bank II is currently (mid-2003) available from 
-\url{https://www.evl.uic.edu/pape/data/WDB/}.
 }
 \seealso{
-\code{\link{map}}, \code{\link{world}},\code{\link{world.legacy}}
+\code{\link{map}}, \code{\link{world}},\code{\link{world2.legacy}}
 }
 \examples{
 map('world2', xlim = c(100, 300))
