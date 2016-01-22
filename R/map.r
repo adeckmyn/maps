@@ -53,6 +53,7 @@ map.poly <- function(database, regions = ".", exact = FALSE,
                                                                namefield=namefield)
       else if (inherits(database,"SpatialLines")) the.map <- SpatialLines2map(database, 
                                                              namefield=namefield)
+      else stop("database not supported.")
     } else the.map <- database
     if (identical(regions,".")) {
       # speed up the common case
