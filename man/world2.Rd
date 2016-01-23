@@ -38,7 +38,7 @@ During a transition period (\code{maps} version 3.0--1) it is possible to switch
 The Natural Earth data set is available from \url{http://www.naturalearthdata.com}.
 }
 \seealso{
-\code{\link{map}}, \code{\link{world}},\code{\link{world2.legacy}}
+\code{\link{map}}, \code{\link{world}},\code{\link{legacy_world2}}
 }
 \examples{
 map('world2', xlim = c(100, 300))
