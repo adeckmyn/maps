@@ -125,7 +125,7 @@ num.polygons <- function(p) {
 
 map.text <- function(database, regions = ".", exact = FALSE, labels,
     cex = 0.75, add = FALSE, move = FALSE, ...) {
-  if(!add) map(database=database, regions=regions, exact=exact)
+  if(!add) map(database=database, regions=regions, exact=exact, ...)
   # get polygons
   cc = match.call(expand.dots=TRUE)
   cc[[1]] = as.name("map")
