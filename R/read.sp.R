@@ -59,16 +59,16 @@ SpatialLines2map <- function(database, namefield=NULL){
 
   nlines <- length(line.names)
 
-  # count the number of lines in every "line"
-  nlin <- vapply(1:nlines,
+  # count the number of line segments in every "line"
+  nseg <- vapply(1:nlines,
                  FUN=function(i) length(database@lines[[i]]@Lines),
                  FUN.VALUE=1)
-  # if a line contains several sublines, an index is added to the name: "line:n"
+  # if a line contains several sub-lines (segments), an index is added to the name: "line:n"
   line.names <- unlist(lapply(1:dim(database)[1], function(i) {
-             if (nlin[i]==1) line.names[i]
-             else paste(line.names[i],1:nlin[i],sep=":")}))
+             if (nseg[i]==1) line.names[i]
+             else paste(line.names[i],1:nseg[i],sep=":")}))
 
-  # extract all polygon data to a list
+  # extract all polyline data to a list
   allpoly <- lapply(database@lines,
                     function(x) lapply(x@Lines, function(y) y@coords))
 ## allpoly is a list of lists of Nx2 matrices (not data frames)
