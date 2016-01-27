@@ -16,7 +16,7 @@ subgroup <- function(x, i) {
   }
 ## AD: EXTRA: allow negative values in i reverse direction
   pl <- function(j) if(j>0) x[starts[j]:ends[j]] else x[ends[abs(j)]:starts[abs(j)]]
-  unlist(lapply(i,function(j) c(NA,pl(j))))[-1]
+  as.numeric(unlist(lapply(i,function(j) c(NA,pl(j))))[-1])
 }
 
 sub.polygon <- function(p, i) {
