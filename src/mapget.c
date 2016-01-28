@@ -1,7 +1,3 @@
-/* 
-#include "S.h" 
-#include <R_ext/Arith.h>
-*/
 #include "R.h"
 #include "map.h"
 
