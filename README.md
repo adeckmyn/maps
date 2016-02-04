@@ -19,7 +19,7 @@ This may have several implications for code that calls map().
 
 ##ADDITIONS
 
-- v3.1 includes support for 'SpatialPolygons' and 'SpatialLines' classes. Such objects can either be passed to map() directly or first be converted to a map-type list with the new functions 'SpatialPolygons2map()' and 'SpatialLines2map'.
+- v3.1 includes support for 'SpatialPolygons' and 'SpatialLines' classes. Such objects can now either be passed to map() directly or first be converted to a map-type list with the new functions 'SpatialPolygons2map()' and 'SpatialLines2map'. These functions do not copy all the information present in the original data: only polygon names and co-ordinates are preserved.
 
 - A new databse 'lakes' has been added. The standard 'world' map no longer contains any lakes.
 
@@ -28,22 +28,22 @@ This may have several implications for code that calls map().
 - A set of simple functions use this iso3166 table for creating a list of countries to map. So you can use the 2- or 3-letter ISO code (e.g. as country labels on a map), but also create a list based on the sovereignty. Type '?iso.expand' for details.
   
 ##FIXES
-- as of v3.1, map(...,fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow.
-- map.text(...,exact=TRUE) now behaves as documented. Previously, the "exact=TRUE" was not passed to the map drawing if add=FALSE. To get the old (non-documented) behaviour (plot map with exact=FALSE, write text for exact=TRUE) you should now use 2 commands: 
-  * > map(...,exact=FALSE)
-  * > map.text(...,exact=TRUE,add=TRUE)
+- as of v3.1, map(..., fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow, should you ever want to plot a full world map at such a high resolution.
+- map.text(..., exact=TRUE) now behaves as documented. Previously, the "exact=TRUE" was not passed to the map drawing if add=FALSE. To get the old (non-documented) behaviour (plot map with exact=FALSE, write text for exact=TRUE) you should now use 2 commands: 
+  * > map(..., exact=FALSE)
+  * > map.text(..., exact=TRUE, add=TRUE)
 - match.map now works correctly for regions containing ":". This was potentially broken due to locale-dependent behaviour of order().
 - 'world2' now has clean boundaries when 'fill=TRUE'.
 
 ##FALL BACK TO LEGACY WORLD DATABASE
 There are a few mechanisms to use the old 'world' database rather than the updated one, should that be necessary:
 - Using 'database=legacy_world'
-- Calling world.legacy(TRUE) for switching to the old database and world.legacy(FALSE) to switch back on the fly.
 - Setting R_MAP_DATA_LEGACY=TRUE in the environment prior to loading maps
+- Deprecated: Calling world.legacy(TRUE) for switching to the old database and world.legacy(FALSE) to switch back on the fly.
 
 The last two options should only be used as a *temporary last resource*, to quickly run code that requires the old database without having to edit it.
 
-Note that the worldHires database from the mapdata package has identical map naming than the legacy world map. The only difference is in the resolution of the polylines.
+Note that the worldHires database from the mapdata package has identical map naming than the legacy world map. The only difference is in the resolution of the polylines. That high resolution version of the legacy map will remain unchanged.
 
 Please inform the maintainer of any problem that requires a fallback to the legacy database!
 
@@ -56,7 +56,7 @@ Even maps in e.g. shapefile format can now easily be imported for use in 'map()'
 
 
 ##TO DO/DISCUSS:
-
+- Add 'proj4' support. This will have to be via a new argument e.g. \code{map(..., proj4="+proj=longlat"}.
 - Many islands remain nameless.
 - The naming convention is largely maintained, but some choices are different. The changes mean that e.g. /region="France"/ now covers only metropolitan France, whithout (most of) the overseas departments and territories
 - Some inconsistencies in the naming procedure remain. For instance, while most countries are named by their full name, "UK" and "USA" are shortened in the same way as in the old data base. For UK, this even required a hack in the mapping code to avoid adding Ukrain to the map.

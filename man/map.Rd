@@ -19,7 +19,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     \code{map} or a spatial object of class \code{SpatialPolygons} or \code{SpatialLines}.
     The string choices include a \code{\link{world}} map,
     three USA databases (\code{\link{usa}}, \code{\link{state}},
-    \code{\link{county}}), and more (see the package index).  The
+    \code{\link{county}}), and more (type \code{help(package='maps')} to see the package index).  The
     location of the map databases may be overridden by setting the
     \code{R_MAP_DATA_DIR} environment variable.
   }

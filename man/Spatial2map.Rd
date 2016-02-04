@@ -18,7 +18,7 @@
 }
 \value{
 A list with four components: \code{x, y, names, range}, similar to the return value of \code{map()}. This data can be used as a database for \code{map()}. The lines and polygons are separated by NA.}
-\details{The 'map' list object only maintains coordinates and polygon names. All other information available in the original database is lost.
+\details{The 'map' list object only preserves co-ordinates and polygon names. All other information available in the original data is lost.
 
 The option \code{namefield} is only taken into account if \code{database} is class \code{Spatial[]DataFrame}. \code{namefield} may be a vector of column names, e.g. to get polygons named as 'country:state'.}
 \seealso{
