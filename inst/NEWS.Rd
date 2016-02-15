@@ -4,7 +4,7 @@
   \itemize{
     \item 'world' database changed to version without lakes punched out at the borders. The previous version still had various issues, so this is much cleaner. Now 'interior=FALSE' actually works on the whole world map.``
     \item Major lakes are now available from a separate database 'lakes'.
-    \item Basic support for 'SpatialPolygons' and 'SpatialLines' class objects as map database. Internally, \code{maps()} calls new functions \code{SpatialPolygons2map()} and \code{SpatialLines2map()} which transform to the simple 'maps' format, but \emph{only the polygon names and coordinates themselves}. All other data is ignored.
+    \item Basic support for 'SpatialPolygons' and 'SpatialLines' class objects as map database. Internally, \code{maps()} calls new functions \code{SpatialPolygons2map()} and \code{SpatialLines2map()} which transform to the simple 'maps' format, but \emph{only the polygon names and coordinates themselves}. All other information (holes, plotting order etc.) is ignored.
     \item 'world2' (the pacific centered map) now has clean cut polygons at the boundaries, so there are no more artefacts when e.g. \code{fill=TRUE}.
     \item map() now (silently) ignores thinning (\code{resolution>0}) when drawing polygons in stead of polylines. This was already the case for list-based maps, but not for \code{fill=TRUE}. The assymetric thinning caused artefacts. Plotting may be a bit slower now, noticably so for 'worldHires'. But usually you don't want to plot a complete world map at such a high resolution anyway.
     \item \code{wrap=TRUE} is no longer ignored when \code{plot=FALSE}. Also, wrapping is now called before thinning, which should give slightly better results.

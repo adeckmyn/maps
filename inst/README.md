@@ -7,8 +7,8 @@ This version 3 of the maps package. The main change with respect to v2 is a new 
 
 - The 'world' data base has been replaced by a much more recent data base, imported from the Natural Earth data project (the 1:50m world map, version 2.0, the latest version available in 2015)
 This may have several implications for code that calls map().
-  * Country names have changed. This is inevitable, since e.g. post-1990 Europe is dramatically different. As a consequence, any call to map() that involves the argument "region=...", may be affected. For instance, map('world','USSR') is now obsolete, while map('world','Russia') works fine.
   * As of version 3.1, the 'world' database no longer contains lakes and lake islands. These are now in a separate database called 'lakes'.
+  * Country names have changed. This is inevitable, since e.g. post-1990 Europe is dramatically different. As a consequence, any call to map() that involves the argument "region=...", may be affected. For instance, map('world','USSR') is now obsolete, while map('world','Russia') works fine.
   * The new data base contains less small islands, but the choice may be a bit different.
   * Some remote islands that are officially part of other countries may cause an unexpected change in the scale of a map. This is not a new phenomenon (map('world','france') had this in the old set), but some new cases may occur now. As explained below, this will now occur *less often*. 
   * The naming of all polygons is as close as possible to the old world map. However, some inconsistencies have been remedied, e.g. on whether an island is called by its own name or as part of the country it belongs to. The choice is now mainly dependent on whether the entity has a seperate ISO code. The naming scheme unfortunately does not permit to represent all the intricacies. The data set iso3166 (see further) is added to provide more details.
@@ -19,7 +19,7 @@ This may have several implications for code that calls map().
 
 ##ADDITIONS
 
-- v3.1 includes support for 'SpatialPolygons' and 'SpatialLines' classes. Such objects can now either be passed to map() directly or first be converted to a map-type list with the new functions 'SpatialPolygons2map()' and 'SpatialLines2map'. These functions do not copy all the information present in the original data: only polygon names and co-ordinates are preserved.
+- v3.1 includes support for 'SpatialPolygons' and 'SpatialLines' classes. Such objects can now either be passed to map() directly or first be converted to a map-type list with the new functions 'SpatialPolygons2map()' and 'SpatialLines2map'. These functions do not copy all the information present in the original data: only polygon names and co-ordinates are preserved (additional information like holes, plotting order etc. is ignored).
 
 - A new databse 'lakes' has been added. The standard 'world' map no longer contains any lakes.
 
