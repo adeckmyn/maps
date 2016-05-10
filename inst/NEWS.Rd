@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for package 'maps'}
+\section{Changes in maps version 3.1.1 (2016-05-19)}{
+  \itemize{
+    \item perl style regex caused problems for very long lists of regions. Fixed by setting perl=FALSE if the list of regions contains more than 1000 entries.
+  }
+}
 \section{Changes in maps version 3.1.0 (2016-01-19)}{
   \itemize{
     \item 'world' database changed to version without lakes punched out at the borders. The previous version still had various issues, so this is much cleaner. Now 'interior=FALSE' actually works on the whole world map.``

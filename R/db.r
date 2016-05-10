@@ -118,7 +118,9 @@ function(database = "world", patterns, exact = FALSE)
       }
     }
     regexp <- paste("(^", patterns, ")", sep = "", collapse = "|")
-    i <- grep(regexp, nam, ignore.case = TRUE, perl=TRUE)
+# BUG: perl regex is limited to about 30000 characters
+# so this crashes if patterns includes the whole world map
+    i <- grep(regexp, nam, ignore.case = TRUE, perl= (length(patterns) < 1000))
   }
   if(length(i) == 0) return(NULL)
   r <- cnames[i, 2]
@@ -229,7 +231,7 @@ match.map.slow <- function(nam, regions, warn = FALSE) {
     regexp <- paste("(^", pattern, ")", sep = "", collapse = "|")
     #r <- grep(regexp, nam)
     region.hash = as.character(char.to.ascii(substr(pattern, let, let)))
-    r <- grep(regexp, nam.bin[[region.hash]], perl=TRUE)
+    r <- grep(regexp, nam.bin[[region.hash]], perl= TRUE )
     if(length(r) > 0) {
       r = index.bin[[region.hash]][r]
       result[r] <- i

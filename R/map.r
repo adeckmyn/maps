@@ -69,8 +69,11 @@ map.poly <- function(database, regions = ".", exact = FALSE,
 ## But here you have a simple set of named polygons, not a map database.
 ## If it comes from anything but "world", we could break something else.
 ## We just leave it for now.
-      regexp <- paste("(^", regions, ")", sep = "", collapse = "|")
-        i <- grep(regexp, the.map$names, ignore.case = TRUE, perl=TRUE)
+        regexp <- paste("(^", regions, ")", sep = "", collapse = "|")
+## FIXME: find a better solution
+# perl regex crashes on >30000 characters, e.g. whole world database
+        i <- grep(regexp, the.map$names, ignore.case = TRUE, 
+                  perl = (length(regions) < 1000) )
       }
       if (length(i) == 0) stop("no recognized region names")
       nam <- the.map$names[i]
