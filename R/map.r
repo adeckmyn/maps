@@ -72,8 +72,8 @@ map.poly <- function(database, regions = ".", exact = FALSE,
         regexp <- paste("(^", regions, ")", sep = "", collapse = "|")
 ## FIXME: find a better solution
 # perl regex crashes on >30000 characters, e.g. whole world database
-        i <- grep(regexp, the.map$names, ignore.case = TRUE, 
-                  perl = (length(regions) < 1000) )
+        i <- grep(regexp, the.map$names, ignore.case = TRUE,
+                  perl = (length(regions) < 1000) & (nchar(regexp) < 30000) )
       }
       if (length(i) == 0) stop("no recognized region names")
       nam <- the.map$names[i]

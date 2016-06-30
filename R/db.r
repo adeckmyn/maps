@@ -118,9 +118,10 @@ function(database = "world", patterns, exact = FALSE)
       }
     }
     regexp <- paste("(^", patterns, ")", sep = "", collapse = "|")
-# BUG: perl regex is limited to about 30000 characters
+# BUGFIX: perl regex is limited to about 30000 characters
 # so this crashes if patterns includes the whole world map
-    i <- grep(regexp, nam, ignore.case = TRUE, perl= (length(patterns) < 1000))
+    i <- grep(regexp, nam, ignore.case = TRUE,
+              perl = (length(patterns) < 1000) & (nchar(regexp) < 30000))
   }
   if(length(i) == 0) return(NULL)
   r <- cnames[i, 2]
