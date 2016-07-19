@@ -1,8 +1,10 @@
 \name{NEWS}
 \title{News for package 'maps'}
-\section{Changes in maps version 3.1.1 (2016-05-19)}{
+\section{Changes in maps version 3.1.1 (2016-07-19)}{
   \itemize{
-    \item perl style regex caused problems for very long lists of regions. Fixed by setting perl=FALSE if the list of regions contains more than 1000 entries.
+    \item perl style regex caused problems for very long lists of regions. Fixed by setting perl=FALSE if the list of regions contains more than 1000 entries or the resulting regex is more than 30000 characters long.
+    \item a few minor corrections to country and city names.
+    \item Removed start-up message.
   }
 }
 \section{Changes in maps version 3.1.0 (2016-01-19)}{
