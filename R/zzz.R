@@ -1,12 +1,3 @@
-.onAttach <- function(lib,pkg) {
-  packageStartupMessage("\n",
-#      " ############################################################\n",
-      " # maps v3.1: updated 'world': all lakes moved to separate new #\n",
-      " # 'lakes' database. Type '?world' or 'news(package=\"maps\")'.  #\n",
-#      " ############################################################\n")
-      "\n")
-}
-
 .onLoad <- function(lib, pkg) {
   if (Sys.getenv("R_MAP_DATA_DIR") == "")
     Sys.setenv("R_MAP_DATA_DIR" = paste(lib, pkg, "mapdata/", sep="/"))
