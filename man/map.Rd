@@ -83,7 +83,8 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     If \code{FALSE}, the lines bounding each region will be drawn (but
     only once, for interior lines).
     If \code{TRUE}, each region will be filled using colors from the
-    \code{col =} argument, and bounding lines will not be drawn.
+    \code{col =} argument, and bounding lines are drawn by default using \code{par("fg")}.
+    To hide the bounding lines, use \code{border=NA} (see \code{...}).
   }
   \item{col}{
     vector of colors.
@@ -91,7 +92,9 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     all lines, and any other colors are ignored.
     Otherwise, the colors are matched one-one with the polygons
     that get selected by the \code{region} argument (and are reused
-    cyclically, if necessary).
+    cyclically, if necessary). If \code{fill = TRUE}, the default boundary line colour 
+    is given by \code{par("fg")}. To change this, you can use the \code{border} 
+    argument (see '...').
     A color of \code{NA} causes the corresponding region to be deleted
     from the list of polygons to be drawn.
     Polygon colors are assigned \emph{after} polygons are deleted due to values
@@ -170,7 +173,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
   \item{namefield}{
     A vector of column names to be used as region name if \code{database} is a \code{SpatialPolygonsDataFrame}. Ignored in all other cases.
   }
-  \item{...}{Extra arguments passed to \code{polygon} or \code{lines}. Of particular interest may be the options \code{border} and\code{lty} that control the color and line type of the polygon borders.}
+  \item{...}{Extra arguments passed to \code{polygon} or \code{lines}. Of particular interest may be the options \code{border} and\code{lty} that control the color and line type of the polygon borders when \code{fill = TRUE}.}
 }
 \details{
 The simplest form of use of this function is:
@@ -268,7 +271,7 @@ if(require(mapproj)) {	# mapproj is used for  projection="polyconic"
 \seealso{
   \code{\link{map.text}}, \code{\link{map.axes}},
   \code{\link{map.scale}}, \code{\link[mapproj]{map.grid}} (in the \code{mapproj} library),
-  \code{\link{SpatialPolygons2map}}
+  \code{\link[graphics]{polygon}}, \code{\link{SpatialPolygons2map}}
 }
 \references{
   Richard A. Becker, and Allan R. Wilks,
