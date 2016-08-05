@@ -135,6 +135,9 @@ function(database = "world", regions = ".", exact = FALSE,
     stop("one of boundary and interior must be TRUE")
   doproj <- !missing(projection) || !missing(parameters) || !missing(
           orientation)
+  if (doproj && !requireNamespace("mapproj", quietly=TRUE)) {
+    stop("Please install the package 'mapproj' for projections.")
+  }
   coordtype <- maptype(database)
   if (coordtype == "unknown") 
      stop("missing database or unknown coordinate type")
