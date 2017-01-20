@@ -164,7 +164,11 @@ function(database = "world", regions = ".", exact = FALSE,
   }
   # AD: we do wrapping first: slightly better than when run after the thinning
   #     also now the output data is also wrapped if plot=FALSE
-  if (wrap) coord <- map.wrap(coord)
+  # EXPERIMENTAL: pass xlim and fill?
+  # xlim is only useful without projection...
+  if (length(wrap)==2) {
+    coord <- map.wrap.poly(coord, xlim=wrap, poly=fill)
+  } else if (wrap) coord <- map.wrap(coord)
   # do the plotting, if requested
   if (plot) {
     # for new plots, set up the coordinate system;
