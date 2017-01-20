@@ -1,5 +1,5 @@
 map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=-89, debug=FALSE) {
-  MAXWRAP=100;
+  MAXWRAP=sum(is.na(data$x))+1
   len_in <- length(data$x)
   len_out <- 2*len_in
   wrap <- .C("mapwrap", 

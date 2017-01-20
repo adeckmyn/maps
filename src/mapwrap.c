@@ -7,7 +7,7 @@
 #define MAX_SEGMENTS 50
 void split_poly(double *xout, double *yout, int *npos, int line_start, 
                 int *segment_list, int *nsegments, double xmin, double xmax);
-void sort_segments(double *yval, int *ysort, int nsegments);
+void sort_segments(double *yval, int *ysort, int nval);
 void mapwrap(double *xin, double *yin, int *nin,
              int *wraplist, int *npoly,
              double *xout, double *yout, int *nout,
@@ -72,20 +72,20 @@ void mapwrap(double *xin, double *yin, int *nin,
           count_crossings++;
 //          Rprintf("    Boundary crossing %i at position=%i/%i\n", count_crossings, i, npos);
           // if this is the first segment, report this polyline as being wrapped
-          if (count_crossings==1) wraplist[count_wrap++] = count_line;
+          if (count_crossings==1 && *poly) wraplist[count_wrap++] = count_line;
           // if we were exactly on the boundary: no need to interpolate
           if (xout[npos-1] == *xmin) {
             if (npos+2 > *nout) Rf_error("Output vector too short.");
             xout[npos] = NA_REAL; xout[npos+1]= *xmax; xout[npos+2]=xi;
             yout[npos] = NA_REAL; yout[npos+1]= yout[npos-1]; yout[npos+2]=yin[i];
-            segment_list[count_crossings-1] = npos + 1;
+            if (*poly) segment_list[count_crossings-1] = npos + 1;
             npos += 3;
           }
           else if (xout[npos-1] == *xmax) {
             if (npos+2 > *nout) Rf_error("Output vector too short.");
             xout[npos] = NA_REAL; xout[npos+1]= *xmin; xout[npos+2]=xi;
             yout[npos] = NA_REAL; yout[npos+1]= yout[npos-1]; yout[npos+2]=yin[i];
-            segment_list[count_crossings-1] = npos + 1;
+            if (*poly) segment_list[count_crossings-1] = npos + 1;
             npos += 3;
           }
           else { // normal case
@@ -106,8 +106,8 @@ void mapwrap(double *xin, double *yin, int *nin,
 //            Rprintf("y: %lf %lf %lf %lf\n",yout[npos-1],yout[npos],yout[npos+2],yout[npos+3]);
             // store the start location of this new segment
             // note that the first segment is not stored in this way, but as line_start
-            segment_list[count_crossings-1] = npos + 2;
-            if (count_crossings >= MAX_SEGMENTS) Rf_error("Too many segments in line %i.\n",count_line);
+            if (*poly) segment_list[count_crossings-1] = npos + 2;
+            if (*poly && count_crossings >= MAX_SEGMENTS) Rf_error("Too many segments in line %i.\n",count_line);
             npos += 4;
           }
         }
@@ -141,6 +141,8 @@ void mapwrap(double *xin, double *yin, int *nin,
                            segment_list, *xmin, *xmax, *antarctica);
         }
         else {
+          // just a safe estimate
+          if (npos >= *nout - 3*count_crossings) Rf_error("output vector too short\n");
           split_poly(xout, yout, &npos, line_start, segment_list, &count_crossings, *xmin, *xmax);
           // on return, count_crossings contains the corrected number of crossings
           npoly[count_wrap-1]=(count_crossings / 2) + 1;
@@ -286,7 +288,6 @@ void split_poly(double *xout, double *yout, int* npos, int line_start,
     if (i) yend[i-1] = ystart[i] ;
     lused[i] = 0;
   }
-//  Rprintf("Calling sort.\n");
   sort_segments(ystart, ysort, *nsegments);
 //  for (i=0; i< *nsegments; i++) Rprintf("    sorted %i is actual segment %i\n", i, ysort[i]);
 
@@ -339,7 +340,6 @@ void split_poly(double *xout, double *yout, int* npos, int line_start,
       // the very last polyline is not followed by NA!!!
       while (!ISNA(*xo) && xo < xout+ *npos) {xbuf[newlength] = *xo++; ybuf[newlength] = *yo++; newlength++;}
       if (segnum== *nsegments-1 && !no_append) { // append the first part of polyline to last segment
-//        Rprintf("append beginning of polyline. newlength=%i\n", newlength);
         xo = xout + line_start + 1;
         yo = yout + line_start + 1;
         while (!ISNA(*xo)) {xbuf[newlength] = *xo++; ybuf[newlength] = *yo++; newlength++;}
@@ -355,7 +355,6 @@ void split_poly(double *xout, double *yout, int* npos, int line_start,
   }
  
   // overwrite xout with buffer
-//  Rprintf("Copy buffer to output vector.\n");
   xo = xout + line_start;
   yo = yout + line_start;
   for (i=0; i<newlength; i++) {*(xo++) = xbuf[i]; *(yo++) = ybuf[i];}
@@ -370,14 +369,12 @@ void split_poly(double *xout, double *yout, int* npos, int line_start,
 // A very simple sorting algorithm
 // No point in making anything more sophisticated, since we will typically be
 // dealing with 2 or 4 values at most.
-void sort_segments(double *yval, int *ysort, int nsegments) {
+void sort_segments(double *yval, int *ysort, int nval) {
   int i, j, cc;
-//  Rprintf("sort:\n");
-  for (i=0; i<nsegments ; i++) {
+  for (i=0; i < nval ; i++) {
     cc=0;
-    for (j=0; j<nsegments; j++) if (yval[i] < yval[j]) cc++;
+    for (j=0; j < nval ; j++) if (yval[i] < yval[j]) cc++;
     ysort[cc] = i;
-//    Rprintf("%i: %lf, order=%i\n",i,yval[i],cc);
   }
 }
 

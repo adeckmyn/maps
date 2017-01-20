@@ -139,7 +139,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     of the \code{database}.
   }
   \item{wrap}{If TRUE, lines that cross too far across the map
-    (due to a strange projection) are omitted.}
+    (due to a strange projection) are omitted. If wrap is a vector of length 2, it is interpreted as the longitude range to be used for a global map, e.g. \code{c(-180,180)} or \code{c(0,360)}. This even works when \code{fill=TRUE}, but will probably not be useful when using projections. In that case, the values must correspond to the X axis of the projection.}
   \item{resolution}{
     number that specifies the resolution with which
     to draw the map.
@@ -206,6 +206,7 @@ where \code{mymap} is the returned value from a previous call to
 }
 \examples{
 map()	# low resolution map of the world
+map(wrap = c(0,360), fill = TRUE, col = 2) # pacific-centered map of the world
 map('usa')	# national boundaries
 map('county', 'new jersey')	# county map of New Jersey
 map('state', region = c('new york', 'new jersey', 'penn'))	# map of three states
