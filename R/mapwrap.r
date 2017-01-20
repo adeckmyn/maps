@@ -1,4 +1,4 @@
-map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=-89, debug=FALSE) {
+map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=-89) {
   MAXWRAP=sum(is.na(data$x))+1
   len_in <- length(data$x)
   len_out <- 2*len_in
@@ -10,24 +10,16 @@ map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=-89, debug=FALSE) {
                poly=as.integer(poly), xmin=xlim[1], xmax=xlim[2],
                antarctica=as.numeric(antarctica),
                NAOK=TRUE, PACKAGE="maps")
-  if(debug) return(wrap)
 
   xlen <- wrap$nout
+  result <- list(x=wrap$xout[1:xlen], y=wrap$yout[1:xlen])
   if (!is.null(data$names) && poly) {
-    newnames <- data$names
-    nwrap <- sum(wrap$nsegments > 0)
-    if (nwrap > 0) {
-      for (i in 1:nwrap) {
-        nsegments <- wrap$nsegments[i]
-        pn <- wrap$wraplist[i]
-        nam <- newnames[pn]
-        splitnam <- paste0(nam,":split",1:nsegments)
-        newnames <- c(head(newnames,pn-1), splitnam, 
-                      tail(newnames,-(pn+1)))
-      }
-    }
-    result <- list(x=wrap$xout[1:xlen], y=wrap$yout[1:xlen], names=newnames)
-  } else result <- list(x=wrap$xout[1:xlen], y=wrap$yout[1:xlen])
+#    unique names for all partial polygons?
+#    newnames <- rep(data$names, times=wrap$nsegments)
+    newnames <- do.call(c, lapply(1:length(data$names), function(i)
+                  paste0(data$names[i],":p",1:wrap$npoly[i])))
+    result$names <- newnames
+  }
   if (inherits(data, "map")) class(result) <- "map"
   result
 }
