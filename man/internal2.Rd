@@ -9,6 +9,7 @@
 \alias{map.poly}
 \alias{map.wrap}
 \alias{map.wrap.poly}
+\alias{map.restrict}
 \alias{subgroup}
 \alias{gp.smooth}
 \alias{kernel.smooth}
@@ -27,7 +28,8 @@ map.poly(database, regions = ".", exact = FALSE, xlim = NULL, ylim = NULL,
          boundary = TRUE, interior = TRUE, fill = FALSE, as.polygon = FALSE,
          namefield="name")
 map.wrap(p, xlim=NULL)
-map.wrap.poly(p, xlim=NULL, poly=FALSE, antarctica=-89)
+map.wrap.poly(data, xlim=NULL, poly=FALSE, antarctica=-89)
+map.restrict(data, xlim=NULL, ylim=NULL)
 subgroup(x, i)
 gp.smooth(x, z, xo, lambda, r)
 kernel.smooth(x, z, xo, lambda, region = NULL, normalize = TRUE)

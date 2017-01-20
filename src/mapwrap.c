@@ -16,15 +16,20 @@ Method:
 void split_poly(double *xout, double *yout, int *npos, int line_start,
                 int *segment_list, int *nsegments, double xmin, double xmax);
 void sort_crossings(double *yval, int *ysort, int nval);
-void mapwrap(double *xin, double *yin, int *nin,
+void map_wrap(double *xin, double *yin, int *nin,
              int *wraplist, int *npoly,
              double *xout, double *yout, int *nout,
              int *poly, double *xmin, double *xmax, double *antarctica);
 void close_antarctica(double *xout, double *yout, int *npos,
                       int line_start, int *segment_list,
                       double xmin, double xmax,double antarctica);
+void map_restrict(double *xin, double *yin, int *nin,
+                 double *xout, double *yout, int *nout,
+                 double *xmin, double *xmax);
 
-void mapwrap(double *xin, double *yin, int *nin,
+/* ============================================================= */
+
+void map_wrap(double *xin, double *yin, int *nin,
              int *wraplist, int *npoly,
              double *xout, double *yout, int *nout,
              int *poly, double *xmin, double *xmax, double *antarctica) {
@@ -360,6 +365,40 @@ void sort_crossings(double *yval, int *ysort, int nval) {
     cc=0;
     for (j=0; j < nval ; j++) if (yval[i] < yval[j]) cc++;
     ysort[cc] = i;
+  }
+}
+
+
+void map_restrict(double *xin, double *yin, int *nin,
+                 double *xout, double *yout, int *nout,
+                 double *xmin, double *xmax) {
+
+  int i;
+
+  *nout=0;
+  i=0;
+  while (i < *nin) {
+    while ( i < *nin && (ISNA(xin[i]) || xin[i] < *xmin || xin[i] > *xmax) ) i++;
+    if (i == *nin) return;
+    if (i>0 && !ISNA(xin[i-1])) {
+      xout[*nout] = (xin[i-1] < *xmin) ? *xmin : *xmax;
+      yout[*nout] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[*nout]-xin[i-1]);
+      (*nout)++;
+    }
+    while (i < *nin && !ISNA(xin[i]) && !(xin[i] < *xmin || xin[i] > *xmax)) {
+      xout[*nout] = xin[i];
+      xout[*nout] = yin[i];
+      (*nout)++;
+      i++;
+    }
+    if (i == *nin) return;
+    if (!ISNA(xin[i])) {
+      xout[*nout] = (xin[i] < *xmin) ? *xmin : *xmax;
+      yout[*nout] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[*nout]-xin[i-1]);
+      (*nout)++;
+    }
+    xout[*nout] = yout[*nout] = NA_REAL;
+    (*nout)++;
   }
 }
 
