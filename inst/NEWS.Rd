@@ -3,7 +3,7 @@
 \section{Changes in maps version 3.2.0 (2017-01-25)}{
   \itemize{
     \item New wrapping code should eliminate border artefacts on world maps, even with \code{fill=TRUE}. It can be called via \code{map(..., wrap=c(0,360),...)}, i.e. by giving \code{wrap} a vector in stead of a boolean value. The wrapping code is also directly calleble as \code{map.wrap.poly(data, xlim, poly=FALSE, antarctica=-89)}.
-    \item \code{map()} has a new argument \code{lforce} (force limits). Possible values are \code{"n"} (no, default), \code{"p"} (projected limits) and \code("l") (original limits). Forcing the limits will limit your map more forcibly to the given limits.
+    \item \code{map()} has a new argument \code{lforce} (force limits). Possible values are \code{"n"} (no, default), \code{"e"} (exact limits), \code{"s"} (small enclosed rectangle) and \code("l") (large, enclosing rectangle). Forcing the limits will limit your map more forcibly to the given limits. \code{"s","l"} only imact the plotting window, but with \code{"e"} the data itself is clipped exactly to the borders.
     \item \code{maptype()} always return \code{"spherical"} for external databases. Now it is possible to add a \code{maptype}, e.g. \code{mymap$maptype <- "planar"}.
     \item \code{county.fips} and \code{county.state}: changed from factors to character vectors.
     \item Minor correction to \code{us.cities}.

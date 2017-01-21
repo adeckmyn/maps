@@ -153,8 +153,11 @@ function(database = "world", regions = ".", exact = FALSE,
 
   if (doproj) {
     nam <- coord$names
-### we can force xlim & ylim strictly
-    if (lforce=="l") {
+### we can enforce xlim & ylim exactly
+### before doing the projection
+### this changes the output
+### and will probably ruin 'fill=TRUE'
+    if (lforce=="e") {
       coord <- map.restrict(coord, xlim, ylim)
     }
     coord <- mapproj::mapproject(coord, projection = projection,
@@ -162,10 +165,15 @@ function(database = "world", regions = ".", exact = FALSE,
     coord$projection = projection
     coord$parameters = parameters
     coord$orientation = orientation
-    if (!is.null(xlim) && !is.null(ylim) && lforce=="p") {
+    if (!is.null(xlim) && !is.null(ylim) && lforce %in% c("s","l")) {
       prange <- mapproj::mapproject(x=rep(xlim,2), y=rep(ylim, each=2))
-      xlim <- c(max(prange$x[c(1,3)]),min(prange$x[c(2,4)]))
-      ylim <- c(max(prange$y[c(1,2)]),min(prange$y[c(3,4)]))
+      if (lforce=="s") {
+        xlim <- c(max(prange$x[c(1,3)]),min(prange$x[c(2,4)]))
+        ylim <- c(max(prange$y[c(1,2)]),min(prange$y[c(3,4)]))
+      } else {
+        xlim <- c(min(prange$x[c(1,3)]),max(prange$x[c(2,4)]))
+        ylim <- c(min(prange$y[c(1,2)]),max(prange$y[c(3,4)]))
+      }
     }
     if (plot && coord$error)
       if (all(is.na(coord$x)))
