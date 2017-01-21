@@ -126,7 +126,8 @@ function(database = "world", regions = ".", exact = FALSE,
 	 col = 1, plot = TRUE, add = FALSE, namesonly = FALSE, 
          xlim = NULL, ylim = NULL, wrap = FALSE,
          resolution = if (plot) 1 else 0, type = "l", bg = par("bg"),
-         mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, namefield="name", ...)
+         mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, namefield="name", 
+         lforce = "n", ...)
 {
   # parameter checks
   if (resolution>0 && !plot) 
@@ -149,13 +150,23 @@ function(database = "world", regions = ".", exact = FALSE,
   if (plot) {
     .map.range(coord$range)
   }
+
   if (doproj) {
     nam <- coord$names
+### we can force xlim & ylim strictly
+    if (lforce=="l") {
+      coord <- map.restrict(coord, xlim, ylim)
+    }
     coord <- mapproj::mapproject(coord, projection = projection,
 			parameters = parameters, orientation = orientation)
     coord$projection = projection
     coord$parameters = parameters
     coord$orientation = orientation
+    if (!is.null(xlim) && !is.null(ylim) && lforce=="p") {
+      prange <- mapproj::mapproject(x=rep(xlim,2), y=rep(ylim, each=2))
+      xlim <- c(max(prange$x[c(1,3)]),min(prange$x[c(2,4)]))
+      ylim <- c(max(prange$y[c(1,2)]),min(prange$y[c(3,4)]))
+    }
     if (plot && coord$error)
       if (all(is.na(coord$x)))
         stop("projection failed for all data")
@@ -178,11 +189,12 @@ function(database = "world", regions = ".", exact = FALSE,
     if (!add) {
       opar = par(bg = bg)
       if (!par("new")) plot.new()
-      # xlim, ylim apply before projection
-      if (is.null(xlim) || doproj) xrange <- range(coord$x, na.rm = TRUE)
+      # xlim, ylim apply before projection unless we have pforce=TRUE
+      if (is.null(xlim) || (doproj && lforce!="p")) xrange <- range(coord$x, na.rm = TRUE)
       else xrange <- xlim
-      if (is.null(ylim) || doproj) yrange <- range(coord$y, na.rm = TRUE)
+      if (is.null(ylim) || (doproj && lforce!="p")) yrange <- range(coord$y, na.rm = TRUE)
       else yrange <- ylim
+      cat("xlim=",xlim,"ylim=",ylim,"\n")
       if (coordtype != "spherical" || doproj) {
 	aspect <- c(1, 1) 
       } else

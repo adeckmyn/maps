@@ -10,7 +10,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
   fill = FALSE, col = 1, plot = TRUE, add = FALSE, namesonly = FALSE,
   xlim = NULL, ylim = NULL, wrap = FALSE, resolution = if (plot) 1 else 0,
   type = "l", bg = par("bg"), mar = c(4.1, 4.1, par("mar")[3], 0.1),
-  myborder = 0.01, namefield="name", ...)
+  myborder = 0.01, namefield="name", lforce="n", ...)
 }
 \arguments{
   \item{database}{
@@ -170,6 +170,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
   \item{namefield}{
     A vector of column names to be used as region name if \code{database} is a \code{SpatialPolygonsDataFrame}. Ignored in all other cases.
   }
+  \item(lforce){Limit enforcement. Only taken into account if \code{xlim} and/or \code{ylim} are defined and a projection is used. Possible values are \code{"n","l","p"}. If \code{lforce="l"}, map data is restricted exactly to the given limits prior to pojection. This will usually not work well with \code{fill=TRUE}. If \code{lforce="p"}, the four corners defined by \code{xlim} and \code{ylim} are projected and the plot window is restricted to the largest rectangle inside this region. This will also work with \code{fill=TRUE}. In this case the output value of the data is not changed, only the plot window is affected.}
   \item{...}{Extra arguments passed to \code{polygon} or \code{lines}. Of particular interest may be the options \code{border} and\code{lty} that control the color and line type of the polygon borders.}
 }
 \details{

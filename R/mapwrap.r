@@ -31,13 +31,16 @@ map.restrict <- function(data, xlim=NULL, ylim=NULL) {
     len_in <- length(data$x)
     len_out <- 2*len_in
     d1 <- .C("map_restrict",
-               xin=data$x, yin=data$y, nin=as.integer(len_in),
+               xin=as.numeric(data$x), yin=as.numeric(data$y),
+               nin=as.integer(len_in),
                xout=numeric(len_out), yout=numeric(len_out), 
                nout=as.integer(len_out),
-               xmin=xlim[1], xmax=xlim[2],
+               xmin=as.numeric(xlim[1]), xmax=as.numeric(xlim[2]),
                NAOK=TRUE, PACKAGE="maps")
     xlen <- d1$nout
-    data <- list(d1$xout[1:xlen], d1$yout[1:xlen])
+    data$x <- d1$xout[1:xlen]
+    data$y <- d1$yout[1:xlen]
+    if (!is.null(data$range)) data$range[1:2] <- xlim
   }
   if (!is.null(ylim)) {
     len_in <- length(data$x)
@@ -49,7 +52,9 @@ map.restrict <- function(data, xlim=NULL, ylim=NULL) {
                ymin=ylim[1], ymax=ylim[2],
                NAOK=TRUE, PACKAGE="maps")
     xlen <- d2$nout
-    data <- list(x=d2$xout[1:xlen], y=d2$yout[1:xlen]) 
+    data$x <- d2$xout[1:xlen]
+    data$y <- d2$yout[1:xlen]
+    if (!is.null(data$range)) data$range[3:4] <- ylim
   }
-  class(data) <- "map"
+  data
 }

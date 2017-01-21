@@ -373,32 +373,34 @@ void map_restrict(double *xin, double *yin, int *nin,
                  double *xout, double *yout, int *nout,
                  double *xmin, double *xmax) {
 
-  int i;
+  int i,j;
 
-  *nout=0;
+  j=0;
   i=0;
   while (i < *nin) {
     while ( i < *nin && (ISNA(xin[i]) || xin[i] < *xmin || xin[i] > *xmax) ) i++;
-    if (i == *nin) return;
+    if (i == *nin) break;
     if (i>0 && !ISNA(xin[i-1])) {
-      xout[*nout] = (xin[i-1] < *xmin) ? *xmin : *xmax;
-      yout[*nout] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[*nout]-xin[i-1]);
-      (*nout)++;
+      xout[j] = (xin[i-1] < *xmin) ? *xmin : *xmax;
+      yout[j] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[j]-xin[i-1]);
+      j++;
     }
-    while (i < *nin && !ISNA(xin[i]) && !(xin[i] < *xmin || xin[i] > *xmax)) {
-      xout[*nout] = xin[i];
-      xout[*nout] = yin[i];
-      (*nout)++;
+    while (i < *nin && !ISNA(xin[i]) && xin[i] >= *xmin && xin[i] <= *xmax) {
+      xout[j] = xin[i];
+      yout[j] = yin[i];
+      j++;
       i++;
     }
-    if (i == *nin) return;
+    if (i == *nin) break;
     if (!ISNA(xin[i])) {
-      xout[*nout] = (xin[i] < *xmin) ? *xmin : *xmax;
-      yout[*nout] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[*nout]-xin[i-1]);
-      (*nout)++;
+      xout[j] = (xin[i] < *xmin) ? *xmin : *xmax;
+      yout[j] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[j]-xin[i-1]);
+      j++;
     }
-    xout[*nout] = yout[*nout] = NA_REAL;
-    (*nout)++;
+    xout[j] = yout[j] = NA_REAL;
+    j++;
   }
+  if (ISNA(xout[j-1])) j--;
+  *nout = j;
 }
 
