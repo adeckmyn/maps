@@ -198,11 +198,10 @@ function(database = "world", regions = ".", exact = FALSE,
       opar = par(bg = bg)
       if (!par("new")) plot.new()
       # xlim, ylim apply before projection unless we have pforce=TRUE
-      if (is.null(xlim) || (doproj && lforce!="p")) xrange <- range(coord$x, na.rm = TRUE)
+      if (is.null(xlim) || (doproj && !(lforce %in% c("s","l")))) xrange <- range(coord$x, na.rm = TRUE)
       else xrange <- xlim
-      if (is.null(ylim) || (doproj && lforce!="p")) yrange <- range(coord$y, na.rm = TRUE)
+      if (is.null(ylim) || (doproj && !(lforce %in% c("s","l")))) yrange <- range(coord$y, na.rm = TRUE)
       else yrange <- ylim
-      cat("xlim=",xlim,"ylim=",ylim,"\n")
       if (coordtype != "spherical" || doproj) {
 	aspect <- c(1, 1) 
       } else

@@ -368,15 +368,17 @@ void sort_crossings(double *yval, int *ysort, int nval) {
   }
 }
 
-
-void map_restrict(double *xin, double *yin, int *nin,
-                 double *xout, double *yout, int *nout,
-                 double *xmin, double *xmax) {
+// Very simple line clipping: no polygon awareness
+// We don't even check for j >= *nout
+// So the utput vectors had better be long enough!
+// TODO: make a polygon-aware version
+void map_restrict(double *xin,  double *yin,  int *nin,
+                  double *xout, double *yout, int *nout,
+                  double *xmin, double *xmax) {
 
   int i,j;
 
-  j=0;
-  i=0;
+  i=j=0;
   while (i < *nin) {
     while ( i < *nin && (ISNA(xin[i]) || xin[i] < *xmin || xin[i] > *xmax) ) i++;
     if (i == *nin) break;
