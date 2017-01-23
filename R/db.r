@@ -142,7 +142,12 @@ function(database = "world")
 		integer(1))[[2]] + 2, "unknown", "spherical", "planar", "spherical")
   } else {
     # map object
-    "spherical"
+    if (is.list(database)) {
+      if (!is.null(database$maptype)) return(database$maptype)
+#      if (!is.null(database$projection)) return("planar")
+      return("spherical")
+# you may also look at $projection ... 
+    } else "spherical"
   }
 }
 

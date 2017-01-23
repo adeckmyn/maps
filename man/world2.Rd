@@ -12,15 +12,13 @@ based on latitudes [0, 360), which then has the Pacific
 Ocean in the centre of the map.
 }
 \section{NOTE}{
-Almost the same effect can in fact be obtained by using a projection:
+This data set is in fact largely obsolete. Often the same (more general) result can be obtained by using wrapping:
 
-map("world",projection="rectangular",parameter=0,orientation=c(90,0,180),
-             wrap=TRUE)
+map("world", wrap=c(0,360))
 
-By changing the third component of 'orientation', the longitude shift can also be set to any other value besides 180 or 0 (but then fill=TRUE will usually give artefacts at the borders). You may even need to set 'resolution=0' if the wrapping algorithm fails because of the thinning.
+This will also work fine with \code{fill=TRUE} or any other appropriate longitude interval (e.g. \code{c(-90,270)}).
 
-This projected version will not work so well with \code{fill=TRUE}, though. There may be jagged edges at the boundaries.
-
+However, \code{world2} is useful when setting \code{xlim} to an interval crossing the 180 meridian.
 }
 \format{
 The data file is merely a character string which
@@ -30,9 +28,6 @@ This environment variable (\code{R_MAP_DATA_DIR_WORLD} for the datasets in the
 maps package) is set at package load time \emph{if it does not
 already exist}.  Hence setting the environment variable before loading
 the package can override the default location of the binary datasets.
-
-During a transition period (\code{maps} version 3.0--1) it is possible to switch to the old legacy map using the function \code{world.legacy(TRUE)} or by setting the setting the environment variable R_MAP_DATA_LEGACY=TRUE prior to loading the package.
-
 }
 \source{
 The Natural Earth data set is available from \url{http://www.naturalearthdata.com}.
@@ -43,6 +38,8 @@ The Natural Earth data set is available from \url{http://www.naturalearthdata.co
 \examples{
 map('world2', xlim = c(100, 300))
 map.axes()
+map(map('world', wrap=c(0,360), plot=FALSE), xlim = c(100, 300))
+map(map('world', wrap=c(0,360), plot=FALSE, fill=TRUE), xlim = c(100, 300), fill=TRUE)
 }
 \references{
 Richard A. Becker, and Allan R. Wilks,

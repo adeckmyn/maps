@@ -2,5 +2,6 @@ import("graphics")
 importFrom("utils", "read.delim")
 export(world.legacy,iso.expand,sov.expand,iso.alpha,area.map, identify.map, 
        map, map.axes, map.cities, map.scale, map.text, map.where, map.wrap, 
-       match.map, smooth.map, .map.range, SpatialPolygons2map, SpatialLines2map)
+       match.map, smooth.map, .map.range,
+       SpatialPolygons2map, SpatialLines2map, map.wrap.poly, map.restrict)
 S3method(identify, map)

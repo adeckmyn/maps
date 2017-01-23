@@ -10,7 +10,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
   fill = FALSE, col = 1, plot = TRUE, add = FALSE, namesonly = FALSE,
   xlim = NULL, ylim = NULL, wrap = FALSE, resolution = if (plot) 1 else 0,
   type = "l", bg = par("bg"), mar = c(4.1, 4.1, par("mar")[3], 0.1),
-  myborder = 0.01, namefield="name", ...)
+  myborder = 0.01, namefield="name", lforce="n", ...)
 }
 \arguments{
   \item{database}{
@@ -142,7 +142,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     of the \code{database}.
   }
   \item{wrap}{If TRUE, lines that cross too far across the map
-    (due to a strange projection) are omitted.}
+    (due to a strange projection) are omitted. If wrap is a vector of length 2, it is interpreted as the longitude range to be used for a global map, e.g. \code{c(-180,180)} or \code{c(0,360)}. This even works when \code{fill=TRUE}, but will probably not be useful when using projections. In that case, the values must correspond to the X axis of the projection.}
   \item{resolution}{
     number that specifies the resolution with which
     to draw the map.
@@ -173,6 +173,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
   \item{namefield}{
     A vector of column names to be used as region name if \code{database} is a \code{SpatialPolygonsDataFrame}. Ignored in all other cases.
   }
+  \item{lforce}{Limit enforcement. Only taken into account if \code{xlim} and/or \code{ylim} are defined and a projection is used. Possible values are \code{"n"} (none) \code{"e"} (exact),\code{"s"} (small),\code{"l"} (large). If \code{lforce="e"}, map data is restricted exactly to the given limits prior to pojection. This will usually not work well with \code{fill=TRUE} because the clipping code (\code{map.restrict()} does not recognize polygons. If \code{lforce="s"}, the four corners defined by \code{xlim} and \code{ylim} are projected and the plot window is restricted to the largest rectangle inside this region. \code{"l"} will result in a larger rectangle that includes the four corners. However, the parts that fall outside the original limits may not have complete. This will also work with \code{fill=TRUE}. In this case the output value of the data is not changed, only the plot window is affected. These options are only useful for some projections.}
   \item{...}{Extra arguments passed to \code{polygon} or \code{lines}. Of particular interest may be the options \code{border} and\code{lty} that control the color and line type of the polygon borders when \code{fill = TRUE}.}
 }
 \details{
@@ -209,6 +210,7 @@ where \code{mymap} is the returned value from a previous call to
 }
 \examples{
 map()	# low resolution map of the world
+map(wrap = c(0,360), fill = TRUE, col = 2) # pacific-centered map of the world
 map('usa')	# national boundaries
 map('county', 'new jersey')	# county map of New Jersey
 map('state', region = c('new york', 'new jersey', 'penn'))	# map of three states

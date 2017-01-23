@@ -177,7 +177,9 @@ map.wrap <- function(p, xlim=NULL) {
 
   index <- c(ind[1:j[1]],  
              unlist(lapply(1:(length(j)-1), function(k) c(NA, ind[(j[k]+1):j[(k + 1)]]) )) )
-
+# notice that p$name is not returned!
+# so if wrapping is applied, you loose polygon names
+# but they would be wrong, anyway...
   list(x = p$x[index], y = p$y[index])
 }
 
