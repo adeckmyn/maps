@@ -83,7 +83,8 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     If \code{FALSE}, the lines bounding each region will be drawn (but
     only once, for interior lines).
     If \code{TRUE}, each region will be filled using colors from the
-    \code{col =} argument, and bounding lines will not be drawn.
+    \code{col =} argument, and bounding lines are drawn by default using \code{par("fg")}.
+    To hide the bounding lines, use \code{border=NA} (see \code{...}).
   }
   \item{col}{
     vector of colors.
@@ -91,7 +92,9 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     all lines, and any other colors are ignored.
     Otherwise, the colors are matched one-one with the polygons
     that get selected by the \code{region} argument (and are reused
-    cyclically, if necessary).
+    cyclically, if necessary). If \code{fill = TRUE}, the default boundary line colour 
+    is given by \code{par("fg")}. To change this, you can use the \code{border} 
+    argument (see '...').
     A color of \code{NA} causes the corresponding region to be deleted
     from the list of polygons to be drawn.
     Polygon colors are assigned \emph{after} polygons are deleted due to values
@@ -171,7 +174,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     A vector of column names to be used as region name if \code{database} is a \code{SpatialPolygonsDataFrame}. Ignored in all other cases.
   }
   \item{lforce}{Limit enforcement. Only taken into account if \code{xlim} and/or \code{ylim} are defined and a projection is used. Possible values are \code{"n"} (none) \code{"e"} (exact),\code{"s"} (small),\code{"l"} (large). If \code{lforce="e"}, map data is restricted exactly to the given limits prior to pojection. This will usually not work well with \code{fill=TRUE} because the clipping code (\code{map.restrict()} does not recognize polygons. If \code{lforce="s"}, the four corners defined by \code{xlim} and \code{ylim} are projected and the plot window is restricted to the largest rectangle inside this region. \code{"l"} will result in a larger rectangle that includes the four corners. However, the parts that fall outside the original limits may not have complete. This will also work with \code{fill=TRUE}. In this case the output value of the data is not changed, only the plot window is affected. These options are only useful for some projections.}
-  \item{...}{Extra arguments passed to \code{polygon} or \code{lines}. Of particular interest may be the options \code{border} and\code{lty} that control the color and line type of the polygon borders.}
+  \item{...}{Extra arguments passed to \code{polygon} or \code{lines}. Of particular interest may be the options \code{border} and\code{lty} that control the color and line type of the polygon borders when \code{fill = TRUE}.}
 }
 \details{
 The simplest form of use of this function is:
@@ -270,7 +273,7 @@ if(require(mapproj)) {	# mapproj is used for  projection="polyconic"
 \seealso{
   \code{\link{map.text}}, \code{\link{map.axes}},
   \code{\link{map.scale}}, \code{\link[mapproj]{map.grid}} (in the \code{mapproj} library),
-  \code{\link{SpatialPolygons2map}}
+  \code{\link[graphics]{polygon}}, \code{\link{SpatialPolygons2map}}
 }
 \references{
   Richard A. Becker, and Allan R. Wilks,
