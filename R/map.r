@@ -126,8 +126,8 @@ function(database = "world", regions = ".", exact = FALSE,
 	 col = 1, plot = TRUE, add = FALSE, namesonly = FALSE, 
          xlim = NULL, ylim = NULL, wrap = FALSE,
          resolution = if (plot) 1 else 0, type = "l", bg = par("bg"),
-         mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, namefield="name", 
-         lforce = "n", ...)
+         mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, 
+         namefield="name", lforce = "n", ...)
 {
   # parameter checks
   if (resolution>0 && !plot) 
@@ -159,9 +159,9 @@ function(database = "world", regions = ".", exact = FALSE,
 ### we can enforce xlim & ylim exactly
 ### before doing the projection
 ### this changes the output
-### and will probably ruin 'fill=TRUE'
+### and will probably ruin 'fill=TRUE' untill I fix map.restrict.poly
     if (lforce=="e") {
-      coord <- map.restrict(coord, xlim, ylim)
+      coord <- map.restrict.poly(coord, xlim, ylim, poly=fill)
     }
     coord <- mapproj::mapproject(coord, projection = projection,
 			parameters = parameters, orientation = orientation)

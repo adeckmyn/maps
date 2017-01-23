@@ -26,7 +26,8 @@ map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=-89) {
 }
 
 
-map.restrict <- function(data, xlim=NULL, ylim=NULL) {
+map.restrict.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
+  if (poly) warning("map.restric.poly is not (yet) polygon aware.")
   if (!is.null(xlim)) {
     len_in <- length(data$x)
     len_out <- 2*len_in
