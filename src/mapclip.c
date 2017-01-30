@@ -8,13 +8,12 @@ Method:
   - boundary crossings are interpolated to the boundary value
   - all crossings are indexed and sorted by latitude value
   - new sub-polygons are constructed one by one
-TODO:
-  - nicer 'interpolated lines' along the cut. Only because it looks nicer in projections.
 */
 
 #include "R.h"
 
 #define MAX_SEGMENTS 50
+#define MAX_INTERP 5
 void map_restrict(double *xin, double *yin, int *nin,
                  double *xout, double *yout, int *nout,
                  double *xmin, double *xmax);
@@ -23,49 +22,6 @@ void map_clip_poly (double* xin, double *yin, int *nin,
                         double *xlim, int *inside, int *poly, int *npoly);
 void construct_poly(double *xout, double *yout, int *segment_start_list, int *segment_finish_list, 
                     int count_segments, int merge, int *line_end, int *pcount);
-
-/* ============================================================= */
-
-// Very simple line clipping: no polygon awareness
-// Normally, the final output vector will be shorter than input,
-// but it is theoretically possible to have an output vector that is longer!
-void map_restrict(double *xin,  double *yin,  int *nin,
-                  double *xout, double *yout, int *nout,
-                  double *xmin, double *xmax) {
-
-  int i,j;
-
-  i=j=0;
-  while (i < *nin) {
-    while ( i < *nin && (ISNA(xin[i]) || xin[i] < *xmin || xin[i] > *xmax) ) i++;
-    if (i == *nin) break;
-    if (i>0 && !ISNA(xin[i-1])) {
-      xout[j] = (xin[i-1] < *xmin) ? *xmin : *xmax;
-      yout[j] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[j]-xin[i-1]);
-      j++;
-      if (j >= *nout) Rf_error("Output buffer too small.");
-    }
-    while (i < *nin && !ISNA(xin[i]) && xin[i] >= *xmin && xin[i] <= *xmax) {
-      xout[j] = xin[i];
-      yout[j] = yin[i];
-      j++;
-      if (j >= *nout) Rf_error("Output buffer too small.");
-      i++;
-    }
-    if (i == *nin) break;
-    if (!ISNA(xin[i])) {
-      xout[j] = (xin[i] < *xmin) ? *xmin : *xmax;
-      yout[j] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[j]-xin[i-1]);
-      j++;
-      if (j >= *nout) Rf_error("Output buffer too small.");
-    }
-    xout[j] = yout[j] = NA_REAL;
-    j++;
-    if (j >= *nout) Rf_error("Output buffer too small.");
-  }
-  if (ISNA(xout[j-1])) j--;
-  *nout = j;
-}
 
 // call 4 times.
 // only consider one boundary at a time
@@ -162,7 +118,7 @@ void map_clip_poly (double* xin, double *yin, int *nin,
         else merge = 0;
         // (over-)estimate extra output space needed
         if (count_segments - merge > 0) { // if there is only 1 segment & it closes, no need to do anything
-          if (j >= *nout - 3*count_segments) Rf_error("Output vector too short! 2\n");
+          if (j >= *nout - (3+MAX_INTERP)*count_segments) Rf_error("Output vector too short!\n");
           construct_poly(xout, yout, segment_start_list, 
                           segment_finish_list, count_segments, merge, &j, &pcount);
           npoly[count_line-1] = pcount;
@@ -171,7 +127,7 @@ void map_clip_poly (double* xin, double *yin, int *nin,
       } 
       if (ISNA(xin[i]) && j>0 && !ISNA(xout[j-1])) {
         xout[j] = yout[j] = NA_REAL; j++;
-        if (j >= *nout) Rf_error("Output vector too short! 1\n");
+        if (j >= *nout) Rf_error("Output vector too short!\n");
       }
       while (i < *nin && ISNA(xin[i])) i++;
     }
@@ -188,9 +144,9 @@ void construct_poly(double *xout, double *yout, int *segment_start_list, int *se
   int remaining, llen, closed, line_start, end_point, poly_len;
   int sorted_start_list[MAX_SEGMENTS], ordered_finish_list[MAX_SEGMENTS];
   int is_used[MAX_SEGMENTS], poly[MAX_SEGMENTS];
-  double *xbuf, *ybuf;
+  double *xbuf, *ybuf, x0, y0, dy;
 
-  llen = segment_finish_list[count_segments-1] - segment_start_list[0] +10*count_segments;
+  llen = segment_finish_list[count_segments-1] - segment_start_list[0] + (3+MAX_INTERP)*count_segments;
   xbuf = (double*) malloc( llen * sizeof(double));
   ybuf = (double*) malloc( llen * sizeof(double));
 
@@ -239,11 +195,22 @@ void construct_poly(double *xout, double *yout, int *segment_start_list, int *se
     }
     // write polygon to buffer
     // TODO : add some extra interpolating points inbetween the segments
-    //        they are "invisible" without projection, but you want
+    //        they are "invisible" without projection, but you may want
     //        a projection of the xlim boundary to look smooth
     pstart = n;
     for (j=0; j<poly_len ; j++) {
       m=sorted_start_list[poly[j]];
+      if (j>0) {
+        x0 = xbuf[n-1];
+        y0 = ybuf[n-1];
+        dy = (yout[segment_start_list[m]] - y0)/MAX_INTERP ;
+        for (k=1; k < MAX_INTERP; k++) {
+          xbuf[n] = x0;
+          ybuf[n] = y0 + k*dy;
+          n++;
+          if (n >= llen) Rf_error("Buffer too short.");
+        }
+      }
       if (m==0 && merge) {
         for (k = segment_start_list[m] ; k < *line_end ; k++) {
           xbuf[n] = xout[k];
@@ -268,6 +235,15 @@ void construct_poly(double *xout, double *yout, int *segment_start_list, int *se
       }
     }
     // close the polygon
+    x0 = xbuf[n-1];
+    y0 = ybuf[n-1];
+    dy = (ybuf[pstart] - y0)/MAX_INTERP ;
+    for (k=1; k < MAX_INTERP; k++) {
+      xbuf[n] = x0;
+      ybuf[n] = y0 + k*dy;
+      n++;
+      if (n >= llen) Rf_error("Buffer too short.");
+    }
     xbuf[n] = xbuf[pstart];
     ybuf[n] = ybuf[pstart];
     n++;
@@ -275,6 +251,7 @@ void construct_poly(double *xout, double *yout, int *segment_start_list, int *se
     xbuf[n] = NA_REAL;
     ybuf[n] = NA_REAL;
     n++;
+    if (n >= llen) Rf_error("Buffer too short.");
   }
 
   // write buffer to xout
