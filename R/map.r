@@ -160,13 +160,15 @@ function(database = "world", regions = ".", exact = FALSE,
 ### before doing the projection
 ### this changes the output
     if (lforce=="e") {
-      coord <- map.restrict.poly(coord, xlim, ylim, poly=fill)
+      coord <- map.clip.poly(coord, xlim, ylim, poly=fill)
+      nam <- coord$names
     }
     coord <- mapproj::mapproject(coord, projection = projection,
 			parameters = parameters, orientation = orientation)
     coord$projection = projection
     coord$parameters = parameters
     coord$orientation = orientation
+    coord$names <- nam
     if (!is.null(xlim) && !is.null(ylim) && lforce %in% c("s","l")) {
       prange <- mapproj::mapproject(x=rep(xlim,2), y=rep(ylim, each=2))
       if (lforce=="s") {
@@ -181,7 +183,6 @@ function(database = "world", regions = ".", exact = FALSE,
       if (all(is.na(coord$x)))
         stop("projection failed for all data")
       else warning("projection failed for some data")
-    coord$names <- nam
   }
   # AD: we do wrapping first: slightly better than when run after the thinning
   #     also now the output data is also wrapped if plot=FALSE

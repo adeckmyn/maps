@@ -9,7 +9,7 @@
 \alias{map.poly}
 \alias{map.wrap}
 \alias{map.wrap.poly}
-\alias{map.restrict}
+\alias{map.clip.poly}
 \alias{subgroup}
 \alias{gp.smooth}
 \alias{kernel.smooth}
@@ -29,7 +29,7 @@ map.poly(database, regions = ".", exact = FALSE, xlim = NULL, ylim = NULL,
          namefield="name")
 map.wrap(p, xlim=NULL)
 map.wrap.poly(data, xlim=NULL, poly=FALSE, antarctica=-89)
-map.restrict(data, xlim=NULL, ylim=NULL)
+map.clip.poly(data, xlim=NULL, ylim=NULL, poly=FALSE)
 subgroup(x, i)
 gp.smooth(x, z, xo, lambda, r)
 kernel.smooth(x, z, xo, lambda, region = NULL, normalize = TRUE)
