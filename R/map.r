@@ -159,7 +159,6 @@ function(database = "world", regions = ".", exact = FALSE,
 ### we can enforce xlim & ylim exactly
 ### before doing the projection
 ### this changes the output
-### and will probably ruin 'fill=TRUE' untill I fix map.restrict.poly
     if (lforce=="e") {
       coord <- map.restrict.poly(coord, xlim, ylim, poly=fill)
     }

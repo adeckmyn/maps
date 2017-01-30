@@ -11,7 +11,7 @@ CFLAGS = -I$(R_HOME)/include -Wall -pedantic -DWin32
 
 DLLLIBS = -L$(IMPDIR) -lR
 
-OBJS = mapget.o		\
+OBJS = mapwrap.o maprestrict.o mapget.o		\
 	smooth.o	\
 	thin.o
 

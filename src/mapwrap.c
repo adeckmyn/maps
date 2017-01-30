@@ -14,19 +14,15 @@ Method:
 
 #define MAX_SEGMENTS 50
 void split_poly(double *xout, double *yout, int *npos, int line_start,
-                int *segment_list, int *nsegments, double xmin, double xmax);
+                int *segment_start_list, int *nsegments, double xmin, double xmax);
 void sort_crossings(double *yval, int *ysort, int nval);
 void map_wrap(double *xin, double *yin, int *nin,
              int *wraplist, int *npoly,
              double *xout, double *yout, int *nout,
              int *poly, double *xmin, double *xmax, double *antarctica);
 void close_antarctica(double *xout, double *yout, int *npos,
-                      int line_start, int *segment_list,
+                      int line_start, int *segment_start_list,
                       double xmin, double xmax,double antarctica);
-void map_restrict(double *xin, double *yin, int *nin,
-                 double *xout, double *yout, int *nout,
-                 double *xmin, double *xmax);
-
 /* ============================================================= */
 
 void map_wrap(double *xin, double *yin, int *nin,
@@ -34,14 +30,14 @@ void map_wrap(double *xin, double *yin, int *nin,
              double *xout, double *yout, int *nout,
              int *poly, double *xmin, double *xmax, double *antarctica) {
 
-  int i, npos, count_wrap, count_crossings, line_start, line_finish, count_line;
-  int segment_list[MAX_SEGMENTS];
+  int i, j, count_wrap, count_crossings, line_start, line_finish, count_line;
+  int segment_start_list[MAX_SEGMENTS], segment_finish_list[MAX_SEGMENTS];
   double period, xi, ymid;
   char is_closed;
 
   period = *xmax - *xmin;
 
-  npos=0;        // position in output vector
+  j=0;        // position in output vector
   count_wrap=0;  // count how many polylines have been wrapped
   count_line=0;  // keep track of which polyline we're treating
 
@@ -55,67 +51,76 @@ void map_wrap(double *xin, double *yin, int *nin,
       if (i==0 || ISNA(xin[i-1])) {
         count_crossings = 0;
         npoly[count_line] = 1;
-        line_start = npos;
-//        Rprintf("New polyline %i at position=%i/%i\n", count_line, i, npos);
+        line_start = j;
+//        Rprintf("New polyline %i at position=%i/%i\n", count_line, i, j);
       }
       // have we just crossed/hit the boundary?
-      else if (abs(xi - xout[npos-1]) > period/2.) {
-//        Rprintf(".....crossing at %i/%i?\n", i, npos);
+      else if (abs(xi - xout[j-1]) > period/2.) {
+//        Rprintf(".....crossing at %i/%i?\n", i, j);
         // If we are exactly on the boundary, we adapt 'side' to the previous point
         if (xi == *xmin) xi= *xmax;
         else if (xi== *xmax) xi = *xmin;
         else {
           count_crossings++;
-//          Rprintf("    Boundary crossing %i at position=%i/%i\n", count_crossings, i, npos);
+//          Rprintf("    Boundary crossing %i at position=%i/%i\n", count_crossings, i, j);
           // if this is the first segment, report this polyline as being wrapped
           if (count_crossings==1 && *poly) wraplist[count_wrap++] = count_line;
           // if we were exactly on the boundary: no need to interpolate
-          if (xout[npos-1] == *xmin) {
-            if (npos+2 > *nout) Rf_error("Output vector too short.");
-            xout[npos] = NA_REAL; xout[npos+1]= *xmax;
-            yout[npos] = NA_REAL; yout[npos+1]= yout[npos-1];
-            if (*poly) segment_list[count_crossings-1] = npos + 1;
-            npos += 2;
+          if (xout[j-1] == *xmin) {
+            if (j+2 > *nout) Rf_error("Output vector too short.");
+            xout[j] = NA_REAL; xout[j+1]= *xmax;
+            yout[j] = NA_REAL; yout[j+1]= yout[j-1];
+            if (*poly) {
+              segment_start_list[count_crossings-1] = j + 1;
+//              segment_finish_list[count_crossings-1] = j - 1; // NOTICE: this doesn't fit correctly
+            }
+            j += 2;
           }
-          else if (xout[npos-1] == *xmax) {
-            if (npos+2 > *nout) Rf_error("Output vector too short.");
-            xout[npos] = NA_REAL; xout[npos+1]= *xmin;
-            yout[npos] = NA_REAL; yout[npos+1]= yout[npos-1];
-            if (*poly) segment_list[count_crossings-1] = npos + 1;
-            npos += 2;
+          else if (xout[j-1] == *xmax) {
+            if (j+2 > *nout) Rf_error("Output vector too short.");
+            xout[j] = NA_REAL; xout[j+1]= *xmin;
+            yout[j] = NA_REAL; yout[j+1]= yout[j-1];
+            if (*poly) {
+              segment_start_list[count_crossings-1] = j + 1;
+//              segment_finish_list[count_crossings-1] = j - 1; // NOTICE: this doesn't fit correctly
+            }
+            j += 2;
           }
           else { // normal 'crossing' case
-            if (npos >= *nout-4) Rf_error("Output vector too short!\n");
+            if (j >= *nout-4) Rf_error("Output vector too short!\n");
             // create interpolated points at boundaries
-            if (xi < xout[npos-1]) {
-              xout[npos]= *xmax; xout[npos+1]=NA_REAL; xout[npos+2]= *xmin;
-              ymid = yin[i] + (yin[i]-yout[npos-1]) / (xi + period - xout[npos-1])
+            if (xi < xout[j-1]) {
+              xout[j]= *xmax; xout[j+1]=NA_REAL; xout[j+2]= *xmin;
+              ymid = yin[i] + (yin[i]-yout[j-1]) / (xi + period - xout[j-1])
                                                      * (*xmax - xi - period);
             }
             else {
-              xout[npos]= *xmin; xout[npos+1]=NA_REAL; xout[npos+2]= *xmax;
-              ymid = yin[i] + (yin[i]-yout[npos-1]) / (xi - period - xout[npos-1])
+              xout[j]= *xmin; xout[j+1]=NA_REAL; xout[j+2]= *xmax;
+              ymid = yin[i] + (yin[i]-yout[j-1]) / (xi - period - xout[j-1])
                                                      * (*xmin - xi + period);
             }
-            yout[npos]=ymid; yout[npos+1]=NA_REAL; yout[npos+2]=ymid;
-//            Rprintf("x: %lf %lf %lf %lf\n",xout[npos-1],xout[npos],xout[npos+2],xout[npos+3]);
-//            Rprintf("y: %lf %lf %lf %lf\n",yout[npos-1],yout[npos],yout[npos+2],yout[npos+3]);
+            yout[j]=ymid; yout[j+1]=NA_REAL; yout[j+2]=ymid;
+//            Rprintf("x: %lf %lf %lf %lf\n",xout[j-1],xout[j],xout[j+2],xout[j+3]);
+//            Rprintf("y: %lf %lf %lf %lf\n",yout[j-1],yout[j],yout[j+2],yout[j+3]);
             // store the start location of this new segment
             // note that the first segment is not stored in this way, but as line_start
-            if (*poly) segment_list[count_crossings-1] = npos + 2;
+            if (*poly) {
+              segment_start_list[count_crossings-1] = j + 2;
+//              segment_finish_list[count_crossings-1] = j - 1; // NOTICE: this doesn't fit correctly
+            }
             if (*poly && count_crossings >= MAX_SEGMENTS) Rf_error("Too many crossings in line %i.\n",count_line);
-            npos += 3;
+            j += 3;
           }
         }
       }
       // just an internal point
-      xout[npos] = xi; yout[npos] = yin[i]; npos++;
-      if (npos >= *nout) Rf_error("Output vector too short!\n");
+      xout[j] = xi; yout[j] = yin[i]; j++;
+      if (j >= *nout) Rf_error("Output vector too short!\n");
     }
     else { // it is a NA entry that separates 2 polylines
-      line_finish = npos-1;
-      xout[npos] = yout[npos] = NA_REAL; npos++;
-      if (npos >= *nout) Rf_error("Output vector too short!\n");
+      line_finish = j-1;
+      xout[j] = yout[j] = NA_REAL; j++;
+      if (j >= *nout) Rf_error("Output vector too short!\n");
       if (*poly) {
         if (yout[line_start] != yout[line_finish])
            Rf_error("Not a closed polygon. Are you sure this is polygon data?");
@@ -130,14 +135,14 @@ void map_wrap(double *xin, double *yin, int *nin,
         // if the polygon doesn't close, that usually counts as a crossing
         if (count_crossings + !(is_closed) == 1) { // 1 crossing: must be Antarctica
           // (over-)estimate extra output space needed
-          if (npos >= *nout - 10) Rf_error("Output vector too short!\n");
-          close_antarctica(xout, yout, &npos, line_start,
-                           segment_list, *xmin, *xmax, *antarctica);
+          if (j >= *nout - 10) Rf_error("Output vector too short!\n");
+          close_antarctica(xout, yout, &j, line_start,
+                           segment_start_list, *xmin, *xmax, *antarctica);
         }
         else if (count_crossings > 0) {
           // (over-)estimate extra output space needed
-          if (npos >= *nout - 3*count_crossings) Rf_error("Output vector too short!\n");
-          split_poly(xout, yout, &npos, line_start, segment_list, &count_crossings, *xmin, *xmax);
+          if (j >= *nout - 3*count_crossings) Rf_error("Output vector too short!\n");
+          split_poly(xout, yout, &j, line_start, segment_start_list, &count_crossings, *xmin, *xmax);
           // on return, count_crossings contains the corrected number of crossings
           // it could even be 0!
           npoly[count_line]=(count_crossings / 2) + 1;
@@ -146,11 +151,11 @@ void map_wrap(double *xin, double *yin, int *nin,
       count_line++;
     }
   }
-  *nout = npos-1; // drop the last NA
+  *nout = j-1; // drop the last NA
 }
 
 void close_antarctica(double *xout, double *yout, int *npos,
-                      int line_start, int *segment_list,
+                      int line_start, int *segment_start_list,
                       double xmin, double ymax,double antarctica) {
     // three options:
     //   - don't close the polygon, just re-align
@@ -168,15 +173,15 @@ void close_antarctica(double *xout, double *yout, int *npos,
     xbuf = (double*) malloc((line_length + 10) * sizeof(double));
     ybuf = (double*) malloc((line_length + 10) * sizeof(double));
 //    Rprintf("Buffer length: %i\n",line_length+10);
-//    Rprintf("line_start=%i, line_finish=%i, line_length=%i, npos=%i, seg1=%i\n",line_start,line_finish,line_length,*npos,segment_list[0]);
+//    Rprintf("line_start=%i, line_finish=%i, line_length=%i, npos=%i, seg1=%i\n",line_start,line_finish,line_length,*npos,segment_start_list[0]);
     // write to buffer and re-align
     j=0;
-    for (i=segment_list[0]; i < line_finish; i++) {
+    for (i=segment_start_list[0]; i < line_finish; i++) {
       xbuf[j] = xout[i];
       ybuf[j] = yout[i];
       j++;
     }
-    for (i=line_start+1; i<segment_list[0]-1; i++) {
+    for (i=line_start+1; i<segment_start_list[0]-1; i++) {
       xbuf[j] = xout[i];
       ybuf[j] = yout[i];
       j++;
@@ -192,7 +197,7 @@ void close_antarctica(double *xout, double *yout, int *npos,
   else i=*npos-1; // the polyline was correctly alligned: nothing needs changing
 
   // aestethic closure
-  if (antarctica < 0) {
+  if (antarctica < -50.) {
     xout[i] = xout[i-1]; yout[i] = antarctica; i++;
     dx = (xout[i] - xout[line_start])/3.;
     for (j=0 ; j<3 ; j++) {
@@ -214,7 +219,7 @@ void close_antarctica(double *xout, double *yout, int *npos,
 }
 
 void split_poly(double *xout, double *yout, int* npos, int line_start,
-                int *segment_list, int *nsegments, double xmin, double xmax) {
+                int *segment_start_list, int *nsegments, double xmin, double xmax) {
   int i,j,k,m, ep, firstpoint,  lastpoint, npoly, newlength, segnum, compare, line_length, line_finish;
   int llen, is_constant;
   char closed, no_append;
@@ -239,7 +244,7 @@ void split_poly(double *xout, double *yout, int* npos, int line_start,
   if ( (xout[line_start]== xmin && xout[line_finish==xmax] ) ||
        (xout[line_start]== xmax && xout[line_finish==xmin] ) ) {
     is_constant = 1;
-    llen = segment_list[0] - 2; // end of the first part ("pre-segment")
+    llen = segment_start_list[0] - 2; // end of the first part ("pre-segment")
 //    Rprintf("Checking line structure. line_start=%i, llen=%i\n",line_start,llen);
     i=line_start;
     while (i < llen && is_constant) is_constant = (xout[i++] == xout[line_start]);
@@ -251,11 +256,11 @@ void split_poly(double *xout, double *yout, int* npos, int line_start,
       *npos -= 2;
       (*nsegments)--;
       if (*nsegments == 0) return;
-      for (i=0; i< *nsegments; i++) segment_list[i] = segment_list[i+1] - 2;
+      for (i=0; i< *nsegments; i++) segment_start_list[i] = segment_start_list[i+1] - 2;
     }
     else { // use the beginning as an extra segment
 //      Rprintf("---Line start is an extra segment.\n");
-      segment_list[(*nsegments)++] = line_start;
+      segment_start_list[(*nsegments)++] = line_start;
       no_append=1;
     }
   }
@@ -272,8 +277,8 @@ void split_poly(double *xout, double *yout, int* npos, int line_start,
 
   // make vector of starting y values, sort it by value
   for (i=0; i< *nsegments; i++) {
-    ystart[i] = yout[segment_list[i]];
-//    Rprintf("%i : %lf %lf\n",i,xout[segment_list[i]], ystart[i]);
+    ystart[i] = yout[segment_start_list[i]];
+//    Rprintf("%i : %lf %lf\n",i,xout[segment_start_list[i]], ystart[i]);
     if (i) yend[i-1] = ystart[i] ;
     lused[i] = 0;
   }
@@ -323,10 +328,10 @@ void split_poly(double *xout, double *yout, int* npos, int line_start,
 //    Rprintf("Write segment %i (length %i) to buffer.\n",i,k );
     for (m=0; m<k; m++) {
       segnum = ysort[poly[m]];
-//      Rprintf("    segment %i:%i (actual %i) at position %i\n", m, poly[m], segnum, segment_list[segnum]);
+//      Rprintf("    segment %i:%i (actual %i) at position %i\n", m, poly[m], segnum, segment_start_list[segnum]);
 //      Rprintf("      buffer position at start:%i\n", newlength);
-      xo = xout + segment_list[segnum];
-      yo = yout + segment_list[segnum];
+      xo = xout + segment_start_list[segnum];
+      yo = yout + segment_start_list[segnum];
       // the very last polyline is not followed by NA!!!
       while (!ISNA(*xo) && xo < xout+ *npos) {xbuf[newlength] = *xo++; ybuf[newlength] = *yo++; newlength++;}
       if (segnum== *nsegments-1 && !no_append) { // append the first part of polyline to last segment
@@ -334,10 +339,11 @@ void split_poly(double *xout, double *yout, int* npos, int line_start,
         yo = yout + line_start + 1;
         while (!ISNA(*xo)) {xbuf[newlength] = *xo++; ybuf[newlength] = *yo++; newlength++;}
       }
+      // TODO: you may want to add a few points along the border. This will look nicer if you use projections.
     }
     // repeat the first point of this segment to close the polygon
-    xbuf[newlength] = xout[segment_list[ysort[poly[0]]]];
-    ybuf[newlength] = yout[segment_list[ysort[poly[0]]]];
+    xbuf[newlength] = xout[segment_start_list[ysort[poly[0]]]];
+    ybuf[newlength] = yout[segment_start_list[ysort[poly[0]]]];
     newlength++;
     // separator
     xbuf[newlength] = ybuf[newlength] = NA_REAL;
@@ -366,43 +372,5 @@ void sort_crossings(double *yval, int *ysort, int nval) {
     for (j=0; j < nval ; j++) if (yval[i] < yval[j]) cc++;
     ysort[cc] = i;
   }
-}
-
-// Very simple line clipping: no polygon awareness
-// We don't even check for j >= *nout
-// So the utput vectors had better be long enough!
-// TODO: make a polygon-aware version
-void map_restrict(double *xin,  double *yin,  int *nin,
-                  double *xout, double *yout, int *nout,
-                  double *xmin, double *xmax) {
-
-  int i,j;
-
-  i=j=0;
-  while (i < *nin) {
-    while ( i < *nin && (ISNA(xin[i]) || xin[i] < *xmin || xin[i] > *xmax) ) i++;
-    if (i == *nin) break;
-    if (i>0 && !ISNA(xin[i-1])) {
-      xout[j] = (xin[i-1] < *xmin) ? *xmin : *xmax;
-      yout[j] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[j]-xin[i-1]);
-      j++;
-    }
-    while (i < *nin && !ISNA(xin[i]) && xin[i] >= *xmin && xin[i] <= *xmax) {
-      xout[j] = xin[i];
-      yout[j] = yin[i];
-      j++;
-      i++;
-    }
-    if (i == *nin) break;
-    if (!ISNA(xin[i])) {
-      xout[j] = (xin[i] < *xmin) ? *xmin : *xmax;
-      yout[j] = yin[i-1] + (yin[i]-yin[i-1])/(xin[i]-xin[i-1])*(xout[j]-xin[i-1]);
-      j++;
-    }
-    xout[j] = yout[j] = NA_REAL;
-    j++;
-  }
-  if (ISNA(xout[j-1])) j--;
-  *nout = j;
 }
 

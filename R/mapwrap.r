@@ -26,7 +26,7 @@ map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=-89) {
 }
 
 
-map.restrict.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
+map.restrict.poly0 <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
   if (poly) warning("map.restric.poly is not (yet) polygon aware.")
   if (!is.null(xlim)) {
     len_in <- length(data$x)
@@ -57,5 +57,58 @@ map.restrict.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
     data$y <- d2$yout[1:xlen]
     if (!is.null(data$range)) data$range[3:4] <- ylim
   }
+  data
+}
+
+
+map.restrict.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
+  if (!is.null(xlim)) {
+    len_in <- length(data$x)
+    len_out <- 2*len_in
+    dd <- .C("map_restrict_poly",
+               xin=as.numeric(data$x), yin=as.numeric(data$y),
+               nin=as.integer(len_in),
+               xout=numeric(len_out), yout=numeric(len_out), 
+               nout=as.integer(len_out),
+               xlim=as.numeric(xlim[1]), inside=as.integer(1),
+               poly=as.integer(poly), npoly=integer(len_in),
+               NAOK=TRUE, PACKAGE="maps")
+    len_in <- dd$nout
+    len_out <- 2*len_in
+    dd <- .C("map_restrict_poly",
+               xin=as.numeric(dd$xout), yin=as.numeric(dd$yout),
+               nin=as.integer(len_in),
+               xout=numeric(len_out), yout=numeric(len_out), 
+               nout=as.integer(len_out),
+               xlim=as.numeric(xlim[2]), inside=as.integer(-1),
+               poly=as.integer(poly), npoly=integer(len_in),
+               NAOK=TRUE, PACKAGE="maps")
+    data$x <- dd$xout[1:dd$nout]
+    data$y <- dd$yout[1:dd$nout]
+  }
+  if (!is.null(ylim)) {
+    len_in <- length(data$x)
+    len_out <- 2*len_in
+    dd <- .C("map_restrict_poly",
+               yin=as.numeric(data$y), xin=as.numeric(data$x),
+               nin=as.integer(len_in),
+               yout=numeric(len_out), xout=numeric(len_out), 
+               nout=as.integer(len_out),
+               ylim=as.numeric(ylim[1]), inside=as.integer(1),
+               poly=as.integer(poly), npoly=integer(len_in),
+               NAOK=TRUE, PACKAGE="maps")
+    len_in <- dd$nout
+    len_out <- 2*len_in
+    dd <- .C("map_restrict_poly",
+               yin=as.numeric(dd$yout), xin=as.numeric(dd$xout),
+               nin=as.integer(len_in),
+               yout=numeric(len_out), xout=numeric(len_out), 
+               nout=as.integer(len_out),
+               ylim=as.numeric(ylim[2]), inside=as.integer(-1),
+               poly=as.integer(poly), npoly=integer(len_in),
+               NAOK=TRUE, PACKAGE="maps")
+  }
+  data$x <- dd$xout[1:dd$nout]
+  data$y <-  dd$yout[1:dd$nout]
   data
 }
