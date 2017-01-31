@@ -1,26 +1,25 @@
 map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=-89) {
-  MAXWRAP=sum(is.na(data$x))+1
+  nseg <- sum(is.na(data$x))+1
   len_in <- length(data$x)
   len_out <- 2*len_in
-  wrap <- .C("map_wrap",
+  wrap <- .C("map_wrap_poly",
                xin=data$x, yin=data$y, nin=as.integer(len_in),
-               wraplist=integer(MAXWRAP), nsegments=integer(MAXWRAP),
                xout=numeric(len_out), yout=numeric(len_out), 
                nout=as.integer(len_out),
-               poly=as.integer(poly), xmin=xlim[1], xmax=xlim[2],
+               xmin=as.numeric(xlim[1]), xmax=as.numeric(xlim[2]),
+               poly=as.integer(poly), npoly=integer(nseg),
                antarctica=as.numeric(antarctica),
                NAOK=TRUE, PACKAGE="maps")
 
   xlen <- wrap$nout
-  result <- list(x=wrap$xout[1:xlen], y=wrap$yout[1:xlen])
+  data$x <- wrap$xout[1:xlen]
+  data$y <- wrap$yout[1:xlen]
   if (!is.null(data$names) && poly) {
-    result$names <- rep(data$names, times=wrap$nsegments)
+    data$names <- rep(data$names, times=wrap$npoly)
   }
-  result$range <- c(range(result$x, na.rm=TRUE), range(result$y, na.rm=TRUE)) 
-  if (inherits(data, "map")) class(result) <- "map"
-  result
+  data$range <- c(range(data$x, na.rm=TRUE), range(data$y, na.rm=TRUE)) 
+  data
 }
-
 
 map.clip.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
   nam <- data$names
@@ -77,10 +76,10 @@ map.clip.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
                ylim=as.numeric(ylim[2]), inside=as.integer(-1),
                poly=as.integer(poly), npoly=integer(nseg),
                NAOK=TRUE, PACKAGE="maps")
+    data$x <- dd$xout[1:dd$nout]
+    data$y <- dd$yout[1:dd$nout]
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
   }
-  data$x <- dd$xout[1:dd$nout]
-  data$y <-  dd$yout[1:dd$nout]
   if (!is.null(nam) && poly) data$names <- nam
   data
 }

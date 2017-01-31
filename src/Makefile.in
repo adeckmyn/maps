@@ -8,7 +8,7 @@ RM = rm -f
 MKDIR = mkdir
 AWK = @AWK@
 
-OBJS = mapwrap.o mapclip.o mapget.o		\
+OBJS =  mapclip.o mapget.o		\
 	smooth.o	\
 	thin.o
 
