@@ -362,10 +362,10 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
             yout[j]=ymid; yout[j+1]=NA_REAL; yout[j+2]=ymid;
             // store the start location of this new segment
             if (*poly) {
-              segment_finish_list[count_segments-1] = j - 1;
+              segment_finish_list[count_segments-1] = j ;
               segment_start_list[count_segments++] = j + 2;
+              if (count_segments > MAX_SEGMENTS) Rf_error("Too many crossings in line %i.\n",count_line);
             }
-            if (*poly && count_segments >= MAX_SEGMENTS) Rf_error("Too many crossings in line %i.\n",count_line);
             j += 3;
           }
         }
