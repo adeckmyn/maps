@@ -19,16 +19,23 @@ Method:
 void map_wrap_poly(double *xin, double *yin, int *nin,
               double *xout, double *yout, int *nout,
               double *xmin, double *xmax, 
-              int *poly, int *npoly, double *antarctica) ;
-void close_antarctica(double *xout, double *yout,
-                      int *segment_start_list, int *segment_finish_list,
-                      int merge , int *npos,
-                      double antarctica);
+              int *poly, int *npoly, int *antarctica) ;
+
 void map_clip_poly (double* xin, double *yin, int *nin,
                     double* xout, double *yout, int *nout,
                     double *xlim, int *inside, int *poly, int *npoly);
-void construct_poly(double *xout, double *yout, int *segment_start_list, int *segment_finish_list, 
-                    int count_segments, int merge, int *line_end, int *pcount, int sides);
+
+void construct_poly(double *xout, double *yout,
+                    int *segment_start_list, int *segment_finish_list, 
+                    int count_segments, int *line_end, int *pcount, int sides);
+
+void close_antarctica(double *xout, double *yout,
+                      int *segment_start_list, int *segment_finish_list,
+                      int *count_segments);
+
+void merge_segments(double *xout, double *yout,
+                    int *segment_start_list, int *segment_finish_list, 
+                    int *count_segments);
 
 // call 4 times.
 // only consider one boundary at a time
@@ -120,14 +127,14 @@ void map_clip_poly (double* xin, double *yin, int *nin,
                (xout[segment_start_list[0]] != xout[segment_finish_list[count_segments-1]]) ){
             Rf_error("Polygon not correctly closed.");
           }
-          merge = 1 ;
+          merge_segments(xout, yout, segment_start_list, segment_finish_list, &count_segments);
+          j = segment_finish_list[count_segments-1] + 1;
         }
-        else merge = 0;
         // (over-)estimate extra output space needed
-        if (count_segments - merge > 0) { // if there is only 1 segment & it closes, no need to do anything
+        if (count_segments > 0) { // if there is only 1 segment, no need to do anything
           if (j >= *nout - (3+MAX_INTERP)*count_segments) Rf_error("Output vector too short!\n");
           construct_poly(xout, yout, segment_start_list, 
-                          segment_finish_list, count_segments, merge, &j, &pcount, 1);
+                          segment_finish_list, count_segments, &j, &pcount, 1);
           npoly[count_line-1] = pcount;
         }
         else npoly[count_line-1]=1; 
@@ -146,7 +153,7 @@ void map_clip_poly (double* xin, double *yin, int *nin,
 
 void construct_poly(double *xout, double *yout,
                     int *segment_start_list, int *segment_finish_list, 
-                    int count_segments, int merge, int *line_end, int *pcount, int sides) {
+                    int count_segments, int *line_end, int *pcount, int sides) {
 
   int i,j,k,m,n,pe, pstart;
   int remaining, buflen, closed, line_start, end_point, poly_len;
@@ -163,10 +170,6 @@ void construct_poly(double *xout, double *yout,
 
   line_start = segment_start_list[0];
 //  *line_end = segment_finish_list[count_segments-1];
-  if (merge) {
-    count_segments--;
-    segment_start_list[0] = segment_start_list[count_segments];
-  }
 
   //  sorted_start_list[]   : element 0 contains the number of the segment with largest y value
   //  ordered_finish_list[] : element 0 contains the order of the end point of segment 0
@@ -188,7 +191,8 @@ void construct_poly(double *xout, double *yout,
     *pcount += 1;
     i = *pcount -1;
     while (i < count_segments && is_used[i]) i++;
-    if (i == count_segments) {Rf_error("shouldn't happen.\n") ; break; }
+//    Rprintf("starting sub-polygon %i, remaining=%i, i=%i\n",*pcount,remaining,i);
+    if (i == count_segments) {Rf_error("shouldn't happen.\n") ; }
     // do we have polygons on both "sides" (wrapping) or only one (clipping) ?
     // if sides=2, every end point of a segment is also the starting point
     // of segment at the other 'side', so we count differently.
@@ -212,6 +216,7 @@ void construct_poly(double *xout, double *yout,
     }
     // write polygon to buffer
     pstart = n;
+//    Rprintf("polygon %i has %i segments. Starting at n=%i\n",*pcount,poly_len,n);
     for (j=0; j<poly_len ; j++) {
       m=sorted_start_list[poly[j]];
       // add some interpolated points along the boundary
@@ -227,28 +232,11 @@ void construct_poly(double *xout, double *yout,
         }
       }
       // now write the new segment
-      if (m==0 && merge) {
-        // merge==1: the first and last segment should be together
-        for (k = segment_start_list[m] ; k < *line_end ; k++) {
-          xbuf[n] = xout[k];
-          ybuf[n] = yout[k];
-          n++;
-          if (n >= buflen) Rf_error("Buffer too short.");
-        }
-        for (k=line_start + 1 ; k <= segment_finish_list[0] ; k++) {
-          xbuf[n] = xout[k];
-          ybuf[n] = yout[k];
-          n++;
-          if (n >= buflen) Rf_error("Buffer too short.");
-        }
-      }
-      else {
-        for (k = segment_start_list[m] ; k <= segment_finish_list[m] ; k++) {
-          xbuf[n] = xout[k];
-          ybuf[n] = yout[k];
-          n++;
-          if (n >= buflen) Rf_error("Buffer too short.");
-        }
+      for (k = segment_start_list[m] ; k <= segment_finish_list[m] ; k++) {
+        xbuf[n] = xout[k];
+        ybuf[n] = yout[k];
+        n++;
+        if (n >= buflen) Rf_error("Buffer too short.");
       }
     }
     // close the polygon (with some extra points)
@@ -269,6 +257,7 @@ void construct_poly(double *xout, double *yout,
     ybuf[n] = NA_REAL;
     n++;
     if (n >= buflen) Rf_error("Buffer too short.");
+//    Rprintf("polygon %i has %i segments. Finished at %i\n",*pcount,poly_len,n);
   }
 
   // write completed buffer to xout
@@ -287,12 +276,11 @@ void construct_poly(double *xout, double *yout,
 void map_wrap_poly(double *xin, double *yin, int *nin,
                    double *xout, double *yout, int *nout,
                    double *xmin, double *xmax, 
-                   int *poly, int *npoly, double *antarctica) {
+                   int *poly, int *npoly, int *antarctica) {
 
   int i, j, k,count_segments, count_line, pcount;
   int segment_start_list[MAX_SEGMENTS], segment_finish_list[MAX_SEGMENTS];
   double period, xi, ymid;
-  int merge;
 
   period = *xmax - *xmin;
 
@@ -380,27 +368,43 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
       if (*poly) {
         segment_finish_list[count_segments-1] = j-1;
         if ( xout[j-1] != *xmin && xout[j-1] != *xmin) {
-          merge = 1; // the final segment must be merged with the first
           // check for polygon closure
           if ( (yout[segment_start_list[0]] != yout[segment_finish_list[count_segments-1]]) ||
                (xout[segment_start_list[0]] != xout[segment_finish_list[count_segments-1]]) ){
             Rf_error("Polygon not correctly closed.");
           }
+          if (count_segments > 1) {
+            merge_segments(xout, yout, segment_start_list, segment_finish_list, &count_segments);
+            j = segment_finish_list[count_segments-1] + 1;
+          } else count_segments = 0;
         }
-        else merge = 0;
+//        for (k=0;k<count_segments; k++) {
+//          Rprintf("  %i: start=%i, stop=%i\n",k,segment_start_list[k], segment_finish_list[k]);
+//          Rprintf("    %lf %lf -- %lf %lf\n",xout[segment_start_list[k]], yout[segment_start_list[k]],
+//                       xout[segment_finish_list[k]], yout[segment_finish_list[k]]);}
+
         // we don't check closure in yout : it /may/ be wrong due to starting at xmin/xmax
         // if the polygon doesn't close, that usually counts as a crossing
-        if ( (count_segments - 1 + !(merge)) % 2) { // 1 (or odd #) crossing: must be Antarctica
-          // (over-)estimate extra output space needed
-          if (j >= *nout - MAX_INTERP - 5) Rf_error("Output vector too short!\n");
-          close_antarctica(xout, yout, segment_start_list, segment_finish_list,
-                           merge, &j, *antarctica);
+        if ( count_segments % 2) { // 1 (or odd #) crossing: must be Antarctica
+          if (antarctica) {
+            // (over-)estimate extra output space needed
+            if (j >= *nout - MAX_INTERP - 5) Rf_error("Output vector too short!\n");
+            if (count_segments > MAX_SEGMENTS - 2)  Rf_error("Can't add segment for Antarctic closing\n");
+            close_antarctica(xout, yout, segment_start_list, segment_finish_list, &count_segments);
+            j = segment_finish_list[count_segments-1] + 1;
+          }
+          else { // drop the polygon completely: don't draw Antarctica
+            npoly[count_line] = 0;
+            count_segments = 0;
+            j = segment_start_list[0];
+          }
         }
-        else if (count_segments > 1) {
+        if (count_segments > 1) {
           // (over-)estimate extra output space needed
           if (j >= *nout - (3 + MAX_INTERP)*count_segments) Rf_error("Output vector too short!\n");
-          construct_poly(xout, yout, segment_start_list, segment_finish_list,
-                         count_segments, merge, &j, &pcount, 2);
+//          Rprintf("calling construct_poly: count=%i, j=%i\n",count_segments, j);
+           construct_poly(xout, yout, segment_start_list, segment_finish_list,
+                         count_segments, &j, &pcount, 2);
           npoly[count_line] = pcount;
         }
       }
@@ -409,6 +413,7 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
         if (j >= *nout) Rf_error("Output vector too short!\n");
       }
       count_line++;
+//      Rprintf("finished line %i\n",count_line);
     }
   }
   if (ISNA(xout[j-1])) j--;
@@ -417,62 +422,76 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
 
 void close_antarctica(double *xout, double *yout,
                       int *segment_start_list, int *segment_finish_list,
-                      int merge, int *npos,
-                      double antarctica) {
-    // three options:
-    //   - don't close the polygon, just re-align
-    //   - close without "esthetic" extensions to fixed latitude
-    //   - close with extra line at e.g. -89.
-  int i, j, k, buflen, line_length, line_start, line_finish;
-  double *xbuf, *ybuf;
-  double dx;
+                      int *count_segments) {
+  int i, j, k;
+  double x0, x1, dx;
 
-  line_start = segment_start_list[0];
-  if (merge) {
-    line_finish = segment_finish_list[1] ;
-    line_length = line_finish - line_start + 1;
-    buflen = line_length + 5 + MAX_INTERP;
-    xbuf = (double*) malloc(buflen * sizeof(double));
-    ybuf = (double*) malloc(buflen * sizeof(double));
-    // write to buffer and re-align
-    j=0;
-    for (i=segment_start_list[1]; i <= segment_finish_list[1]; i++) {
-      xbuf[j] = xout[i];
-      ybuf[j] = yout[i];
-      j++;
-    }
-    for (i=segment_start_list[0] + 1; i <= segment_finish_list[0]; i++) {
-      xbuf[j] = xout[i];
-      ybuf[j] = yout[i];
-      j++;
-    }
-    // write buffer to xout
-    i = segment_start_list[0];
-    for (k=0; k < j  ; k++) { xout[i] = xbuf[k]; yout[i] = ybuf[k]; i++; }
-    free(xbuf);
-    free(ybuf);
-  }
-  else i=segment_finish_list[0]+1; // the polyline was correctly alligned: nothing needs changing
+// 1. find the segment that crosses the domain, to know it's direction
+// 2. add a closing segment in other direction
+  i=0;
+  while (i < *count_segments && xout[segment_start_list[i]] == xout[segment_finish_list[i]]) i++;
 
-  // aestethic closure
-  line_start = segment_start_list[0];
-  if (antarctica < -50.) {
-    xout[i] = xout[i-1]; yout[i] = antarctica; i++;
-    dx = (xout[i] - xout[line_start]) / MAX_INTERP;
-    for (j=0 ; j < MAX_INTERP ; j++) {
-      xout[i] = xout[i-1] - dx;
-      yout[i] = antarctica;
-      i++;
-    }
-    xout[i] = xout[line_start];
-    yout[i] = antarctica;
-    i++;
-    xout[i] = xout[line_start];
-    yout[i] = yout[line_start];
-    i++;
+  if (i == *count_segments) Rf_error("Antarctica error.");
+  x1 = xout[segment_start_list[i]];
+  x0 = xout[segment_finish_list[i]];
+  dx = (x1 - x0)/MAX_INTERP;
+
+  j = segment_finish_list[*count_segments - 1] + 1;
+  xout[j] = yout[j] = NA_REAL; j++;
+  segment_start_list[*count_segments] = j ;
+  xout[j] = x0; yout[j] = ANTARCTICA; j++;
+  for (k=1 ; k < MAX_INTERP ; k++){
+    yout[j] = ANTARCTICA;
+    xout[j] = x0 + k*dx;
+    j++;
   }
-  xout[i] = NA_REAL;
-  yout[i] = NA_REAL;
-  i++;
-  *npos = i;
+  xout[j] = x1; yout[j] = ANTARCTICA;
+  segment_finish_list[*count_segments] = j ;
+
+  *count_segments += 1;
 }
+ 
+void merge_segments(double *xout, double *yout,
+                    int *segment_start_list, int *segment_finish_list, 
+                    int *count_segments) {
+  int i, buflen;
+  double *xbuf, *ybuf, *xo, *yo;
+
+  buflen = segment_finish_list[0] - segment_start_list[0] + 1 ;
+  xbuf = (double*) malloc(buflen * sizeof(double));
+  ybuf = (double*) malloc(buflen * sizeof(double));
+
+  xo = xout + segment_start_list[0];
+  yo = yout + segment_start_list[0];
+  for (i=0 ; i < buflen; i++) {
+    xbuf[i] = *(xo++);
+    ybuf[i] = *(yo++);
+  }
+
+  xo = xout + segment_start_list[0];
+  yo = yout + segment_start_list[0];
+  for (i=segment_start_list[1]; i <= segment_finish_list[*count_segments-1]; i++) {
+    *(xo++) = xout[i];
+    *(yo++) = yout[i];
+  }
+
+  // write buffer to xout
+  // skip the (repeated) first point!
+  for (i=1; i < buflen  ; i++) {
+    *(xo++) = xbuf[i];
+    *(yo++) = ybuf[i];
+  }
+  // fix the segment lists
+  for(i=1; i< *count_segments - 1; i++) {
+    segment_start_list[i]  = segment_start_list[i+1]  - buflen - 1;
+  }
+  for(i=0; i< *count_segments - 2; i++) {
+    segment_finish_list[i] = segment_finish_list[i+1] - buflen - 1;
+  }
+  segment_finish_list[*count_segments - 2] =  segment_finish_list[*count_segments - 1] - 2;
+
+  *count_segments -= 1;
+  free(xbuf);
+  free(ybuf);
+}
+

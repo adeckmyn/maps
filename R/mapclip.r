@@ -1,4 +1,4 @@
-map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=-89) {
+map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=TRUE) {
   nseg <- sum(is.na(data$x))+1
   len_in <- length(data$x)
   len_out <- 2*len_in
@@ -8,7 +8,7 @@ map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=-89) {
                nout=as.integer(len_out),
                xmin=as.numeric(xlim[1]), xmax=as.numeric(xlim[2]),
                poly=as.integer(poly), npoly=integer(nseg),
-               antarctica=as.numeric(antarctica),
+               antarctica=as.integer(antarctica),
                NAOK=TRUE, PACKAGE="maps")
 
   xlen <- wrap$nout
