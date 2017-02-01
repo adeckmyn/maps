@@ -122,13 +122,16 @@ void map_clip_poly (double* xin, double *yin, int *nin,
         // if count_segments==1 && position==1 -> nothing left to do, the complete polygon is 'inside'
         if (position > 0) { //we finished (and thus also started) inside the region,
                             //so the first and last segment are to be merged
-          // check for polygon closure
+          // check polygon closure
           if ( (yout[segment_start_list[0]] != yout[segment_finish_list[count_segments-1]]) ||
                (xout[segment_start_list[0]] != xout[segment_finish_list[count_segments-1]]) ){
             Rf_error("Polygon not correctly closed.");
           }
-          merge_segments(xout, yout, segment_start_list, segment_finish_list, &count_segments);
-          j = segment_finish_list[count_segments-1] + 1;
+          if (count_segments > 1) {
+            merge_segments(xout, yout, segment_start_list, segment_finish_list, &count_segments);
+            j = segment_finish_list[count_segments-1] + 1;
+          }
+          else count_segments = 0;
         }
         // (over-)estimate extra output space needed
         if (count_segments > 0) { // if there is only 1 segment, no need to do anything
@@ -386,7 +389,7 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
         // we don't check closure in yout : it /may/ be wrong due to starting at xmin/xmax
         // if the polygon doesn't close, that usually counts as a crossing
         if ( count_segments % 2) { // 1 (or odd #) crossing: must be Antarctica
-          if (antarctica) {
+          if (*antarctica) {
             // (over-)estimate extra output space needed
             if (j >= *nout - MAX_INTERP - 5) Rf_error("Output vector too short!\n");
             if (count_segments > MAX_SEGMENTS - 2)  Rf_error("Can't add segment for Antarctic closing\n");

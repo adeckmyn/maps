@@ -2,9 +2,10 @@
 \title{News for package 'maps'}
 \section{Changes in maps version 3.2.0 (2017-01-25)}{
   \itemize{
-    \item New wrapping code should eliminate border artefacts on world maps, even with \code{fill=TRUE}. It can be called via \code{map(..., wrap=c(0,360),...)}, i.e. by giving \code{wrap} a vector in stead of a boolean value. The wrapping code is also directly calleble as \code{map.wrap.poly(data, xlim, poly=FALSE, antarctica=-89)} and \code{map.clip.poly(data, xlim=NULL, ylim=NULL, poly=FALSE)}.
+    \item New map wrapping code should eliminate border artefacts on world maps, even with \code{fill=TRUE}. It can be called via \code{map(..., wrap=c(0,360),...)}, i.e. by giving \code{wrap} a vector in stead of a boolean value. The wrapping code is also directly available as \code{map.wrap.poly(data, xlim, poly=FALSE, antarctica=TRUE)}
     \item \code{map()} has a new argument \code{lforce} (force limits). Possible values are \code{"n"} (no, default), \code{"e"} (exact limits), \code{"s"} (small enclosed rectangle) and \code{"l"} (large, enclosing rectangle). Forcing the limits will limit your map more forcibly to the given limits. \code{"s","l"} only impact the plotting window, but with \code{"e"} the data itself is clipped exactly to the borders.
-    \item \code{maptype()} always return \code{"spherical"} for external databases. Now it is possible to add a \code{maptype}, e.g. \code{mymap$maptype <- "planar"}.
+The clipping code is also directly available as \code{map.clip.poly(data, xlim=NULL, ylim=NULL, poly=FALSE)}.
+    \item \code{maptype()} always returned \code{"spherical"} for external databases. Now it is possible to add a \code{maptype} manually, e.g. \code{mymap$maptype <- "planar"}.
     \item \code{county.fips} and \code{county.state}: changed from factors to character vectors.
     \item Minor correction to \code{us.cities}.
     \item When using projections, \code{map()} now checks for the availability of \code{mapproj} and gives a nicer message if it isn't available.
