@@ -154,6 +154,9 @@ void construct_poly(double *xout, double *yout,
   int is_used[MAX_SEGMENTS], poly[MAX_SEGMENTS];
   double *xbuf, *ybuf, x0, y0, dy;
 
+  if (count_segments > MAX_SEGMENTS)
+    Rf_error("Too many line segments. Increase MAX_SEGMENTS and re-compile.");
+
   buflen = segment_finish_list[count_segments-1] - segment_start_list[0] + (3+MAX_INTERP)*count_segments;
   xbuf = (double*) malloc( buflen * sizeof(double));
   ybuf = (double*) malloc( buflen * sizeof(double));
@@ -196,7 +199,7 @@ void construct_poly(double *xout, double *yout,
     poly_len=0;
     while (!closed) {
       poly[poly_len++] = i; //sorted_start_list[i];
-      if (poly_len>=MAX_SEGMENTS) Rf_error("polygon explosion.");
+      if (poly_len > count_segments) Rf_error("polygon explosion.");
       is_used[i] = 1;
       remaining--;
       pe = ordered_finish_list[sorted_start_list[i]];
@@ -204,7 +207,7 @@ void construct_poly(double *xout, double *yout,
       else {
         if (sides==1) i = pe;
         else i = (pe%2) ? pe - 1 : pe + 1;
-        if (is_used[i]) Rf_error("Closure error.");
+        if (i >= count_segments || is_used[i]) Rf_error("Sub-polygon closure error.");
       }
     }
     // write polygon to buffer
@@ -374,12 +377,10 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
       }
     }
     else { // it is a NA entry that separates 2 polylines
-      // do we have to write NA /before/ calling construct_poly etc? I THINK NOT
       if (*poly) {
         segment_finish_list[count_segments-1] = j-1;
         if ( xout[j-1] != *xmin && xout[j-1] != *xmin) {
-          merge = 1;
-          // CHECK CLOSURE
+          merge = 1; // the final segment must be merged with the first
           // check for polygon closure
           if ( (yout[segment_start_list[0]] != yout[segment_finish_list[count_segments-1]]) ||
                (xout[segment_start_list[0]] != xout[segment_finish_list[count_segments-1]]) ){
@@ -389,7 +390,7 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
         else merge = 0;
         // we don't check closure in yout : it /may/ be wrong due to starting at xmin/xmax
         // if the polygon doesn't close, that usually counts as a crossing
-        if (count_segments + !(merge) == 2) { // 1 crossing: must be Antarctica
+        if ( (count_segments - 1 + !(merge)) % 2) { // 1 (or odd #) crossing: must be Antarctica
           // (over-)estimate extra output space needed
           if (j >= *nout - MAX_INTERP - 5) Rf_error("Output vector too short!\n");
           close_antarctica(xout, yout, segment_start_list, segment_finish_list,
