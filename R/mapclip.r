@@ -81,5 +81,6 @@ map.clip.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
   }
   if (!is.null(nam) && poly) data$names <- nam
+  data$range <- c(range(data$x, na.rm=TRUE), range(data$y, na.rm=TRUE))
   data
 }

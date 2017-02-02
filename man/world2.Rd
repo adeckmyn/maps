@@ -38,8 +38,11 @@ The Natural Earth data set is available from \url{http://www.naturalearthdata.co
 \examples{
 map('world2', xlim = c(100, 300))
 map.axes()
-map(map('world', wrap=c(0,360), plot=FALSE), xlim = c(100, 300))
-map(map('world', wrap=c(0,360), plot=FALSE, fill=TRUE), xlim = c(100, 300), fill=TRUE)
+# xlim is performed before wrapping:
+map('world', wrap=c(0,360), xlim = c(100, 300))
+# so to emulate "world2":
+ww2 <- map('world', wrap=c(0,360), plot=FALSE, fill=TRUE)
+map(ww2, xlim = c(100, 300), fill=TRUE)
 }
 \references{
 Richard A. Becker, and Allan R. Wilks,

@@ -150,19 +150,20 @@ function(database = "world", regions = ".", exact = FALSE,
   coord <- map.poly(database, regions, exact, xlim, ylim, 
                     boundary, interior, fill, as.polygon, namefield=namefield)
   if (is.na(coord$x[1])) stop("first coordinate is NA.  bad map data?")
+  if (length(wrap)==2) {
+    coord <- map.wrap.poly(coord, xlim=wrap, poly=fill)
+  }
+  # we can enforce xlim & ylim exactly
+  # this changes the output
+  if (lforce=="e") {
+    coord <- map.clip.poly(coord, xlim, ylim, poly=fill)
+  }
   if (plot) {
     .map.range(coord$range)
   }
 
   if (doproj) {
     nam <- coord$names
-### we can enforce xlim & ylim exactly
-### before doing the projection
-### this changes the output
-    if (lforce=="e") {
-      coord <- map.clip.poly(coord, xlim, ylim, poly=fill)
-      nam <- coord$names
-    }
     coord <- mapproj::mapproject(coord, projection = projection,
 			parameters = parameters, orientation = orientation)
     coord$projection = projection
@@ -186,11 +187,7 @@ function(database = "world", regions = ".", exact = FALSE,
   }
   # AD: we do wrapping first: slightly better than when run after the thinning
   #     also now the output data is also wrapped if plot=FALSE
-  # EXPERIMENTAL: pass xlim and fill?
-  # xlim is only useful without projection...
-  if (length(wrap)==2) {
-    coord <- map.wrap.poly(coord, xlim=wrap, poly=fill)
-  } else if (wrap) coord <- map.wrap(coord)
+  if (length(wrap)==1 && wrap) coord <- map.wrap(coord)
   # do the plotting, if requested
   if (plot) {
     # for new plots, set up the coordinate system;
