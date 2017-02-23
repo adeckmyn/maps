@@ -34,10 +34,12 @@ SpatialPolygons2map <- function(database, namefield=NULL){
 #  p1 <- do.call(c, allpoly)
 #  p2 <- lapply(p1, function(x) rbind(c(NA,NA),x))
 #  p3 <- do.call(rbind,p2)[-1,]
-  result <- do.call(rbind, lapply(do.call(c,allpoly),
+  mymap <- do.call(rbind, lapply(do.call(c,allpoly),
                                   function(x) rbind(c(NA,NA),x)))[-1,]
-  list(x = result[,1], y = result[,2], names = gon.names,
-       range = c(range(result[,1], na.rm = TRUE),range(result[,2], na.rm = TRUE)))
+  result <- list(x = mymap[,1], y = mymap[,2], names = gon.names,
+       range = c(range(mymap[,1], na.rm = TRUE),range(mymap[,2], na.rm = TRUE)))
+  class(result) <- "map"
+  result
 }
 
 # transform a SpatialLines[DataFrame] into a list of polylines for map()
@@ -76,9 +78,11 @@ SpatialLines2map <- function(database, namefield=NULL){
 #  p1 <- do.call(c, allpoly)
 #  p2 <- lapply(p1, function(x) rbind(c(NA,NA),x))
 #  p3 <- do.call(rbind,p2)[-1,]
-  result <- do.call(rbind, lapply(do.call(c,allpoly),
+  mymap <- do.call(rbind, lapply(do.call(c,allpoly),
                                   function(x) rbind(c(NA,NA),x)))[-1,]
-  list(x = result[,1], y = result[,2], names = line.names,
-       range = c(range(result[,1], na.rm = TRUE),range(result[,2], na.rm = TRUE)))
+  result <- list(x = mymap[,1], y = mymap[,2], names = line.names,
+       range = c(range(mymap[,1], na.rm = TRUE),range(mymap[,2], na.rm = TRUE)))
+  class(result) <- "map"
+  result
 }
 

@@ -26,6 +26,8 @@ This may have several implications for code that calls map().
 - A data frame iso3166 has been added which, for every country on the new world map, lists the official name, the ISO3166 2- and 3-letter codes, and also the sovereignty. Type '?iso3166' for details.
 
 - A set of simple functions use this iso3166 table for creating a list of countries to map. So you can use the 2- or 3-letter ISO code (e.g. as country labels on a map), but also create a list based on the sovereignty. Type '?iso.expand' for details.
+
+- v3.2 adds new options to map() for wrapping and exact boundary clipping.
   
 ##FIXES
 - as of v3.1, map(..., fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow, should you ever want to plot a full world map at such a high resolution.

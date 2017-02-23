@@ -142,7 +142,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     of the \code{database}.
   }
   \item{wrap}{Boolean or a numeric vector. If TRUE, lines that cross too far across the map
-    (due to a strange projection) are omitted. If wrap is a vector of length 2, it is interpreted as the longitude range to be used for a global map, e.g. \code{c(-180,180)} or \code{c(0,360)}. This wrapping even works when \code{fill=TRUE} and is performed before any projection (so the range must always be in degrees).}
+    (due to a strange projection) are omitted. If wrap is a vector of length 2, it is interpreted as the longitude range to be used for a global map, e.g. \code{c(-180,180)} or \code{c(0,360)}. This wrapping even works when \code{fill=TRUE} and is performed before any projection (so the range must always be in degrees). However, the wrapping is performed \emph{after} \code{xlim, ylim} are applied.}
   \item{resolution}{
     number that specifies the resolution with which
     to draw the map.
