@@ -29,7 +29,7 @@ map.poly(database, regions = ".", exact = FALSE, xlim = NULL, ylim = NULL,
          namefield="name")
 map.wrap(p, xlim=NULL)
 map.wrap.poly(data, xlim, poly=FALSE, antarctica=TRUE)
-map.clip.poly(data, xlim=NULL, ylim=NULL, poly=FALSE)
+map.clip.poly(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE)
 subgroup(x, i)
 gp.smooth(x, z, xo, lambda, r)
 kernel.smooth(x, z, xo, lambda, region = NULL, normalize = TRUE)

@@ -21,10 +21,11 @@ map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=TRUE) {
   data
 }
 
-map.clip.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
+map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
   nam <- data$names
 
-  if (!is.null(xlim)) {
+# >= xlim[1]
+  if (!is.na(xlim[1])) {
     len_in <- length(data$x)
     len_out <- 2*len_in
     nseg <- sum(is.na(data$x)) + 1
@@ -36,12 +37,18 @@ map.clip.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
                xlim=as.numeric(xlim[1]), inside=as.integer(1),
                poly=as.integer(poly), npoly=integer(nseg),
                NAOK=TRUE, PACKAGE="maps")
+    data$x <- dd$xout[1:dd$nout]
+    data$y <- dd$yout[1:dd$nout]
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
-    len_in <- dd$nout
+  }
+
+# <= xlim[2]
+  if (!is.na(xlim[2])) {
+    len_in <- length(data$x)
     len_out <- 2*len_in
-    nseg <- sum(is.na(dd$xout[1:dd$nout])) + 1
+    nseg <- sum(is.na(data$x)) + 1
     dd <- .C("map_clip_poly",
-               xin=as.numeric(dd$xout), yin=as.numeric(dd$yout),
+               xin=as.numeric(data$x), yin=as.numeric(data$y),
                nin=as.integer(len_in),
                xout=numeric(len_out), yout=numeric(len_out), 
                nout=as.integer(len_out),
@@ -52,7 +59,9 @@ map.clip.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
     data$y <- dd$yout[1:dd$nout]
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
   }
-  if (!is.null(ylim)) {
+
+# >= ylim[1]
+  if (!is.na(ylim[1])) {
     len_in <- length(data$x)
     len_out <- 2*len_in
     nseg <- sum(is.na(data$x)) + 1
@@ -65,11 +74,17 @@ map.clip.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
                poly=as.integer(poly), npoly=integer(nseg),
                NAOK=TRUE, PACKAGE="maps")
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
-    len_in <- dd$nout
+    data$x <- dd$xout[1:dd$nout]
+    data$y <- dd$yout[1:dd$nout]
+  }
+ 
+# <= ylim[2]
+  if (!is.na(ylim[2])) {
+    len_in <- length(data$x)
     len_out <- 2*len_in
-    nseg <- sum(is.na(dd$xout[1:dd$nout])) + 1
+    nseg <- sum(is.na(data$x)) + 1
     dd <- .C("map_clip_poly",
-               yin=as.numeric(dd$yout), xin=as.numeric(dd$xout),
+               yin=as.numeric(data$y), xin=as.numeric(data$x),
                nin=as.integer(len_in),
                yout=numeric(len_out), xout=numeric(len_out), 
                nout=as.integer(len_out),
@@ -80,6 +95,7 @@ map.clip.poly <- function(data, xlim=NULL, ylim=NULL, poly=FALSE) {
     data$y <- dd$yout[1:dd$nout]
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
   }
+
   if (!is.null(nam) && poly) data$names <- nam
   data$range <- c(range(data$x, na.rm=TRUE), range(data$y, na.rm=TRUE))
   data
