@@ -1,15 +1,29 @@
 # in grep we must distinguish uk from Ukrain...
 world.exceptions <- c("uk")
 
+mapenvir <- function(database="world", package="maps") {
+  # check for "package::" to enable maps from another package like mapdata !!!
+  if (length(grep("::", database)) > 0) {
+    nsp <- strsplit(database,"::")[[1]]
+    package <- nsp[1]
+    database <- nsp[2]
+    # "data()" will not load the namespace of that package
+    # so that may have to be done explicitely
+    # because .onLoad() sets the environment
+    requireNamespace(package)
+  }
+  dbname <- paste0(database, "MapEnv")
+  data(list=dbname, package=package, envir=environment())
+  paste0(Sys.getenv(get(dbname)), database)
+}
+
 "mapgetg" <-
 function(database = "world", gons, fill = FALSE, xlim = c(-1e30, 1e30),
 	ylim = c(-1e30, 1e30))
 {
 	ngon <- length(gons)
 	gnames <- names(gons)
-	dbname <- paste(database, "MapEnv", sep = "")
-	# data(list = dbname)
-	mapbase <- paste(Sys.getenv(get(dbname)), database, sep = "")
+	mapbase <- mapenvir(database)
 	z <- .C("mapgetg", PACKAGE="maps",
 		as.character(mapbase),
 		gons = as.integer(gons),
@@ -44,9 +58,7 @@ function(database = "world", lines, xlim = c(-1e30, 1e30), ylim = c(-1e30,
 	nline <- as.integer(length(lines))
 	if(nline == 0)
 		return(integer(0))
-	dbname <- paste(database, "MapEnv", sep = "")
-	# data(list = dbname)
-	mapbase <- paste(Sys.getenv(get(dbname)), database, sep = "")
+	mapbase <- mapenvir(database)
 	z <- .C("mapgetl", PACKAGE="maps",
 		as.character(mapbase),
 		linesize = as.integer(lines),
@@ -89,9 +101,7 @@ function(database = "world", lines, xlim = c(-1e30, 1e30), ylim = c(-1e30,
 "mapname" <-
 function(database = "world", patterns, exact = FALSE)
 {
-  dbname <- paste(database, "MapEnv", sep = "")
-  # data(list = dbname)
-  mapbase <- paste(Sys.getenv(get(dbname)), database, sep = "")
+  mapbase <- mapenvir(database)
   # rewritten by Tom Minka
   fname <- paste(sep = "", mapbase, ".N")
   cnames <- read.delim(fname, as.is = TRUE, header = FALSE)
@@ -133,9 +143,7 @@ function(database = "world", patterns, exact = FALSE)
 function(database = "world")
 {
   if(is.character(database)) {
-	dbname <- paste(database, "MapEnv", sep = "")
-	# data(list = dbname)
-	mapbase <- paste(Sys.getenv(get(dbname)), database, sep = "")
+	mapbase <- mapenvir(database)
         # minka: maptypes are now 1,2 instead of 0,1
 	switch(.C("maptype", PACKAGE="maps",
 		as.character(mapbase),
@@ -174,9 +182,7 @@ match.map <- function(database, regions, exact = FALSE, warn = TRUE) {
   regions = tolower(regions)
 
   if(is.character(database)) {
-    dbname <- paste(database, "MapEnv", sep = "")
-    # data(list = dbname)
-    mapbase <- paste(Sys.getenv(get(dbname)), database, sep = "")
+    mapbase <- mapenvir(database)
     fname <- paste(sep = "", mapbase, ".N")
     x <- read.delim(fname, header = FALSE)
     nam <- as.character(x[[1]])
