@@ -1,20 +1,14 @@
 # in grep we must distinguish uk from Ukrain...
 world.exceptions <- c("uk")
 
-mapenvir <- function(database="world", package="maps") {
-  # check for "package::" to enable maps from another package like mapdata !!!
-  if (length(grep("::", database)) > 0) {
-    nsp <- strsplit(database,"::")[[1]]
-    package <- nsp[1]
-    database <- nsp[2]
-    # "data()" will not load the namespace of that package
-    # so that may have to be done explicitely
-    # because .onLoad() sets the environment
-    requireNamespace(package)
-  }
+mapenvir <- function(database="world") {
   dbname <- paste0(database, "MapEnv")
-  if (!exists(dbname)) data(list=dbname, package=package, envir=environment())
-  paste0(Sys.getenv(get(dbname)), database)
+  if (length(grep("::", database)) == 0) {
+    if (!exists(dbname)) dbname <- paste0("maps::",dbname)
+  } else {
+    database <- strsplit(database,"::")[[1]][2]
+  }
+  paste0(Sys.getenv(eval(parse(text=dbname))), database)
 }
 
 "mapgetg" <-
