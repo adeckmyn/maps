@@ -28,6 +28,8 @@ This may have several implications for code that calls map().
 - A set of simple functions use this iso3166 table for creating a list of countries to map. So you can use the 2- or 3-letter ISO code (e.g. as country labels on a map), but also create a list based on the sovereignty. Type '?iso.expand' for details.
 
 - v3.2 adds new options to map() for wrapping and exact boundary clipping.
+
+- v3.2 will work even if the package is not attached. so maps::map() works. You can even do maps::map("madata::worldHires").
   
 ##FIXES
 - as of v3.1, map(..., fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow, should you ever want to plot a full world map at such a high resolution.

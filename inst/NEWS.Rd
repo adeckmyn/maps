@@ -5,6 +5,7 @@
     \item New map wrapping code should eliminate border artefacts on world maps, even with \code{fill=TRUE}. It can be called via \code{map(..., wrap=c(0,360),...)}, i.e. by giving \code{wrap} a vector in stead of a boolean value. The wrapping code is also directly available as \code{map.wrap.poly(data, xlim, poly=FALSE, antarctica=TRUE)}
     \item \code{map()} has a new argument \code{lforce} (force limits). Possible values are \code{"n"} (no, default), \code{"e"} (exact limits), \code{"s"} (small enclosed rectangle) and \code{"l"} (large, enclosing rectangle). Forcing the limits will limit your map more forcibly to the given limits. \code{"s","l"} only impact the plotting window, but with \code{"e"} the data itself is clipped exactly to the borders.
 The clipping code is also directly available as \code{map.clip.poly(data, xlim=NULL, ylim=NULL, poly=FALSE)}.
+    \item All functions should now also work if the package is not attached. So now you can do \code{maps::map()} and even \code{maps::map("mapdata::worldHires")}
     \item \code{maptype()} always returned \code{"spherical"} for external databases. Now it is possible to add a \code{maptype} manually, e.g. \code{mymap$maptype <- "planar"}.
     \item The return value of \code{SpatialPolygons2map()} now has class \code{map}.
     \item \code{county.fips} and \code{county.state}: changed from factors to character vectors.
