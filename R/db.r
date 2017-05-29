@@ -13,7 +13,7 @@ mapenvir <- function(database="world", package="maps") {
     requireNamespace(package)
   }
   dbname <- paste0(database, "MapEnv")
-  data(list=dbname, package=package, envir=environment())
+  if (!exists(dbname)) data(list=dbname, package=package, envir=environment())
   paste0(Sys.getenv(get(dbname)), database)
 }
 
