@@ -18,17 +18,17 @@ Venezia	17
 Verona	18
 Trieste	19
 Milano	20
-Udine	21
-Gorizia	22
+Udine:I. di Sant'Andrea	21
+Gorizia:I.	22
 Padova	23
 Torino	24
 Cremona	25
-Venezia	26
+Venezia:Sant'Erasmo	26
 Venezia:Lido	27
 Mantova	28
 Pavia	29
 Venezia:Pellestrina	30
-Venezia	31
+Venezia:Chioggia	31
 Alessandria	32
 Rovigo	33
 Piacenza	34
@@ -52,7 +52,7 @@ Imperia	51
 Pesaro e Urbino	52
 Arezzo	53
 Pisa	54
-Arezzo	55
+Arezzo:Ca Raffaello	55
 Ancona	56
 Livorno	57
 Perugia	58
@@ -85,12 +85,12 @@ Avellino	84
 Sassari:I. Maddalena	85
 Sassari	86
 Sassari:I. Caprera	87
-Avellino	88
+Avellino:Sant'Arcangelo Trimonte	88
 Potenza	89
 Sassari:I. Asinara	90
 Napoli	91
 Latina:I. di Ponza	92
-Sassari	93
+Sassari:I. Tavolara	93
 Brindisi	94
 Nuoro	95
 Salerno	96
@@ -125,7 +125,7 @@ Trapani:I. Le Egadi:I. Favignana	124
 Enna	125
 Caltanissetta	126
 Agrigento	127
-Caltanissetta	128
+Caltanissetta:Resuttano	128
 Siracusa	129
 Ragusa	130
 Trapani:I. di Pantelleria	131
