@@ -3,7 +3,7 @@ function(xy, delta, symmetric = TRUE)
 {
   x <- xy$x
   y <- xy$y
-  xy <- .C("mapthin", PACKAGE="maps",
+  xy <- .C("map_thin", PACKAGE="maps",
     x = as.double(x),
     y = as.double(y),
     n = as.integer(length(x)),

@@ -140,12 +140,12 @@ char *s, *data, *suffix;
 }
 
 /*
- * maptype:
+ * map_type:
  * Discover whether the coordinate data is spherical
  * or planar and return as type.
  * type=-1 on error.
  */
-void maptype(database, type)
+void map_type(database, type)
 char **database;
 int *type;
 {
@@ -177,13 +177,13 @@ static double maptype_factor(int type)
 }
 
 /*
- * mapgetg:
+ * map_getg:
  * Retrieve polygon information from the named database.
  * Which is a vector of nwhich polygon numbers.  The retrieved
  * information is returned in sl.  If retlines is 0, the
  * number of polylines in each polygon is returned in sl.
  * Otherwise, the actual polyline numbers are strung together
- * in sl.  Thus, the usual usage is to call mapgetg once with
+ * in sl.  Thus, the usual usage is to call map_getg once with
  * retlines=0 and sl of length nwhich, and then again with
  * retlines=1 and sl of length the sum of the values returned
  * in sl in the first call.  Range and fill determine which
@@ -193,7 +193,7 @@ static double maptype_factor(int type)
  *	polygons lying partially outside range when fill is TRUE
  * If an error is encountered, retlines will be set to -1 on return.
  */
-void mapgetg(database, which, nwhich, sl, retlines, range, fill)
+void map_getg(database, which, nwhich, sl, retlines, range, fill)
 char **database;
 int *which, *nwhich, *sl, *retlines, *fill;
 double *range;
@@ -207,7 +207,7 @@ double *range;
 	struct region_h rh;
 	FILE *rf;
 
-	maptype(database, &type);
+	map_type(database, &type);
 	if(type < 0) {
 		*retlines = -1;
 		return;
@@ -278,10 +278,10 @@ double *range;
 
 
 /*
- * mapgetl:
+ * map_getl:
  * Retrieve polyline information from the named database.
  * Which is a vector of nwhich polyline numbers.  Getcoords
- * controls which of two actions mapgetl takes.
+ * controls which of two actions map_getl takes.
  *	getcoords = 0:
  * 		- replace each polyline number with the number
  * 		  of coordinate pairs in that polyline
@@ -296,7 +296,7 @@ double *range;
  * 		  and return these in range
  * If an error is encountered, nwhich will be set to -1 on return.
  */
-void mapgetl(database, which, nwhich, getcoords, x, y, range, fill)
+void map_getl(database, which, nwhich, getcoords, x, y, range, fill)
 char **database;
 int *which, *nwhich, *getcoords, *fill;
 double *x, *y, *range;
@@ -310,7 +310,7 @@ double *x, *y, *range;
 	struct pair *xy = NULL, XY;
 	FILE *lf;
 
-	maptype(database, &type);
+	map_type(database, &type);
 	if(type < 0) {
 		*nwhich = -1;
 		return;
@@ -435,30 +435,30 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
 
   /* in nline get number of polylines in this polygon */
   status = 0;
-  mapgetg(database, &poly, &one, &nline, &status, range, &one);
+  map_getg(database, &poly, &one, &nline, &status, range, &one);
 
   /* success? */
-  if(status < 0) error("mapgetg failure from getpoly");
+  if(status < 0) error("map_getg failure from getpoly");
 
   /* get the polyline numbers in lines */
   lines = Calloc(nline, int);
   status = 1;
-  mapgetg(database, &poly, &one, lines, &status, range, &one);
+  map_getg(database, &poly, &one, lines, &status, range, &one);
 
   /* success? */
   if(status < 0)
-    error("mapgetg failure from getpoly");
+    error("map_getg failure from getpoly");
 
   /* in lengths get the number of pairs in each polyline */
   lengths = Calloc(nline, int);
   for(i = 0; i < nline; i++)
     lengths[i] = lines[i];
   status = nline;
-  mapgetl(database, lengths, &status, &zero, 0, 0, range, &one);
+  map_getl(database, lengths, &status, &zero, 0, 0, range, &one);
 
   /* success? */
   if(status < 0)
-    error("mapgetl failure from getpoly");
+    error("map_getl failure from getpoly");
 
   /* allocate space for the actual coordinates */
   npair = nline-1;
@@ -469,11 +469,11 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
 
   /* get the coordinate pairs */
   status = nline;
-  mapgetl(database, lines, &status, &one, X, Y, range, &one);
+  map_getl(database, lines, &status, &one, X, Y, range, &one);
 
   /* success? */
   if(status < 0)
-    error("mapgetl failure from getpoly");
+    error("map_getl failure from getpoly");
 
   /* elide NAs */
   j = 0;

@@ -5,3 +5,4 @@ export(world.legacy,iso.expand,sov.expand,iso.alpha,area.map, identify.map,
        match.map, smooth.map, .map.range,
        SpatialPolygons2map, SpatialLines2map, map.wrap.poly, map.clip.poly)
 S3method(identify, map)
+useDynLib("maps", .registration = TRUE)

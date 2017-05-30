@@ -29,10 +29,9 @@ This may have several implications for code that calls map().
 
 - v3.2 adds new options to map() for wrapping and exact boundary clipping.
 
-- v3.2 will work even if the package is not attached. so maps::map() works. You can even do maps::map("madata::worldHires").
-  
 ##FIXES
-- as of v3.1, map(..., fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow, should you ever want to plot a full world map at such a high resolution.
+- As of v3.2, maps::map() also works if the maps package is not attached. You can even do maps::map("madata::worldHires").
+- As of v3.1, map(..., fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow, should you ever want to plot a full world map at such a high resolution.
 - map.text(..., exact=TRUE) now behaves as documented. Previously, the "exact=TRUE" was not passed to the map drawing if add=FALSE. To get the old (non-documented) behaviour (plot map with exact=FALSE, write text for exact=TRUE) you should now use 2 commands: 
   * > map(..., exact=FALSE)
   * > map.text(..., exact=TRUE, add=TRUE)
@@ -64,5 +63,4 @@ Even maps in e.g. shapefile format can now easily be imported for use in 'map()'
 - Many islands remain nameless.
 - The naming convention is largely maintained, but some choices are different. The changes mean that e.g. /region="France"/ now covers only metropolitan France, whithout (most of) the overseas departments and territories
 - Some inconsistencies in the naming procedure remain. For instance, while most countries are named by their full name, "UK" and "USA" are shortened in the same way as in the old data base. For UK, this even required a hack in the mapping code to avoid adding Ukrain to the map.
-- I'd like to find a way to get Antarctica show up a bit nicer, but whithout adding imaginary points that would be ruined in a projection or when changing the central meridian. For 'world2' such an extra closure libne has now been added.
 - The iso3166 table may have to be adapted for the Natural Earth 1:10 database, some extra rows have already been inserted.

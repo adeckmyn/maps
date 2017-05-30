@@ -179,7 +179,7 @@ int thin(x, y, n, delta, symmetric)
 	return(uptotal + downtotal);
 }
 
-void mapthin(x, y, n, delta, symmetric)
+void map_thin(x, y, n, delta, symmetric)
      double *x, *y, *delta;
      int *n, *symmetric;
 {

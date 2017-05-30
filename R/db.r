@@ -18,7 +18,7 @@ function(database = "world", gons, fill = FALSE, xlim = c(-1e30, 1e30),
 	ngon <- length(gons)
 	gnames <- names(gons)
 	mapbase <- mapenvir(database)
-	z <- .C("mapgetg", PACKAGE="maps",
+	z <- .C("map_getg", PACKAGE="maps",
 		as.character(mapbase),
 		gons = as.integer(gons),
 		as.integer(ngon),
@@ -30,7 +30,7 @@ function(database = "world", gons, fill = FALSE, xlim = c(-1e30, 1e30),
 	sizes <- z$sizes
 	if(z$error < 0)
 		stop("error in reading polygon headers")
-	z <- .C("mapgetg", PACKAGE="maps",
+	z <- .C("map_getg", PACKAGE="maps",
 		as.character(mapbase),
 		as.integer(gons),
 		as.integer(ngon),
@@ -53,7 +53,7 @@ function(database = "world", lines, xlim = c(-1e30, 1e30), ylim = c(-1e30,
 	if(nline == 0)
 		return(integer(0))
 	mapbase <- mapenvir(database)
-	z <- .C("mapgetl", PACKAGE="maps",
+	z <- .C("map_getl", PACKAGE="maps",
 		as.character(mapbase),
 		linesize = as.integer(lines),
 		error = as.integer(nline),
@@ -71,7 +71,7 @@ function(database = "world", lines, xlim = c(-1e30, 1e30), ylim = c(-1e30,
 		return(integer(0))
 	linesize <- z$linesize[ok]
 	N <- sum(linesize) + nline - 1
-	xy <- .C("mapgetl", PACKAGE="maps",
+	xy <- .C("map_getl", PACKAGE="maps",
 		as.character(mapbase),
 		as.integer(lines),
 		as.integer(nline),
@@ -139,7 +139,7 @@ function(database = "world")
   if(is.character(database)) {
 	mapbase <- mapenvir(database)
         # minka: maptypes are now 1,2 instead of 0,1
-	switch(.C("maptype", PACKAGE="maps",
+	switch(.C("map_type", PACKAGE="maps",
 		as.character(mapbase),
 		integer(1))[[2]] + 2, "unknown", "spherical", "planar", "spherical")
   } else {
