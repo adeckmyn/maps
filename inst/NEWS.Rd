@@ -10,6 +10,7 @@ The clipping code is also directly available as \code{map.clip.poly(data, xlim=N
     \item The return value of \code{SpatialPolygons2map()} now has class \code{map}.
     \item \code{county.fips} and \code{county.state}: changed from factors to character vectors.
     \item Minor correction to \code{us.cities}.
+    \item Fix some duplicated region names in \code{italy} map.
     \item When using projections, \code{map()} now checks for the availability of \code{mapproj} and gives a nicer message if it isn't available.
   }
 }
