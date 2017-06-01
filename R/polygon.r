@@ -16,7 +16,8 @@ map.where <- function(database = "world", x, y, ...)
     # this must be database, not mapbase
     nam <- mapname(database, ".")
     gon[gon == 0] = NA
-    names(nam)[gon]
+    # names(nam)[gon] #AD: this only works if database.N is perfectly ordered
+    names(nam)[match(gon,nam)]
   }
   else {
     if (inherits(database,"SpatialPolygons")) {
