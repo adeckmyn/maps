@@ -13,7 +13,8 @@ DLLLIBS = -L$(IMPDIR) -lR
 
 OBJS =  mapclip.o mapget.o		\
 	smooth.o	\
-	thin.o
+	thin.o		\
+	maps_init.c
 
 GDATA = county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G \
         state.carto.G legacy_world.G legacy_world2.G lakes.G
