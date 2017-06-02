@@ -8,9 +8,10 @@ RM = rm -f
 MKDIR = mkdir
 AWK = @AWK@
 
-OBJS =  mapclip.o mapget.o		\
-	smooth.o	\
-	thin.o                \
+OBJS =  mapclip.o   \
+	mapget.o    \
+	smooth.o    \
+	thin.o      \
 	maps_init.o
 
 GDATA = county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G \

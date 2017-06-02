@@ -1,5 +1,26 @@
 # in grep we must distinguish uk from Ukrain...
-world.exceptions <- c("uk")
+fix_exceptions <- function(patterns) {
+  # very ad hoc, I know. But at least it should work with other packages
+  patterns[match("uk",tolower(patterns))] <- "uk:"
+  patterns
+}
+
+fix_exceptions2 <- function(patterns=".") {
+  stop("This function should not be called")
+# FIX ME: will not work for exact=TRUE ("usa" should work)
+  world.exceptions <- c("uk"="United Kingdom","usa"="United States of America")
+  if (length(patterns)==1 && patterns==".") return(patterns)
+  p1 <- lapply(strsplit(tolower(patterns),":"), function(x) x[1])
+  iexp <- which(p1 %in% names(world.exceptions))
+  if (length(iexp)>0) {
+    warning("The use of short names 'UK' and 'USA' is deprecated and will be removed in the future.")
+    p2 <- tolower(patterns[iexp])
+    ilist <- unique(p1[iexp])
+    for (ii in ilist) p2 <- gsub(ii, world.exceptions[ii], p2)
+    patterns[iexp] <- p2
+  }
+  patterns
+}
 
 mapenvir <- function(database="world") {
   dbname <- paste0(database, "MapEnv")
@@ -112,16 +133,8 @@ function(database = "world", patterns, exact = FALSE)
     }
   } else {
 ## QUICK FIX: there is a problem now for UK vs Ukrain...
-## we fix it ad hoc for now by (^uk) => (^uk$) | (^uk:)
-## uk(?!r) would be simpler, but this can be extended should there ever be another case.
-## for UK, there is in fact no exact fit to "^uk$", but this is nice & general
-    if (database=="world") {
-      iexp <- which(tolower(patterns) %in% world.exceptions)
-      if (length(iexp)>0) {
-        ibase <- patterns[iexp]
-        patterns[iexp] <- paste(ibase,"$)|(^",ibase,":",sep="")
-      }
-    }
+## we fix it ad hoc for now by "uk" -> "uk:"
+    if (database=="world") patterns <- fix_exceptions(patterns) 
     regexp <- paste("(^", patterns, ")", sep = "", collapse = "|")
 # BUGFIX: perl regex is limited to about 30000 characters
 # so this crashes if patterns includes the whole world map
@@ -182,17 +195,8 @@ match.map <- function(database, regions, exact = FALSE, warn = TRUE) {
     x <- read.delim(fname, header = FALSE)
     nam <- as.character(x[[1]])
 
-# this is a quick-and-dirty fix for "uk" matching "ukrain"
-# it must also trigger the use of match.map.grep
-# We replace "uk" by "uk but not followed a letter"
-# So Ukrain doesn't fit "uk" anymore, but "uk:scotland" is OK
-    if (database=="world") {
-      iexp <- which(regions %in% world.exceptions)
-      if (length(iexp)>0) {
-        ibase <- regions[iexp]
-        regions[iexp] <- paste(ibase,"(?![[:alpha:]])",sep="")
-      }
-    }
+    # this is a quick-and-dirty fix for "uk" matching "ukrain"
+    if (database=="world") regions <- fix_exceptions(regions)
   }
   else {
     nam <- database$names
