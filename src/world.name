@@ -856,7 +856,7 @@ Italy:Asinara	855
 Italy:Sardinia	856
 Italy:Isola d'Elba	857
 Italy	858
-San Marino	859
+Italy:enclave:San Marino	859
 Jamaica	860
 Jersey	861
 Jordan	862
@@ -1619,9 +1619,9 @@ Yemen:4	1618
 Yemen	1619
 South Africa:Marion Island	1620
 South Africa	1621
-South Africa:hole	1622
+South Africa:enclave:Lesoto	1622
 Zambia	1623
 Zimbabwe	1624
 Netherlands:IJsselmeer	1625
 Netherlands:Zuid-Flevoland	1626
-Vatican	1627
+Italy:enclave:Vatican	1627
