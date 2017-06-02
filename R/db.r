@@ -105,7 +105,8 @@ function(database = "world", patterns, exact = FALSE)
     if (any(is.na(i))) {
       if (!missing(patterns)) {
         pmiss <- patterns[is.na(i)]
-        if (length(i)>0) warning(paste("Some patterns could not be exactly matched:\n   ",paste(pmiss,collapse=", "),"\n"))
+        if (length(i)>0) warning(paste("Some patterns could not be exactly matched:\n   ",
+                                       paste(pmiss,collapse=", "),"\n"))
       }
       i <- NULL
     }
