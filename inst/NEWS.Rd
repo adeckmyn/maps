@@ -9,6 +9,7 @@ The clipping code is also directly available as \code{map.clip.poly(data, xlim=N
       \itemize{
         \item All functions should now work if the package is not attached. So you can do \code{maps::map()} and even \code{maps::map("mapdata::worldHires")}
         \item A long standing bug in map.where() was fixed. It probably only showed up with the "county" database (and only for about 20 counties in Missouri).
+        \item map() could have problems if \code{regions} was a factor rather than a character vector.
         \item Minor correction to \code{us.cities}.
         \item Fixed some duplicated region names in \code{italy} map.
         \item The return value of \code{SpatialPolygons2map()} now has class \code{map}.

@@ -1,6 +1,8 @@
-# in grep we must distinguish uk from Ukrain...
 fix_exceptions <- function(patterns) {
-  # very ad hoc, I know. But at least it should work with other packages
+  # in grep we must distinguish uk from Ukrain...
+  # very ad hoc, I know.
+  # Before substituting: make sure it isn't a factor!
+  patterns <- as.character(patterns)
   patterns[match("uk",tolower(patterns))] <- "uk:"
   patterns
 }
