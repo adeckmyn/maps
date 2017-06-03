@@ -1,7 +1,7 @@
 fix_exceptions <- function(patterns) {
-  # in grep we must distinguish uk from Ukrain...
+  # we must distinguish uk from Ukraine...
   # very ad hoc, I know.
-  patterns <- gsub("^UK$", "UK:", ignore.case=TRUE)
+  patterns <- gsub("^UK$", "UK:", patterns, ignore.case=TRUE)
   patterns
 }
 
