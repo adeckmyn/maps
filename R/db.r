@@ -1,24 +1,22 @@
 fix_exceptions <- function(patterns) {
   # in grep we must distinguish uk from Ukrain...
   # very ad hoc, I know.
-  # Before substituting: make sure it isn't a factor!
-  patterns <- as.character(patterns)
-  patterns[match("uk",tolower(patterns))] <- "uk:"
+  patterns <- gsub("^UK$", "UK:", ignore.case=TRUE)
   patterns
 }
 
 fix_exceptions2 <- function(patterns=".") {
-  stop("This function should not be called")
+  stop("This function should not be called... yet.")
 # FIX ME: will not work for exact=TRUE ("usa" should work)
   world.exceptions <- c("uk"="United Kingdom","usa"="United States of America")
   if (length(patterns)==1 && patterns==".") return(patterns)
-  p1 <- lapply(strsplit(tolower(patterns),":"), function(x) x[1])
+  p1 <- vapply(strsplit(tolower(patterns),":"), function(x) x[1], FUN.VALUE="a")
   iexp <- which(p1 %in% names(world.exceptions))
   if (length(iexp)>0) {
     warning("The use of short names 'UK' and 'USA' is deprecated and will be removed in the future.")
-    p2 <- tolower(patterns[iexp])
     ilist <- unique(p1[iexp])
-    for (ii in ilist) p2 <- gsub(ii, world.exceptions[ii], p2)
+    for (ii in ilist) p2 <- gsub(ii, world.exceptions[ii], p2, ignore.case=TRUE)
+    if (is.factor(patterns)) patterns <- as.character(patterns)
     patterns[iexp] <- p2
   }
   patterns
@@ -135,7 +133,6 @@ function(database = "world", patterns, exact = FALSE)
     }
   } else {
 ## QUICK FIX: there is a problem now for UK vs Ukrain...
-## we fix it ad hoc for now by "uk" -> "uk:"
     if (database=="world") patterns <- fix_exceptions(patterns) 
     regexp <- paste("(^", patterns, ")", sep = "", collapse = "|")
 # BUGFIX: perl regex is limited to about 30000 characters
