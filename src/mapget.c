@@ -15,20 +15,20 @@
 #define RBAD(s,a)	{ \
 				if(rf) fclose(rf); \
 				*retlines = -1; \
-				error(s,a); \
+				Rf_error(s,a); \
 				return; \
 			}
 #define LBAD(s,a)	{ \
 				if(lf) fclose(lf); \
 				if(maxsize) free(xy); \
 				*nwhich = -1; \
-				error(s,a); \
+				Rf_error(s,a); \
 				return; \
 			}
 #define TBAD(s,a)	{ \
 				if(lf) fclose(lf); \
 				*type = -1; \
-				error(s,a); \
+				Rf_error(s,a); \
 				return; \
 			}
 
@@ -438,7 +438,7 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
   map_getg(database, &poly, &one, &nline, &status, range, &one);
 
   /* success? */
-  if(status < 0) error("map_getg failure from getpoly");
+  if(status < 0) Rf_error("map_getg failure from getpoly");
 
   /* get the polyline numbers in lines */
   lines = Calloc(nline, int);
@@ -447,7 +447,7 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
 
   /* success? */
   if(status < 0)
-    error("map_getg failure from getpoly");
+    Rf_error("map_getg failure from getpoly");
 
   /* in lengths get the number of pairs in each polyline */
   lengths = Calloc(nline, int);
@@ -458,7 +458,7 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
 
   /* success? */
   if(status < 0)
-    error("map_getl failure from getpoly");
+    Rf_error("map_getl failure from getpoly");
 
   /* allocate space for the actual coordinates */
   npair = nline-1;
@@ -473,7 +473,7 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
 
   /* success? */
   if(status < 0)
-    error("map_getl failure from getpoly");
+    Rf_error("map_getl failure from getpoly");
 
   /* elide NAs */
   j = 0;
@@ -555,16 +555,16 @@ map_where(char **database, double *x, double *y, int *n, int *poly)
   /* find total # of polygons in database and read headers for bboxes */
   name(Gname, *database, ".G");
   if((rf = fopen(Gname, "rb")) == NULL)
-    error("pip: cannot open %s", Gname);
+    Rf_error("pip: cannot open %s", Gname);
   if(Read(rf, &npoly, 1) != 1) {
     fclose(rf);
-    error("pip: cannot read size in %s", Gname);
+    Rf_error("pip: cannot read size in %s", Gname);
   }
   AdjustBuffer(&npoly,1,sizeof(npoly));
   rh = Calloc(npoly, struct region_h);
   if(Read(rf, rh, npoly) != npoly) {
     fclose(rf);
-    error("pip: cannot read headers in %s", Gname);
+    Rf_error("pip: cannot read headers in %s", Gname);
   }
   AdjustRegionH(rh,npoly);
   fclose(rf);
