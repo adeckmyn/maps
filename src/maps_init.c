@@ -1,11 +1,6 @@
-#include <R.h>
-#include <Rinternals.h>
 #include <stdlib.h>
 #include <R_ext/Rdynload.h>
 
-/* FIXME:
-   Check these declarations against the C/Fortran source code.
-*/
 /* .C calls */
 extern void char_to_ascii(void *, void *, void *);
 extern void kernel_region_region(void *, void *, void *, void *, void *, void *, void *);
