@@ -856,7 +856,7 @@ Italy:Asinara	855
 Italy:Sardinia	856
 Italy:Isola d'Elba	857
 Italy	858
-Italy:enclave:San Marino	859
+San Marino:enclave	859
 Jamaica	860
 Jersey	861
 Jordan	862
@@ -1624,4 +1624,4 @@ Zambia	1623
 Zimbabwe	1624
 Netherlands:IJsselmeer	1625
 Netherlands:Zuid-Flevoland	1626
-Italy:enclave:Vatican	1627
+Vatican:enclave	1627

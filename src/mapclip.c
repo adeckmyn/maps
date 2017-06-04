@@ -370,7 +370,6 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
           /* check for polygon closure */
           if ( (yout[segment_start_list[0]] != yout[segment_finish_list[count_segments-1]]) ||
                (xout[segment_start_list[0]] != xout[segment_finish_list[count_segments-1]]) ){
-
             Rf_error("Polygon not correctly closed.");
           }
           if (count_segments > 1) {
