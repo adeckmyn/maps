@@ -17,20 +17,6 @@
 #define YMIN		2
 #define YMAX		3
 
-/* Defines to handle generation of internal names for C and Fortran
- * on many machines, these symbols are have a leading underscore
- * but on some, particularly System V, they do not
- */
-#ifdef __STDC__
-#define SYMBOL(x)	QUOTE(_##x)
-#define FSYMBOL(x)	QUOTE(_##x##_)
-#define QUOTE(x)	#x
-#else
-#define SYMBOL(x)	QUOTE(_/**/x)
-#define FSYMBOL(x)	QUOTE(_/**/x/**/_)
-#define QUOTE(x)	"x"
-#endif
-
 typedef unsigned Offset;	/* offset in a disk file */
 typedef unsigned short Pair;	/* points in a polyline */
 typedef unsigned char Line;	/* polylines in a region */
