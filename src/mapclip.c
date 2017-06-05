@@ -46,7 +46,7 @@ void merge_segments(double *xout, double *yout,
 void map_clip_poly (double* xin, double *yin, int *nin,
                     double* xout, double *yout, int *nout,
                     double *xlim, int *inside, int *poly, int *npoly) {
-  int i, j, count_line, count_segments, position, ppos, merge, pcount;
+  int i, j, count_line, count_segments, position, ppos, pcount;
   int segment_start_list[MAX_SEGMENTS], segment_finish_list[MAX_SEGMENTS];
   double ymid;
 
@@ -68,7 +68,8 @@ void map_clip_poly (double* xin, double *yin, int *nin,
       /* In that case we do nothing, just continue */
       if (position == 0) {
         ppos = 0;
-        while (i < *nin && !ISNA(xin[i]) && (position = ((xin[i] > *xlim) - (xin[i] < *xlim)) * *inside)==0) i++;
+        while (i < *nin && !ISNA(xin[i]) &&
+               (position = ((xin[i] > *xlim) - (xin[i] < *xlim)) * *inside)==0) i++;
       }
 
       /* an internal point */
@@ -168,8 +169,8 @@ void construct_poly(double *xout, double *yout,
     Rf_error("Too many line segments. Increase MAX_SEGMENTS and re-compile.");
 
   buflen = segment_finish_list[count_segments-1] - segment_start_list[0] + (3+MAX_INTERP)*count_segments;
-  xbuf = (double*) malloc( buflen * sizeof(double));
-  ybuf = (double*) malloc( buflen * sizeof(double));
+  xbuf = (double*) R_alloc( buflen , sizeof(double));
+  ybuf = (double*) R_alloc( buflen , sizeof(double));
 
   line_start = segment_start_list[0];
 
@@ -265,8 +266,10 @@ void construct_poly(double *xout, double *yout,
     yout[line_start + i] = ybuf[i];
   }
   *line_end = line_start + n -1; /*drop final NA */
-  free(xbuf);
-  free(ybuf);
+/*
+  Free(xbuf);
+  Free(ybuf);
+*/
 }
 
 
@@ -277,7 +280,7 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
                    double *xmin, double *xmax, 
                    int *poly, int *npoly, int *antarctica) {
 
-  int i, j, k,count_segments, count_line, pcount;
+  int i, j, count_segments, count_line, pcount;
   int segment_start_list[MAX_SEGMENTS], segment_finish_list[MAX_SEGMENTS];
   double period, xi, ymid;
 
@@ -451,8 +454,8 @@ void merge_segments(double *xout, double *yout,
   double *xbuf, *ybuf, *xo, *yo;
 
   buflen = segment_finish_list[0] - segment_start_list[0] + 1 ;
-  xbuf = (double*) malloc(buflen * sizeof(double));
-  ybuf = (double*) malloc(buflen * sizeof(double));
+  xbuf = (double*) R_alloc(buflen , sizeof(double));
+  ybuf = (double*) R_alloc(buflen , sizeof(double));
 
   xo = xout + segment_start_list[0];
   yo = yout + segment_start_list[0];
@@ -484,7 +487,9 @@ void merge_segments(double *xout, double *yout,
   segment_finish_list[*count_segments - 2] =  segment_finish_list[*count_segments - 1] - 2;
 
   *count_segments -= 1;
-  free(xbuf);
-  free(ybuf);
+/*
+  Free(xbuf);
+  Free(ybuf);
+*?
 }
 
