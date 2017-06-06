@@ -7,7 +7,7 @@ map.where <- function(database = "world", x, y, ...)
   }
   if(is.character(database)) {
     mapbase <- mapenvir(database)
-    gon <- .C(C_map_where, PACKAGE="maps",
+    gon <- .C(C_map_where,
        as.character(mapbase),
        as.double(x),
        as.double(y),
@@ -26,7 +26,7 @@ map.where <- function(database = "world", x, y, ...)
     if(num.polygons(database) != length(database$names))
       stop("map object must have polygons (fill=TRUE)")
     n = length(database$x)
-    result = .C(C_map_in_polygon, PACKAGE="maps",
+    result = .C(C_map_in_polygon,
        as.double(database$x), as.double(database$y), as.integer(n),
        as.double(x), as.double(y), as.integer(length(x)),
        integer(length(x)), NAOK = TRUE)[[7]]
@@ -47,7 +47,7 @@ in.one.polygon <- function(p, x) {
   if(is.list(x) && !is.data.frame(x)) x <- cbind(x$x, x$y)
   if(is.vector(x)) dim(x) <- c(1, 2)
   # p and x are matrices
-  .C(C_map_in_one_polygon, PACKAGE="maps",
+  .C(C_map_in_one_polygon,
      as.double(p[, 1]), as.double(p[, 2]), as.integer(nrow(p)),
      as.double(x[, 1]), as.double(x[, 2]), as.integer(nrow(x)),
      logical(nrow(x)), as.integer(TRUE))[[7]]
@@ -59,7 +59,7 @@ in.polygon <- function(p, x) {
   if(is.list(x) && !is.data.frame(x)) x <- cbind(x$x, x$y)
   if(is.vector(x)) dim(x) <- c(1, 2)
   # p and x are matrices
-  .C(C_map_in_polygon, PACKAGE="maps",
+  .C(C_map_in_polygon,
      as.double(p[, 1]), as.double(p[, 2]), as.integer(nrow(p)),
      as.double(x[, 1]), as.double(x[, 2]), as.integer(nrow(x)),
      logical(nrow(x)), NAOK = TRUE)[[7]] > 0

@@ -39,7 +39,7 @@ function(database = "world", gons, fill = FALSE, xlim = c(-1e30, 1e30),
 	ngon <- length(gons)
 	gnames <- names(gons)
 	mapbase <- mapenvir(database)
-	z <- .C(C_map_getg, PACKAGE="maps",
+	z <- .C(C_map_getg,
 		as.character(mapbase),
 		gons = as.integer(gons),
 		as.integer(ngon),
@@ -51,7 +51,7 @@ function(database = "world", gons, fill = FALSE, xlim = c(-1e30, 1e30),
 	sizes <- z$sizes
 	if(z$error < 0)
 		stop("error in reading polygon headers")
-	z <- .C(C_map_getg, PACKAGE="maps",
+	z <- .C(C_map_getg,
 		as.character(mapbase),
 		as.integer(gons),
 		as.integer(ngon),
@@ -74,7 +74,7 @@ function(database = "world", lines, xlim = c(-1e30, 1e30), ylim = c(-1e30,
 	if(nline == 0)
 		return(integer(0))
 	mapbase <- mapenvir(database)
-	z <- .C(C_map_getl, PACKAGE="maps",
+	z <- .C(C_map_getl,
 		as.character(mapbase),
 		linesize = as.integer(lines),
 		error = as.integer(nline),
@@ -92,7 +92,7 @@ function(database = "world", lines, xlim = c(-1e30, 1e30), ylim = c(-1e30,
 		return(integer(0))
 	linesize <- z$linesize[ok]
 	N <- sum(linesize) + nline - 1
-	xy <- .C(C_map_getl, PACKAGE="maps",
+	xy <- .C(C_map_getl,
 		as.character(mapbase),
 		as.integer(lines),
 		as.integer(nline),
@@ -152,7 +152,7 @@ function(database = "world")
   if(is.character(database)) {
 	mapbase <- mapenvir(database)
         # minka: maptypes are now 1,2 instead of 0,1
-	switch(.C(C_map_type, PACKAGE="maps",
+	switch(.C(C_map_type,
 		as.character(mapbase),
 		integer(1))[[2]] + 2, "unknown", "spherical", "planar", "spherical")
   } else {
@@ -169,7 +169,7 @@ function(database = "world")
 char.to.ascii <- function(s) {
   # returns the ascii code for a character (0 for an empty string)
   n = length(s)
-  .C(C_char_to_ascii, PACKAGE="maps",
+  .C(C_char_to_ascii,
     as.integer(n), as.character(s), integer(n))[[2]]
 }
 is.regexp <- function(s) {
@@ -216,7 +216,7 @@ match.map <- function(database, regions, exact = FALSE, warn = TRUE) {
     regions <- regions[ord.regions]
     Sys.setlocale(category = "LC_COLLATE", locale = lcc)
 
-    result <- .C(C_map_match, PACKAGE="maps",
+    result <- .C(C_map_match,
       as.integer(length(nam)), as.character(nam),
       as.integer(length(regions)), as.character(regions),
       result = integer(length(nam)), as.integer(exact))[["result"]]

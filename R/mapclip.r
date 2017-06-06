@@ -9,7 +9,7 @@ map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=TRUE) {
                xmin=as.numeric(xlim[1]), xmax=as.numeric(xlim[2]),
                poly=as.integer(poly), npoly=integer(nseg),
                antarctica=as.integer(antarctica),
-               NAOK=TRUE, PACKAGE="maps")
+               NAOK=TRUE)
 
   xlen <- wrap$nout
   data$x <- wrap$xout[1:xlen]
@@ -36,7 +36,7 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
                nout=as.integer(len_out),
                xlim=as.numeric(xlim[1]), inside=as.integer(1),
                poly=as.integer(poly), npoly=integer(nseg),
-               NAOK=TRUE, PACKAGE="maps")
+               NAOK=TRUE)
     data$x <- dd$xout[1:dd$nout]
     data$y <- dd$yout[1:dd$nout]
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
@@ -54,7 +54,7 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
                nout=as.integer(len_out),
                xlim=as.numeric(xlim[2]), inside=as.integer(-1),
                poly=as.integer(poly), npoly=integer(nseg),
-               NAOK=TRUE, PACKAGE="maps")
+               NAOK=TRUE)
     data$x <- dd$xout[1:dd$nout]
     data$y <- dd$yout[1:dd$nout]
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
@@ -72,7 +72,7 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
                nout=as.integer(len_out),
                ylim=as.numeric(ylim[1]), inside=as.integer(1),
                poly=as.integer(poly), npoly=integer(nseg),
-               NAOK=TRUE, PACKAGE="maps")
+               NAOK=TRUE)
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
     data$x <- dd$xout[1:dd$nout]
     data$y <- dd$yout[1:dd$nout]
@@ -90,7 +90,7 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
                nout=as.integer(len_out),
                ylim=as.numeric(ylim[2]), inside=as.integer(-1),
                poly=as.integer(poly), npoly=integer(nseg),
-               NAOK=TRUE, PACKAGE="maps")
+               NAOK=TRUE)
     data$x <- dd$xout[1:dd$nout]
     data$y <- dd$yout[1:dd$nout]
     if (!is.null(nam) && poly) nam <- rep(nam, times=dd$npoly)
