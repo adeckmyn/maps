@@ -2,7 +2,7 @@ map.wrap.poly <- function(data, xlim, poly=FALSE, antarctica=TRUE) {
   nseg <- sum(is.na(data$x))+1
   len_in <- length(data$x)
   len_out <- 2*len_in
-  wrap <- .C("map_wrap_poly",
+  wrap <- .C(C_map_wrap_poly,
                xin=data$x, yin=data$y, nin=as.integer(len_in),
                xout=numeric(len_out), yout=numeric(len_out), 
                nout=as.integer(len_out),
@@ -29,7 +29,7 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
     len_in <- length(data$x)
     len_out <- 2*len_in
     nseg <- sum(is.na(data$x)) + 1
-    dd <- .C("map_clip_poly",
+    dd <- .C(C_map_clip_poly,
                xin=as.numeric(data$x), yin=as.numeric(data$y),
                nin=as.integer(len_in),
                xout=numeric(len_out), yout=numeric(len_out), 
@@ -47,7 +47,7 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
     len_in <- length(data$x)
     len_out <- 2*len_in
     nseg <- sum(is.na(data$x)) + 1
-    dd <- .C("map_clip_poly",
+    dd <- .C(C_map_clip_poly,
                xin=as.numeric(data$x), yin=as.numeric(data$y),
                nin=as.integer(len_in),
                xout=numeric(len_out), yout=numeric(len_out), 
@@ -65,7 +65,7 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
     len_in <- length(data$x)
     len_out <- 2*len_in
     nseg <- sum(is.na(data$x)) + 1
-    dd <- .C("map_clip_poly",
+    dd <- .C(C_map_clip_poly,
                yin=as.numeric(data$y), xin=as.numeric(data$x),
                nin=as.integer(len_in),
                yout=numeric(len_out), xout=numeric(len_out), 
@@ -83,7 +83,7 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
     len_in <- length(data$x)
     len_out <- 2*len_in
     nseg <- sum(is.na(data$x)) + 1
-    dd <- .C("map_clip_poly",
+    dd <- .C(C_map_clip_poly,
                yin=as.numeric(data$y), xin=as.numeric(data$x),
                nin=as.integer(len_in),
                yout=numeric(len_out), xout=numeric(len_out), 

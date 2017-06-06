@@ -120,7 +120,7 @@ kernel.smooth <- function(x, z, xo, lambda, region = NULL, normalize = TRUE) {
     # divide by region sizes
     z = as.double(z/as.numeric(table(region)))
   }
-  .C("kernel_smooth", PACKAGE="maps",
+  .C(C_kernel_smooth, PACKAGE="maps",
      as.integer(n), as.integer(ncol(x)),
      as.double(t(x)), z, as.integer(region),
      as.integer(no), as.double(t(xo)), zo = double(no),
@@ -131,7 +131,7 @@ kernel.region.region <- function(x, region, lambda) {
   if(!is.matrix(x)) dim(x) <- c(length(x), 1)
   region = as.integer(region)
   nr = max(region)
-  krr = .C("kernel_region_region", PACKAGE="maps",
+  krr = .C(C_kernel_region_region, PACKAGE="maps",
     as.integer(nrow(x)), as.integer(ncol(x)),
     as.double(t(x)),
     region, as.double(lambda), as.integer(nr), krr = double(nr*nr))$krr
@@ -144,7 +144,7 @@ kernel.region.x <- function(x, region, z, lambda) {
   region = as.integer(region)
   nr = max(region)
   no = nrow(z)
-  krx = .C("kernel_region_x", PACKAGE="maps",
+  krx = .C(C_kernel_region_x, PACKAGE="maps",
     as.integer(nrow(x)), as.integer(ncol(x)),
     as.double(t(x)), region, as.integer(no), as.double(t(z)),
     as.double(lambda), as.integer(nr), krx = double(nr*no))$krx
