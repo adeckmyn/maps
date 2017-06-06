@@ -6,6 +6,7 @@ ECHO = echo
 RM = rm -f
 MKDIR = mkdir
 AWK = @AWK@
+.PHONY: all shlib mapdata gdata ldata ndata clean
 
 all: shlib mapdata
 

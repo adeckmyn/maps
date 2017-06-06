@@ -3,6 +3,7 @@
 pkg = maps
 include $(R_HOME)/etc$(R_ARCH)/Makeconf
 AWK = gawk
+.PHONY: all shlib mapdata gdata ldata ndata clean
 
 all: shlib mapdata
 
