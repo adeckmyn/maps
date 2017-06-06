@@ -1,18 +1,13 @@
 #-*- Makefile -*-
 
+pkg = maps
 include $(R_HOME)/etc$(R_ARCH)/Makeconf
 AWK = gawk
-pkg = maps
 
-SHLIB = $(pkg).dll
-OBJECTS = init.o mapclip.o mapget.o smooth.o thin.o 
-
-.PHONY: all mapdata shlib gdata ldata ndata
 all: shlib mapdata
-mapdir = ../inst/mapdata
-libdir = ../libs$(R_ARCH)
 
 # the map data
+mapdir = ../inst/mapdata
 mapdata: gdata ldata ndata
 
 .SUFFIXES: .G .L .N .gon .line .name
@@ -64,6 +59,9 @@ world2.line: world.line legacy_world.line
 	@$(CP) legacy_world.name legacy_world2.name
 
 # the shared library
+SHLIB = $(pkg).dll
+OBJECTS = init.o mapclip.o mapget.o smooth.o thin.o 
+libdir = ../libs$(R_ARCH)
 
 shlib: $(OBJECTS)
 	$(R_HOME)/bin/R CMD SHLIB -o $(SHLIB) $(OBJECTS)

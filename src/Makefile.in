@@ -7,15 +7,10 @@ RM = rm -f
 MKDIR = mkdir
 AWK = @AWK@
 
-SHLIB = $(pkg)$(SHLIB_EXT)
-OBJECTS = init.o mapclip.o mapget.o smooth.o thin.o 
-
-.PHONY: all mapdata shlib gdata ldata ndata
 all: shlib mapdata
-mapdir = ../inst/mapdata
-libdir = ../libs
 
 # the map data
+mapdir = ../inst/mapdata
 mapdata: gdata ldata ndata
 
 .SUFFIXES: .G .L .N .gon .line .name
@@ -67,13 +62,15 @@ world2.line: world.line legacy_world.line
 	@$(CP) legacy_world.name legacy_world2.name
 
 # the shared library
+SHLIB = $(pkg)$(SHLIB_EXT)
+OBJECTS = init.o mapclip.o mapget.o smooth.o thin.o 
+libdir = ../libs
 
 shlib: $(OBJECTS)
 	$(R_HOME)/bin/R CMD SHLIB -o $(SHLIB) $(OBJECTS)
 
 # clean
 # $(SHLIB_EXT) is not set when making "clean", so write all possibilities explicitely
-# so we 
 clean:
 	$(RM) $(OBJECTS) Gmake Lmake world2.line* $(pkg).s[lo] $(pkg).dylib *.exe $(pkg).dll symbols.rds
 	$(RM) -r $(mapdir) $(libdir)
