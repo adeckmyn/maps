@@ -1,18 +1,24 @@
 #-*- Makefile -*-
-.SUFFIXES: .G .L .N .gon .line .name
 
-PKGNAME = maps
+pkg = maps
 CP = cp
 ECHO = echo
 RM = rm -f
 MKDIR = mkdir
 AWK = @AWK@
 
-OBJS =  mapclip.o   \
-	mapget.o    \
-	smooth.o    \
-	thin.o      \
-	init.o
+SHLIB = $(pkg)$(SHLIB_EXT)
+OBJECTS = init.o mapclip.o mapget.o smooth.o thin.o 
+
+.PHONY: all mapdata shlib gdata ldata ndata
+all: shlib mapdata
+mapdir = ../inst/mapdata
+libdir = ../libs
+
+# the map data
+mapdata: gdata ldata ndata
+
+.SUFFIXES: .G .L .N .gon .line .name
 
 GDATA = county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G \
         state.carto.G legacy_world.G legacy_world2.G lakes.G
@@ -21,29 +27,24 @@ LDATA = county.L state.L usa.L nz.L world.L world2.L italy.L france.L state.vbm.
 NDATA = county.N state.N usa.N nz.N world.N world2.N italy.N france.N state.vbm.N \
         state.carto.N legacy_world.N legacy_world2.N lakes.N
 
-
 .line.L:
-	@$(MKDIR) -p ../inst/mapdata
-	./Lmake 0 s b ${*}.line ${*}.linestats ../inst/mapdata/${*}.L
+	@$(MKDIR) -p $(mapdir)
+	./Lmake 0 s b ${*}.line ${*}.linestats $(mapdir)/${*}.L
 
 .gon.G:
-	./Gmake b ${*}.gon ${*}.gonstats ../inst/mapdata/${*}.G ../inst/mapdata/${*}.L
+	./Gmake b ${*}.gon ${*}.gonstats $(mapdir)/${*}.G $(mapdir)/${*}.L
 
 .name.N:
-	@$(MKDIR) -p ../inst/mapdata
-	@$(CP) ${*}.name ../inst/mapdata/${*}.N
-
-.PHONY: all gdata ldata ndata
-
-all: gdata ndata $(PKGNAME)$(SHLIB_EXT)
+	@$(MKDIR) -p $(mapdir)
+	@$(CP) ${*}.name $(mapdir)/${*}.N
 
 state.carto.L: state.carto.line state.carto.linestats Lmake
-	@$(MKDIR) -p ../inst/mapdata
-	./Lmake 0 p b state.carto.line state.carto.linestats ../inst/mapdata/state.carto.L
+	@$(MKDIR) -p $(mapdir)
+	./Lmake 0 p b state.carto.line state.carto.linestats $(mapdir)/state.carto.L
 
 state.vbm.L: state.vbm.line state.vbm.linestats Lmake
-	@$(MKDIR) -p ../inst/mapdata
-	./Lmake 0 p b state.vbm.line state.vbm.linestats ../inst/mapdata/state.vbm.L
+	@$(MKDIR) -p $(mapdir)
+	./Lmake 0 p b state.vbm.line state.vbm.linestats $(mapdir)/state.vbm.L
 
 gdata: Gmake ldata
 	$(MAKE) $(GDATA)
@@ -54,16 +55,10 @@ ldata: Lmake world2.line
 ndata: world2.line
 	$(MAKE) $(NDATA)
 
-$(PKGNAME)$(SHLIB_EXT): $(OBJS)
-	$(R_HOME)/bin/R CMD SHLIB -o $(PKGNAME)$(SHLIB_EXT) $(OBJS)
-
 world2.line: world.line legacy_world.line
 	@$(ECHO) "Converting world to world2"
 	$(AWK) -f convert.awk < world.line > world2.line
 	@$(CP) world.linestats world2.linestats
-#	@$(CP) world.gon world2.gon
-#	@$(CP) world.gonstats world2.gonstats
-#	@$(CP) world.name world2.name
 	@$(ECHO) "Creating legacy world2 database"
 	$(AWK) -f legacy_convert.awk < legacy_world.line > legacy_world2.line
 	@$(CP) legacy_world.linestats legacy_world2.linestats
@@ -71,8 +66,15 @@ world2.line: world.line legacy_world.line
 	@$(CP) legacy_world.gonstats legacy_world2.gonstats
 	@$(CP) legacy_world.name legacy_world2.name
 
+# the shared library
 
+shlib: $(OBJECTS)
+	$(R_HOME)/bin/R CMD SHLIB -o $(SHLIB) $(OBJECTS)
+
+# clean
+# $(SHLIB_EXT) is not set when making "clean", so write all possibilities explicitely
+# so we 
 clean:
-	$(RM) $(OBJS) Gmake Lmake world2.line* $(PKGNAME).s[lo] $(PKGNAME).dylib *.exe maps.dll symbols.rds
-	$(RM) -r ../inst/mapdata ../libs
+	$(RM) $(OBJECTS) Gmake Lmake world2.line* $(pkg).s[lo] $(pkg).dylib *.exe $(pkg).dll symbols.rds
+	$(RM) -r $(mapdir) $(libdir)
 	$(RM) legacy_world2.*

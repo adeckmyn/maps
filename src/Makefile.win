@@ -2,20 +2,20 @@
 
 include $(R_HOME)/etc$(R_ARCH)/Makeconf
 AWK = gawk
+pkg = maps
+
+SHLIB = $(pkg).dll
+OBJECTS = init.o mapclip.o mapget.o smooth.o thin.o 
+
+.PHONY: all mapdata shlib gdata ldata ndata
+all: shlib mapdata
+mapdir = ../inst/mapdata
+libdir = ../libs$(R_ARCH)
+
+# the map data
+mapdata: gdata ldata ndata
 
 .SUFFIXES: .G .L .N .gon .line .name
-
-DLLNAME = maps
-
-CFLAGS = -I$(R_HOME)/include -Wall -pedantic -DWin32
-
-DLLLIBS = -L$(IMPDIR) -lR
-
-OBJS =  mapclip.o   \
-	mapget.o    \
-	smooth.o    \
-	thin.o      \
-	init.o
 
 GDATA = county.G state.G usa.G nz.G world.G world2.G italy.G france.G state.vbm.G \
         state.carto.G legacy_world.G legacy_world2.G lakes.G
@@ -25,27 +25,23 @@ NDATA = county.N state.N usa.N nz.N world.N world2.N italy.N france.N state.vbm.
         state.carto.N legacy_world.N legacy_world2.N lakes.N
 
 .line.L:
-	@$(MKDIR) -p ../inst/mapdata
-	./Lmake 0 s b ${*}.line ${*}.linestats ../inst/mapdata/${*}.L
+	@$(MKDIR) -p $(mapdir)
+	./Lmake 0 s b ${*}.line ${*}.linestats $(mapdir)/${*}.L
 
 .gon.G:
-	./Gmake b ${*}.gon ${*}.gonstats ../inst/mapdata/${*}.G ../inst/mapdata/${*}.L
+	./Gmake b ${*}.gon ${*}.gonstats $(mapdir)/${*}.G $(mapdir)/${*}.L
 
 .name.N:
-	@$(MKDIR) -p ../inst/mapdata
-	@$(CP) ${*}.name ../inst/mapdata/${*}.N
-
-.PHONY: all gdata ldata ndata
-
-all: ../libs$(R_ARCH)/$(DLLNAME).dll ldata gdata ndata
+	@$(MKDIR) -p $(mapdir)
+	@$(CP) ${*}.name $(mapdir)/${*}.N
 
 state.carto.L: state.carto.line state.carto.linestats Lmake
-	@$(MKDIR) -p ../inst/mapdata
-	./Lmake 0 p b state.carto.line state.carto.linestats ../inst/mapdata/state.carto.L
+	@$(MKDIR) -p $(mapdir)
+	./Lmake 0 p b state.carto.line state.carto.linestats $(mapdir)/state.carto.L
 
 state.vbm.L: state.vbm.line state.vbm.linestats Lmake
-	@$(MKDIR) -p ../inst/mapdata
-	./Lmake 0 p b state.vbm.line state.vbm.linestats ../inst/mapdata/state.vbm.L
+	@$(MKDIR) -p $(mapdir)
+	./Lmake 0 p b state.vbm.line state.vbm.linestats $(mapdir)/state.vbm.L
 
 gdata: Gmake ldata
 	$(MAKE) -f Makefile.win $(GDATA)
@@ -56,21 +52,10 @@ ldata: Lmake world2.line
 ndata: world2.line
 	$(MAKE) -f Makefile.win $(NDATA)
 
-$(DLLNAME).dll: $(OBJS) 
-
-../libs$(R_ARCH)/$(DLLNAME).dll: ../libs$(R_ARCH) $(DLLNAME).dll
-	$(CP) $(DLLNAME).dll $@
-
-../libs$(R_ARCH):
-	$(MKDIR) -p $@
-
 world2.line: world.line legacy_world.line
 	@$(ECHO) "Converting world to world2"
 	$(AWK) -f convert.awk < world.line > world2.line
 	@$(CP) world.linestats world2.linestats
-#	@$(CP) world.gon world2.gon
-#	@$(CP) world.gonstats world2.gonstats
-#	@$(CP) world.name world2.name
 	@$(ECHO) "Creating legacy world2 database"
 	$(AWK) -f legacy_convert.awk < legacy_world.line > legacy_world2.line
 	@$(CP) legacy_world.linestats legacy_world2.linestats
@@ -78,7 +63,13 @@ world2.line: world.line legacy_world.line
 	@$(CP) legacy_world.gonstats legacy_world2.gonstats
 	@$(CP) legacy_world.name legacy_world2.name
 
+# the shared library
+
+shlib: $(OBJECTS)
+	$(R_HOME)/bin/R CMD SHLIB -o $(SHLIB) $(OBJECTS)
+
+# clean
 clean:
-	$(RM) $(DLLNAME).dll *.a $(OBJS) *.rc Gmake.exe Lmake.exe ../libs$(R_ARCH)/$(DLLNAME).dll world2.line*
-	$(RM) -r ../libs$(R_ARCH) ../inst/mapdata
+	$(RM) $(SHLIB) *.a *.o *.rc Gmake.exe Lmake.exe world2.line*
+	$(RM) -r $(mapdir) $(libdir)
 	$(RM) legacy_world2.*
