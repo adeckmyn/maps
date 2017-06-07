@@ -24,15 +24,16 @@ map.where(database = "world", x, y, ...)
 }
 \seealso{\code{in.polygon}}
 \note{
-  Because maps are currently organized as flat files, this function can be
-  slow.
+  This function may give erroneous results if the database contains
+  enclaves. For instance, a point in San Marino may also be identified 
+  as being in Italy.
 }
 \examples{
 # NYC
 map.where("state", -73.8, 41)
 # Auckland
 map.where("nz", 174.6, -36.92)
-# find both in the world (takes a while)
+# find both in the world
 map.where(x = c(174.6, -73.8), y = c(-36.92, 41))
 # with a map object:
 m = map("state", "new york", fill = TRUE, plot = FALSE)
