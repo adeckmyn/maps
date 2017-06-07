@@ -150,8 +150,9 @@ function(database = "world", regions = ".", exact = FALSE,
   coord <- map.poly(database, regions, exact, xlim, ylim, 
                     boundary, interior, fill, as.polygon, namefield=namefield)
   if (is.na(coord$x[1])) stop("first coordinate is NA.  bad map data?")
-  if (length(wrap)==2) {
-    coord <- map.wrap.poly(coord, xlim=wrap, poly=fill)
+  if (length(wrap)>=2) {
+    antarctica <- if (length(wrap) == 2) -89.9 else wrap[3]
+    coord <- map.wrap.poly(coord, xlim=wrap[1:2], poly=fill, antarctica=antarctica)
   }
   # we can enforce xlim & ylim exactly
   # this changes the output

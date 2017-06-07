@@ -142,7 +142,7 @@ map(database = "world", regions = ".", exact = FALSE, boundary = TRUE,
     of the \code{database}.
   }
   \item{wrap}{Boolean or a numeric vector. If TRUE, lines that cross too far across the map
-    (due to a strange projection) are omitted. If wrap is a vector of length 2, it is interpreted as the longitude range to be used for a global map, e.g. \code{c(-180,180)} or \code{c(0,360)}. This wrapping even works when \code{fill=TRUE} and is performed before any projection (so the range must always be in degrees). However, the wrapping is performed \emph{after} \code{xlim, ylim} are applied.}
+    (due to a strange projection) are omitted. If wrap is a vector of length 2 or more, it is interpreted as the longitude range to be used for a global map, e.g. \code{c(-180,180)} or \code{c(0,360)}. This wrapping even works when \code{fill=TRUE} and is performed before any projection (so the range must always be in degrees). However, the wrapping is performed \emph{after} \code{xlim, ylim} are applied, so these options should probably never be combined. If there is a third component, this signifies the latitude at which Antarctica will be "closed". The default value is -89.9. Special values are \code{NA} (don't draw Antarctica at all) and 0 (draw the line at the latitude of the extremal points, not at a fixed lower latitude). }
   \item{resolution}{
     number that specifies the resolution with which
     to draw the map.
@@ -214,6 +214,7 @@ where \code{mymap} is the returned value from a previous call to
 \examples{
 map()	# low resolution map of the world
 map(wrap = c(0,360), fill = TRUE, col = 2) # pacific-centered map of the world
+map(wrap = c(0, 360, NA), fill = TRUE, col = 2) # pacific-centered map of the world, without Antarctica
 map('usa')	# national boundaries
 map('county', 'new jersey')	# county map of New Jersey
 map('state', region = c('new york', 'new jersey', 'penn'))	# map of three states

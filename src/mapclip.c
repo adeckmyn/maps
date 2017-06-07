@@ -13,13 +13,12 @@ Method:
 #include "R.h"
 
 #define MAX_SEGMENTS 50
-#define MAX_INTERP 5
-#define ANTARCTICA -89.5
+#define MAX_INTERP 10 
 
 void map_wrap_poly(double *xin, double *yin, int *nin,
               double *xout, double *yout, int *nout,
               double *xmin, double *xmax, 
-              int *poly, int *npoly, int *antarctica) ;
+              int *poly, int *npoly, double *antarctica) ;
 
 void map_clip_poly (double* xin, double *yin, int *nin,
                     double* xout, double *yout, int *nout,
@@ -31,7 +30,7 @@ void construct_poly(double *xout, double *yout,
 
 void close_antarctica(double *xout, double *yout,
                       int *segment_start_list, int *segment_finish_list,
-                      int *count_segments);
+                      int *count_segments, double minlat);
 
 void merge_segments(double *xout, double *yout,
                     int *segment_start_list, int *segment_finish_list, 
@@ -278,7 +277,7 @@ void construct_poly(double *xout, double *yout,
 void map_wrap_poly(double *xin, double *yin, int *nin,
                    double *xout, double *yout, int *nout,
                    double *xmin, double *xmax, 
-                   int *poly, int *npoly, int *antarctica) {
+                   int *poly, int *npoly, double *antarctica) {
 
   int i, j, count_segments, count_line, pcount;
   int segment_start_list[MAX_SEGMENTS], segment_finish_list[MAX_SEGMENTS];
@@ -322,7 +321,7 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
       else if (abs(xi - xout[j-1]) > period/2.) {
         /* If we are exactly on the boundary, we adapt 'side' to the previous point */
         if (xi == *xmin) xi= *xmax;
-        else if (xi== *xmax) xi = *xmin;
+        else if (xi == *xmax) xi = *xmin;
         else {
           /* if we were exactly on the boundary: no need to interpolate */
           if (xout[j-1] == *xmin || xout[j-1]== *xmax) {
@@ -376,19 +375,20 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
             error("Polygon not correctly closed.");
           }
           if (count_segments > 1) {
+            /* make sure all line segments start/finish on the borders: possibly move first segment to end. */
             merge_segments(xout, yout, segment_start_list, segment_finish_list, &count_segments);
             j = segment_finish_list[count_segments-1] + 1;
-          } else count_segments = 0;
+          } else count_segments = 0; /* island polygon: do nothing. */
         }
 
         /* we don't check closure in yout : it /may/ be wrong due to starting at xmin/xmax */
         /* if the polygon doesn't close, that usually counts as a crossing */
         if ( count_segments % 2) { /* 1 (or odd #) crossing: must be Antarctica */
-          if (*antarctica) {
+          if ( !ISNA(*antarctica)) {
             /* (over-)estimate extra output space needed */
             if (j >= *nout - MAX_INTERP - 5) error("Output vector too short!\n");
             if (count_segments > MAX_SEGMENTS - 2)  error("Can't add segment for Antarctic closing\n");
-            close_antarctica(xout, yout, segment_start_list, segment_finish_list, &count_segments);
+            close_antarctica(xout, yout, segment_start_list, segment_finish_list, &count_segments, *antarctica);
             j = segment_finish_list[count_segments-1] + 1;
           }
           else { /* drop the polygon completely: don't draw Antarctica */
@@ -400,7 +400,7 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
         if (count_segments > 1) {
           /* (over-)estimate extra output space needed */
           if (j >= *nout - (3 + MAX_INTERP)*count_segments) error("Output vector too short!\n");
-           construct_poly(xout, yout, segment_start_list, segment_finish_list,
+          construct_poly(xout, yout, segment_start_list, segment_finish_list,
                          count_segments, &j, &pcount, 2);
           npoly[count_line] = pcount;
         }
@@ -418,16 +418,17 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
 
 void close_antarctica(double *xout, double *yout,
                       int *segment_start_list, int *segment_finish_list,
-                      int *count_segments) {
-  int i, j, k;
+                      int *count_segments, double minlat) {
+  int i, j, k, intpoints;
   double x0, x1, dx;
-
-/* 1. find the segment that crosses the domain, to know it's direction */
+/* 1. find the line segment that crosses the domain, to know it's direction */
 /* 2. add a closing segment in other direction */
+  if ( (minlat < -90.) || (minlat > -86)) warning("Closing Antarctica polygon at abnormal latitude: %lf.\n", minlat);
+
   i=0;
   while (i < *count_segments && xout[segment_start_list[i]] == xout[segment_finish_list[i]]) i++;
 
-  if (i == *count_segments) error("Antarctica error.");
+  if (i == *count_segments) error("Antarctica closure error.");
   x1 = xout[segment_start_list[i]];
   x0 = xout[segment_finish_list[i]];
   dx = (x1 - x0)/MAX_INTERP;
@@ -435,18 +436,19 @@ void close_antarctica(double *xout, double *yout,
   j = segment_finish_list[*count_segments - 1] + 1;
   xout[j] = yout[j] = NA_REAL; j++;
   segment_start_list[*count_segments] = j ;
-  xout[j] = x0; yout[j] = ANTARCTICA; j++;
+  xout[j] = x0; yout[j] = minlat; j++;
   for (k=1 ; k < MAX_INTERP ; k++){
-    yout[j] = ANTARCTICA;
+    yout[j] = minlat;
     xout[j] = x0 + k*dx;
     j++;
   }
-  xout[j] = x1; yout[j] = ANTARCTICA;
+  xout[j] = x1; yout[j] = minlat;
   segment_finish_list[*count_segments] = j ;
 
   *count_segments += 1;
 }
- 
+
+/* attach the first line segment to the end, so all segments start/stop on teh border */ 
 void merge_segments(double *xout, double *yout,
                     int *segment_start_list, int *segment_finish_list, 
                     int *count_segments) {

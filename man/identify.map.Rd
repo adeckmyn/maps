@@ -29,6 +29,6 @@
 \examples{
 identify(map("state", fill = TRUE, col = 0))
 if(require(mapproj))
-  identify(map("world", proj = "lagrange", fill = TRUE, col = 0))
+  identify(map("world", proj = "lagrange", fill = TRUE, col = 0, wrap=c(-180,180,-90)))
 }
 \keyword{iplot}

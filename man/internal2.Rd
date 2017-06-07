@@ -28,8 +28,8 @@ map.poly(database, regions = ".", exact = FALSE, xlim = NULL, ylim = NULL,
          boundary = TRUE, interior = TRUE, fill = FALSE, as.polygon = FALSE,
          namefield="name")
 map.wrap(p, xlim=NULL)
-map.wrap.poly(data, xlim, poly=FALSE, antarctica=TRUE)
-map.clip.poly(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE)
+map.wrap.poly(data, xlim, poly = FALSE, antarctica = -89.5)
+map.clip.poly(data, xlim = c(NA, NA), ylim = c(NA, NA), poly = FALSE)
 subgroup(x, i)
 gp.smooth(x, z, xo, lambda, r)
 kernel.smooth(x, z, xo, lambda, region = NULL, normalize = TRUE)
