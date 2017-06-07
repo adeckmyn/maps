@@ -1,7 +1,7 @@
 ### translate ISO 3166-1 alpha-2 codes to country names
 ### default result is a character vector of same length, which may contain regular expressions
 iso.expand <- function(a,regex=TRUE){
-  iso3166 <- get("iso3166")
+  if (!exists("iso3166")) iso3166 <- maps::iso3166
   AA <- toupper(a)
   if (all(nchar(a)==2)) codes <- iso3166$a2
   else if (all(nchar(a)==3)) codes <- iso3166$a3
@@ -15,7 +15,7 @@ iso.expand <- function(a,regex=TRUE){
 
 ### list all countries that fall under sovereignty of 'sov'
 sov.expand <- function(sov,regex=TRUE){
-  iso3166 <- get("iso3166")
+  if (!exists("iso3166")) iso3166 <- maps::iso3166
   sov <- tolower(sov)
   sel <- tolower(iso3166$sovereignty)
   nn <- lapply(sov,function(x) iso3166$mapname[which(sel == x)])
@@ -34,7 +34,7 @@ sov.expand <- function(sov,regex=TRUE){
 ### we does this with a reverse grep
 ### downsides: the names in x must be complete
 iso.alpha <- function(x,n=2){
-  iso3166 <- get("iso3166")
+  if (!exists("iso3166")) iso3166 <- maps::iso3166
 
 ## part 1: reverse fit will find all special cases, but names in vector x must be complete
   nam1 <- lapply(seq_along(iso3166$mapname),
