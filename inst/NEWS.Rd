@@ -1,6 +1,6 @@
 \name{NEWS}
 \title{News for package 'maps'}
-\section{Changes in maps version 3.2.0 (2017-06-04)}{
+\section{Changes in maps version 3.2.0 (2017-06-07)}{
   \itemize{
     \item New map wrapping code should eliminate border artefacts on world maps, even with \code{fill=TRUE}. It can be called via \code{map(..., wrap=c(0,360),...)}, i.e. by giving \code{wrap} a vector in stead of a boolean value. The wrapping code is also directly available as \code{map.wrap.poly(data, xlim, poly=FALSE, antarctica=TRUE)}
     \item \code{map()} has a new argument \code{lforce} (force limits). Possible values are \code{"n"} (no, default), \code{"e"} (exact limits), \code{"s"} (small enclosed rectangle) and \code{"l"} (large, enclosing rectangle). Forcing the limits will limit your map more forcibly to the given limits. \code{"s","l"} only impact the plotting window, but with \code{"e"} the data itself is clipped exactly to the borders.
@@ -8,7 +8,7 @@ The clipping code is also directly available as \code{map.clip.poly(data, xlim=N
     \item Bug fixes:
       \itemize{
         \item All functions should now work if the package is not attached. So you can do \code{maps::map()} and even \code{maps::map("mapdata::worldHires")}
-        \item A long standing bug in map.where() was fixed. It probably only showed up with the "county" database (and only for about 20 counties in Missouri).
+        \item A long standing bug in map.where() was fixed. It probably only showed up with the "county" database (and only for about 20 counties in Missouri). The C code has also been optimised.
         \item map() could have problems if \code{regions} was a factor rather than a character vector.
         \item Minor correction to \code{us.cities}.
         \item Fixed some duplicated region names in \code{italy} map.
