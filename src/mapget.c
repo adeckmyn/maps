@@ -551,6 +551,7 @@ map_where(char **database, double *x, double *y, int *n, int *poly)
   struct region_h *rh;
   double *X, *Y;
   FILE *rf;
+  int gotpoly;
 
   /* find total # of polygons in database and read headers for bboxes */
   name(Gname, *database, ".G");
@@ -572,17 +573,23 @@ map_where(char **database, double *x, double *y, int *n, int *poly)
   /* check bounding box and possibly full polygon for each input point */
   memset(poly,0,sizeof(int)*(*n));
   for(j = 0; j < npoly; j++) {
-    getpoly(database, j+1, &X, &Y, &nv);
+    gotpoly = 0;
     for(i = 0; i < *n; i++) {
       if(poly[i]) continue;
       if(rh[j].sw.x > DEG2RAD(x[i]) || rh[j].sw.y > DEG2RAD(y[i]) ||
 	 rh[j].ne.x < DEG2RAD(x[i]) || rh[j].ne.y < DEG2RAD(y[i]))
 	continue;
+      if (!gotpoly) {
+        getpoly(database, j+1, &X, &Y, &nv);
+        gotpoly = 1;
+      }
       if(pip(x[i], y[i], X, Y, nv) == 1)
 	poly[i] = j+1;
     }
-    Free(X);
-    Free(Y);
+    if (gotpoly) {
+      Free(X);
+      Free(Y);
+    }
   }
 }
 
