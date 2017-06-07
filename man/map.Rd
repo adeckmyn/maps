@@ -214,7 +214,7 @@ where \code{mymap} is the returned value from a previous call to
 \examples{
 map()	# low resolution map of the world
 map(wrap = c(0,360), fill = TRUE, col = 2) # pacific-centered map of the world
-map(wrap = c(0, 360, NA), fill = TRUE, col = 2) # pacific-centered map of the world, without Antarctica
+map(wrap = c(0, 360, NA), fill = TRUE, col = 2) # idem, without Antarctica
 map('usa')	# national boundaries
 map('county', 'new jersey')	# county map of New Jersey
 map('state', region = c('new york', 'new jersey', 'penn'))	# map of three states
