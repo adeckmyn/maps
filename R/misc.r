@@ -30,7 +30,7 @@ function (x = world.cities, country = "", label = NULL, minpop = 0,
   maxpop = Inf, capitals = 0, cex = par("cex"), projection = FALSE,
   parameters = NULL, orientation = NULL, pch = 1, ...) 
 {
-  if (missing(x) && !exists("world.cities") {
+  if (missing(x) && !exists("world.cities")) {
     world.cities <- maps::world.cities
   }
   usr <- par("usr")
