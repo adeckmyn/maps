@@ -1,3 +1,8 @@
+deprecate_legacy <- function() {
+  warning("The database 'legacy_world' is deprecated and will be removed from the package. It will remain available in the mapdata package with the new name worldLores.")
+}
+
+
 fix_exceptions <- function(patterns) {
   # we must distinguish uk from Ukraine...
   # very ad hoc, I know.
@@ -22,14 +27,19 @@ fix_exceptions2 <- function(patterns=".") {
   patterns
 }
 
-mapenvir <- function(database="world") {
+mapenvir <- function(database="world", warn.dep=FALSE) {
   dbname <- paste0(database, "MapEnv")
   if (length(grep("::", database)) == 0) {
     if (!exists(dbname)) dbname <- paste0("maps::",dbname)
   } else {
     database <- strsplit(database,"::")[[1]][2]
   }
-  paste0(Sys.getenv(eval(parse(text=dbname))), database)
+  fbase <- paste0(Sys.getenv(eval(parse(text=dbname))), database)
+  if (basename(fbase)=="legacy_world" && warn.dep) {
+    .Deprecated(new="mapdata::worldLores", old="legacy_world")
+#                msg="The old world database will only be available as worldLores from the mapdata package.")
+  }
+  fbase
 }
 
 "mapgetg" <-
@@ -38,7 +48,7 @@ function(database = "world", gons, fill = FALSE, xlim = c(-1e30, 1e30),
 {
 	ngon <- length(gons)
 	gnames <- names(gons)
-	mapbase <- mapenvir(database)
+	mapbase <- mapenvir(database, warn.dep=TRUE)
 	z <- .C(C_map_getg,
 		as.character(mapbase),
 		gons = as.integer(gons),

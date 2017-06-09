@@ -1,0 +1,1006 @@
+"name"	"country.etc"	"pop"	"lat"	"long"	"capital"
+"Abilene TX"	"TX"	113888	32.45	-99.74	0
+"Akron OH"	"OH"	206634	41.08	-81.52	0
+"Alameda CA"	"CA"	70069	37.77	-122.26	0
+"Albany GA"	"GA"	75510	31.58	-84.18	0
+"Albany NY"	"NY"	93576	42.67	-73.8	2
+"Albany OR"	"OR"	45535	44.62	-123.09	0
+"Albuquerque NM"	"NM"	494962	35.12	-106.62	0
+"Alexandria LA"	"LA"	44933	31.29	-92.46	0
+"Alexandria VA"	"VA"	127159	38.82	-77.09	0
+"Alhambra CA"	"CA"	88857	34.08	-118.13	0
+"Aliso Viejo CA"	"CA"	41975	33.57	-117.73	0
+"Allen TX"	"TX"	84467	33.11	-96.67	0
+"Allentown PA"	"PA"	105224	40.6	-75.48	0
+"Aloha OR"	"OR"	45531	45.49	-122.87	0
+"Altadena CA"	"CA"	43280	34.19	-118.13	0
+"Altamonte Springs FL"	"FL"	40712	28.66	-81.4	0
+"Altoona PA"	"PA"	46442	40.51	-78.4	0
+"Amarillo TX"	"TX"	183295	35.2	-101.82	0
+"Ames IA"	"IA"	57683	42.02	-93.63	0
+"Anaheim CA"	"CA"	334909	33.84	-117.87	0
+"Anchorage AK"	"AK"	279428	61.18	-149.19	0
+"Anderson IN"	"IN"	57036	40.09	-85.69	0
+"Andover MA"	"MA"	67715	42.65	-71.14	0
+"Ann Arbor MI"	"MI"	113716	42.28	-83.73	0
+"Annandale VA"	"VA"	57942	38.83	-77.21	0
+"Annapolis MD"	"MD"	36300	38.98	-76.49	2
+"Antioch CA"	"CA"	109485	37.99	-121.8	0
+"Apple Valley CA"	"CA"	66361	34.53	-117.21	0
+"Apple Valley MN"	"MN"	51609	44.75	-93.2	0
+"Appleton WI"	"WI"	70090	44.27	-88.4	0
+"Arcadia CA"	"CA"	57429	34.13	-118.04	0
+"Arden-Arcade CA"	"CA"	99968	38.6	-121.38	0
+"Arlington Heights IL"	"IL"	74763	42.09	-87.98	0
+"Arlington MA"	"MA"	41246	42.42	-71.16	0
+"Arlington TX"	"TX"	374729	32.69	-97.13	0
+"Arlington VA"	"VA"	184603	38.88	-77.1	0
+"Arvada CO"	"CO"	101633	39.82	-105.11	0
+"Asheville NC"	"NC"	68654	35.57	-82.55	0
+"Aspen Hill MD"	"MD"	54029	39.09	-77.08	0
+"Athens-Clarke GA"	"GA"	103618	33.95	-83.39	0
+"Atlanta GA"	"GA"	424096	33.76	-84.42	2
+"Atlantic City NJ"	"NJ"	40529	39.38	-74.45	0
+"Attleboro MA"	"MA"	44690	41.93	-71.3	0
+"Auburn AL"	"AL"	51236	32.59	-85.48	0
+"Auburn WA"	"WA"	46108	47.3	-122.21	0
+"Augusta ME"	"ME"	18626	44.32	-69.77	2
+"Augusta-Richmond GA"	"GA"	192376	33.46	-81.99	0
+"Aurora CO"	"CO"	304641	39.71	-104.73	0
+"Aurora IL"	"IL"	181120	41.77	-88.29	0
+"Austin TX"	"TX"	683404	30.31	-97.75	2
+"Avondale AZ"	"AZ"	79125	33.42	-112.32	0
+"Azusa CA"	"CA"	48992	34.14	-117.91	0
+"Bakersfield CA"	"CA"	301775	35.36	-119	0
+"Baldwin Park CA"	"CA"	81467	34.08	-117.97	0
+"Baltimore MD"	"MD"	602658	39.3	-76.61	0
+"Barnstable Town MA"	"MA"	49598	41.7	-70.3	0
+"Bartlett TN"	"TN"	43852	35.22	-89.84	0
+"Baton Rouge LA"	"LA"	222217	30.45	-91.13	2
+"Battle Creek MI"	"MI"	54179	42.3	-85.23	0
+"Bayonne NJ"	"NJ"	59482	40.66	-74.11	0
+"Baytown TX"	"TX"	67487	29.75	-94.97	0
+"Beaumont TX"	"TX"	110949	30.09	-94.14	0
+"Beavercreek OH"	"OH"	41297	39.73	-84.06	0
+"Beaverton OR"	"OR"	83920	45.48	-122.82	0
+"Bedford TX"	"TX"	49572	32.85	-97.13	0
+"Bel Air South MD"	"MD"	50874	39.5	-76.32	0
+"Bell Gardens CA"	"CA"	46504	33.97	-118.15	0
+"Belleville IL"	"IL"	40745	38.53	-90	0
+"Bellevue NE"	"NE"	48894	41.16	-95.92	0
+"Bellevue WA"	"WA"	111896	47.6	-122.16	0
+"Bellflower CA"	"CA"	76437	33.89	-118.13	0
+"Bellingham WA"	"WA"	74770	48.74	-122.47	0
+"Bend OR"	"OR"	68945	44.07	-121.31	0
+"Berkeley CA"	"CA"	99653	37.87	-122.27	0
+"Berwyn IL"	"IL"	50904	41.84	-87.79	0
+"Bethesda MD"	"MD"	52217	38.99	-77.12	0
+"Bethlehem PA"	"PA"	74087	40.63	-75.37	0
+"Beverly MA"	"MA"	40441	42.56	-70.84	0
+"Billerica MA"	"MA"	40063	42.56	-71.26	0
+"Billings MT"	"MT"	101249	45.79	-108.54	0
+"Biloxi MS"	"MS"	47110	30.41	-88.93	0
+"Binghamton NY"	"NY"	45070	42.1	-75.91	0
+"Birmingham AL"	"AL"	229300	33.53	-86.8	0
+"Bismarck ND"	"ND"	56927	46.81	-100.77	2
+"Blacksburg VA"	"VA"	40303	37.23	-80.43	0
+"Blaine MN"	"MN"	56140	45.17	-93.21	0
+"Bloomfield NJ"	"NJ"	49358	40.81	-74.19	0
+"Bloomfield Township MI"	"MI"	43032	42.58	-83.27	0
+"Bloomington IL"	"IL"	71804	40.48	-88.97	0
+"Bloomington IN"	"IN"	71260	39.17	-86.52	0
+"Bloomington MN"	"MN"	80627	44.83	-93.32	0
+"Blue Springs MO"	"MO"	50116	39.02	-94.27	0
+"Boca Raton FL"	"FL"	81868	26.37	-80.11	0
+"Boise ID"	"ID"	193628	43.61	-116.23	2
+"Bolingbrook IL"	"IL"	76994	41.7	-88.08	0
+"Bonita Springs FL"	"FL"	43842	26.34	-81.79	0
+"Bossier City LA"	"LA"	60142	32.52	-93.66	0
+"Boston MA"	"MA"	567759	42.34	-71.02	2
+"Boulder CO"	"CO"	90957	40.03	-105.25	0
+"Bountiful UT"	"UT"	41622	40.88	-111.87	0
+"Bourne MA"	"MA"	48580	41.74	-70.61	0
+"Bowie MD"	"MD"	56949	38.96	-76.74	0
+"Bowling Green KY"	"KY"	51999	36.97	-86.44	0
+"Boynton Beach FL"	"FL"	67720	26.53	-80.08	0
+"Bradenton FL"	"FL"	55606	27.49	-82.58	0
+"Brandon FL"	"FL"	92728	27.93	-82.29	0
+"Brea CA"	"CA"	40349	33.92	-117.87	0
+"Bremerton WA"	"WA"	45306	47.55	-122.7	0
+"Brentwood CA"	"CA"	52747	37.93	-121.71	0
+"Brentwood NY"	"NY"	58954	40.78	-73.25	0
+"Brewster MA"	"MA"	52153	41.77	-70.08	0
+"Brick NJ"	"NJ"	82400	40.06	-74.11	0
+"Bridgeport CT"	"CT"	138901	41.19	-73.2	0
+"Bridgewater MA"	"MA"	50237	41.99	-70.97	0
+"Bristol CT"	"CT"	61166	41.68	-72.94	0
+"Brockton MA"	"MA"	94945	42.08	-71.03	0
+"Broken Arrow OK"	"OK"	86817	36.04	-95.79	0
+"Brookfield WI"	"WI"	40323	43.06	-88.12	0
+"Brookline MA"	"MA"	55862	42.32	-71.14	0
+"Brooklyn Park MN"	"MN"	67660	45.11	-93.35	0
+"Broomfield CO"	"CO"	45869	39.94	-105.06	0
+"Brownsville TX"	"TX"	174135	25.93	-97.48	0
+"Bryan TX"	"TX"	70386	30.67	-96.37	0
+"Buena Park CA"	"CA"	79388	33.86	-118	0
+"Buffalo Grove IL"	"IL"	43355	42.17	-87.96	0
+"Buffalo NY"	"NY"	276762	42.89	-78.86	0
+"Burbank CA"	"CA"	105515	34.19	-118.33	0
+"Burke VA"	"VA"	58270	38.78	-77.27	0
+"Burlington NC"	"NC"	47290	36.08	-79.45	0
+"Burnsville MN"	"MN"	59357	44.76	-93.28	0
+"Camarillo CA"	"CA"	63560	34.22	-119.03	0
+"Cambridge MA"	"MA"	101342	42.38	-71.12	0
+"Camden NJ"	"NJ"	80393	39.94	-75.11	0
+"Canton MI"	"MI"	89064	42.31	-83.48	0
+"Canton OH"	"OH"	77575	40.81	-81.37	0
+"Cape Coral FL"	"FL"	137134	26.64	-82	0
+"Carlsbad CA"	"CA"	93848	33.12	-117.29	0
+"Carmel IN"	"IN"	49188	39.97	-86.11	0
+"Carmichael CA"	"CA"	51165	38.63	-121.32	0
+"Carol City FL"	"FL"	63659	25.94	-80.27	0
+"Carol Stream IL"	"IL"	39749	41.92	-88.13	0
+"Carrollton TX"	"TX"	123154	32.99	-96.9	0
+"Carson CA"	"CA"	96933	33.84	-118.26	0
+"Carson City NV"	"NV"	58350	39.15	-119.74	2
+"Cary NC"	"NC"	106117	35.78	-78.8	0
+"Casas Adobes AZ"	"AZ"	84988	32.32	-110.99	0
+"Casper WY"	"WY"	51808	42.83	-106.33	0
+"Castle Rock CO"	"CO"	43905	39.38	-104.85	0
+"Castro Valley CA"	"CA"	63908	37.71	-122.06	0
+"Catalina Foothills AZ"	"AZ"	84369	32.3	-110.92	0
+"Cathedral City CA"	"CA"	55253	33.83	-116.46	0
+"Catonsville MD"	"MD"	43406	39.26	-76.74	0
+"Cedar Hill TX"	"TX"	46869	32.58	-96.96	0
+"Cedar Park TX"	"TX"	58499	30.51	-97.83	0
+"Cedar Rapids IA"	"IA"	123243	41.97	-91.67	0
+"Centennial CO"	"CO"	95961	39.6	-104.85	0
+"Centreville VA"	"VA"	69167	38.85	-77.44	0
+"Ceres CA"	"CA"	41223	37.6	-120.96	0
+"Cerritos CA"	"CA"	53616	33.87	-118.07	0
+"Champaign IL"	"IL"	76999	40.11	-88.26	0
+"Chandler AZ"	"AZ"	247915	33.3	-111.87	0
+"Chantilly VA"	"VA"	50103	38.88	-77.41	0
+"Chapel Hill NC"	"NC"	47613	35.93	-79.04	0
+"Charleston SC"	"SC"	106372	32.79	-79.99	0
+"Charleston WV"	"WV"	49804	38.35	-81.63	2
+"Charlotte NC"	"NC"	607111	35.2	-80.83	0
+"Chattanooga TN"	"TN"	153617	35.07	-85.26	0
+"Cheektowaga NY"	"NY"	76785	42.91	-78.75	0
+"Cherry Hill PA"	"PA"	70489	39.9	-75	0
+"Chesapeake VA"	"VA"	223222	36.68	-76.31	0
+"Chesterfield MO"	"MO"	47202	38.65	-90.58	0
+"Cheyenne WY"	"WY"	55833	41.15	-104.79	2
+"Chicago IL"	"IL"	2830144	41.84	-87.68	0
+"Chico CA"	"CA"	71997	39.75	-121.81	0
+"Chicopee MA"	"MA"	55222	42.18	-72.57	0
+"Chino CA"	"CA"	77147	34.01	-117.69	0
+"Chino Hills CA"	"CA"	80817	33.97	-117.75	0
+"Chula Vista CA"	"CA"	221736	32.63	-117.04	0
+"Cicero IL"	"IL"	80414	41.84	-87.76	0
+"Cincinnati OH"	"OH"	301561	39.14	-84.51	0
+"Citrus Heights CA"	"CA"	90277	38.69	-121.29	0
+"Clarksville TN"	"TN"	113379	36.56	-87.35	0
+"Clearwater FL"	"FL"	107866	27.98	-82.77	0
+"Cleveland Heights OH"	"OH"	47123	41.51	-81.56	0
+"Cleveland OH"	"OH"	443949	41.48	-81.68	0
+"Clifton NJ"	"NJ"	80446	40.86	-74.16	0
+"Clinton MI"	"MI"	100517	42.59	-82.92	0
+"Clovis CA"	"CA"	90115	36.82	-119.7	0
+"Coconut Creek FL"	"FL"	51848	26.28	-80.18	0
+"Coeur d'Alene ID"	"ID"	40270	47.7	-116.78	0
+"College Station TX"	"TX"	80627	30.6	-96.31	0
+"Colorado Springs CO"	"CO"	375744	38.86	-104.76	0
+"Colton CA"	"CA"	53281	34.06	-117.32	0
+"Columbia MD"	"MD"	97772	39.2	-76.86	0
+"Columbia MO"	"MO"	92756	38.95	-92.33	0
+"Columbia SC"	"SC"	118020	34.04	-80.89	2
+"Columbus GA"	"GA"	184900	32.51	-84.87	0
+"Columbus IN"	"IN"	39453	39.21	-85.91	0
+"Columbus OH"	"OH"	741677	39.99	-82.99	2
+"Compton CA"	"CA"	97338	33.89	-118.23	0
+"Concord CA"	"CA"	126360	37.97	-122	0
+"Concord NC"	"NC"	61640	35.41	-80.59	0
+"Concord NH"	"NH"	42967	43.23	-71.56	2
+"Conroe TX"	"TX"	42545	30.32	-95.47	0
+"Conway AR"	"AR"	53297	35.09	-92.45	0
+"Coon Rapids MN"	"MN"	62711	45.17	-93.31	0
+"Coppell TX"	"TX"	40487	32.96	-96.99	0
+"Coral Gables FL"	"FL"	42495	25.7	-80.26	0
+"Coral Springs FL"	"FL"	134773	26.27	-80.26	0
+"Corona CA"	"CA"	159198	33.87	-117.57	0
+"Corpus Christi TX"	"TX"	280808	27.71	-97.29	0
+"Corvallis OR"	"OR"	50932	44.57	-123.28	0
+"Costa Mesa CA"	"CA"	109357	33.67	-117.91	0
+"Council Bluffs IA"	"IA"	58834	41.24	-95.86	0
+"Country Club FL"	"FL"	58321	25.95	-80.32	0
+"Covina CA"	"CA"	49039	34.09	-117.88	0
+"Covington KY"	"KY"	41896	39.04	-84.51	0
+"Cranston RI"	"RI"	83595	41.77	-71.48	0
+"Crystal Lake IL"	"IL"	41874	42.23	-88.33	0
+"Culver City CA"	"CA"	40361	34.01	-118.4	0
+"Cupertino CA"	"CA"	50952	37.31	-122.05	0
+"Cuyahoga Falls OH"	"OH"	52223	41.17	-81.52	0
+"Cypress CA"	"CA"	47521	33.82	-118.04	0
+"Dale City VA"	"VA"	62241	38.65	-77.34	0
+"Dallas TX"	"TX"	1216543	32.79	-96.77	0
+"Daly City CA"	"CA"	98084	37.69	-122.47	0
+"Danbury CT"	"CT"	79292	41.4	-73.47	0
+"Danville CA"	"CA"	43110	37.81	-121.97	0
+"Danville VA"	"VA"	45382	36.58	-79.41	0
+"Davenport IA"	"IA"	96595	41.56	-90.6	0
+"Davie FL"	"FL"	84154	26.08	-80.29	0
+"Davis CA"	"CA"	66992	38.55	-121.74	0
+"Dayton OH"	"OH"	157607	39.78	-84.2	0
+"Daytona Beach FL"	"FL"	64735	29.19	-81.05	0
+"DeKalb IL"	"IL"	44223	41.93	-88.75	0
+"DeSoto TX"	"TX"	47179	32.6	-96.86	0
+"Dearborn Heights MI"	"MI"	55964	42.33	-83.27	0
+"Dearborn MI"	"MI"	94681	42.31	-83.21	0
+"Decatur AL"	"AL"	54717	34.57	-86.99	0
+"Decatur IL"	"IL"	77026	39.85	-88.93	0
+"Deerfield Beach FL"	"FL"	66628	26.31	-80.12	0
+"Delano CA"	"CA"	45933	35.76	-119.25	0
+"Delray Beach FL"	"FL"	66633	26.45	-80.09	0
+"Deltona FL"	"FL"	84646	28.91	-81.21	0
+"Dennis MA"	"MA"	39833	41.74	-70.2	0
+"Denton TX"	"TX"	105431	33.21	-97.13	0
+"Denver CO"	"CO"	556575	39.77	-104.87	2
+"Des Moines IA"	"IA"	192050	41.58	-93.62	2
+"Des Plaines IL"	"IL"	53601	42.03	-87.9	0
+"Detroit MI"	"MI"	871789	42.38	-83.1	0
+"Diamond Bar CA"	"CA"	59433	34	-117.81	0
+"Dothan AL"	"AL"	62449	31.24	-85.41	0
+"Dover DE"	"DE"	34288	39.16	-75.53	2
+"Downers Grove IL"	"IL"	49471	41.8	-88.02	0
+"Downey CA"	"CA"	112762	33.94	-118.13	0
+"Dublin CA"	"CA"	40791	37.72	-121.91	0
+"Dubuque IA"	"IA"	57027	42.5	-90.69	0
+"Duluth MN"	"MN"	84472	46.78	-92.12	0
+"Dundalk MD"	"MD"	61426	39.27	-76.5	0
+"Durham NC"	"NC"	208426	35.98	-78.91	0
+"Duxbury MA"	"MA"	44473	42.04	-70.67	0
+"Eagan MN"	"MN"	64393	44.82	-93.16	0
+"East Brunswick NJ"	"NJ"	48799	40.43	-74.42	0
+"East Hartford CT"	"CT"	50209	41.76	-72.62	0
+"East Lake FL"	"FL"	47720	27.98	-82.38	0
+"East Lansing MI"	"MI"	48618	42.74	-84.48	0
+"East Los Angeles CA"	"CA"	125121	34.03	-118.17	0
+"East Orange NJ"	"NJ"	68064	40.77	-74.21	0
+"East Providence RI"	"RI"	50750	41.8	-71.36	0
+"Eau Claire WI"	"WI"	63049	44.82	-91.49	0
+"Eden Prairie MN"	"MN"	65076	44.85	-93.46	0
+"Edina MN"	"MN"	45648	44.89	-93.36	0
+"Edinburg TX"	"TX"	63193	26.3	-98.16	0
+"Edison NJ"	"NJ"	103448	40.53	-74.37	0
+"Edmond OK"	"OK"	75061	35.67	-97.41	0
+"Edmonds WA"	"WA"	40023	47.83	-122.37	0
+"Egypt Lake-Leto FL"	"FL"	49538	28.02	-82.5	0
+"El Cajon CA"	"CA"	94767	32.8	-116.96	0
+"El Mirage AZ"	"AZ"	42234	33.6	-112.32	0
+"El Monte CA"	"CA"	127195	34.07	-118.03	0
+"El Paso TX"	"TX"	603545	31.85	-106.44	0
+"Eldersburg MD"	"MD"	41194	39.41	-76.94	0
+"Elgin IL"	"IL"	99411	42.04	-88.29	0
+"Elizabeth NJ"	"NJ"	124552	40.67	-74.19	0
+"Elk Grove CA"	"CA"	99467	38.4	-121.37	0
+"Elkhart IN"	"IN"	51198	41.69	-85.97	0
+"Ellicott City MD"	"MD"	68337	39.27	-76.83	0
+"Elmhurst IL"	"IL"	45463	41.9	-87.94	0
+"Elyria OH"	"OH"	55811	41.38	-82.11	0
+"Encinitas CA"	"CA"	62273	33.05	-117.26	0
+"Enid OK"	"OK"	45935	36.41	-97.87	0
+"Erie PA"	"PA"	98968	42.13	-80.09	0
+"Escondido CA"	"CA"	137823	33.14	-117.07	0
+"Euclid OH"	"OH"	49602	41.59	-81.52	0
+"Eugene OR"	"OR"	146483	44.05	-123.11	0
+"Euless TX"	"TX"	54705	32.85	-97.08	0
+"Evanston IL"	"IL"	75419	42.05	-87.69	0
+"Evansville IN"	"IN"	114237	37.98	-87.54	0
+"Everett WA"	"WA"	97575	47.96	-122.2	0
+"Fairfield CA"	"CA"	107749	38.25	-122.04	0
+"Fairfield CT"	"CT"	59352	41.13	-73.26	0
+"Fairfield OH"	"OH"	43279	39.33	-84.54	0
+"Fall River MA"	"MA"	93128	41.71	-71.11	0
+"Falmouth MA"	"MA"	90561	41.55	-70.6	0
+"Fargo ND"	"ND"	92396	46.88	-96.82	0
+"Farmington Hills MI"	"MI"	79530	42.49	-83.38	0
+"Farmington NM"	"NM"	44278	36.75	-108.19	0
+"Fayetteville AR"	"AR"	66288	36.07	-94.16	0
+"Fayetteville NC"	"NC"	124919	35.07	-78.9	0
+"Federal Way WA"	"WA"	80336	47.31	-122.34	0
+"Findlay OH"	"OH"	40571	41.04	-83.64	0
+"Fishers IN"	"IN"	58678	39.95	-86.02	0
+"Fitchburg MA"	"MA"	40565	42.59	-71.82	0
+"Flagstaff AZ"	"AZ"	58490	35.19	-111.62	0
+"Flint MI"	"MI"	115691	43.02	-83.69	0
+"Florence-Graham CA"	"CA"	63012	33.97	-118.24	0
+"Florissant MO"	"MO"	51644	38.8	-90.32	0
+"Flower Mound TX"	"TX"	70449	33.03	-97.09	0
+"Folsom CA"	"CA"	71775	38.68	-121.15	0
+"Fond du Lac WI"	"WI"	41787	43.77	-88.45	0
+"Fontana CA"	"CA"	178257	34.1	-117.46	0
+"Fort Collins CO"	"CO"	131505	40.56	-105.07	0
+"Fort Lauderdale FL"	"FL"	173597	26.14	-80.14	0
+"Fort Myers FL"	"FL"	53961	26.63	-81.85	0
+"Fort Smith AR"	"AR"	82304	35.37	-94.38	0
+"Fort Wayne IN"	"IN"	231147	41.07	-85.14	0
+"Fort Worth TX"	"TX"	633849	32.75	-97.34	0
+"Fountain Valley CA"	"CA"	56318	33.71	-117.95	0
+"Fountainbleau FL"	"FL"	67124	25.77	-80.35	0
+"Framingham MA"	"MA"	65103	42.31	-71.44	0
+"Franconia VA"	"VA"	42105	38.76	-77.15	0
+"Frankfort KY"	"KY"	27210	38.2	-84.86	2
+"Franklin TN"	"TN"	51478	35.93	-86.84	0
+"Frederick MD"	"MD"	58271	39.43	-77.42	0
+"Freeport NY"	"NY"	43377	40.65	-73.58	0
+"Fremont CA"	"CA"	202574	37.53	-122	0
+"Fresno CA"	"CA"	472517	36.78	-119.79	0
+"Frisco TX"	"TX"	80192	33.14	-96.81	0
+"Fullerton CA"	"CA"	137126	33.88	-117.93	0
+"Gainesville FL"	"FL"	127933	29.67	-82.34	0
+"Gaithersburg MD"	"MD"	61649	39.14	-77.22	0
+"Galveston TX"	"TX"	56205	29.3	-94.81	0
+"Garden Grove CA"	"CA"	167647	33.78	-117.96	0
+"Gardena CA"	"CA"	61550	33.89	-118.3	0
+"Garland TX"	"TX"	217609	32.91	-96.63	0
+"Gary IN"	"IN"	96950	41.6	-87.34	0
+"Gastonia NC"	"NC"	67937	35.25	-81.17	0
+"Georgetown TX"	"TX"	41398	30.65	-97.69	0
+"Germantown MD"	"MD"	66720	39.18	-77.26	0
+"Gilbert AZ"	"AZ"	186332	33.33	-111.76	0
+"Gilroy CA"	"CA"	46107	37.01	-121.58	0
+"Glen Burnie MD"	"MD"	40546	39.17	-76.6	0
+"Glendale AZ"	"AZ"	244734	33.58	-112.2	0
+"Glendale CA"	"CA"	204747	34.18	-118.25	0
+"Glendora CA"	"CA"	51929	34.15	-117.84	0
+"Glenview IL"	"IL"	47479	42.08	-87.82	0
+"Goodyear AZ"	"AZ"	49748	33.35	-112.41	0
+"Grand Forks ND"	"ND"	48195	47.92	-97.07	0
+"Grand Island NE"	"NE"	45052	40.92	-98.37	0
+"Grand Junction CO"	"CO"	46350	39.09	-108.55	0
+"Grand Prairie TX"	"TX"	144018	32.69	-97.02	0
+"Grand Rapids MI"	"MI"	193006	42.96	-85.66	0
+"Grapevine TX"	"TX"	51334	32.93	-97.07	0
+"Great Falls MT"	"MT"	55908	47.5	-111.29	0
+"Greater Carrollwood FL"	"FL"	42586	28.07	-82.52	0
+"Greeley CO"	"CO"	88957	40.42	-104.74	0
+"Green Bay WI"	"WI"	100616	44.52	-87.99	0
+"Greensboro NC"	"NC"	233342	36.08	-79.83	0
+"Greenville NC"	"NC"	72617	35.6	-77.37	0
+"Greenville SC"	"SC"	55421	34.84	-82.37	0
+"Greenwich CT"	"CT"	64100	41.04	-73.59	0
+"Greenwood IN"	"IN"	42298	39.62	-86.11	0
+"Gresham OR"	"OR"	100674	45.5	-122.44	0
+"Gulfport MS"	"MS"	71400	30.39	-89.07	0
+"Hacienda Heights CA"	"CA"	54439	34	-117.97	0
+"Hackensack NJ"	"NJ"	43923	40.89	-74.05	0
+"Haltom City TX"	"TX"	42053	32.82	-97.27	0
+"Hamden CT"	"CT"	60388	41.37	-72.89	0
+"Hamilton NJ"	"NJ"	91245	40.09	-74.39	0
+"Hamilton OH"	"OH"	61527	39.39	-84.56	0
+"Hammond IN"	"IN"	78051	41.62	-87.49	0
+"Hampton VA"	"VA"	148201	37.05	-76.29	0
+"Hanford CA"	"CA"	48892	36.33	-119.65	0
+"Harlingen TX"	"TX"	64198	26.2	-97.69	0
+"Harrisburg PA"	"PA"	47576	40.28	-76.88	2
+"Harrisonburg VA"	"VA"	41992	38.44	-78.87	0
+"Hartford CT"	"CT"	123836	41.77	-72.68	2
+"Hattiesburg MS"	"MS"	48728	31.31	-89.31	0
+"Haverhill MA"	"MA"	61928	42.78	-71.09	0
+"Hawthorne CA"	"CA"	87677	33.91	-118.35	0
+"Hayward CA"	"CA"	140704	37.63	-122.1	0
+"Helena MT"	"MT"	27383	46.6	-112.03	2
+"Hemet CA"	"CA"	71300	33.73	-117	0
+"Hempstead NY"	"NY"	52769	40.7	-73.62	0
+"Henderson NV"	"NV"	255646	36.03	-115	0
+"Hendersonville TN"	"TN"	45358	36.29	-86.6	0
+"Hesperia CA"	"CA"	75966	34.42	-117.3	0
+"Hialeah FL"	"FL"	224644	25.86	-80.3	0
+"Hickory NC"	"NC"	40968	35.74	-81.33	0
+"Hicksville NY"	"NY"	41452	40.76	-73.53	0
+"High Point NC"	"NC"	96011	35.98	-80	0
+"Highland CA"	"CA"	52692	34.12	-117.19	0
+"Highlands Ranch CO"	"CO"	109009	39.55	-104.97	0
+"Hillsboro OR"	"OR"	85046	45.53	-122.94	0
+"Hilo HI"	"HI"	43466	19.7	-155.09	0
+"Hingham MS"	"MS"	41654	42.24	-70.89	0
+"Hoboken NJ"	"NJ"	39972	40.74	-74.03	0
+"Hoffman Estates IL"	"IL"	50674	42.06	-88.14	0
+"Hollywood FL"	"FL"	145877	26.03	-80.16	0
+"Holyoke MA"	"MA"	40143	42.21	-72.64	0
+"Honolulu HI"	"HI"	386345	21.32	-157.8	2
+"Hoover AL"	"AL"	67576	33.38	-86.82	0
+"Houston TX"	"TX"	2043005	29.77	-95.39	0
+"Huntersville NC"	"NC"	43970	35.41	-80.86	0
+"Huntington Beach CA"	"CA"	197124	33.69	-118.01	0
+"Huntington Park CA"	"CA"	64308	33.98	-118.22	0
+"Huntington WV"	"WV"	47905	38.41	-82.43	0
+"Huntsville AL"	"AL"	169155	34.71	-86.63	0
+"Hutchinson KS"	"KS"	40386	38.07	-97.91	0
+"Idaho Falls ID"	"ID"	52431	43.49	-112.03	0
+"Independence MO"	"MO"	110124	39.09	-94.35	0
+"Indianapolis IN"	"IN"	771725	39.78	-86.15	2
+"Indio CA"	"CA"	69736	33.72	-116.23	0
+"Inglewood CA"	"CA"	116797	33.96	-118.34	0
+"Iowa City IA"	"IA"	64490	41.66	-91.54	0
+"Irondequoit NY"	"NY"	51825	43.21	-77.57	0
+"Irvine CA"	"CA"	199755	33.66	-117.8	0
+"Irving TX"	"TX"	194407	32.86	-96.97	0
+"Irvington NJ"	"NJ"	61373	40.72	-74.23	0
+"Jackson MS"	"MS"	175085	32.32	-90.21	2
+"Jackson TN"	"TN"	62552	35.63	-88.83	0
+"Jacksonville FL"	"FL"	809874	30.33	-81.66	0
+"Jacksonville NC"	"NC"	68201	34.76	-77.4	0
+"Janesville WI"	"WI"	61952	42.68	-89.02	0
+"Jefferson City MO"	"MO"	39062	38.57	-92.19	2
+"Jersey City NJ"	"NJ"	237125	40.71	-74.06	0
+"Johnson City TN"	"TN"	59183	36.33	-82.37	0
+"Joliet IL"	"IL"	141246	41.53	-88.12	0
+"Jonesboro AR"	"AR"	59233	35.82	-90.69	0
+"Joplin MO"	"MO"	47060	37.08	-94.5	0
+"Juneau AK"	"AK"	31187	58.3	-134.42	2
+"Jupiter FL"	"FL"	51126	26.92	-80.1	0
+"Kalamazoo MI"	"MI"	73504	42.27	-85.59	0
+"Kansas City KS"	"KS"	143402	39.12	-94.73	0
+"Kansas City MO"	"MO"	441833	39.12	-94.55	0
+"Keller TX"	"TX"	39928	32.93	-97.23	0
+"Kendale Lakes FL"	"FL"	62715	25.71	-80.41	0
+"Kendall FL"	"FL"	84549	25.67	-80.34	0
+"Kenner LA"	"LA"	69514	29.99	-90.25	0
+"Kennewick WA"	"WA"	63593	46.2	-119.17	0
+"Kenosha WI"	"WI"	94673	42.58	-87.85	0
+"Kent WA"	"WA"	82896	47.39	-122.24	0
+"Kentwood MI"	"MI"	47421	42.88	-85.59	0
+"Kettering OH"	"OH"	55473	39.7	-84.15	0
+"Killeen TX"	"TX"	106441	31.1	-97.72	0
+"Kingsport TN"	"TN"	43776	36.53	-82.56	0
+"Kirkland WA"	"WA"	45913	47.68	-122.19	0
+"Kissimmee FL"	"FL"	67085	28.3	-81.41	0
+"Knoxville TN"	"TN"	172000	35.97	-83.95	0
+"Kokomo IN"	"IN"	46130	40.48	-86.13	0
+"La Crosse WI"	"WI"	50147	43.83	-91.23	0
+"La Habra CA"	"CA"	59799	33.93	-117.95	0
+"La Mesa CA"	"CA"	53942	32.77	-117.02	0
+"La Mirada CA"	"CA"	50598	33.9	-118.01	0
+"La Puente CA"	"CA"	42901	34.03	-117.95	0
+"La Quinta CA"	"CA"	41239	33.67	-116.29	0
+"Lafayette IN"	"IN"	62589	40.41	-86.87	0
+"Lafayette LA"	"LA"	112317	30.22	-92.03	0
+"Laguna CA"	"CA"	49714	38.42	-121.42	0
+"Laguna Niguel CA"	"CA"	67009	33.53	-117.7	0
+"Lake Charles LA"	"LA"	69910	30.21	-93.2	0
+"Lake Elsinore CA"	"CA"	43336	33.67	-117.32	0
+"Lake Forest CA"	"CA"	76859	33.63	-117.7	0
+"Lake Havasu City AZ"	"AZ"	57685	34.5	-114.31	0
+"Lake Magdalene FL"	"FL"	40413	28.07	-82.47	0
+"Lakeland FL"	"FL"	92011	28.04	-81.96	0
+"Lakeville MN"	"MN"	52745	44.68	-93.24	0
+"Lakewood CA"	"CA"	82632	33.85	-118.12	0
+"Lakewood CO"	"CO"	140154	39.7	-105.11	0
+"Lakewood NJ"	"NJ"	43436	40.09	-74.21	0
+"Lakewood OH"	"OH"	51999	41.48	-81.8	0
+"Lakewood WA"	"WA"	58995	47.16	-122.53	0
+"Lancaster CA"	"CA"	131779	34.69	-118.18	0
+"Lancaster PA"	"PA"	54390	40.04	-76.3	0
+"Lansing MI"	"MI"	117236	42.71	-84.55	2
+"Laredo TX"	"TX"	218041	27.53	-99.49	0
+"Largo FL"	"FL"	71688	27.91	-82.78	0
+"Las Cruces NM"	"NM"	81473	32.34	-106.76	0
+"Las Vegas NV"	"NV"	553807	36.21	-115.22	0
+"Lauderhill FL"	"FL"	60308	26.17	-80.23	0
+"Lawrence IN"	"IN"	42451	39.87	-85.99	0
+"Lawrence KS"	"KS"	83948	38.96	-95.26	0
+"Lawrence MA"	"MA"	72669	42.7	-71.16	0
+"Lawton OK"	"OK"	91453	34.6	-98.42	0
+"Layton UT"	"UT"	63096	41.08	-111.95	0
+"League City TX"	"TX"	65696	29.49	-95.11	0
+"Lee's Summit MO"	"MO"	83837	38.92	-94.38	0
+"Lehigh Acres FL"	"FL"	52474	26.6	-81.63	0
+"Lenexa KS"	"KS"	43935	38.96	-94.79	0
+"Leominster MA"	"MA"	42479	42.52	-71.77	0
+"Levittown NY"	"NY"	52390	40.72	-73.51	0
+"Levittown PA"	"PA"	52889	40.15	-74.85	0
+"Lewisville TX"	"TX"	97496	33.04	-96.98	0
+"Lexington KY"	"KY"	274245	38.04	-84.46	0
+"Lima OH"	"OH"	39543	40.74	-84.11	0
+"Lincoln CA"	"CA"	40805	38.89	-121.3	0
+"Lincoln NE"	"NE"	245301	40.82	-96.69	2
+"Linden NJ"	"NJ"	39964	40.63	-74.24	0
+"Little Rock AR"	"AR"	184323	34.72	-92.35	2
+"Littleton CO"	"CO"	41063	39.59	-105.01	0
+"Livermore CA"	"CA"	81787	37.69	-121.76	0
+"Livonia MI"	"MI"	97722	42.4	-83.37	0
+"Lodi CA"	"CA"	64068	38.12	-121.29	0
+"Logan UT"	"UT"	45262	41.74	-111.84	0
+"Lombard IL"	"IL"	42917	41.87	-88.01	0
+"Lompoc CA"	"CA"	40924	34.66	-120.47	0
+"Long Beach CA"	"CA"	486571	33.79	-118.16	0
+"Longmont CO"	"CO"	85988	40.17	-105.11	0
+"Longview TX"	"TX"	76372	32.52	-94.76	0
+"Lorain OH"	"OH"	67692	41.44	-82.18	0
+"Los Angeles CA"	"CA"	3911500	34.11	-118.41	0
+"Louisville KY"	"KY"	241072	38.22	-85.74	0
+"Loveland CO"	"CO"	61578	40.42	-105.07	0
+"Lowell MA"	"MA"	103085	42.64	-71.32	0
+"Lower Merion PA"	"PA"	60579	40.03	-75.28	0
+"Lubbock TX"	"TX"	213587	33.58	-101.88	0
+"Lynchburg VA"	"VA"	65485	37.4	-79.19	0
+"Lynn MA"	"MA"	89786	42.47	-70.96	0
+"Lynwood CA"	"CA"	72890	33.92	-118.2	0
+"MacAllen TX"	"TX"	125985	26.22	-98.24	0
+"MacKinney TX"	"TX"	108976	33.2	-96.65	0
+"MacLean VA"	"VA"	39731	38.94	-77.18	0
+"Macon GA"	"GA"	93755	32.84	-83.66	0
+"Madera CA"	"CA"	53222	36.97	-120.08	0
+"Madison AL"	"AL"	39516	34.7	-86.75	0
+"Madison WI"	"WI"	227642	43.08	-89.39	2
+"Malden MA"	"MA"	55066	42.43	-71.06	0
+"Manchester NH"	"NH"	110384	42.98	-71.44	0
+"Manhattan KS"	"KS"	45671	39.19	-96.59	0
+"Mansfield OH"	"OH"	50010	40.76	-82.53	0
+"Manteca CA"	"CA"	69588	37.8	-121.22	0
+"Maple Grove MN"	"MN"	62021	45.11	-93.46	0
+"Margate FL"	"FL"	55844	26.25	-80.21	0
+"Marietta GA"	"GA"	61946	33.95	-84.54	0
+"Marshfield MA"	"MA"	60784	42.09	-70.71	0
+"Medford MA"	"MA"	53579	42.42	-71.11	0
+"Medford OR"	"OR"	70717	42.34	-122.85	0
+"Melbourne FL"	"FL"	77320	28.11	-80.64	0
+"Memphis TN"	"TN"	639736	35.11	-90.01	0
+"Mentor OH"	"OH"	49597	41.69	-81.33	0
+"Merced CA"	"CA"	74415	37.3	-120.48	0
+"Meriden CT"	"CT"	59558	41.54	-72.8	0
+"Meridian ID"	"ID"	48376	43.61	-116.4	0
+"Mesa AZ"	"AZ"	461167	33.42	-111.74	0
+"Mesquite TX"	"TX"	132746	32.77	-96.6	0
+"Metairie LA"	"LA"	141606	30	-90.18	0
+"Methuen MA"	"MA"	45666	42.73	-71.19	0
+"Miami Beach FL"	"FL"	89531	25.81	-80.14	0
+"Miami FL"	"FL"	386740	25.78	-80.21	0
+"Middletown CT"	"CT"	51189	41.55	-72.65	0
+"Middletown OH"	"OH"	53027	39.51	-84.37	0
+"Midland MI"	"MI"	42516	43.62	-84.23	0
+"Midland TX"	"TX"	98261	32.03	-102.1	0
+"Midwest City OK"	"OK"	55090	35.46	-97.37	0
+"Milford CT"	"CT"	51360	41.23	-73.06	0
+"Milpitas CA"	"CA"	62671	37.43	-121.89	0
+"Milwaukee WI"	"WI"	575250	43.06	-87.97	0
+"Minneapolis MN"	"MN"	364726	44.96	-93.27	0
+"Minnetonka MN"	"MN"	49918	44.93	-93.46	0
+"Miramar FL"	"FL"	123116	25.98	-80.33	0
+"Mishawaka IN"	"IN"	49534	41.67	-86.17	0
+"Mission TX"	"TX"	65215	26.21	-98.32	0
+"Mission Viejo CA"	"CA"	97001	33.61	-117.65	0
+"Missoula MT"	"MT"	64391	46.87	-114.01	0
+"Missouri City TX"	"TX"	73529	29.57	-95.54	0
+"Mobile AL"	"AL"	188467	30.68	-88.09	0
+"Modesto CA"	"CA"	221674	37.66	-120.99	0
+"Moline IL"	"IL"	42427	41.49	-90.49	0
+"Monroe LA"	"LA"	51292	32.51	-92.08	0
+"Montclair NJ"	"NJ"	39801	40.82	-74.21	0
+"Montebello CA"	"CA"	64727	34.02	-118.11	0
+"Monterey Park CA"	"CA"	63766	34.05	-118.13	0
+"Montgomery AL"	"AL"	197653	32.35	-86.28	2
+"Montgomery Village MD"	"MD"	42453	39.18	-77.19	0
+"Montpelier VT"	"VT"	8003	44.26	-72.57	2
+"Moore OK"	"OK"	48749	35.33	-97.47	0
+"Moreno Valley CA"	"CA"	174068	33.93	-117.21	0
+"Mount Pleasant SC"	"SC"	61690	32.82	-79.86	0
+"Mount Prospect IL"	"IL"	55100	42.07	-87.94	0
+"Mount Vernon NY"	"NY"	68048	40.91	-73.83	0
+"Mountain View CA"	"CA"	67788	37.4	-122.08	0
+"Muncie IN"	"IN"	64771	40.2	-85.39	0
+"Murfreesboro TN"	"TN"	88161	35.85	-86.39	0
+"Murray UT"	"UT"	56848	40.65	-111.89	0
+"Murrieta CA"	"CA"	97999	33.56	-117.21	0
+"Muskegon MI"	"MI"	40058	43.23	-86.26	0
+"Nampa ID"	"ID"	77893	43.58	-116.56	0
+"Napa CA"	"CA"	77884	38.3	-122.3	0
+"Naperville IL"	"IL"	147178	41.76	-88.15	0
+"Nashua NH"	"NH"	87113	42.75	-71.49	0
+"Nashville TN"	"TN"	523547	36.17	-86.78	2
+"National City CA"	"CA"	64065	32.67	-117.1	0
+"New Bedford MA"	"MA"	94039	41.66	-70.94	0
+"New Braunfels TX"	"TX"	47533	29.7	-98.12	0
+"New Britain CT"	"CT"	71362	41.68	-72.79	0
+"New Brunswick NJ"	"NJ"	51044	40.49	-74.45	0
+"New Haven CT"	"CT"	125030	41.31	-72.92	0
+"New Milford CT"	"CT"	58524	41.58	-73.41	0
+"New Orleans LA"	"LA"	454207	30.07	-89.93	0
+"New Rochelle NY"	"NY"	72865	40.92	-73.78	0
+"New York NY"	"NY"	8124427	40.67	-73.94	0
+"Newark CA"	"CA"	43018	37.52	-122.03	0
+"Newark NJ"	"NJ"	281378	40.72	-74.17	0
+"Newark OH"	"OH"	46870	40.07	-82.42	0
+"Newport Beach CA"	"CA"	79305	33.61	-117.87	0
+"Newport News VA"	"VA"	183941	37.08	-76.51	0
+"Newton MA"	"MA"	84969	42.33	-71.21	0
+"Niagara Falls NY"	"NY"	52509	43.09	-79.02	0
+"Norfolk VA"	"VA"	248182	36.92	-76.24	0
+"Normal IL"	"IL"	52497	40.52	-89	0
+"Norman OK"	"OK"	102925	35.23	-97.34	0
+"North Atlanta GA"	"GA"	45739	33.86	-84.33	0
+"North Bergen NJ"	"NJ"	64575	40.79	-74.03	0
+"North Bethesda MD"	"MD"	45600	39.04	-77.12	0
+"North Brunswick Township NJ"	"NJ"	39567	40.45	-74.48	0
+"North Charleston SC"	"SC"	83247	32.91	-80.04	0
+"North Fort Myers FL"	"FL"	47790	26.71	-81.89	0
+"North Highlands CA"	"CA"	46156	38.67	-121.38	0
+"North Las Vegas NV"	"NV"	177751	36.27	-115.14	0
+"North Little Rock AR"	"AR"	58771	34.79	-92.26	0
+"North Miami Beach FL"	"FL"	39551	25.93	-80.17	0
+"North Miami FL"	"FL"	58238	25.9	-80.17	0
+"North Port FL"	"FL"	41919	27.05	-82.19	0
+"North Richland Hills TX"	"TX"	64317	32.86	-97.22	0
+"Norwalk CA"	"CA"	110002	33.91	-118.08	0
+"Norwalk CT"	"CT"	84801	41.09	-73.42	0
+"Novato CA"	"CA"	49005	38.09	-122.56	0
+"Novi MI"	"MI"	55079	42.48	-83.49	0
+"O'Fallon MO"	"MO"	79091	38.78	-90.71	0
+"Oak Lawn IL"	"IL"	54638	41.72	-87.75	0
+"Oak Park IL"	"IL"	48922	41.89	-87.79	0
+"Oakland CA"	"CA"	393632	37.77	-122.22	0
+"Ocala FL"	"FL"	50241	29.19	-82.13	0
+"Oceanside CA"	"CA"	172251	33.23	-117.31	0
+"Odessa TX"	"TX"	91246	31.87	-102.35	0
+"Ogden UT"	"UT"	78572	41.23	-111.97	0
+"Oklahoma City OK"	"OK"	538141	35.47	-97.51	2
+"Olathe KS"	"KS"	118165	38.89	-94.81	0
+"Olympia WA"	"WA"	45403	47.04	-122.89	2
+"Omaha NE"	"NE"	417809	41.26	-96.01	0
+"Ontario CA"	"CA"	175805	34.05	-117.61	0
+"Orange CA"	"CA"	134868	33.81	-117.82	0
+"Orem UT"	"UT"	94758	40.3	-111.7	0
+"Orland Park IL"	"IL"	56731	41.61	-87.85	0
+"Orlando FL"	"FL"	211226	28.5	-81.37	0
+"Oshkosh WI"	"WI"	62967	44.02	-88.55	0
+"Overland Park KS"	"KS"	169520	38.91	-94.68	0
+"Owensboro KY"	"KY"	54513	37.76	-87.12	0
+"Oxnard CA"	"CA"	190658	34.2	-119.21	0
+"Pahrump NV"	"NV"	44614	36.2	-115.99	0
+"Palatine IL"	"IL"	68308	42.11	-88.04	0
+"Palm Bay FL"	"FL"	91080	27.99	-80.66	0
+"Palm Beach Gardens FL"	"FL"	50768	26.84	-80.12	0
+"Palm Coast FL"	"FL"	43487	29.57	-81.21	0
+"Palm Desert CA"	"CA"	50126	33.73	-116.38	0
+"Palm Harbor FL"	"FL"	65500	28.09	-82.76	0
+"Palm Springs CA"	"CA"	47434	33.78	-116.53	0
+"Palmdale CA"	"CA"	139337	34.61	-118.09	0
+"Palo Alto CA"	"CA"	56084	37.4	-122.14	0
+"Paradise NV"	"NV"	221051	36.08	-115.13	0
+"Paramount CA"	"CA"	57672	33.9	-118.16	0
+"Parker CO"	"CO"	45478	39.51	-104.76	0
+"Parkway-South Sacramento CA"	"CA"	39984	38.51	-121.45	0
+"Parma OH"	"OH"	81917	41.38	-81.73	0
+"Parsippany-Troy Hills Township NJ"	"NJ"	52051	40.86	-74.42	0
+"Pasadena CA"	"CA"	146676	34.16	-118.14	0
+"Pasadena TX"	"TX"	145351	29.66	-95.15	0
+"Pasco WA"	"WA"	45774	46.25	-119.13	0
+"Passaic NJ"	"NJ"	69035	40.86	-74.13	0
+"Paterson NJ"	"NJ"	151523	40.91	-74.16	0
+"Pawtucket RI"	"RI"	75297	41.87	-71.37	0
+"Peabody MA"	"MA"	50698	42.53	-70.97	0
+"Pearland TX"	"TX"	59287	29.56	-95.28	0
+"Pembroke Pines FL"	"FL"	160157	26.01	-80.34	0
+"Penn Hills PA"	"PA"	44124	40.48	-79.83	0
+"Pensacola FL"	"FL"	53652	30.44	-87.19	0
+"Peoria AZ"	"AZ"	146634	33.69	-112.24	0
+"Peoria IL"	"IL"	112894	40.74	-89.61	0
+"Perris CA"	"CA"	48555	33.79	-117.22	0
+"Perth Amboy NJ"	"NJ"	49448	40.52	-74.27	0
+"Petaluma CA"	"CA"	55536	38.24	-122.63	0
+"Pharr TX"	"TX"	63806	26.18	-98.19	0
+"Philadelphia PA"	"PA"	1439814	40.01	-75.13	0
+"Phoenix AZ"	"AZ"	1450884	33.54	-112.07	2
+"Pico Rivera CA"	"CA"	66874	33.99	-118.09	0
+"Pierre SD"	"SD"	14052	44.37	-100.34	2
+"Pine Bluff AR"	"AR"	52802	34.21	-92.02	0
+"Pine Hills FL"	"FL"	46248	28.58	-81.46	0
+"Pinellas Park FL"	"FL"	46469	27.86	-82.71	0
+"Pittsburg CA"	"CA"	64106	38.02	-121.89	0
+"Pittsburgh PA"	"PA"	316272	40.44	-79.98	0
+"Pittsfield MA"	"MA"	43821	42.45	-73.26	0
+"Placentia CA"	"CA"	49679	33.88	-117.85	0
+"Plainfield NJ"	"NJ"	47769	40.62	-74.42	0
+"Plano TX"	"TX"	260415	33.05	-96.75	0
+"Plantation FL"	"FL"	86330	26.13	-80.26	0
+"Pleasanton CA"	"CA"	67119	37.67	-121.89	0
+"Plymouth MA"	"MA"	133313	41.96	-70.67	0
+"Plymouth MN"	"MN"	73505	45.02	-93.46	0
+"Pocatello ID"	"ID"	50496	42.88	-112.47	0
+"Pomona CA"	"CA"	157501	34.06	-117.76	0
+"Pompano Beach FL"	"FL"	90446	26.24	-80.13	0
+"Pontiac MI"	"MI"	67952	42.65	-83.29	0
+"Port Arthur TX"	"TX"	56728	29.9	-93.93	0
+"Port Charlotte FL"	"FL"	49840	26.99	-82.11	0
+"Port Orange FL"	"FL"	55891	29.11	-81.01	0
+"Port Saint Lucie FL"	"FL"	126377	27.28	-80.35	0
+"Portage MI"	"MI"	46666	42.2	-85.59	0
+"Porterville CA"	"CA"	45703	36.06	-119.03	0
+"Portland ME"	"ME"	62882	43.66	-70.28	0
+"Portland OR"	"OR"	542751	45.54	-122.66	0
+"Portsmouth VA"	"VA"	98664	36.86	-76.36	0
+"Potomac MD"	"MD"	45119	39.03	-77.2	0
+"Poway CA"	"CA"	49943	32.99	-117.02	0
+"Prescott AZ"	"AZ"	41432	34.58	-112.45	0
+"Providence RI"	"RI"	178295	41.82	-71.42	2
+"Provo UT"	"UT"	105832	40.25	-111.64	0
+"Pueblo CO"	"CO"	104659	38.27	-104.62	0
+"Quincy IL"	"IL"	39549	39.93	-91.39	0
+"Quincy MA"	"MA"	89347	42.26	-71.01	0
+"Racine WI"	"WI"	78703	42.73	-87.81	0
+"Raleigh NC"	"NC"	350822	35.82	-78.66	2
+"Rancho Cordova CA"	"CA"	59972	38.6	-121.3	0
+"Rancho Cucamonga CA"	"CA"	177721	34.12	-117.57	0
+"Rancho Palos Verdes CA"	"CA"	42966	33.76	-118.36	0
+"Rancho Santa Margarita CA"	"CA"	52447	33.64	-117.6	0
+"Rapid City SD"	"SD"	62302	44.08	-103.23	0
+"Reading PA"	"PA"	79476	40.34	-75.93	0
+"Redan GA"	"GA"	40141	33.74	-84.16	0
+"Redding CA"	"CA"	93865	40.57	-122.36	0
+"Redford MI"	"MI"	49542	42.39	-83.29	0
+"Redlands CA"	"CA"	71605	34.06	-117.17	0
+"Redmond WA"	"WA"	47662	47.67	-122.11	0
+"Redondo Beach CA"	"CA"	68669	33.86	-118.38	0
+"Redwood City CA"	"CA"	71340	37.52	-122.21	0
+"Reno NV"	"NV"	206626	39.54	-119.82	0
+"Renton WA"	"WA"	57369	47.48	-122.2	0
+"Reston VA"	"VA"	61977	38.95	-77.35	0
+"Revere MA"	"MA"	46259	42.42	-70.99	0
+"Rialto CA"	"CA"	103423	34.11	-117.39	0
+"Richardson TX"	"TX"	107481	32.97	-96.71	0
+"Richland WA"	"WA"	46156	46.29	-119.29	0
+"Richmond CA"	"CA"	103818	37.95	-122.36	0
+"Richmond VA"	"VA"	189498	37.53	-77.47	2
+"Rio Rancho NM"	"NM"	66833	35.27	-106.66	0
+"Riverside CA"	"CA"	306351	33.94	-117.4	0
+"Roanoke VA"	"VA"	90410	37.28	-79.96	0
+"Rochester Hills MI"	"MI"	68879	42.67	-83.16	0
+"Rochester MN"	"MN"	98227	44.01	-92.48	0
+"Rochester NY"	"NY"	209587	43.17	-77.62	0
+"Rock Hill SC"	"SC"	61899	34.94	-81.03	0
+"Rockford IL"	"IL"	153148	42.27	-89.06	0
+"Rocklin CA"	"CA"	59546	38.8	-121.24	0
+"Rockville MD"	"MD"	63516	39.08	-77.15	0
+"Rocky Mount NC"	"NC"	56008	35.96	-77.81	0
+"Rogers AR"	"AR"	46984	36.33	-94.13	0
+"Rohnert Park CA"	"CA"	41154	38.35	-122.7	0
+"Romeoville IL"	"IL"	46960	41.65	-88.09	0
+"Rosemead CA"	"CA"	56542	34.07	-118.08	0
+"Roseville CA"	"CA"	120444	38.76	-121.29	0
+"Roseville MI"	"MI"	47190	42.51	-82.94	0
+"Roswell GA"	"GA"	76825	34.04	-84.36	0
+"Roswell NM"	"NM"	43788	33.37	-104.53	0
+"Round Rock TX"	"TX"	95330	30.52	-97.67	0
+"Rowland Heights CA"	"CA"	53112	33.98	-117.89	0
+"Rowlett TX"	"TX"	57174	32.91	-96.55	0
+"Royal Oak MI"	"MI"	57043	42.51	-83.15	0
+"Sacramento CA"	"CA"	480392	38.57	-121.47	2
+"Saginaw MI"	"MI"	56685	43.42	-83.95	0
+"Saint Charles MO"	"MO"	62284	38.79	-90.52	0
+"Saint Clair Shores MI"	"MI"	60089	42.49	-82.89	0
+"Saint Cloud MN"	"MN"	59074	45.55	-94.17	0
+"Saint George UT"	"UT"	63952	37.08	-113.58	0
+"Saint Joseph MO"	"MO"	71282	39.76	-94.82	0
+"Saint Louis MO"	"MO"	315546	38.64	-90.24	0
+"Saint Louis Park MN"	"MN"	44032	44.95	-93.36	0
+"Saint Paul MN"	"MN"	272469	44.95	-93.1	2
+"Saint Peters MO"	"MO"	54258	38.78	-90.61	0
+"Saint Petersburg FL"	"FL"	245804	27.76	-82.64	0
+"Salem NH"	"NH"	42859	42.53	-70.87	0
+"Salem OR"	"OR"	148942	44.92	-123.02	2
+"Salina KS"	"KS"	45715	38.82	-97.62	0
+"Salinas CA"	"CA"	150050	36.68	-121.64	0
+"Salt Lake City UT"	"UT"	177318	40.78	-111.93	2
+"San Angelo TX"	"TX"	88143	31.45	-100.45	0
+"San Antonio TX"	"TX"	1278171	29.46	-98.51	0
+"San Bernardino CA"	"CA"	205743	34.14	-117.29	0
+"San Bruno CA"	"CA"	39523	37.62	-122.43	0
+"San Buenaventura CA"	"CA"	106518	34.27	-119.26	0
+"San Clemente CA"	"CA"	64987	33.45	-117.61	0
+"San Diego CA"	"CA"	1299352	32.81	-117.14	0
+"San Francisco CA"	"CA"	723724	37.77	-122.45	0
+"San Gabriel CA"	"CA"	41861	34.09	-118.1	0
+"San Jose CA"	"CA"	897883	37.3	-121.85	0
+"San Leandro CA"	"CA"	80015	37.71	-122.15	0
+"San Luis Obispo CA"	"CA"	44098	35.27	-120.66	0
+"San Marcos CA"	"CA"	73020	33.14	-117.17	0
+"San Marcos TX"	"TX"	49051	29.88	-97.93	0
+"San Mateo CA"	"CA"	89495	37.56	-122.31	0
+"San Rafael CA"	"CA"	55133	37.98	-122.51	0
+"San Ramon CA"	"CA"	46278	37.76	-121.95	0
+"Sandwich MA"	"MA"	51140	41.76	-70.5	0
+"Sandy Springs GA"	"GA"	96496	33.94	-84.37	0
+"Sandy UT"	"UT"	89698	40.57	-111.85	0
+"Sanford FL"	"FL"	46777	28.79	-81.28	0
+"Santa Ana CA"	"CA"	344086	33.74	-117.88	0
+"Santa Barbara CA"	"CA"	86115	34.43	-119.72	0
+"Santa Clara CA"	"CA"	102178	37.37	-121.97	0
+"Santa Clarita CA"	"CA"	172730	34.41	-118.51	0
+"Santa Cruz CA"	"CA"	54583	36.97	-122.04	0
+"Santa Fe NM"	"NM"	70598	35.68	-105.95	2
+"Santa Maria CA"	"CA"	87107	34.94	-120.44	0
+"Santa Monica CA"	"CA"	89112	34.01	-118.49	0
+"Santa Rosa CA"	"CA"	156669	38.45	-122.7	0
+"Santee CA"	"CA"	52505	32.86	-116.98	0
+"Sarasota FL"	"FL"	53422	27.34	-82.55	0
+"Savannah GA"	"GA"	124898	32.02	-81.13	0
+"Sayreville NJ"	"NJ"	43390	40.47	-74.32	0
+"Schaumburg IL"	"IL"	73071	42.03	-88.08	0
+"Schenectady NY"	"NY"	59930	42.8	-73.93	0
+"Scottsdale AZ"	"AZ"	230949	33.69	-111.87	0
+"Scranton PA"	"PA"	72516	41.4	-75.67	0
+"Seattle Hill-Silver Firs WA"	"WA"	42238	47.88	-121.16	0
+"Seattle WA"	"WA"	570430	47.62	-122.35	0
+"Severn MD"	"MD"	43718	39.14	-76.69	0
+"Shawnee KS"	"KS"	59626	39.02	-94.8	0
+"Sheboygan WI"	"WI"	48123	43.75	-87.73	0
+"Shelton CT"	"CT"	39988	41.3	-73.14	0
+"Shoreline WA"	"WA"	51316	47.75	-122.36	0
+"Shreveport LA"	"LA"	196228	32.47	-93.8	0
+"Sierra Vista AZ"	"AZ"	42088	31.57	-110.32	0
+"Silver Spring MD"	"MD"	78119	39.01	-77.02	0
+"Simi Valley CA"	"CA"	121033	34.26	-118.75	0
+"Sioux City IA"	"IA"	82863	42.5	-96.39	0
+"Sioux Falls SD"	"SD"	143534	43.54	-96.73	0
+"Skokie IL"	"IL"	64350	42.04	-87.74	0
+"Smyrna GA"	"GA"	47442	33.87	-84.52	0
+"Somerville MA"	"MA"	74802	42.39	-71.1	0
+"South Bend IN"	"IN"	102927	41.68	-86.27	0
+"South Gate CA"	"CA"	100612	33.94	-118.19	0
+"South Hill WA"	"WA"	47384	47.14	-122.27	0
+"South San Francisco CA"	"CA"	58176	37.66	-122.42	0
+"South Valley NM"	"NM"	39544	35.01	-106.68	0
+"South Whittier CA"	"CA"	59657	33.93	-118.03	0
+"Southaven MS"	"MS"	40806	34.97	-90	0
+"Southfield MI"	"MI"	76506	42.48	-83.26	0
+"Southglenn CO"	"CO"	41951	39.59	-104.95	0
+"Sparks NV"	"NV"	88518	39.54	-119.74	0
+"Spokane WA"	"WA"	197513	47.67	-117.41	0
+"Spring Hill FL"	"FL"	103782	28.48	-82.56	0
+"Spring Valley NV"	"NV"	176522	36.11	-115.24	0
+"Springdale AR"	"AR"	58761	36.18	-94.15	0
+"Springfield IL"	"IL"	116725	39.78	-89.64	2
+"Springfield MA"	"MA"	152095	42.12	-72.54	0
+"Springfield MO"	"MO"	150128	37.2	-93.29	0
+"Springfield OH"	"OH"	63915	39.93	-83.8	0
+"Springfield OR"	"OR"	56575	44.05	-122.98	0
+"Stamford CT"	"CT"	122011	41.1	-73.55	0
+"State College PA"	"PA"	42420	40.79	-77.86	0
+"Sterling Heights MI"	"MI"	127027	42.58	-83.03	0
+"Sterling VA"	"VA"	56529	39.01	-77.43	0
+"Stillwater OK"	"OK"	43473	36.13	-97.07	0
+"Stockton CA"	"CA"	299188	37.97	-121.31	0
+"Stratford CT"	"CT"	51466	41.2	-73.13	0
+"Strongsville OH"	"OH"	45073	41.31	-81.83	0
+"Suffolk VA"	"VA"	84396	36.7	-76.64	0
+"Sugar Land TX"	"TX"	78502	29.62	-95.62	0
+"Sumter SC"	"SC"	40018	33.94	-80.39	0
+"Sun City AZ"	"AZ"	41380	33.62	-112.28	0
+"Sunnyvale CA"	"CA"	125486	37.39	-122.03	0
+"Sunrise FL"	"FL"	92094	26.15	-80.3	0
+"Sunrise Manor NV"	"NV"	195581	36.19	-115.05	0
+"Surprise AZ"	"AZ"	74962	33.66	-112.47	0
+"Syracuse NY"	"NY"	140793	43.04	-76.14	0
+"Tacoma WA"	"WA"	197621	47.25	-122.46	0
+"Tallahassee FL"	"FL"	154114	30.46	-84.28	2
+"Tamarac FL"	"FL"	60021	26.2	-80.26	0
+"Tamiami FL"	"FL"	72493	25.76	-80.4	0
+"Tampa FL"	"FL"	328578	27.96	-82.48	0
+"Taunton MA"	"MA"	57377	41.9	-71.09	0
+"Taylor MI"	"MI"	64874	42.23	-83.27	0
+"Taylorsville UT"	"UT"	58200	40.66	-111.94	0
+"Teaneck NJ"	"NJ"	40197	40.89	-74.01	0
+"Temecula CA"	"CA"	90347	33.5	-117.13	0
+"Tempe AZ"	"AZ"	158313	33.39	-111.93	0
+"Temple TX"	"TX"	55916	31.1	-97.36	0
+"Terre Haute IN"	"IN"	56544	39.47	-87.38	0
+"Texas City TX"	"TX"	44321	29.41	-94.96	0
+"The Colony TX"	"TX"	45532	33.09	-96.89	0
+"The Hammocks FL"	"FL"	75402	25.67	-80.44	0
+"The Woodlands TX"	"TX"	80285	30.16	-95.49	0
+"Thornton CO"	"CO"	109695	39.89	-104.96	0
+"Thousand Oaks CA"	"CA"	130136	34.19	-118.87	0
+"Tigard OR"	"OR"	48122	45.43	-122.77	0
+"Tinley Park IL"	"IL"	59056	41.57	-87.8	0
+"Titusville FL"	"FL"	43054	28.59	-80.82	0
+"Toledo OH"	"OH"	305292	41.66	-83.58	0
+"Toms River NJ"	"NJ"	127934	39.94	-74.17	0
+"Tonawanda CDP NY"	"NY"	59175	42.98	-78.88	0
+"Topeka KS"	"KS"	121229	39.04	-95.69	2
+"Torrance CA"	"CA"	146264	33.83	-118.34	0
+"Town'n'Country FL"	"FL"	80599	28.01	-82.58	0
+"Towson MD"	"MD"	54075	39.4	-76.62	0
+"Tracy CA"	"CA"	89639	37.74	-121.43	0
+"Trenton NJ"	"NJ"	84653	40.22	-74.76	2
+"Troy MI"	"MI"	81296	42.58	-83.14	0
+"Troy NY"	"NY"	47993	42.73	-73.68	0
+"Tuckahoe VA"	"VA"	43996	37.59	-77.59	0
+"Tucson AZ"	"AZ"	525268	32.2	-110.89	0
+"Tulare CA"	"CA"	51365	36.2	-119.34	0
+"Tulsa OK"	"OK"	379833	36.13	-95.92	0
+"Turlock CA"	"CA"	70570	37.5	-120.85	0
+"Tuscaloosa AL"	"AL"	80164	33.24	-87.54	0
+"Tustin CA"	"CA"	69024	33.73	-117.81	0
+"Twin Falls ID"	"ID"	39383	42.56	-114.46	0
+"Tyler TX"	"TX"	92155	32.33	-95.3	0
+"Union City CA"	"CA"	70125	37.6	-122.02	0
+"Union City NJ"	"NJ"	65939	40.77	-74.03	0
+"Union NJ"	"NJ"	57198	40.7	-74.27	0
+"Upland CA"	"CA"	75365	34.12	-117.66	0
+"Urbana IL"	"IL"	39834	40.11	-88.21	0
+"Utica NY"	"NY"	58151	43.1	-75.23	0
+"Vacaville CA"	"CA"	98110	38.36	-121.97	0
+"Valdosta GA"	"GA"	45909	30.85	-83.28	0
+"Vallejo CA"	"CA"	121146	38.11	-122.26	0
+"Vancouver WA"	"WA"	161034	45.63	-122.64	0
+"Vestavia Hills AL"	"AL"	39397	33.43	-86.79	0
+"Victoria TX"	"TX"	62296	28.82	-96.98	0
+"Victorville CA"	"CA"	87903	34.52	-117.33	0
+"Vineland NJ"	"NJ"	58511	39.46	-75	0
+"Virginia Beach VA"	"VA"	453884	36.74	-76.04	0
+"Visalia CA"	"CA"	110620	36.33	-119.32	0
+"Vista CA"	"CA"	93266	33.19	-117.24	0
+"WASHINGTON DC"	"DC"	548359	38.91	-77.02	0
+"Waco TX"	"TX"	119911	31.57	-97.18	0
+"Walnut Creek CA"	"CA"	65334	37.9	-122.04	0
+"Walpole MA"	"MA"	45127	42.14	-71.25	0
+"Waltham MA"	"MA"	58407	42.39	-71.24	0
+"Warner Robins GA"	"GA"	59593	32.61	-83.63	0
+"Warren MI"	"MI"	132537	42.49	-83.03	0
+"Warren OH"	"OH"	44933	41.24	-80.82	0
+"Warwick RI"	"RI"	88443	41.7	-71.42	0
+"Waterbury CT"	"CT"	108645	41.56	-73.04	0
+"Waterford MI"	"MI"	76204	42.66	-83.39	0
+"Waterloo IA"	"IA"	65260	42.49	-92.35	0
+"Watsonville CA"	"CA"	45659	36.92	-121.77	0
+"Waukegan IL"	"IL"	93664	42.37	-87.87	0
+"Waukesha WI"	"WI"	68725	43.01	-88.24	0
+"Wauwatosa WI"	"WI"	45076	43.06	-88.03	0
+"Wayne NJ"	"NJ"	58667	40.95	-74.25	0
+"Wellington FL"	"FL"	56712	26.66	-80.25	0
+"West Allis WI"	"WI"	58958	43.01	-88.03	0
+"West Babylon NY"	"NY"	43595	40.71	-73.36	0
+"West Bloomfield Township MI"	"MI"	70520	42.57	-83.38	0
+"West Covina CA"	"CA"	110646	34.05	-117.91	0
+"West Des Moines IA"	"IA"	57126	41.57	-93.75	0
+"West Hartford CT"	"CT"	67156	41.77	-72.75	0
+"West Haven CT"	"CT"	53545	41.27	-72.97	0
+"West Jordan UT"	"UT"	105629	40.6	-111.99	0
+"West New York NY"	"NY"	46091	40.77	-73.98	0
+"West Orange NJ"	"NJ"	48754	40.79	-74.26	0
+"West Palm Beach FL"	"FL"	95924	26.75	-80.13	0
+"West Sacramento CA"	"CA"	43656	38.56	-121.55	0
+"West Seneca NY"	"NY"	44418	42.84	-78.75	0
+"West Valley City UT"	"UT"	113989	40.69	-112.01	0
+"Westborough MA"	"MA"	41520	42.27	-71.62	0
+"Westfield MA"	"MA"	41068	42.14	-72.76	0
+"Westland MI"	"MI"	84414	42.32	-83.38	0
+"Westminster CA"	"CA"	90187	33.75	-117.99	0
+"Westminster CO"	"CO"	104708	39.88	-105.05	0
+"Weston FL"	"FL"	72902	26.1	-80.4	0
+"Weymouth MA"	"MA"	54444	42.21	-70.95	0
+"Wheaton IL"	"IL"	54365	41.86	-88.11	0
+"Wheaton-Glenmont MD"	"MD"	61095	39.06	-77.05	0
+"White Plains NY"	"NY"	58084	41.02	-73.76	0
+"Whittier CA"	"CA"	86182	33.97	-118.02	0
+"Wichita Falls TX"	"TX"	100616	33.9	-98.52	0
+"Wichita KS"	"KS"	356051	37.69	-97.34	0
+"Wilkes-Barre PA"	"PA"	40242	41.25	-75.88	0
+"Wilmington DE"	"DE"	71065	39.74	-75.53	0
+"Wilmington NC"	"NC"	93097	34.21	-77.91	0
+"Wilson NC"	"NC"	47191	35.73	-77.92	0
+"Winston-Salem NC"	"NC"	194826	36.1	-80.26	0
+"Woodbury MN"	"MN"	52052	44.91	-92.92	0
+"Woodland CA"	"CA"	52266	38.68	-121.77	0
+"Woonsocket RI"	"RI"	46297	42	-71.5	0
+"Worcester MA"	"MA"	177973	42.27	-71.81	0
+"Wyoming MI"	"MI"	70474	42.89	-85.7	0
+"Yakima WA"	"WA"	89815	46.59	-120.53	0
+"Yonkers NY"	"NY"	198045	40.95	-73.87	0
+"Yorba Linda CA"	"CA"	65932	33.89	-117.77	0
+"Youngstown OH"	"OH"	76590	41.1	-80.65	0
+"Yuba City CA"	"CA"	54086	39.14	-121.62	0
+"Yucaipa CA"	"CA"	52333	34.03	-117.04	0
+"Yuma AZ"	"AZ"	85720	32.68	-114.62	0

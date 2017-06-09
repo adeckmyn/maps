@@ -1,6 +1,6 @@
 Package: maps
 Title: Draw Geographical Maps
-Version: 3.2.0
+Version: 3.2.0-1000
 Date: 2017-06-07
 Author: Original S code by Richard A. Becker and Allan R. Wilks.
 	R version by Ray Brownrigg.
@@ -10,7 +10,7 @@ Description: Display of maps.  Projection code and larger maps are in
 Depends: R (>= 2.14.0)
 Imports: graphics, utils
 LazyData: yes
-Suggests: mapproj (>= 1.2-0), mapdata (>= 2.2-4), sp, maptools
+Suggests: mapproj (>= 1.2-0), mapdata (>= 2.2-6), sp, maptools
 License: GPL-2
 Maintainer: Alex Deckmyn <alex.deckmyn@meteo.be>
 NeedsCompilation: yes
