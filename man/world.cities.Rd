@@ -6,21 +6,23 @@ Database of world cities
 }
 
 \description{
-This database is primarily of world cities of population greater than
-about 40,000.  Also included are capital cities of any population size, and
-many smaller towns.
+This is a database of world cities of population greater than
+ 5,000.  Also included are capital cities of any population size.
+
 }
 \usage{data(world.cities)}
 \format{
-A list with 6 components, namely "name", "country.etc", "pop", "lat",
-"long", and "capital", containing the city name, the country name,
-approximate population (as at January 2006), latitude, longitude and
+A list with 7 components, namely "name", "country.etc", "pop", "lat",
+"long", "capital" and "date", containing the city name, the country name,
+approximate population, latitude, longitude and
 capital status indication (0 for non-capital, 1 for capital, 2 for China
-Municipalities, and 3 for China Provincial capitals)
+Municipalities, and 3 for China Provincial capitals). The last column gives the date on which the data was valid.
 }
-\section{NOTE}{
-Some of the country names and city names may be out of date.  Please send
-any corrections to the package maintainer.
+\details{
+This data was obtained from Geonames \url{http://download.geonames.org/export/dump/cities5000.zip}.
+
+It is freely available under the Creative Commons Attribution 3.0 license \url{http://creativecommons.org/licenses/by/3.0/}
+
 }
 \seealso{
 \code{\link{map.cities}}
