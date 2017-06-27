@@ -26,7 +26,12 @@ c1$capital[c1$code=="PPLC"] <- 1
 t1 <- intersect(c1$name, c0$name)
 # ATTENTION: sometimes many cities with same name -> use lat/lon or country...
 # how check the rest? does it matter?
-world.cities.new <- c1
-save("world.cities.new", file="../data/world.cities.new.rda")
-write.table(c1,  file="./world.cities.new.tsv", row.names=FALSE, quote=TRUE, sep="\t")
+
+
+
+
+## save
+world.cities2 <- c1
+save("world.cities2", file="../data/world.cities2.rda")
+write.table(world.cities2,  file="./world.cities2.tsv", row.names=FALSE, quote=TRUE, sep="\t")
 
