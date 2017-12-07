@@ -16,13 +16,13 @@
 \arguments{
   \item{a}{A vector of ISO codes. All elements should have the same length, either 2 or 3 letters. Not case sensitive.}
   \item{sov}{A vector of country names. The result is a list of all countries that fall under their sovereignty. Case sensitive, must fit completeley.}
-  \item{regex}{If TRUE (default), the return vector has the same length as the input (\code{a} or \code{sov}), but the entries may be regular expressions. 
+  \item{regex}{If TRUE (default), the return vector has the same length as the input (\code{a} or \code{sov}), but the entries may be regular expressions.
 If FALSE, the result is a vector of polygon names. This may be more readable, but the return vector may be longer than the input.}
   \item{x}{Vector of country names, may include colons.}
   \item{n}{An integer identitying which ISO code is required. Allowed values are 2 and 3.}
 }
 \details{
-  The ISO 3166-1 standard identifies countries by a 2 and 3 letter codes. 
+  The ISO 3166-1 standard identifies countries by a 2 and 3 letter codes.
 \code{iso.expand} translates these codes into the country names as used by 
 the \code{world} data base. \code{iso.alpha} does the reverse.  
 Note that these functions will not work well with the legacy world data base. 
@@ -53,9 +53,9 @@ iso.expand("ES")
 map(regions=sov.expand("Spain"))
 
 # draw a map with ISO codes as labels:
-wm <- map("world",fill=TRUE,col=0,xlim=c(-10,40),ylim=c(30,60))
+wm <- map("world", fill=TRUE, col=0, xlim=c(-10,40), ylim=c(30,60))
 # take out islands, but you loose e.g. UK, New Zealand, small island states
-nam <- grep(":",wm$names,inv=TRUE,val=TRUE) 
+nam <- grep(":", wm$names, inv=TRUE, val=TRUE)
 # ad ISO codes as label
-map.text(wm,regions=nam,label=iso.alpha(nam),col=2,exact=TRUE)
+map.text(wm, regions=nam, label=iso.alpha(nam), col=2, exact=TRUE)
 }
