@@ -36,6 +36,7 @@ map('legacy_world', fill = TRUE, col = 1:10)
 if (!requireNamespace("mapdata")) {
   map("mapdata::worldLores", fill = TRUE, col = 1:10)
 }
+}
 \references{
 Richard A. Becker, and Allan R. Wilks,
 "Maps in S",
