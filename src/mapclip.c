@@ -13,11 +13,11 @@ Method:
 #include "R.h"
 
 #define MAX_SEGMENTS 50
-#define MAX_INTERP 10 
+#define MAX_INTERP 10
 
 void map_wrap_poly(double *xin, double *yin, int *nin,
               double *xout, double *yout, int *nout,
-              double *xmin, double *xmax, 
+              double *xmin, double *xmax,
               int *poly, int *npoly, double *antarctica) ;
 
 void map_clip_poly (double* xin, double *yin, int *nin,
@@ -25,7 +25,7 @@ void map_clip_poly (double* xin, double *yin, int *nin,
                     double *xlim, int *inside, int *poly, int *npoly);
 
 void construct_poly(double *xout, double *yout,
-                    int *segment_start_list, int *segment_finish_list, 
+                    int *segment_start_list, int *segment_finish_list,
                     int count_segments, int *line_end, int *pcount, int sides);
 
 void close_antarctica(double *xout, double *yout,
@@ -33,7 +33,7 @@ void close_antarctica(double *xout, double *yout,
                       int *count_segments, double minlat);
 
 void merge_segments(double *xout, double *yout,
-                    int *segment_start_list, int *segment_finish_list, 
+                    int *segment_start_list, int *segment_finish_list,
                     int *count_segments);
 
 /* call 4 times (yeah, I know, very efficient...) */
@@ -91,7 +91,7 @@ void map_clip_poly (double* xin, double *yin, int *nin,
         xout[j] = xin[i]; yout[j] = yin[i]; j++;
         if (j >= *nout) error("Output vector too short!\n");
         i++;
-        while ( i < *nin && !ISNA(xin[i]) && 
+        while ( i < *nin && !ISNA(xin[i]) &&
                (position = ((xin[i] > *xlim) - (xin[i] < *xlim)) * *inside) >= 0) {
           xout[j] = xin[i]; yout[j] = yin[i]; j++; i++;
           ppos = position;
@@ -108,7 +108,7 @@ void map_clip_poly (double* xin, double *yin, int *nin,
       else if (position == -1) {
         ppos = position;
         i++;
-        while ( i < *nin && !ISNA(xin[i]) && 
+        while ( i < *nin && !ISNA(xin[i]) &&
                (position = ((xin[i] > *xlim) - (xin[i] < *xlim)) * *inside) <= 0) {
           ppos = position;
           i++;
@@ -136,12 +136,12 @@ void map_clip_poly (double* xin, double *yin, int *nin,
         /* (over-)estimate extra output space needed */
         if (count_segments > 0) { /* if there is only 1 segment, no need to do anything */
           if (j >= *nout - (3+MAX_INTERP)*count_segments) error("Output vector too short!\n");
-          construct_poly(xout, yout, segment_start_list, 
+          construct_poly(xout, yout, segment_start_list,
                           segment_finish_list, count_segments, &j, &pcount, 1);
           npoly[count_line-1] = pcount;
         }
-        else npoly[count_line-1]=1; 
-      } 
+        else npoly[count_line-1]=1;
+      }
       if (ISNA(xin[i]) && j>0 && !ISNA(xout[j-1])) {
         xout[j] = yout[j] = NA_REAL; j++;
         if (j >= *nout) error("Output vector too short!\n");
@@ -155,7 +155,7 @@ void map_clip_poly (double* xin, double *yin, int *nin,
 
 
 void construct_poly(double *xout, double *yout,
-                    int *segment_start_list, int *segment_finish_list, 
+                    int *segment_start_list, int *segment_finish_list,
                     int count_segments, int *line_end, int *pcount, int sides) {
 
   int i,j,k,m,n,pe, pstart;
@@ -276,7 +276,7 @@ void construct_poly(double *xout, double *yout,
 
 void map_wrap_poly(double *xin, double *yin, int *nin,
                    double *xout, double *yout, int *nout,
-                   double *xmin, double *xmax, 
+                   double *xmin, double *xmax,
                    int *poly, int *npoly, double *antarctica) {
 
   int i, j, count_segments, count_line, pcount;
@@ -318,7 +318,7 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
       }
       /* have we just crossed/hit the boundary? */
       /* we compare with xout[j-1], because xin[i-1] may be shifted by 'period' */
-      else if (abs(xi - xout[j-1]) > period/2.) {
+      else if (fabs(xi - xout[j-1]) > period/2.) {
         /* If we are exactly on the boundary, we adapt 'side' to the previous point */
         if (xi == *xmin) xi= *xmax;
         else if (xi == *xmax) xi = *xmin;
@@ -448,9 +448,9 @@ void close_antarctica(double *xout, double *yout,
   *count_segments += 1;
 }
 
-/* attach the first line segment to the end, so all segments start/stop on teh border */ 
+/* attach the first line segment to the end, so all segments start/stop on teh border */
 void merge_segments(double *xout, double *yout,
-                    int *segment_start_list, int *segment_finish_list, 
+                    int *segment_start_list, int *segment_finish_list,
                     int *count_segments) {
   int i, buflen;
   double *xbuf, *ybuf, *xo, *yo;
