@@ -68,7 +68,7 @@ OBJECTS = init.o mapclip.o mapget.o smooth.o thin.o
 libdir = ../libs
 
 shlib: $(OBJECTS)
-	$(R_HOME)/bin/R CMD SHLIB -o $(SHLIB) $(OBJECTS)
+	"$(R_HOME)/bin/R" CMD SHLIB -o $(SHLIB) $(OBJECTS)
 
 # clean
 # $(SHLIB_EXT) is not set when making "clean", so write all possibilities explicitely
