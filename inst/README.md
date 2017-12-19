@@ -28,9 +28,10 @@ This may have several implications for code that calls map().
 - A set of simple functions use this iso3166 table for creating a list of countries to map. So you can use the 2- or 3-letter ISO code (e.g. as country labels on a map), but also create a list based on the sovereignty. Type '?iso.expand' for details.
 
 - v3.2 adds new options to map() for wrapping and exact boundary clipping.
-  
+
 ##FIXES
-- as of v3.1, map(..., fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow, should you ever want to plot a full world map at such a high resolution.
+- As of v3.2, maps::map() also works if the maps package is not attached. You can even do maps::map("madata::worldHires").
+- As of v3.1, map(..., fill=TRUE) no longer applies thinning. This removes small artefacts, but plotting worldHires becomes rather slow, should you ever want to plot a full world map at such a high resolution.
 - map.text(..., exact=TRUE) now behaves as documented. Previously, the "exact=TRUE" was not passed to the map drawing if add=FALSE. To get the old (non-documented) behaviour (plot map with exact=FALSE, write text for exact=TRUE) you should now use 2 commands: 
   * > map(..., exact=FALSE)
   * > map.text(..., exact=TRUE, add=TRUE)
@@ -44,6 +45,9 @@ There are a few mechanisms to use the old 'world' database rather than the updat
 - Deprecated: Calling world.legacy(TRUE) for switching to the old database and world.legacy(FALSE) to switch back on the fly.
 
 The last two options should only be used as a *temporary last resource*, to quickly run code that requires the old database without having to edit it.
+
+In v3.3, all these methods are deprecated (but will still function). The data set has been moved to the 'mapdata' package, where it is called "worldLores".
+
 
 Note that the worldHires database from the mapdata package has identical map naming than the legacy world map. The only difference is in the resolution of the polylines. That high resolution version of the legacy map will remain unchanged.
 
@@ -62,5 +66,4 @@ Even maps in e.g. shapefile format can now easily be imported for use in 'map()'
 - Many islands remain nameless.
 - The naming convention is largely maintained, but some choices are different. The changes mean that e.g. /region="France"/ now covers only metropolitan France, whithout (most of) the overseas departments and territories
 - Some inconsistencies in the naming procedure remain. For instance, while most countries are named by their full name, "UK" and "USA" are shortened in the same way as in the old data base. For UK, this even required a hack in the mapping code to avoid adding Ukrain to the map.
-- I'd like to find a way to get Antarctica show up a bit nicer, but whithout adding imaginary points that would be ruined in a projection or when changing the central meridian. For 'world2' such an extra closure libne has now been added.
 - The iso3166 table may have to be adapted for the Natural Earth 1:10 database, some extra rows have already been inserted.

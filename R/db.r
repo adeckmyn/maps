@@ -1,8 +1,3 @@
-deprecate_legacy <- function() {
-  warning("The database 'legacy_world' is deprecated and will be removed from the package. It will remain available in the mapdata package with the new name worldLores.")
-}
-
-
 fix_exceptions <- function(patterns) {
   # we must distinguish uk from Ukraine...
   # very ad hoc, I know.
@@ -36,7 +31,8 @@ mapenvir <- function(database="world", warn.dep=FALSE) {
   }
   fbase <- paste0(Sys.getenv(eval(parse(text=dbname))), database)
   if (basename(fbase)=="legacy_world" && warn.dep) {
-    .Deprecated(new="mapdata::worldLores", old="legacy_world")
+    .Deprecated(new="mapdata::worldLores", old="legacy_world",
+                package="maps")
 #                msg="The old world database will only be available as worldLores from the mapdata package.")
   }
   fbase

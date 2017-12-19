@@ -46,6 +46,9 @@ There are a few mechanisms to use the old 'world' database rather than the updat
 
 The last two options should only be used as a *temporary last resource*, to quickly run code that requires the old database without having to edit it.
 
+In v3.3, al these methods are deprecated (but will still function). The data set has been moved to the 'mapdata' package, where it is called "worldLores".
+
+
 Note that the worldHires database from the mapdata package has identical map naming than the legacy world map. The only difference is in the resolution of the polylines. That high resolution version of the legacy map will remain unchanged.
 
 Please inform the maintainer of any problem that requires a fallback to the legacy database!

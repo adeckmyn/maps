@@ -1,5 +1,14 @@
 \name{NEWS}
 \title{News for package 'maps'}
+\section{Changes in maps version 3.3.0 (2017-12-17)}{
+  \itemize{
+    \item \code{legacy_world} and \code{world.legacy()} have been deprecated. The old database is now available from the companion package 'mapdata' (as of version 2.3.0) where it is called "worldLores".
+    \item Bug fixes:
+      \itemize{
+        \item Makefile has been fixed for possible whitespace in $R_HOME and for pre-existing $AWKPATH.
+      }
+  }
+}
 \section{Changes in maps version 3.2.0 (2017-06-07)}{
   \itemize{
     \item New map wrapping code should eliminate border artefacts on world maps, even with \code{fill=TRUE}. It can be called via \code{map(..., wrap=c(0,360),...)}, i.e. by giving \code{wrap} a vector in stead of a boolean value. The wrapping code is also directly available as \code{map.wrap.poly(data, xlim, poly=FALSE, antarctica=TRUE)}

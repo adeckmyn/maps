@@ -31,8 +31,9 @@ The CIA World Data Bank II is currently (2015) still available from
 \code{\link{map}},\code{\link{world.legacy}},\code{\link{world}}
 }
 \examples{
-map('legacy_world', fill = TRUE, col = 1:10)
-# But in the future, you should do
+## DEPRECATED:
+# map('legacy_world', fill = TRUE, col = 1:10)
+## Use mapdata::worldLores instead:
 if (!requireNamespace("mapdata")) {
   map("mapdata::worldLores", fill = TRUE, col = 1:10)
 }
