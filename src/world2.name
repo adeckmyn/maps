@@ -1624,14 +1624,14 @@ Zambia	1623
 Zimbabwe	1624
 Netherlands:IJsselmeer	1625
 Netherlands:Zuid-Flevoland	1626
-Vatican	1627
+Vatican:enclave	1627
 Burkina Faso:west	1628
 Algeria:west	1629
-Spain:12:west1	1630
-Spain:12:west2	1631
-France:10:west	1632
-United Kingdom:15:west1	1633
-United Kingdom:15:west2	1634
+Spain:west1	1630
+Spain:west2	1631
+France:west	1632
+UK:west1	1633
+UK:west2	1634
 Ghana:west1	1635
 Ghana:west2	1636
 Togo:east1	1637
