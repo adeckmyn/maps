@@ -1,12 +1,12 @@
 #-*- Makefile -*-
-
+# do all "real work" in recursive call (because win-builder doesn't read Makeconf) 
 pkg = maps
 CP = cp
 ECHO = echo
 RM = rm -f
 MKDIR = mkdir
 AWK = @AWK@
-.PHONY: all shlib mapdata gdata ldata ndata clean
+.PHONY: all shlib mapdata gdata ldata ndata clean gmake lmake objects world2
 
 all: shlib mapdata
 
@@ -42,14 +42,23 @@ state.vbm.L: state.vbm.line state.vbm.linestats Lmake
 	@$(MKDIR) -p $(mapdir)
 	./Lmake 0 p b state.vbm.line state.vbm.linestats $(mapdir)/state.vbm.L
 
-gdata: Gmake ldata
-	$(MAKE) $(GDATA)
+gdata: gmake ldata
+	$(MAKE) -f "$(R_HOME)/etc$(R_ARCH)/Makeconf" -f Makefile $(GDATA)
 
-ldata: Lmake world2.line
-	$(MAKE) $(LDATA)
+ldata: lmake world2
+	$(MAKE) -f "$(R_HOME)/etc$(R_ARCH)/Makeconf" -f Makefile $(LDATA)
 
-ndata: world2.line
-	$(MAKE) $(NDATA)
+ndata: world2
+	$(MAKE) -f "$(R_HOME)/etc$(R_ARCH)/Makeconf" -f Makefile $(NDATA)
+
+lmake:
+	$(MAKE) -f "$(R_HOME)/etc$(R_ARCH)/Makeconf" -f Makefile Lmake
+
+gmake:
+	$(MAKE) -f "$(R_HOME)/etc$(R_ARCH)/Makeconf" -f Makefile Gmake
+
+world2:
+	$(MAKE) -f "$(R_HOME)/etc$(R_ARCH)/Makeconf" -f Makefile world2.line
 
 world2.line: world.line legacy_world.line
 	@$(ECHO) "Converting world to world2"
@@ -67,8 +76,11 @@ SHLIB = $(pkg)$(SHLIB_EXT)
 OBJECTS = init.o mapclip.o mapget.o smooth.o thin.o 
 libdir = ../libs
 
-shlib: $(OBJECTS)
+shlib: objects
 	"$(R_HOME)/bin/R" CMD SHLIB -o $(SHLIB) $(OBJECTS)
+
+objects:
+	$(MAKE) -f "$(R_HOME)/etc$(R_ARCH)/Makeconf" -f Makefile $(OBJECTS)
 
 # clean
 # $(SHLIB_EXT) is not set when making "clean", so write all possibilities explicitely

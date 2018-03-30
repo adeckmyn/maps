@@ -33,7 +33,7 @@ the package can override the default location of the binary datasets.
 The Natural Earth data set is available from \url{http://www.naturalearthdata.com}.
 }
 \seealso{
-\code{\link{map}}, \code{\link{world}},\code{\link{legacy_world2}}
+\code{\link{map}}, \code{\link{world}}
 }
 \examples{
 map('world2', xlim = c(100, 300))

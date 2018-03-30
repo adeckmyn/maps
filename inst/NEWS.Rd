@@ -1,6 +1,6 @@
 \name{NEWS}
 \title{News for package 'maps'}
-\section{Changes in maps version 3.3.0 (2017-12-17)}{
+\section{Changes in maps version 3.3.0 (2018-03-31)}{
   \itemize{
     \item \code{legacy_world} and \code{world.legacy()} have been deprecated. The old database is now available from the companion package 'mapdata' (as of version 2.3.0) where it is called "worldLores".
     \item Bug fixes:
@@ -41,7 +41,7 @@ The clipping code is also directly available as \code{map.clip.poly(data, xlim=N
 }
 \section{Changes in maps version 3.1.0 (2016-01-19)}{
   \itemize{
-    \item 'world' database changed to version without lakes punched out at the borders. The previous version still had various issues, so this is much cleaner. Now 'interior=FALSE' actually works on the whole world map.``
+    \item 'world' database changed to version without lakes punched out at the borders. The previous version still had various issues, so this is much cleaner. Now 'interior=FALSE' actually works on the whole world map.
     \item Major lakes are now available from a separate database 'lakes'.
     \item Basic support for 'SpatialPolygons' and 'SpatialLines' class objects as map database. Internally, \code{maps()} calls new functions \code{SpatialPolygons2map()} and \code{SpatialLines2map()} which transform to the simple 'maps' format, but \emph{only the polygon names and coordinates themselves}. All other information (holes, plotting order etc.) is ignored.
     \item 'world2' (the pacific centered map) now has clean cut polygons at the boundaries, so there are no more artefacts when e.g. \code{fill=TRUE}.
