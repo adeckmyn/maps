@@ -20,7 +20,7 @@ the package can override the default location of the binary datasets.
 
 During a transition period (\code{maps} version 3.0) it is possible to switch to the old legacy map using the function \code{world.legacy(TRUE)} or by setting the setting the environment variable R_MAP_DATA_LEGACY=TRUE prior to loading the package.
 
-In future releases, this dataset will be removed completely. It will however remain accessible via the \code{mapdata} package, where it is called \code{worldLores}
+In future releases, this dataset will be removed completely. It will however remain accessible via the \code{mapdata} package (as of version 2.3.0), where it is called \code{worldLores}
 
 }
 \source{
@@ -34,7 +34,7 @@ The CIA World Data Bank II is currently (2015) still available from
 ## DEPRECATED:
 # map('legacy_world', fill = TRUE, col = 1:10)
 ## Use mapdata::worldLores instead:
-if (!requireNamespace("mapdata")) {
+if (requireNamespace("mapdata") && packageVersion("mapdata") >= "2.3") {
   map("mapdata::worldLores", fill = TRUE, col = 1:10)
 }
 }

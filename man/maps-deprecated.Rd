@@ -9,7 +9,7 @@ The old, legacy, world map (which dates from around 1990) will be completely rem
 \format{
 During a transition period (\code{maps} version 3.0) it is possible to switch to the old legacy map using the function \code{world.legacy(TRUE)} or by setting the setting the environment variable R_MAP_DATA_LEGACY=TRUE prior to loading the package.
 
-In future releases, this dataset will be removed completely. It will however remain available in the \code{mapdata} package, where it is called \code{worldLores}
+In future releases, this dataset will be removed completely. It will however remain available in the \code{mapdata} package (as of version 2.3.0), where it is called \code{worldLores}
 }
 \seealso{
 \code{\link{map}},\code{\link{world.legacy}},\code{\link{world}}

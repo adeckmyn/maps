@@ -7,7 +7,7 @@
 United States State Visibility Base Map
 }
 \usage{
-data(stateMapEnv)
+data(state.vbmMapEnv)
 data(state.vbm.center)
 }
 \description{
@@ -18,7 +18,7 @@ to provide simplified state shapes with sufficient areas to allow
 annotations in even the small states.
 
 \code{state.vbm.center} are coordinates of the state centers
-for annotation purposes.
+for annotation purposes. The states are alphabetically ordered, in the same order as the map. So state names can be matched via e.g. \code{map(state.vbm, plot=FALSE)$name}.
 }
 \format{
 The data file is merely a character string which

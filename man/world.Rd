@@ -8,7 +8,7 @@ Low (mid) resolution World Map
 \usage{data(worldMapEnv)}
 \description{
 This updated (2013) world map is imported from the Natural Earth project (the 1:50m resolution version). It replaces a much older version based on the CIA World Data Bank II data.
-That older version is still included in the package and can reached as \code{legacy_world}.
+That older version is still temporarily included in the package (but deprecated) and can reached as \code{legacy_world}. In the future this old package will only be available via txpeh \code{mapdata} (v2.3.0).
 }
 \format{
 The data file is merely a character string which
