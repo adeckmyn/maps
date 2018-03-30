@@ -419,7 +419,7 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
 void close_antarctica(double *xout, double *yout,
                       int *segment_start_list, int *segment_finish_list,
                       int *count_segments, double minlat) {
-  int i, j, k, intpoints;
+  int i, j, k;
   double x0, x1, dx;
 /* 1. find the line segment that crosses the domain, to know it's direction */
 /* 2. add a closing segment in other direction */
