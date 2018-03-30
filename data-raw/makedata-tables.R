@@ -18,7 +18,7 @@ tsv2rda <-  function(dlist=datalist) {
     outfile <- paste0("../data/",dname,".rda")
 
     zz <- read.table(infile, stringsAsFactors=FALSE, 
-                     sep=" ", header=TRUE)
+                     sep="\t", header=TRUE)
     assign(dname, zz)
     save(list=dname, file=outfile)
   }
