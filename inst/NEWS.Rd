@@ -1,11 +1,12 @@
 \name{NEWS}
 \title{News for package 'maps'}
-\section{Changes in maps version 3.3.0 (2018-03-31)}{
+\section{Changes in maps version 3.3.0 (2018-04-03)}{
   \itemize{
     \item \code{legacy_world} and \code{world.legacy()} have been deprecated. The old database is now available from the companion package 'mapdata' (as of version 2.3.0) where it is called "worldLores".
     \item Bug fixes:
       \itemize{
         \item Makefile has been fixed for possible whitespace in $R_HOME and for pre-existing $AWKPATH.
+        \item Various small fixes in data sets.
       }
   }
 }
