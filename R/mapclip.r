@@ -1,7 +1,10 @@
 map.wrap.poly <- function(data, xlim, poly = FALSE, antarctica = -89.5) {
   nseg <- sum(is.na(data$x))+1
   len_in <- length(data$x)
-  len_out <- 2*len_in
+  # usually, the result will be less then twice as long,
+  # but every wrapped boundary (poly=TRUE) adds 10 interpolation points
+  # so for a small data set, this can be more than x2
+  len_out <- 2*len_in + 100
   wrap <- .C(C_map_wrap_poly,
                xin=data$x, yin=data$y, nin=as.integer(len_in),
                xout=numeric(len_out), yout=numeric(len_out), 
