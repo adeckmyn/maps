@@ -23,5 +23,5 @@ A list with four components: \code{x, y, names, range}, similar to the return va
 The option \code{namefield} is only taken into account if \code{database} is class \code{Spatial[]DataFrame}. \code{namefield} may be a vector of column names, e.g. to get polygons named as 'country:state'.}
 \seealso{
 \code{\link{map}},\code{\link[sp]{SpatialPolygons}} (in the \code{sp} library),
-\code{\link[maptools]{readShapePoly}} (in the \code{maptools} library) 
+\code{\link[rgdal]{readOGR}} (in the \code{rgdal} library) 
 }
