@@ -380,6 +380,10 @@ void map_wrap_poly(double *xin, double *yin, int *nin,
             j = segment_finish_list[count_segments-1] + 1;
           } else count_segments = 0; /* island polygon: do nothing. */
         }
+          /* BUGFIX: it could be an artificial wrapping boundary starting at xmin/xmax -> do nothing */
+          /* -> CHECK FOR CLOSURE */
+        else if (count_segments == 1 && xout[j-1] == xout[segment_start_list[0]] &&
+                 yout[j-1] == yout[segment_start_list[0]] ) count_segments = 0;
 
         /* we don't check closure in yout : it /may/ be wrong due to starting at xmin/xmax */
         /* if the polygon doesn't close, that usually counts as a crossing */
