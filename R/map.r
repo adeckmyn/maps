@@ -144,12 +144,18 @@ function(database = "world", regions = ".", exact = FALSE,
      stop("missing database or unknown coordinate type")
   if (doproj && coordtype != "spherical") 
     stop(paste(database, "database is not spherical; projections not allowed"))
+  if (length(wrap)>=2 && !doproj && wrap[2] - wrap[1] != 360) 
+    stop("The specified longitudes for wrapping are inconsistent, they should be 360 apart.")
   # turn the region names into x and y coordinates
   if (is.character(database)) as.polygon = fill
-  else as.polygon = TRUE
-  coord <- map.poly(database, regions, exact, xlim, ylim, 
+  else as.polygon <- TRUE
+  # if we are going to wrap around anything else than [-180, 180], the simplest way
+  # to get all necessary polylines/polygons is to set xlim=NULL *temporarily*
+  # (alternatively, the C code must shift longitudes by +/- 360 to fit in boundaries)
+  xlim_tmp <- if (length(wrap)>=2) NULL else xlim
+  coord <- map.poly(database, regions, exact, xlim_tmp, ylim, 
                     boundary, interior, fill, as.polygon, namefield=namefield)
-  if (is.na(coord$x[1])) stop("first coordinate is NA.  bad map data?")
+  if (is.na(coord$x[1])) stop("first coordinate is NA. Bad map data?")
   if (length(wrap)>=2) {
     antarctica <- if (length(wrap) == 2) -89.9 else wrap[3]
     coord <- map.wrap.poly(coord, xlim=wrap[1:2], poly=fill, antarctica=antarctica)
