@@ -30,7 +30,7 @@ already exist}.  Hence setting the environment variable before loading
 the package can override the default location of the binary datasets.
 }
 \source{
-The Natural Earth data set is available from \url{http://www.naturalearthdata.com}.
+The public domain Natural Earth data set is available from \url{http://www.naturalearthdata.com}.
 }
 \seealso{
 \code{\link{map}}, \code{\link{world}}

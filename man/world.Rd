@@ -7,8 +7,8 @@ Low (mid) resolution World Map
 }
 \usage{data(worldMapEnv)}
 \description{
-This updated (2013) world map is imported from the Natural Earth project (the 1:50m resolution version). It replaces a much older version based on the CIA World Data Bank II data.
-That older version is still temporarily included in the package (but deprecated) and can reached as \code{legacy_world}. In the future this old package will only be available via txpeh \code{mapdata} (v2.3.0).
+This world map (updated in 2013) is imported from the public domain Natural Earth project (the 1:50m resolution version). It replaces a much older version based on the CIA World Data Bank II data.
+The old legacy data is still available in the package \code{mapdata} (v2.3.0).
 }
 \format{
 The data file is merely a character string which
@@ -18,17 +18,16 @@ This environment variable (\code{R_MAP_DATA_DIR_WORLD}) is set at package load t
 already exist}.  Hence setting the environment variable before loading
 the package can override the default location of the binary datasets.
 
-During a transition period (\code{maps} version 3.0--1) it is possible to switch to the old legacy map using the function \code{world.legacy(TRUE)} or by setting the setting the environment variable R_MAP_DATA_LEGACY=TRUE prior to loading the package.
-
 }
 \source{
-The Natural Earth data set is available from \url{http://www.naturalearthdata.com}.
+The Natural Earth data set is in the public domain and available from \url{http://www.naturalearthdata.com}.
 }
 \details{
 As of version 3.1, the \code{world} database no longer contains any lakes. These have been moved to a separate database called \code{lakes}.
+The legacy world map (dating from around 1990) has been removed from th epackage and is now available from the \code{mapdata} package in two different resolutions (worldHires and worldLores).
 }
 \seealso{
-\code{\link{map}},\code{\link{world.legacy}},\code{\link{legacy_world}},\code{\link{lakes}}
+\code{\link{map}},\code{\link{lakes}}
 }
 \examples{
 # notice how some polygons extend beyond the [-180,180] interval:

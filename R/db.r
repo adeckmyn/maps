@@ -30,11 +30,6 @@ mapenvir <- function(database="world", warn.dep=FALSE) {
     database <- strsplit(database,"::")[[1]][2]
   }
   fbase <- paste0(Sys.getenv(eval(parse(text=dbname))), database)
-  if (basename(fbase)=="legacy_world" && warn.dep) {
-    .Deprecated(new="mapdata::worldLores", old="legacy_world",
-                package="maps")
-#                msg="The old world database will only be available as worldLores from the mapdata package.")
-  }
   fbase
 }
 
