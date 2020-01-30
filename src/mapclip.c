@@ -179,7 +179,15 @@ void construct_poly(double *xout, double *yout,
     ordered_finish_list[i] = k = 0;
     for (j=0; j< count_segments; j++) {
       ordered_finish_list[i] += (yout[segment_finish_list[j]] > yout[segment_finish_list[i]]);
+      if (i > j && yout[segment_finish_list[j]] == yout[segment_finish_list[i]]) {
+//        Rprintf("Coinciding or crossing borders detected.\n");
+        ordered_finish_list[i]++;
+      }
       k += (yout[segment_start_list[j]] > yout[segment_start_list[i]]);
+      if (i < j && yout[segment_start_list[j]] == yout[segment_start_list[i]]) {
+//        Rprintf("Coinciding or crossing borders detected.\n");
+        k++;
+      }
     }
     sorted_start_list[k] = i ;
     is_used[i] = 0;
@@ -204,9 +212,11 @@ void construct_poly(double *xout, double *yout,
     poly_len=0;
     while (!closed) {
       poly[poly_len++] = i; /*sorted_start_list[i]; */
-      if (poly_len > count_segments) error("polygon explosion.");
+      if (poly_len > count_segments) error("More polygons than line segments.");
       is_used[i] = 1;
       remaining--;
+      if (sorted_start_list[i] < 0 || sorted_start_list[i] >= count_segments) 
+        error("Polygon segment ordering error.");
       pe = ordered_finish_list[sorted_start_list[i]];
       if (pe == end_point) closed = 1;
       else {
@@ -224,7 +234,7 @@ void construct_poly(double *xout, double *yout,
         x0 = xbuf[n-1];
         y0 = ybuf[n-1];
         dy = (yout[segment_start_list[m]] - y0)/MAX_INTERP ;
-        for (k=1; k < MAX_INTERP; k++) {
+        if (dy != 0) for (k=1; k < MAX_INTERP; k++) {
           xbuf[n] = x0;
           ybuf[n] = y0 + k*dy;
           n++;
@@ -243,15 +253,17 @@ void construct_poly(double *xout, double *yout,
     x0 = xbuf[n-1];
     y0 = ybuf[n-1];
     dy = (ybuf[pstart] - y0)/MAX_INTERP ;
-    for (k=1; k < MAX_INTERP; k++) {
-      xbuf[n] = x0;
-      ybuf[n] = y0 + k*dy;
+    if (dy != 0) {
+      for (k=1; k < MAX_INTERP; k++) {
+        xbuf[n] = x0;
+        ybuf[n] = y0 + k*dy;
+        n++;
+        if (n >= buflen) error("Buffer too short.");
+      }
+      xbuf[n] = xbuf[pstart];
+      ybuf[n] = ybuf[pstart];
       n++;
-      if (n >= buflen) error("Buffer too short.");
     }
-    xbuf[n] = xbuf[pstart];
-    ybuf[n] = ybuf[pstart];
-    n++;
     if (n >= buflen) error("Buffer too short.");
     xbuf[n] = NA_REAL;
     ybuf[n] = NA_REAL;
