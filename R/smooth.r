@@ -19,7 +19,7 @@ smooth.map <- function(m, z, res = 50, span = 1/10, averages = FALSE,
   ylim <- range(m$y, na.rm = TRUE)
   midpoints <- function(start, end, n) {
     inc <- (end - start)/n
-    seq(start + inc/2, end - inc/2, len = n)
+    seq(start + inc/2, end - inc/2, length.out = n)
   }
   # 2*res is an assumption about aspect ratio (usually true)
   if(length(res) == 1) res = c(2*res, res)
