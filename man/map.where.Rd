@@ -24,7 +24,9 @@ map.where(database = "world", x, y, ...)
 }
 \seealso{\code{in.polygon}}
 \note{
-  This function may give erroneous results if the database contains
+  For points close to a border (polygon boundary), the result may be wrong if the
+  resolution of the database is insufficient.
+  This function may also give erroneous results if the database contains
   enclaves. For instance, a point in San Marino may also be identified 
   as being in Italy.
 }
