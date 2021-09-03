@@ -856,7 +856,7 @@ Italy:Asinara	855
 Italy:Sardinia	856
 Italy:Isola d'Elba	857
 Italy	858
-San Marino	859
+San Marino:enclave	859
 Jamaica	860
 Jersey	861
 Jordan	862
@@ -1199,8 +1199,8 @@ Papua New Guinea:Rambutyo	1198
 Papua New Guinea:Manus Island	1199
 Papua New Guinea:Mussau	1200
 Poland	1201
-Puerto Rico:Isla Mona	1202
-Puerto Rico:Viaques Island	1203
+Puerto Rico:Isla de Mona	1202
+Puerto Rico:Vieques Island	1203
 Puerto Rico	1204
 North Korea:8	1205
 North Korea	1206
@@ -1619,7 +1619,7 @@ Yemen:4	1618
 Yemen	1619
 South Africa:Marion Island	1620
 South Africa	1621
-South Africa:hole	1622
+South Africa:enclave:Lesoto	1622
 Zambia	1623
 Zimbabwe	1624
 Netherlands:IJsselmeer	1625

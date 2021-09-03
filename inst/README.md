@@ -1,7 +1,7 @@
 # maps
 ###R package for geographical maps
 
-This version 3 of the maps package. The main change with respect to v2 is a new world map. The old map legacy map is included and switching to "legacy" mode is explained below.
+This is version 3 of the maps package. The main change with respect to v2 is a more recent world map. The old map legacy map is still available from the package mapdata.
 
 ##CHANGES
 
@@ -39,15 +39,7 @@ This may have several implications for code that calls map().
 - 'world2' now has clean boundaries when 'fill=TRUE'.
 
 ##FALL BACK TO LEGACY WORLD DATABASE
-There are a few mechanisms to use the old 'world' database rather than the updated one, should that be necessary:
-- Using 'database=legacy_world'
-- Setting R_MAP_DATA_LEGACY=TRUE in the environment prior to loading maps
-- Deprecated: Calling world.legacy(TRUE) for switching to the old database and world.legacy(FALSE) to switch back on the fly.
-
-The last two options should only be used as a *temporary last resource*, to quickly run code that requires the old database without having to edit it.
-
-In v3.3, all these methods are deprecated (but will still function). The data set has been moved to the 'mapdata' package, where it is called "worldLores".
-
+The old map data set has been moved to the 'mapdata' package, where it is called "worldLores". It can thus be called via map("mapdata::worldLores").
 
 Note that the worldHires database from the mapdata package has identical map naming than the legacy world map. The only difference is in the resolution of the polylines. That high resolution version of the legacy map will remain unchanged.
 
@@ -56,7 +48,7 @@ Please inform the maintainer of any problem that requires a fallback to the lega
 
 ## HIGH RESOLUTION AND OTHER MAPS
 
-Natural Earth also supports a high-resolution (1:10m) world map. Rather than replacing 'worldHires' (in the mapdata package), this data set is available from the package mapdataNE (not yet on CRAN but already available from http://github.com/adeckmyn/mapdataNE).
+Natural Earth also supports a high-resolution (1:10m) world map. Rather than replacing 'worldHires' (in the mapdata package), this data set can be imported into maps e.g. by loading the "rnaturalearth" package.
 
 Even maps in e.g. shapefile format can now easily be imported for use in 'map()'. For instance the package 'maptools' offers the function 'readShapePoly()', which reads a shapefile into a 'SpatialPolygonsDataFrame' that can be used as a map database (as of version 3.1).
 
@@ -64,6 +56,7 @@ Even maps in e.g. shapefile format can now easily be imported for use in 'map()'
 ##TO DO/DISCUSS:
 - Add 'proj4' support. This will have to be via a new argument e.g. \code{map(..., proj4="+proj=longlat"}.
 - Many islands remain nameless.
-- The naming convention is largely maintained, but some choices are different. The changes mean that e.g. /region="France"/ now covers only metropolitan France, whithout (most of) the overseas departments and territories
+- The old naming convention is largely maintained, but some choices are different. The changes mean that e.g. /region="France"/ now covers only metropolitan France, whithout (most of) the overseas departments and territories
 - Some inconsistencies in the naming procedure remain. For instance, while most countries are named by their full name, "UK" and "USA" are shortened in the same way as in the old data base. For UK, this even required a hack in the mapping code to avoid adding Ukrain to the map.
 - The iso3166 table may have to be adapted for the Natural Earth 1:10 database, some extra rows have already been inserted.
+

@@ -1,7 +1,7 @@
 # maps
 ###R package for geographical maps
 
-This version 3 of the maps package. The main change with respect to v2 is a more recent world map. The old map legacy map is still available from the package mapdata.
+This is version 3 of the maps package. The main change with respect to v2 is a more recent world map. The old map legacy map is still available from the package mapdata.
 
 ##CHANGES
 

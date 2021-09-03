@@ -24,6 +24,8 @@ fix_exceptions2 <- function(patterns=".") {
 
 mapenvir <- function(database="world", warn.dep=FALSE) {
   dbname <- paste0(database, "MapEnv")
+  # the following will allow us to find e.g. "world" even if
+  # the maps package is not attached.
   if (length(grep("::", database)) == 0) {
     if (!exists(dbname)) dbname <- paste0("maps::",dbname)
   } else {

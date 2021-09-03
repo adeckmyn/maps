@@ -133,8 +133,7 @@ map_match(int *ntable, char **table, int *nx, char **x, int *result,
 static void name(s, data, suffix)
 char *s, *data, *suffix;
 {
-  if(data == 0)
-    PROBLEM "No R_MAP_DATA_DIR variable!!" RECOVER(NULL_ENTRY);
+  if (data == 0) Rf_error("No R_MAP_DATA_DIR variable!!");
   strcpy(s, data);
   strcat(s, suffix);
 }
