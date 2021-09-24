@@ -54,6 +54,5 @@ map("state", fill = TRUE, col = color); map("state", add = TRUE)
 Richard A. Becker, and Allan R. Wilks,
 "Maps in S",
 \emph{AT\&T Bell Laboratories Statistics Research Report, 1991.}
-\url{http://ect.bell-labs.com/sl/doc/93.2.ps}
 }
 \keyword{dplot}

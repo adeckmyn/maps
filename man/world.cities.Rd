@@ -19,7 +19,7 @@ capital status indication (0 for non-capital, 1 for capital, 2 for China
 Municipalities, and 3 for China Provincial capitals)
 }
 \source{
-The data were originally obtained from Stefan Helders' website \url{http://www.world-gazetteer.com},
+The data were originally obtained from Stefan Helders' website (http://www.world-gazetteer.com),
 which now redirects to \url{http://www.populationmondiale.com}. There are no recent updates available.
 }
 \section{NOTE}{

@@ -51,6 +51,7 @@ void map_clip_poly (double* xin, double *yin, int *nin,
 
   count_segments=0;  /* count how many internal line segments we get for a polyline */
   count_line=0;  /* keep track of which polyline we're treating */
+  position=2; /* an "impossible" value, just to keep the compiler happy */
   i = j = 0;
   while (i < *nin) {
     if (!ISNA(xin[i])) {

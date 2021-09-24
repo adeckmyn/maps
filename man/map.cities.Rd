@@ -84,7 +84,7 @@ and fitting within the limits of the plot currently displayed.  The
 default database is of all cities that have a population greater than a
 certain threshold or which are capital cities of a country or island
 territory.  The threshold varies from country to country, but in
-general is no higher than about 40,000.  The data were originally obtained from Stefan Helders' website \url{http://www.world-gazetteer.com},
+general is no higher than about 40,000.  The data were originally obtained from Stefan Helders' website (http://www.world-gazetteer.com),
 which now redirects to \url{http://www.populationmondiale.com}. There are no recent updates available.
 
 There are three supplied databases, world.cities (the default), us.cities

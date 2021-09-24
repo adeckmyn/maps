@@ -283,12 +283,12 @@ if(require(mapproj)) {	# mapproj is used for  projection="polyconic"
   Richard A. Becker, and Allan R. Wilks,
   "Maps in S",
   \emph{AT&T Bell Laboratories Statistics Research Report [93.2], 1993.}
-  \url{http://ect.bell-labs.com/sl/doc/93.2.ps}
+  \url{https://web.archive.org/web/20050825145143/http://www.research.att.com/areas/stat/doc/93.2.ps}
 
   Richard A. Becker, and Allan R. Wilks,
   "Constructing a Geographical Database",
   \emph{AT&T Bell Laboratories Statistics Research Report [95.2], 1995.}
-  \url{http://ect.bell-labs.com/sl/doc/95.2.ps}
+  \url{https://web.archive.org/web/20050825145143/http://www.research.att.com/areas/stat/doc/95.2.ps}
 }
 \keyword{hplot}
 % Converted by Sd2Rd version 0.3-3.

@@ -27,9 +27,9 @@ map('world')
 map('lakes', add=TRUE, fill=TRUE, col='white', boundary='black')
 }
 \source{
-The data in this data base is derived from the public domain GIS project Natural Earth, the file "ne_50m_lakes". The Natural Earth data set is available from \url{http://www.naturalearthdata.com}.}
+The data in this data base is derived from the public domain GIS project Natural Earth, the file "ne_50m_lakes". The Natural Earth data set is available from \url{https://www.naturalearthdata.com}.}
 \references{
 \emph{Natural Earth project}
-\url{http://www.naturalearthdata.com}
+\url{https://www.naturalearthdata.com}
 }
 \keyword{datasets}
