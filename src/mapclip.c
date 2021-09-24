@@ -100,6 +100,7 @@ void map_clip_poly (double* xin, double *yin, int *nin,
         if (position < 0 && ppos > 0) {
           ymid = yin[i] + (yin[i-1]-yin[i]) / (xin[i-1] - xin[i]) * (*xlim - xin[i]);
           xout[j] = *xlim; yout[j] = ymid; j++;
+          if (j >= *nout) error("Output vector too short!\n");
         }
         if (*poly) segment_finish_list[count_segments-1] = j - 1;
       }
@@ -172,6 +173,7 @@ void construct_poly(double *xout, double *yout,
   ybuf = (double*) R_alloc( buflen , sizeof(double));
 
   line_start = segment_start_list[0];
+  for (i=0; i < count_segments ; i++) sorted_start_list[i] = 0 ;  
 
   /*  sorted_start_list[]   : element 0 contains the number of the segment with largest y value */
   /*  ordered_finish_list[] : element 0 contains the order of the end point of segment 0 */
@@ -197,11 +199,12 @@ void construct_poly(double *xout, double *yout,
   n = 0;
   *pcount = 0;
   while (remaining > 0) {
-    /* add segments until it closes */
+    /* start from the segment with highest y starting value: sorted_start_list[0] */
+    /* add segments until it "closes" */
     *pcount += 1;
     i = *pcount -1;
     while (i < count_segments && is_used[i]) i++;
-    if (i == count_segments) {error("shouldn't happen.\n") ; }
+    if (i == count_segments) error("Polygon closure error. No segments left.\n") ;
     /* do we have polygons on both "sides" (wrapping) or only one (clipping) ? */
     /* if sides=2, every end point of a segment is also the starting point */
     /* of segment at the other 'side', so we count differently. */
@@ -211,7 +214,7 @@ void construct_poly(double *xout, double *yout,
     closed = 0;
     poly_len=0;
     while (!closed) {
-      poly[poly_len++] = i; /*sorted_start_list[i]; */
+      poly[poly_len++] = i; /* NOTE: the actual line segment is sorted_start_list[i], not i ! */
       if (poly_len > count_segments) error("More polygons than line segments.");
       is_used[i] = 1;
       remaining--;
@@ -227,8 +230,8 @@ void construct_poly(double *xout, double *yout,
     }
     /* write polygon to buffer */
     pstart = n;
-    for (j=0; j<poly_len ; j++) {
-      m=sorted_start_list[poly[j]];
+    for (j=0; j < poly_len ; j++) {
+      m = sorted_start_list[poly[j]];
       /* add some interpolated points along the boundary */
       if (j>0) {
         x0 = xbuf[n-1];

@@ -16,7 +16,7 @@ Users of data sets supplied through UNEP/GRID are requested to
 incorporate in output products and reports acknowledgements to the
 originator of the data and to the fact that they were acquired through
 UNEP/GRID. Appropriate wording may be "UNESCO (1987) through
-UNEP/GRID-Geneva". 
+UNEP/GRID-Geneva".
 }
 \format{
 The data file is merely a character string which
@@ -27,11 +27,19 @@ maps package) is set at package load time \emph{if it does not
 already exist}. Hence setting the environment variable before loading
 the package can override the default location of the binary datasets.
 }
+\details{
+  This map database can now easily be replaced by data taken directly from free sources, e.g. Natural Earth (see example).
+}
 \seealso{
 \code{\link{map}}
 }
 \examples{
 map('france', fill = TRUE, col = 1:10)
+# replace by a public domain map at higher resolution:
+# fr1 <- rnaturalearth::ne_states("france")
+# this still includes overseas domains, so we remove those:
+# france2 <- map(fr1, xlim=c(-20, 20), ylim=c(30, 60), lforce="e",
+#                fill=TRUE, plot=FALSE)
 }
 \references{
 Richard A. Becker, and Allan R. Wilks,

@@ -11,7 +11,7 @@ Depends: R (>= 3.0.0)
 Imports: graphics, utils
 LazyData: yes
 Suggests: mapproj (>= 1.2-0), mapdata (>= 2.3.0), sp, rnaturalearth
-License: GPL-2 [world map data in public domain]
+License: GPL-2
 Maintainer: Alex Deckmyn <alex.deckmyn@meteo.be>
 NeedsCompilation: yes
 Repository: CRAN

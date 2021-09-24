@@ -25,7 +25,6 @@ If FALSE, the result is a vector of polygon names. This may be more readable, bu
   The ISO 3166-1 standard identifies countries by a 2 and 3 letter codes.
 \code{iso.expand} translates these codes into the country names as used by 
 the \code{world} data base. \code{iso.alpha} does the reverse.  
-Note that these functions will not work well with the legacy world data base. 
 Some countries have different ISO codes for different regions 
 (e.g. China:Hong Kong has ISO code HK). In such cases, \code{iso.alpha} will 
 return the main code, but \code{iso.expand} will return a regular expression 

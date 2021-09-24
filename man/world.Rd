@@ -24,7 +24,7 @@ The Natural Earth data set is in the public domain and available from \url{http:
 }
 \details{
 As of version 3.1, the \code{world} database no longer contains any lakes. These have been moved to a separate database called \code{lakes}.
-The legacy world map (dating from around 1990) has been removed from th epackage and is now available from the \code{mapdata} package in two different resolutions (worldHires and worldLores).
+The legacy world map (dating from around 1990) has been removed from the package and is now available from the \code{mapdata} package in two different resolutions (worldHires and worldLores).
 }
 \seealso{
 \code{\link{map}},\code{\link{lakes}}

@@ -26,7 +26,9 @@ map.wrap.poly <- function(data, xlim, poly = FALSE, antarctica = -89.5) {
 
 map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
   nam <- data$names
-
+# Make sure that x & y have the same NA delimiters!
+  data$x[is.na(data$y)] <- NA
+  data$y[is.na(data$x)] <- NA
 # >= xlim[1]
   if (!is.na(xlim[1])) {
     len_in <- length(data$x)
@@ -65,9 +67,9 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
 
 # >= ylim[1]
   if (!is.na(ylim[1])) {
-    len_in <- length(data$x)
+    len_in <- length(data$y)
     len_out <- 2*len_in
-    nseg <- sum(is.na(data$x)) + 1
+    nseg <- sum(is.na(data$y)) + 1
     dd <- .C(C_map_clip_poly,
                yin=as.numeric(data$y), xin=as.numeric(data$x),
                nin=as.integer(len_in),
@@ -83,9 +85,9 @@ map.clip.poly <- function(data, xlim=c(NA, NA), ylim=c(NA, NA), poly=FALSE) {
  
 # <= ylim[2]
   if (!is.na(ylim[2])) {
-    len_in <- length(data$x)
+    len_in <- length(data$y)
     len_out <- 2*len_in
-    nseg <- sum(is.na(data$x)) + 1
+    nseg <- sum(is.na(data$y)) + 1
     dd <- .C(C_map_clip_poly,
                yin=as.numeric(data$y), xin=as.numeric(data$x),
                nin=as.integer(len_in),
