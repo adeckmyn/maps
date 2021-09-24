@@ -14,7 +14,7 @@ The old legacy data is still available in the package \code{mapdata} (v2.3.0).
 The data file is merely a character string which
 specifies the name of an environment variable which contains the
 base location of the binary files used by the map drawing functions.
-This environment variable (\code{R_MAP_DATA_DIR}) is set at package load time \emph{if it does not
+This environment variable (\code{R_MAP_DATA_DIR_WORLD}) is set at package load time \emph{if it does not
 already exist}.  Hence setting the environment variable before loading
 the package can override the default location of the binary datasets.
 

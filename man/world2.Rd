@@ -24,7 +24,7 @@ However, \code{world2} is useful when setting \code{xlim} to an interval crossin
 The data file is merely a character string which
 specifies the name of an environment variable which contains the
 base location of the binary files used by the map drawing functions.
-This environment variable (\code{R_MAP_DATA_DIR} for the datasets in the
+This environment variable (\code{R_MAP_DATA_DIR_WORLD} for the datasets in the
 maps package) is set at package load time \emph{if it does not
 already exist}.  Hence setting the environment variable before loading
 the package can override the default location of the binary datasets.

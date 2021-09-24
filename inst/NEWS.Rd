@@ -2,7 +2,7 @@
 \title{News for package 'maps'}
 \section{Changes in maps version 3.4.0 (2021-09-24)}{
   \itemize{
-    \item \code{legacy_world} and \code{world.legacy()}, which were deprecated for some years, have been removed from the package. The old database is now available from the companion package 'mapdata' (as of version 2.3.0) where it is called "worldLores". Note that R_MAP_DATA_DIR_WORLD has been removed. All maps again reference the same variable R_MAP_DATA_DIR.
+    \item \code{legacy_world} and \code{world.legacy()}, which were deprecated for some years, have been removed from the package. The old database is now available from the companion package 'mapdata' (as of version 2.3.0) where it is called "worldLores".
     \item Minor code changes (removal of deprecated macro, small bugfixes)
     \item Some corrections to country, island and city names.
   }
