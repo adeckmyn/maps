@@ -192,6 +192,8 @@ void construct_poly(double *xout, double *yout,
         k++;
       }
     }
+  /* NOTE: in case of "wrong" polygons (e.g. strange 1d lines) 
+   * sorted_start_list may not get set correctly */
     sorted_start_list[k] = i ;
     is_used[i] = 0;
   }
