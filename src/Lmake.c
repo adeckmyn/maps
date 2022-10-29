@@ -15,27 +15,22 @@
 
 char Usage[] = "Usage: %s precision {spherical|planar} {ascii|binary} in-file in-file-stats-file out-file";
 int Precision, Coordtype;
-char *Me, *getword(), *Infile;
+char *Me, *Infile;
 Polyline n;
 int nl, maxp;
 
-extern int
-isspace(int c);
+extern int isspace(int c);
 
-int
-fatal(s, a, b)
-char *s, *a;
-int b;
+char * getword(FILE *f);
+
+int fatal(char *s, char *a, int b)
 {
 	fprintf(stderr, s, a, b);
 	fprintf(stderr, "\n");
 	exit(1);
 }
 
-int
-fatal2(s, a, b)
-char *s;
-int a, b;
+int fatal2(char *s, int a, int b)
 {
 	fprintf(stderr, s, a, b);
 	fprintf(stderr, "\n");
@@ -47,10 +42,7 @@ int a, b;
  * 1 if a pair was read, 0 if the end-of-record indicator was
  * read and -1 if there was a read fatal.
  */
-int
-getpair(f, xy)
-FILE *f;
-struct pair *xy;
+int getpair(FILE *f, struct pair *xy)
 {
 	char *w;
 
@@ -69,9 +61,7 @@ struct pair *xy;
 	return(1);
 }
 
-char *
-getword(f)
-FILE *f;
+char * getword(FILE *f)
 {
 	static char word[WORDSIZE];
 	char *s = word;
@@ -92,10 +82,7 @@ FILE *f;
 	return(word);
 }
 
-void
-set_range(plh, xy)
-struct line_h *plh;
-struct pair *xy;
+void set_range(struct line_h *plh, struct pair *xy)
 {
 	int n = plh->npair;
 	float xmin = FLT_MAX, ymin = FLT_MAX;
@@ -115,9 +102,7 @@ struct pair *xy;
 /*	printf("%f12 %f12 %f12 %f12\n", xmin, ymin, xmax, ymax); */
 }
 
-void
-to_ascii(in, out)
-FILE *in, *out;
+void to_ascii(FILE *in, FILE *out)
 {
 	Polyline n, i;
 	Pair m, j, N = 0;
@@ -168,9 +153,7 @@ FILE *in, *out;
 	}
 }
 
-void
-to_binary(in, out)
-FILE *in, *out;
+void to_binary(FILE *in, FILE *out)
 {
 	Polyline i;
 	Pair m; 
@@ -220,10 +203,7 @@ FILE *in, *out;
 		fatal2("Cannot write headers to output file", 0, 0);
 }
 
-int
-main(ac, av)
-int ac;
-char *av[];
+int main(int ac, char *av[])
 {
 
 	FILE *in, *in2, *out;

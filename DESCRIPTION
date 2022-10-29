@@ -1,7 +1,7 @@
 Package: maps
 Title: Draw Geographical Maps
 Version: 3.4.0.9002
-Date: 2022-04-26
+Date: 2022-10-24
 Author: Original S code by Richard A. Becker and Allan R. Wilks.
 	R version by Ray Brownrigg.
         Enhancements by Thomas P Minka and Alex Deckmyn.

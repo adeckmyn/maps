@@ -14,7 +14,7 @@
 #define WORDSIZE 100
 
 char Usage[] = "Usage: %s a in-file in-file-statsfile out-file\n   or: %s b in-file in-file-statsfile out-file binary-line-file";
-char *Me, *getword(), *Infile, *Linefile;
+char *Me, *Infile, *Linefile;
 FILE *Lin;
 Region n;
 int np, maxl;
@@ -22,20 +22,18 @@ int np, maxl;
 extern int
 isspace(int c);
 
-int
-fatal(s, a, b)
-char *s, *a;
-int b;
+char* getword(FILE* f);
+
+/* ---------------------- */
+
+int fatal(char *s, char *a, int b)
 {
 	fprintf(stderr, s, a, b);
 	fprintf(stderr, "\n");
 	exit(1);
 }
 
-int
-fatal2(s, a, b)
-char *s;
-int a, b;
+int fatal2(char *s, int a, int b)
 {
 	fprintf(stderr, s, a, b);
 	fprintf(stderr, "\n");
@@ -47,10 +45,7 @@ int a, b;
  * 1 if a number was read, 0 if the end-of-record indicator was
  * read and -1 if there was a read fatal.
  */
-int
-getpoly(f, r)
-FILE *f;
-Polyline *r;
+int getpoly(FILE *f, Polyline *r)
 {
 	char *w;
 
@@ -62,9 +57,7 @@ Polyline *r;
 	return(1);
 }
 
-char *
-getword(f)
-FILE *f;
+char * getword(FILE *f)
 {
 	static char word[WORDSIZE];
 	char *s = word;
@@ -84,10 +77,7 @@ FILE *f;
 	return(word);
 }
 
-void
-set_range(rh, r)
-struct region_h *rh;
-Polyline r[];
+void set_range(struct region_h *rh, Polyline r[])
 {
 	int n = rh->nline;
 	struct line_h *lh, *get_lh();
@@ -109,9 +99,7 @@ Polyline r[];
 /*	printf("%f12 %f12 %f12 %f12\n", xmin, ymin, xmax, ymax); */
 }
 
-struct line_h *
-get_lh(r)
-Polyline r;
+struct line_h *get_lh(Polyline r)
 {
 	static struct line_h lh;
 	int seek;
@@ -124,9 +112,7 @@ Polyline r;
 	return(&lh);
 }
 
-void
-to_ascii(in, out)
-FILE *in, *out;
+void to_ascii(FILE *in, FILE *out)
 {
 	Region n, i;
 	Line m, j, N = 0;
@@ -170,9 +156,7 @@ FILE *in, *out;
 	}
 }
 
-void
-to_binary(in, out)
-FILE *in, *out;
+void to_binary(FILE *in, FILE *out)
 {
 	Region i;
 	Line m; 
@@ -207,10 +191,7 @@ FILE *in, *out;
 		fatal2("Cannot write headers to output file", 0, 0);
 }
 
-int
-main(ac, av)
-int ac;
-char *av[];
+int main(int ac, char *av[])
 {
 
 	FILE *in, *in2, *out;

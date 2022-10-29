@@ -25,9 +25,7 @@ struct arc {
  * Test whether theta lies in the arc a.
  * Theta is expected to be in [-PI,PI).
  */
-static int inarc(a, theta)
-     struct arc a;
-     double theta;
+static int inarc(struct arc a, double theta)
 {
   if(a.begin <= theta && theta <= a.end)
     return(1);
@@ -43,9 +41,7 @@ static int inarc(a, theta)
  * but the arc defined by (begin,end) can be located
  * anywhere.
  */
-static void intersect(a, begin, end)
-     struct arc *a;
-     double begin, end;
+static void intersect(struct arc *a, double begin, double end)
 {
   /* move (begin,end) until it has a chance to intersect a */
   while(end < a->begin) {
@@ -81,10 +77,7 @@ static void intersect(a, begin, end)
  * through the new points passes within delta of each of
  * the original points.
  */
-static
-int thin(x, y, n, delta, symmetric)
-     double x[], y[], delta;
-     int n, symmetric;
+static int thin(double x[], double y[], int n, double delta, int symmetric)
 {
 	int cur, next, mid, uptotal, downtotal, upfence, downfence, m;
 	double dist, theta, alpha, dx, dy;
@@ -179,9 +172,7 @@ int thin(x, y, n, delta, symmetric)
 	return(uptotal + downtotal);
 }
 
-void map_thin(x, y, n, delta, symmetric)
-     double *x, *y, *delta;
-     int *n, *symmetric;
+void map_thin(double *x, double *y, int *n, double *delta, int *symmetric)
 {
 	int start, end, m, from, to, wasna, isna, i;
 

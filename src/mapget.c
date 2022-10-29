@@ -33,6 +33,7 @@
 			}
 
 #define swap(a,b) t=a;a=b;b=t
+
 static void *SwapBuffer(void *p, unsigned num_items, unsigned item_size)
 {
   char *buffer = (char*)p, t, i;
@@ -81,9 +82,7 @@ static void AdjustLineH(struct line_h *lh, unsigned n)
   }
 }
 
-static void setrange(r, xy)
-double *r;
-struct pair xy;
+static void setrange(double *r, struct pair xy)
 {
 	if(xy.x < r[XMIN]) r[XMIN] = xy.x;
 	if(xy.x > r[XMAX]) r[XMAX] = xy.x;
@@ -92,8 +91,7 @@ struct pair xy;
 }
 
 /* this should already be in R !! */
-void
-char_to_ascii(int *n, char **s, int *result)
+void char_to_ascii(int *n, char **s, int *result)
 {
   int i;
   for(i=0; i < *n; i++) {
@@ -101,9 +99,7 @@ char_to_ascii(int *n, char **s, int *result)
   }
 }
 
-void
-map_match(int *ntable, char **table, int *nx, char **x, int *result, 
-	  int *exact)
+void map_match(int *ntable, char **table, int *nx, char **x, int *result, int *exact)
 {
   /* requires: table and x are sorted.  result is all zeros. */
   int ix,it=0;
@@ -130,8 +126,7 @@ map_match(int *ntable, char **table, int *nx, char **x, int *result,
   }
 }
 
-static void name(s, data, suffix)
-char *s, *data, *suffix;
+static void name(char *s, char *data, char *suffix)
 {
   if (data == 0) Rf_error("No R_MAP_DATA_DIR variable!!");
   strcpy(s, data);
@@ -144,9 +139,7 @@ char *s, *data, *suffix;
  * or planar and return as type.
  * type=-1 on error.
  */
-void map_type(database, type)
-char **database;
-int *type;
+void map_type(char **database, int *type)
 {
   char Lname[512];
   int Coordtype;
@@ -192,10 +185,7 @@ static double maptype_factor(int type)
  *	polygons lying partially outside range when fill is TRUE
  * If an error is encountered, retlines will be set to -1 on return.
  */
-void map_getg(database, which, nwhich, sl, retlines, range, fill)
-char **database;
-int *which, *nwhich, *sl, *retlines, *fill;
-double *range;
+void map_getg(char **database, int *which, int *nwhich, int *sl, int *retlines, double *range, int *fill)
 {
 	Region region, total;
 	char Gname[512];
@@ -295,10 +285,8 @@ double *range;
  * 		  and return these in range
  * If an error is encountered, nwhich will be set to -1 on return.
  */
-void map_getl(database, which, nwhich, getcoords, x, y, range, fill)
-char **database;
-int *which, *nwhich, *getcoords, *fill;
-double *x, *y, *range;
+void map_getl(char **database, int *which, int *nwhich, 
+              int *getcoords, double *x, double *y, double *range, int *fill)
 {
   Polyline line, total;
 	char Lname[512];

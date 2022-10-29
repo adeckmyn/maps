@@ -53,6 +53,6 @@ map("state", fill = TRUE, col = color); map("state", add = TRUE)
 \references{
 Richard A. Becker, and Allan R. Wilks,
 "Maps in S",
-\emph{AT\&T Bell Laboratories Statistics Research Report, 1991.}
+\emph{AT&T Bell Laboratories Statistics Research Report, 1991.}
 }
 \keyword{dplot}
