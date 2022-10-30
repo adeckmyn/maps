@@ -1,3 +1,7 @@
+# Some routines to create "map" objects from other formats
+
+### 1. SP package
+
 # transform a SpatialPolygons[DataFrame] into a list of polygons for map()
 SpatialPolygons2map <- function(database, namefield=NULL){
   if(!inherits(database,"SpatialPolygons")) stop("database must be a SpatialPolygons[DataFrame] object.")
@@ -85,4 +89,7 @@ SpatialLines2map <- function(database, namefield=NULL){
   class(result) <- "map"
   result
 }
+
+##############################################
+
 

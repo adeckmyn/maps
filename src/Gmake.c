@@ -80,7 +80,7 @@ char * getword(FILE *f)
 void set_range(struct region_h *rh, Polyline r[])
 {
 	int n = rh->nline;
-	struct line_h *lh, *get_lh();
+	struct line_h *lh, *get_lh(Polyline);
 	float xmin = FLT_MAX, ymin = FLT_MAX;
 	float xmax = -FLT_MAX, ymax = -FLT_MAX;
 
