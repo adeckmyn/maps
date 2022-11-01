@@ -12,7 +12,8 @@ map.where <- function(database = "world", x, y, ...)
        as.double(x),
        as.double(y),
        as.integer(length(x)),
-       integer(length(x)))[[5]]
+       integer(length(x)),
+       NAOK=TRUE)[[5]]
     # this must be database, not mapbase
     nam <- mapname(database, ".")
     gon[gon == 0] = NA
@@ -25,8 +26,8 @@ map.where <- function(database = "world", x, y, ...)
     }
     if(num.polygons(database) != length(database$names))
       stop("map object must have polygons (fill=TRUE)")
-    n = length(database$x)
-    result = .C(C_map_in_polygon,
+    n <- length(database$x)
+    result <- .C(C_map_in_polygon,
        as.double(database$x), as.double(database$y), as.integer(n),
        as.double(x), as.double(y), as.integer(length(x)),
        integer(length(x)), NAOK = TRUE)[[7]]
