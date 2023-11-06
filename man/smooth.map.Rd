@@ -80,7 +80,7 @@ smooth.map(m, z, res = 50, span = 1/10, averages = FALSE, type = c("smooth",
   function of time and space - the incidence of disease mumps.
   \emph{Journal of the American Society for Information Science},
   45(9):686-693, 1994.
-  \url{http://web.eecs.utk.edu/~audris/papers/jasis.pdf}
+  \url{https://web.eecs.utk.edu/~audris/papers/jasis.pdf}
   
   W. R. Tobler.  Smooth pycnophylactic interpolation for
   geographical regions.  \emph{Journal of the American Statistical
