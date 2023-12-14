@@ -7,7 +7,7 @@ Author: Original S code by Richard A. Becker and Allan R. Wilks.
         Enhancements by Thomas P Minka and Alex Deckmyn.
 Description: Display of maps.  Projection code and larger maps are in
              separate packages ('mapproj' and 'mapdata').
-Depends: R (>= 3.0.0)
+Depends: R (>= 3.5.0)
 Imports: graphics, utils
 LazyData: yes
 Suggests: mapproj (>= 1.2-0), mapdata (>= 2.3.0), sp, rnaturalearth
