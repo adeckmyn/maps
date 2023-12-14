@@ -15,12 +15,12 @@ map.scale(x, y, relwidth = 0.15, metric = TRUE, ratio = TRUE, \dots)
 }
 \arguments{
 \item{x}{
-Horizontal location of left end of distance gauge.  If not specified, this will be
-taken to be near the lower left corner of the map.
+Horizontal location of left end of distance gauge.  If not specified,
+this will be taken to be near the lower left corner of the map.
 }
 \item{y}{
-Vertical location of left end of distance gauge.  If not specified, this will be
-taken to be near the lower left corner of the map.
+Vertical location of left end of distance gauge.  If not specified,
+this will be taken to be near the lower left corner of the map.
 }
 \item{relwidth}{
 Proportion of width of display to be used for the scale.  The default is
