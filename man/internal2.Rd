@@ -15,6 +15,7 @@
 \alias{kernel.smooth}
 \alias{kernel.region.region}
 \alias{kernel.region.x}
+\alias{.map.range}
 \title{Internally Required Functions}
 
 \usage{
@@ -35,6 +36,7 @@ gp.smooth(x, z, xo, lambda, r)
 kernel.smooth(x, z, xo, lambda, region = NULL, normalize = TRUE)
 kernel.region.region(x, region, lambda)
 kernel.region.x(x, region, z, lambda)
+.map.range()
 }
 
 \description{
