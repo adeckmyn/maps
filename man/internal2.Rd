@@ -36,7 +36,7 @@ gp.smooth(x, z, xo, lambda, r)
 kernel.smooth(x, z, xo, lambda, region = NULL, normalize = TRUE)
 kernel.region.region(x, region, lambda)
 kernel.region.x(x, region, z, lambda)
-.map.range()
+.map.range(new)
 }
 
 \description{
