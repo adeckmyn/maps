@@ -102,8 +102,9 @@ sf2map <- function(database, namefield=NULL){
   nregions <- dim(database)[1]
   if (!is.null(namefield)) {
     region_names <- database[[namefield]]
-  nregions <- length(region_names)
-
+  } else {
+    region_names <- 1:nregions
+  }
   gname <- attr(database, "sf_column")
 #  print(gname)
   # count the number of polygons in every "region"

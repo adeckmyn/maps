@@ -55,7 +55,7 @@ map.poly <- function(database, regions = ".", exact = FALSE,
     } else if (inherits(database,"SpatialLines")) {
       the.map <- SpatialLines2map(database, namefield=namefield)
     } else if (inherits(database, "list") && 
-               length(setdiff( c("x", "y", "names"),  names(database))) == 0)
+               length(setdiff( c("x", "y", "names"),  names(database))) == 0) {
       the.map <- database
     } else {
       stop("database type not supported.")
