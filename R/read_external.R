@@ -4,8 +4,9 @@
 
 # transform a SpatialPolygons[DataFrame] into a list of polygons for map()
 SpatialPolygons2map <- function(database, namefield=NULL){
-  if(!inherits(database,"SpatialPolygons")) stop("database must be a SpatialPolygons[DataFrame] object.")
-
+  if (!inherits(database,"SpatialPolygons")) {
+    stop("database must be a SpatialPolygons[DataFrame] object.")
+  }
   region.names <- NULL
   if (inherits(database,"SpatialPolygonsDataFrame") & !is.null(namefield) ) {
     namcol <- lapply(namefield, function(x) which(tolower(names(database)) == tolower(x)))
@@ -90,6 +91,53 @@ SpatialLines2map <- function(database, namefield=NULL){
   result
 }
 
-##############################################
+### 2. SF package (replacing sp)
+# Early BETA version!
+# TODO: check with multiple sources
+# I currently always expect MULTIPOLYGONS
+sf2map <- function(database, namefield=NULL){
+  if (!inherits(database, "sf")) {
+    stop("database must be a sf object.")
+  }
+  nregions <- dim(database)[1]
+  if (!is.null(namefield)) {
+    region_names <- database[[namefield]]
+  nregions <- length(region_names)
+
+  gname <- attr(database, "sf_column")
+#  print(gname)
+  # count the number of polygons in every "region"
+  ngon <- vapply(1:nregions,
+                 FUN=function(i) length(database[[gname]][[i]]),
+                 FUN.VALUE=1)
+#  print(region_names)
+#  print(ngon)
+  # if a region contains several polygons, an index is added to the name: "region:n"
+  gon.names <- unlist(lapply(1:nregions, function(i) {
+             if (ngon[i]==1) region_names[i]
+             else paste(region_names[i],1:ngon[i],sep=":")}))
+#  print(gon.names)
+
+  # extract all polygon data to a list
+  # TODO: check whether that [[1]] is always correct! Can there be more elements? Like what?
+  allpoly <- lapply(database[[gname]],
+                    function(x) lapply(x, function(y) y[[1]]))
+#  print(allpoly)
+## allpoly is a list of lists of Nx2 matrices (not data frames)
+## first flatten the list, then add NA to every row, then rbind and remove one NA
+#  p1 <- do.call(c, allpoly)
+#  p2 <- lapply(p1, function(x) rbind(c(NA,NA),x))
+#  p3 <- do.call(rbind,p2)[-1,]
+  mymap <- do.call(rbind, lapply(do.call(c,allpoly),
+                                  function(x) rbind(c(NA,NA),x)))[-1,]
+  result <- list(x = mymap[,1], y = mymap[,2], names = gon.names,
+       range = c(range(mymap[,1], na.rm = TRUE),range(mymap[,2], na.rm = TRUE)))
+  class(result) <- "map"
+  result
+}
+
+
+###########################################
+
 
 

@@ -48,13 +48,18 @@ map.poly <- function(database, regions = ".", exact = FALSE,
 		     interior = TRUE, fill = FALSE, as.polygon = FALSE, namefield="name") {
   if (!is.character(database)) {
     if (!as.polygon) stop("map objects require as.polygon=TRUE")
-    if (inherits(database,"Spatial")){
-      if (inherits(database,"SpatialPolygons")) the.map <- SpatialPolygons2map(database, 
-                                                               namefield=namefield)
-      else if (inherits(database,"SpatialLines")) the.map <- SpatialLines2map(database, 
-                                                             namefield=namefield)
-      else stop("database not supported.")
-    } else the.map <- database
+    if (inherits(database, "sf")) {
+      the.map <- sf2map(database, namefield=namefield)
+    } else if (inherits(database,"SpatialPolygons")) {
+      the.map <- SpatialPolygons2map(database, namefield=namefield)
+    } else if (inherits(database,"SpatialLines")) {
+      the.map <- SpatialLines2map(database, namefield=namefield)
+    } else if (inherits(database, "list") && 
+               length(setdiff( c("x", "y", "names"),  names(database))) == 0)
+      the.map <- database
+    } else {
+      stop("database type not supported.")
+    }
     if (identical(regions,".")) {
       # speed up the common case
       nam = the.map$names
