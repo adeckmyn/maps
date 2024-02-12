@@ -54,7 +54,7 @@ map.poly <- function(database, regions = ".", exact = FALSE,
       the.map <- SpatialPolygons2map(database, namefield=namefield)
     } else if (inherits(database,"SpatialLines")) {
       the.map <- SpatialLines2map(database, namefield=namefield)
-    } else if (inherits(database, "list") && 
+    } else if (is.list(database) && 
                length(setdiff( c("x", "y", "names"),  names(database))) == 0) {
       the.map <- database
     } else {
