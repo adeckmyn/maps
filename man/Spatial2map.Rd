@@ -2,15 +2,17 @@
 \alias{Spatial2map}
 \alias{SpatialPolygons2map}
 \alias{SpatialLines2map}
+\alias{sf2map}
 \title{
-  Read SpatialPolygons and SpatialLines objects
+  Read sf, SpatialPolygons and SpatialLines objects
 }
 \description{
-  These functions transform some classes provided by the package \code{sp} into a simple list that can be used by map().
+  These functions transform some classes provided by the packages \code{sp} and \code{sf} into a simple list that can be used by map().
 }
 \usage{
 	SpatialPolygons2map(database, namefield=NULL)
 	SpatialLines2map(database, namefield=NULL)
+        sf2map(database, namefield="name")
 }
 \arguments{
   \item{database}{A \code{SpatialPolygons} or \code{SpatialLines} object.}
