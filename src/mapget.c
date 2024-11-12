@@ -428,7 +428,7 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
   if(status < 0) error("map_getg failure from getpoly");
 
   /* get the polyline numbers in lines */
-  lines = Calloc(nline, int);
+  lines = R_Calloc(nline, int);
   status = 1;
   map_getg(database, &poly, &one, lines, &status, range, &one);
 
@@ -437,7 +437,7 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
     error("map_getg failure from getpoly");
 
   /* in lengths get the number of pairs in each polyline */
-  lengths = Calloc(nline, int);
+  lengths = R_Calloc(nline, int);
   for(i = 0; i < nline; i++)
     lengths[i] = lines[i];
   status = nline;
@@ -451,8 +451,8 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
   npair = nline-1;
   for(i = 0; i < nline; i++)
     npair += lengths[i];
-  X = Calloc(npair, double);
-  Y = Calloc(npair, double);
+  X = R_Calloc(npair, double);
+  Y = R_Calloc(npair, double);
 
   /* get the coordinate pairs */
   status = nline;
@@ -474,8 +474,8 @@ getpoly(char **database, int poly, double **x, double **y, int *n)
     }
 
   /* clean up */
-  Free(lines);
-  Free(lengths);
+  R_Free(lines);
+  R_Free(lengths);
 
   /* return the data */
   *x = X;
@@ -549,7 +549,7 @@ map_where(char **database, double *x, double *y, int *n, int *poly)
     error("pip: cannot read size in %s", Gname);
   }
   AdjustBuffer(&npoly,1,sizeof(npoly));
-  rh = Calloc(npoly, struct region_h);
+  rh = R_Calloc(npoly, struct region_h);
   if(Read(rf, rh, npoly) != npoly) {
     fclose(rf);
     error("pip: cannot read headers in %s", Gname);
@@ -579,8 +579,8 @@ map_where(char **database, double *x, double *y, int *n, int *poly)
 	poly[i] = j+1;
     }
     if (gotpoly) {
-      Free(X);
-      Free(Y);
+      R_Free(X);
+      R_Free(Y);
     }
   }
 }
