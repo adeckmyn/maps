@@ -108,7 +108,7 @@ sf2map <- function(database, namefield="name"){
   }
   gname <- attr(database, "sf_column")
   ngon <- vapply(1:nregions,
-                  FUN=function(r) sum(vapply(1:length(database[[gname]][[r]]), 
+                  FUN=function(r) sum(vapply(1:length(database[[gname]][[r]]),
                                              FUN=function(p) length(database[[gname]][[r]][[p]]),
                                              FUN.VALUE=1)),
                   FUN.VALUE=1)
