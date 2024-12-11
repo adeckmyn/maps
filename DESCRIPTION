@@ -12,6 +12,8 @@ Imports: graphics, utils
 LazyData: yes
 Suggests: mapproj (>= 1.2-0), mapdata (>= 2.3.0), sp, rnaturalearth
 License: GPL-2
+URL: https://github.com/adeckmyn/maps
+BugReports: https://github.com/adeckmyn/maps/issues
 Maintainer: Alex Deckmyn <alex.deckmyn@meteo.be>
 NeedsCompilation: yes
 Repository: CRAN
