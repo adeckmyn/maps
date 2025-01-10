@@ -284,8 +284,8 @@ void construct_poly(double *xout, double *yout,
   }
   *line_end = line_start + n -1; /*drop final NA */
 /* we switched to R_alloc, so no need to free
-  Free(xbuf);
-  Free(ybuf);
+  R_Free(xbuf);
+  R_Free(ybuf);
 */
 }
 
@@ -512,8 +512,8 @@ void merge_segments(double *xout, double *yout,
 
   *count_segments -= 1;
 /*
-  Free(xbuf);
-  Free(ybuf);
+  R_Free(xbuf);
+  R_Free(ybuf);
 */
 }
 
