@@ -106,6 +106,7 @@ sf2map <- function(database, namefield="name"){
     # NOTE: the namefield may be a factor (e.g. tmap::World), so make sure to transform to vector
     line_names <- as.vector(database[[namefield]])
   } else {
+    # no namefield available: just use numbers 1..n
     line_names <- 1:nplines
   }
   if (inherits(database[[gname]], "sfc_MULTILINESTRING") || 

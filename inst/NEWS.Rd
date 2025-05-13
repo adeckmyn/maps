@@ -1,5 +1,12 @@
 \name{NEWS}
 \title{News for package 'maps'}
+\section{Changes in maps version 3.4.2 (2024-11-xx)}{
+  \itemize{
+    \item \code{sf2map} has been added to read maps in the new \code{sf} format. This function is new and has only been tested on  alimited number of data sets.
+    \item Minor code fixes.
+    \item Minor corrections to world.cities data base.
+  }
+}
 \section{Changes in maps version 3.4.0 (2021-09-24)}{
   \itemize{
     \item \code{legacy_world} and \code{world.legacy()}, which were deprecated for some years, have been removed from the package. The old database is now available from the companion package 'mapdata' (as of version 2.3.0) where it is called "worldLores".
