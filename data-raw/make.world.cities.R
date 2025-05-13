@@ -1,3 +1,4 @@
+# This is a work-in-progress file, absolutely not meant for common users
 srcdata="http://download.geonames.org/export/dump/"
 zipfile="cities5000.zip"
 infile="cities5000.txt"
@@ -60,7 +61,7 @@ names(c1) <- c("name","lat","lon","pop","date")
 # BUT in this context, we just want to know it's in Norway
 #  so iso.expand is not really helpful. It needs a "simple=TRUE" option :-)
 # NOTE: e.g. Longyearbyen has [[9]]==SJ [[10]]=NO, old table has "Svalbard and Jan Mayen"
-c1$country <- maps::iso.expand(cities5000[[9]], regex=TRUE)
+c1$"country.etc" <- maps::iso.expand(cities5000[[9]], regex=TRUE)
 ### compare/validate
 c0 <- maps::world.cities
 
@@ -74,13 +75,20 @@ c0 <- maps::world.cities
 
 c1$capital <- 0
 c1$capital[cities5000[[8]]=="PPLC"] <- 1
+ttt=vapply(c1$name, FUN=function(x) x %in% c0$name, FUN.VAL=TRUE)
+# 26522 "matches" on 59844 new names
+ttt=vapply(c0$name, FUN=function(x) x %in% c1$name, FUN.VAL=TRUE)
+# 25151 "matches" from 43645 old names
+# so roughly 50% of city names match exactly.
+# NOTE: there are duplicated city names, the actual number of common names:
+t1 <- intersect(c1$name, c0$name)
 
 
 # compare by name, lat, lon, country...
 # if pop > 5000, it should be in both
 
 # ~22000 same names = ~50%
-t1 <- intersect(c1$name, c0$name)
+#t1 <- intersect(c1$name, c0$name)
 # ATTENTION: sometimes many cities with same name -> use lat/lon or country...
 # how check the rest? does it matter?
 
@@ -91,4 +99,20 @@ t1 <- intersect(c1$name, c0$name)
 world.cities2 <- c1
 save("world.cities2", file="../data/world.cities2.rda")
 write.table(world.cities2,  file="./world.cities2.tsv", row.names=FALSE, quote=TRUE, sep="\t")
+
+# Various checks
+# Capitals
+cap0 <- c0[c0$capital==1,]
+cap1 <- c1[c1$capital==1,]
+# 230 vs 241 -> missing capitals?
+# Many differences in spelling, e.g.
+# Luxemburg <-> Luxembourg
+# Ulaanbaatar <-> Ulan Bator
+# Havana <-> Havanna
+# Beirut <-> Bayrut
+# Kiev <-> Kyiv
+# I think cities5000 is more up-to-date on correct spelling, but it varies...
+# NOTE: in geonames, there is no official capital for Israel because Jerusalem is controversial...
+setdiff(cap0$name, cap1$name)
+
 

@@ -20,7 +20,8 @@ Municipalities, and 3 for China Provincial capitals)
 }
 \source{
 The data were originally obtained from Stefan Helders' website (http://www.world-gazetteer.com),
-which now redirects to \url{http://www.populationmondiale.com}. There are no recent updates available.
+which no longer exists. There are no recent updates available.
+A new version is being prepared.
 }
 \section{NOTE}{
 Some of the country names and city names may be out of date.  Please send
