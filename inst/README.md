@@ -28,6 +28,7 @@ This may have several implications for code that calls map().
 - A set of simple functions use this iso3166 table for creating a list of countries to map. So you can use the 2- or 3-letter ISO code (e.g. as country labels on a map), but also create a list based on the sovereignty. Type '?iso.expand' for details.
 
 - v3.2 adds new options to map() for wrapping and exact boundary clipping.
+- v3.4.3 adds initial support for 'sf' class maps.
 
 ##FIXES
 - As of v3.2, maps::map() also works if the maps package is not attached. You can even do maps::map("madata::worldHires").
@@ -54,8 +55,6 @@ Even maps in e.g. shapefile format can now easily be imported for use in 'map()'
 
 
 ##TO DO/DISCUSS:
-- Add 'proj4' support. This will have to be via a new argument e.g. \code{map(..., proj4="+proj=longlat"}.
-- Many islands remain nameless.
 - The old naming convention is largely maintained, but some choices are different. The changes mean that e.g. /region="France"/ now covers only metropolitan France, whithout (most of) the overseas departments and territories
 - Some inconsistencies in the naming procedure remain. For instance, while most countries are named by their full name, "UK" and "USA" are shortened in the same way as in the old data base. For UK, this even required a hack in the mapping code to avoid adding Ukrain to the map.
 - The iso3166 table may have to be adapted for the Natural Earth 1:10 database, some extra rows have already been inserted.
