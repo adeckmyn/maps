@@ -26,9 +26,9 @@ function(...)
 }
 
 "map.cities" <-
-function (x = world.cities, country = "", label = NULL, minpop = 0, 
+function (x = world.cities, country = "", label = NULL, minpop = 0,
   maxpop = Inf, capitals = 0, cex = par("cex"), projection = FALSE,
-  parameters = NULL, orientation = NULL, pch = 1, ...) 
+  parameters = NULL, orientation = NULL, pch = 1, ...)
 {
   if (missing(x) && !exists("world.cities")) {
     world.cities <- maps::world.cities
@@ -48,27 +48,27 @@ function (x = world.cities, country = "", label = NULL, minpop = 0,
       x$lat <- projx$y
     } else stop("mapproj package not available\n")
   } else {
-    if (usr[2] > (180 + 0.04*(usr[2] - usr[1]))) 
+    if (usr[2] > (180 + 0.04*(usr[2] - usr[1])))
       x$long[x$long < 0] <- 360 + x$long[x$long < 0]
   }
   selection <- x$long >= usr[1] & x$long <= usr[2] & x$lat >= usr[3] &
     x$lat <= usr[4] & (x$pop >= minpop & x$pop <= maxpop) & ((capitals == 0) |
     (x$capital >= 1))
-  if (country != "") 
+  if (country != "")
     selection <- selection & x$country.etc == country
   selection0 <- selection & (x$capital == 0) & (capitals == 0)
   selection01 <- selection & (x$capital <= 1) & (capitals <= 1)
   selection1 <- selection & (x$capital == 1) & (capitals == 1)
   selection2 <- selection & (x$capital == 2) & (capitals == 2)
   selection3 <- selection & (x$capital == 3) & (capitals == 3)
-  if (is.null(label)) 
+  if (is.null(label))
     label <- sum(selection) < 20
   cxy <- par("cxy")
-  if (sum(selection01) > 0) 
-    points(x$long[selection01], x$lat[selection01], pch = pch, 
+  if (sum(selection01) > 0)
+    points(x$long[selection01], x$lat[selection01], pch = pch,
       cex = cex * 0.6, ...)
-  if (sum(selection0) > 0) 
-    if (label) 
+  if (sum(selection0) > 0)
+    if (label)
       text(x$long[selection0], x$lat[selection0] + cxy[2] * cex * 0.7,
         paste(" ", x$name[selection0], sep = ""), cex = cex * 0.7, ...)
   if (sum(selection1) > 0) {
@@ -97,7 +97,7 @@ function (x = world.cities, country = "", label = NULL, minpop = 0,
 
 # draw a scale bar on a map
 "map.scale" <-
-function (x, y, relwidth = 0.15, metric = TRUE, ratio = TRUE, ...) 
+function (x, y, relwidth = 0.15, metric = TRUE, ratio = TRUE, ...)
 {
   # old version
   # format.pretty <- function(x) {
@@ -109,17 +109,17 @@ function (x, y, relwidth = 0.15, metric = TRUE, ratio = TRUE, ...)
   prettyNum(formatC(x, format = "fg", digits = digits), big.mark = ",")
   }
   usr <- par("usr")
-  if (missing(y)) 
+  if (missing(y))
   y <- (9 * usr[3] + usr[4])/10
-  if (abs(y) >= 90) 
+  if (abs(y) >= 90)
   warning("location of scale out of this world!")
-  if (missing(x)) 
+  if (missing(x))
   #x <- (0.9 - relwidth) * usr[2] + (0.1 + relwidth) * usr[1]
   x <- (9 * usr[1] + usr[2])/10
   cosy <- cos((2 * pi * y)/360)
   perdeg <- (2 * pi * (6356.78 + 21.38 * cosy) * cosy)/360
   scale <- (perdeg * 100000)/(2.54 * (par("pin")/diff(par("usr"))[-2])[1])
-  if (metric) 
+  if (metric)
   unit <- "km"
   else {
   perdeg <- perdeg * 0.6213712
@@ -174,7 +174,7 @@ map.wrap <- function(p, xlim=NULL) {
   j <- c(j, length(p$x))
   ind <- seq_along(p$x)
 
-  index <- c(ind[1:j[1]],  
+  index <- c(ind[1:j[1]],
              unlist(lapply(1:(length(j)-1), function(k) c(NA, ind[(j[k]+1):j[(k + 1)]]) )) )
 # notice that p$name is not returned!
 # so if wrapping is applied, you loose polygon names

@@ -108,7 +108,7 @@ sf2map <- function(database, namefield="name"){
   } else {
     line_names <- 1:nplines
   }
-  if (inherits(database[[gname]], "sfc_MULTILINESTRING") || 
+  if (inherits(database[[gname]], "sfc_MULTILINESTRING") ||
       inherits(database[[gname]], "sfc_MULTIPOLYGON")) {
     nlines <- vapply(1:nplines,
                     FUN=function(r) sum(vapply(1:length(database[[gname]][[r]]),

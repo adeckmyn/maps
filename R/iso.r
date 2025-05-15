@@ -49,11 +49,11 @@ iso.alpha <- function(x,n=2){
   if (any(is.na(sel))) {
     sel2 <- which(is.na(sel))
     nam2 <- unlist(lapply(x[sel2],
-              function(nn) {regx <- paste("(^",nn,")",sep="") ; 
+              function(nn) {regx <- paste("(^",nn,")",sep="") ;
                             ttt <- grep(regx, iso3166$mapname, perl=TRUE, ignore.case=TRUE);
                             if (length(ttt)==1) ttt else NA}))
     sel[sel2] <- nam2
-  } 
+  }
 
   if (n==2) iso3166$a2[sel]
   else if (n==3) iso3166$a3[sel]
