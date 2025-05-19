@@ -136,7 +136,7 @@ function(database = "world", patterns, exact = FALSE)
     }
   } else {
 ## QUICK FIX: there is a problem now for UK vs Ukrain...
-    if (database=="world") patterns <- fix_exceptions(patterns) 
+    if (database=="world") patterns <- fix_exceptions(patterns)
     regexp <- paste("(^", patterns, ")", sep = "", collapse = "|")
 # BUGFIX: perl regex is limited to about 30000 characters
 # so this crashes if patterns includes the whole world map
@@ -164,7 +164,7 @@ function(database = "world")
       if (!is.null(database$maptype)) return(database$maptype)
 #      if (!is.null(database$projection)) return("planar")
       return("spherical")
-# you may also look at $projection ... 
+# you may also look at $projection ...
     } else "spherical"
   }
 }

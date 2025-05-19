@@ -54,7 +54,7 @@ map.poly <- function(database, regions = ".", exact = FALSE,
       the.map <- SpatialPolygons2map(database, namefield=namefield)
     } else if (inherits(database,"SpatialLines")) {
       the.map <- SpatialLines2map(database, namefield=namefield)
-    } else if (is.list(database) && 
+    } else if (is.list(database) &&
                all(c("x", "y", "names") %in%  names(database))) {
       the.map <- database
     } else {
@@ -98,7 +98,7 @@ map.poly <- function(database, regions = ".", exact = FALSE,
             stop("nothing to draw: all regions out of bounds")
     # turn the polyline numbers into x and y coordinates
     if (as.polygon) {
-      coord <- mapgetl(database, line$number, xlim, ylim, fill) 
+      coord <- mapgetl(database, line$number, xlim, ylim, fill)
       # assemble lines into polygons
       gonsize <- line$size
       keep <- rep(TRUE, length(gonsize))
@@ -128,14 +128,14 @@ map <-
 function(database = "world", regions = ".", exact = FALSE,
 	 boundary = TRUE, interior = TRUE, projection = "",
 	 parameters = NULL, orientation = NULL, fill = FALSE,
-	 col = 1, plot = TRUE, add = FALSE, namesonly = FALSE, 
+	 col = 1, plot = TRUE, add = FALSE, namesonly = FALSE,
          xlim = NULL, ylim = NULL, wrap = FALSE,
          resolution = if (plot) 1 else 0, type = "l", bg = par("bg"),
-         mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01, 
+         mar = c(4.1, 4.1, par("mar")[3], 0.1), myborder = 0.01,
          namefield="name", lforce = "n", ...)
 {
   # parameter checks
-  if (resolution>0 && !plot) 
+  if (resolution>0 && !plot)
     stop("must have plot=TRUE if resolution is given")
   if (!fill && !boundary && !interior)
     stop("one of boundary and interior must be TRUE")
@@ -145,11 +145,11 @@ function(database = "world", regions = ".", exact = FALSE,
     stop("Please install the package 'mapproj' for projections.")
   }
   coordtype <- maptype(database)
-  if (coordtype == "unknown") 
+  if (coordtype == "unknown")
      stop("missing database or unknown coordinate type")
-  if (doproj && coordtype != "spherical") 
+  if (doproj && coordtype != "spherical")
     stop(paste(database, "database is not spherical; projections not allowed"))
-  if (length(wrap)>=2 && !doproj && wrap[2] - wrap[1] != 360) 
+  if (length(wrap)>=2 && !doproj && wrap[2] - wrap[1] != 360)
     stop("The specified longitudes for wrapping are inconsistent, they should be 360 apart.")
   # turn the region names into x and y coordinates
   if (is.character(database)) as.polygon = fill
@@ -158,7 +158,7 @@ function(database = "world", regions = ".", exact = FALSE,
   # to get all necessary polylines/polygons is to set xlim=NULL *temporarily*
   # (alternatively, the C code must shift longitudes by +/- 360 to fit in boundaries)
   xlim_tmp <- if (length(wrap)>=2) NULL else xlim
-  coord <- map.poly(database, regions, exact, xlim_tmp, ylim, 
+  coord <- map.poly(database, regions, exact, xlim_tmp, ylim,
                     boundary, interior, fill, as.polygon, namefield=namefield)
   if (is.na(coord$x[1])) stop("first coordinate is NA. Bad map data?")
   if (length(wrap)>=2) {
@@ -215,7 +215,7 @@ function(database = "world", regions = ".", exact = FALSE,
       if (is.null(ylim) || (doproj && !(lforce %in% c("s","l")))) yrange <- range(coord$y, na.rm = TRUE)
       else yrange <- ylim
       if (coordtype != "spherical" || doproj) {
-	aspect <- c(1, 1) 
+	aspect <- c(1, 1)
       } else
         aspect <- c(cos((mean(yrange) * pi)/180), 1)
       d <- c(diff(xrange), diff(yrange)) * (1 + 2 * myborder) * aspect
