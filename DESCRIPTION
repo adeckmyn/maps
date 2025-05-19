@@ -1,6 +1,6 @@
 Package: maps
 Title: Draw Geographical Maps
-Version: 3.4.2.9009
+Version: 3.4.3
 Date: 2025-05-15
 Description: Display of maps.  Projection code and larger maps are in
              separate packages ('mapproj' and 'mapdata').
