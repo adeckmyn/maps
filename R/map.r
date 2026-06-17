@@ -149,7 +149,7 @@ function(database = "world", regions = ".", exact = FALSE,
      stop("missing database or unknown coordinate type")
   if (doproj && coordtype != "spherical")
     stop(paste(database, "database is not spherical; projections not allowed"))
-  if (length(wrap)>=2 && !doproj && wrap[2] - wrap[1] != 360)
+  if (length(wrap)>=2 && !doproj && isFALSE(all.equal(wrap[2] - wrap[1], 360)))
     stop("The specified longitudes for wrapping are inconsistent, they should be 360 apart.")
   # turn the region names into x and y coordinates
   if (is.character(database)) as.polygon = fill
