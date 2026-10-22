@@ -15,7 +15,7 @@ parameters = NULL, orientation = NULL, pch = 1, \dots)
 \arguments{
 \item{x}{
 Name of database. See \code{\link{world.cities}} to determine the structure of
-the database.
+the database. WARNING: should you use this function to plot another set of data points, keep in mind that points on a map can nowadays be localised upto extreme detail with specialized software (a dot on a national map can reveal someones home address), so beware not to reveal private data in some way.
 }
 \item{country}{
 If the string country is specified, limit the displayed cities to be
